@@ -103,8 +103,6 @@ def test_validate_assignment_rules():
         (['invented'], [], {'invented': '不存在'}, None),
         (['math.number-theory', 'math.number-theory.prime'], [],
          {'math.number-theory': '分支', 'math.number-theory.prime': '素数'}, None),
-        (['math.number-theory.prime', 'math.number-theory.gcd'], [],
-         {'math.number-theory.prime': '素数', 'math.number-theory.gcd': '公因数'}, None),
         (['math.number-theory.prime'], [], {}, None),
         (['math.number-theory.prime'], [], {'math.number-theory.prime': '  '}, None),
         (['math.number-theory.prime'], [], {'math.number-theory.prime': '素数'},
@@ -116,6 +114,11 @@ def test_validate_assignment_rules():
     taxonomy.validate_assignment(['math.number-theory.prime'], [],
                                  {'math.number-theory.prime': '试除判素数'},
                                  {'math.number-theory.prime': 0.8})
+    # 同一 L2 分支可以有多个主标签：筛法和素数经常同时出现在一道题里。
+    same_branch = ['math.number-theory.prime', 'math.number-theory.sieve']
+    taxonomy.validate_assignment(same_branch, [],
+                                 {node_id: '先筛后判' for node_id in same_branch},
+                                 {node_id: 0.8 for node_id in same_branch})
 
 
 def test_catalog_scale_and_unique_names():

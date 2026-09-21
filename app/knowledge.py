@@ -128,9 +128,8 @@ class Taxonomy:
         for node_id in selected:
             if any(ancestor['id'] in selected_set for ancestor in self.ancestors(node_id)):
                 raise TaxonomyError('Do not select both ancestor and descendant')
-        branches = [self.branch(node_id) for node_id in primary]
-        if len(set(branches)) != len(branches):
-            raise TaxonomyError('Only one primary ID per L2 branch')
+        # 同一 L2 分支允许有多个主标签：一道题可能同时用到“素数”和“筛法”，
+        # 或者既可以用树状数组也可以用线段树，这些都应该如实标出。
         if knowledge_confidence is not None:
             if not isinstance(knowledge_confidence, dict) or set(knowledge_confidence) != selected_set or any(
                     type(value) not in (float, int) or not 0 <= value <= 1 for value in knowledge_confidence.values()):

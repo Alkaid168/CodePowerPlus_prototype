@@ -39,7 +39,7 @@ export const api = {
   problems: (params) => request('/api/problems', { params }),
   problem: (id) => request(`/api/problems/${id}`),
   createProblem: (body) => request('/api/problems', { method: 'POST', body }),
-  analyzeNewProblem: (body) => request('/api/problems/analyze', { method: 'POST', body }),
+  // 录入与分析是两步：先建题拿到 OJ 编号，再调用模型；模型失败时题目仍在，可以重试。
   analyzeProblem: (id) => request(`/api/problems/${id}/analyze`, { method: 'POST' }),
   saveAnalysis: (id, body) => request(`/api/problems/${id}/analyses`, { method: 'POST', body }),
   analysisHistory: (id) => request(`/api/problems/${id}/analyses`),

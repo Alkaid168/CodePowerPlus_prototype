@@ -15,7 +15,7 @@ CodePowerPlus/Scripts/python.exe scripts/evaluate.py --predictions predictions.j
 
 ## 标注与预测文件约定
 
-题目 `gold` 中的主知识点描述解题核心，次知识点只标注确有题面/解法证据的辅助知识，不因为解法里顺带出现某个概念就全都补进标签。当前 18 题采用单核心标签，复杂的多标签组合仍需新增独立评审样本。每个标签保存解释 `evidence`；难度是项目的 1—5 档任务难度，由题目分析给出，与知识节点无关。
+题目 `gold` 中的主知识点描述解题主线，次知识点只标注确有题面/解法证据的辅助知识，不因为解法里顺带出现某个概念就全都补进标签。当前 18 题采用单核心标签，复杂的多标签组合仍需新增独立评审样本。每个标签保存解释 `evidence`；难度是 Codeforces 风格的 800–3500 评分（100 的整数倍），由题目分析给出，与知识节点无关。
 
 外部预测文件结构如下，`predictions` 需要补全数据集所有 `id`，顺序任意；未知标签照常作为错误计入 false positive，不能先过滤掉再汇报分数。
 
@@ -30,7 +30,7 @@ CodePowerPlus/Scripts/python.exe scripts/evaluate.py --predictions predictions.j
       "problem_id": 1,
       "primary_knowledge_ids": ["填写实际预测 ID"],
       "secondary_knowledge_ids": [],
-      "difficulty": 2
+      "difficulty": 1600
     }
   ]
 }

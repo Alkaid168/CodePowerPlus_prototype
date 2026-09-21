@@ -1,4 +1,6 @@
 """静态前端与健康检查：ES 模块能正常提供。"""
+import hashlib
+import json
 import re
 from pathlib import Path
 
@@ -8,14 +10,17 @@ ASSETS = [
     '/static/css/components.css',
     '/static/css/overview.css',
     '/static/css/knowledge.css',
+    '/static/css/analysis.css',
     '/static/js/app.js',
     '/static/js/api.js',
     '/static/js/dom.js',
     '/static/js/store.js',
     '/static/js/router.js',
+    '/static/js/search.js',
     '/static/js/components.js',
     '/static/js/icons.js',
     '/static/js/tagEditor.js',
+    '/static/js/markdown.js',
     '/static/js/views/overview.js',
     '/static/js/views/knowledge.js',
     '/static/js/knowledgeIllustrations.js',
@@ -27,9 +32,17 @@ ASSETS = [
     '/static/js/views/path.js',
     '/static/js/views/recommendations.js',
     '/static/js/views/tutor.js',
+    '/static/vendor/marked.esm.js',
+    '/static/vendor/tex-svg.js',
 ]
 
 STATIC_DIR = Path(__file__).resolve().parents[1] / 'app' / 'static'
+VENDOR_DIR = STATIC_DIR / 'vendor'
+
+
+def own_modules():
+    """只扫描自己写的模块；vendor/ 里是第三方库，不适用本项目的代码规则。"""
+    return [module for module in STATIC_DIR.rglob('*.js') if VENDOR_DIR not in module.parents]
 
 
 def test_homepage_serves_the_module_entry(client):
@@ -46,6 +59,14 @@ def test_static_assets_are_available(client):
     assert client.get('/static/js/missing.js').status_code == 404
 
 
+def test_static_assets_revalidate_so_the_browser_never_runs_stale_modules(client):
+    """没有 Cache-Control 时浏览器会启发式缓存模块，改前端却像没生效。"""
+    for path in ('/static/js/app.js', '/static/css/analysis.css', '/static/js/views/analysis.js'):
+        response = client.get(path)
+        assert response.status_code == 200
+        assert response.headers['cache-control'] == 'no-cache', path
+
+
 def test_health_endpoint(client, version):
     body = client.get('/health').json()
     assert body['status'] == 'ok'
@@ -58,7 +79,7 @@ def test_health_endpoint(client, version):
 def test_every_relative_import_resolves():
     """前端模块之间用相对路径互相引用，写错路径在浏览器里才会炸；这里提前拦住。"""
     missing = []
-    for module in STATIC_DIR.rglob('*.js'):
+    for module in own_modules():
         source = module.read_text(encoding='utf-8')
         for target in re.findall(r"from '(\.[^']+)'", source):
             if not (module.parent / target).resolve().exists():
@@ -70,9 +91,56 @@ def test_no_module_builds_html_from_strings():
     """界面统一用 dom.js 的 h() 创建节点；出现 innerHTML 视为回归。"""
     pattern = re.compile(r'\.\s*innerHTML')
     offenders = [str(module.relative_to(STATIC_DIR))
-                 for module in STATIC_DIR.rglob('*.js')
+                 for module in own_modules()
                  if pattern.search(module.read_text(encoding='utf-8'))]
     assert not offenders
+
+
+def test_vendored_markdown_and_math_assets_are_pinned(client):
+    """第三方库随仓库分发，离线可用；版本与校验和写在 vendor.json 里。"""
+    manifest = json.loads((VENDOR_DIR / 'vendor.json').read_text(encoding='utf-8'))
+    assert set(manifest) == {'marked.esm.js', 'tex-svg.js'}
+    for name, entry in manifest.items():
+        payload = (VENDOR_DIR / name).read_bytes()
+        assert hashlib.sha256(payload).hexdigest() == entry['sha256'], name
+        assert 'cdn.jsdelivr.net' in entry['url']
+        assert client.get(f'/static/vendor/{name}').status_code == 200
+
+
+def test_markdown_module_escapes_html_and_guards_urls():
+    """题面里的原生 HTML 必须被转义，链接只允许 http(s)。"""
+    source = (STATIC_DIR / 'js' / 'markdown.js').read_text(encoding='utf-8')
+    assert 'renderer.html = (html) => escapeHtml(html)' in source
+    assert 'safeUrl' in source
+    assert '/^https?:\\/\\//i.test(text)' in source
+    assert 'createContextualFragment' in source
+    assert 'innerHTML' not in source
+    assert 'skipHtmlTags' in source
+
+
+def test_analysis_page_is_the_problem_intake_module(client):
+    """第四个页面改名成“题目录入与分析”，是双栏录入 + 分析与手工标注。"""
+    page = client.get('/')
+    assert '/static/css/analysis.css' in page.text
+    app_source = (STATIC_DIR / 'js' / 'app.js').read_text(encoding='utf-8')
+    assert "label: '题目录入与分析'" in app_source
+    assert "label: '题目分析'" not in app_source
+
+    source = (STATIC_DIR / 'js' / 'views' / 'analysis.js').read_text(encoding='utf-8')
+    for marker in ('renderEntry', 'renderExisting', 'analysis-workspace', 'analysis-column-left',
+                   'analysis-column-right', 'analysis-tabs', 'markdown-input', 'difficultyTag',
+                   'createTagEditor', 'api.createProblem', 'api.analyzeProblem', 'sourceLink',
+                   'mountMarkdown'):
+        assert marker in source, marker
+    # 录入必须先建题再分析：这样模型失败时题面不会丢。
+    assert source.index('api.createProblem') < source.index('api.analyzeProblem')
+    for removed in ('用模型分析新题目', 'analyzeNewProblem', '难度（1–5）'):
+        assert removed not in source
+
+    css = (STATIC_DIR / 'css' / 'analysis.css').read_text(encoding='utf-8').lower()
+    assert 'grid-template-columns: minmax(360px, 440px) minmax(0, 1fr)' in css
+    assert 'linear-gradient' not in css
+    assert 'transition: all' not in css
 
 def test_overview_uses_the_confirmed_monochrome_design_system(client):
     page = client.get('/')

@@ -6,8 +6,8 @@ Algorithms: `{"baseline": "difficulty-fit-v1", "graph": "knowledge-tag-v2", "mas
 
 | Method | hit@k | MRR@k | Coverage | Shown |
 |---|---:|---:|---:|---:|
-| baseline (k=5) | 0.6000 | 0.3400 | 0.3333 | 25 |
-| graph (k=5) | 0.8000 | 0.8000 | 0.3889 | 25 |
+| baseline (k=5) | 0.4000 | 0.2667 | 0.3333 | 25 |
+| graph (k=5) | 0.8000 | 0.7000 | 0.4444 | 25 |
 
 ## External analysis predictions
 
@@ -30,7 +30,7 @@ Status: **not_evaluated**
 - Positive/negative relevance examples were authored for scenarios, not independently assessed; unlisted candidates are treated as non-relevant for hit/MRR.
 - Recommendations use fixture gold analyses, so this is an oracle-label ranking experiment and excludes prediction errors.
 - Mastery uses only simulated history: latest non-CE result per problem; (1+final AC problem count)/(2+independent problem count) per knowledge ID, reusing the production formula in services/profile.py. These are heuristics, not calibrated learning probabilities.
-- Difficulty-only baseline targets 1+4*mean(observed mastery), default 3; the knowledge ranker adds tag weakness on top. Neither is tuned on real outcomes.
+- Difficulty-only baseline targets 1200+1600*mean(observed mastery) on the 800-3500 Codeforces-style scale; the knowledge ranker adds tag weakness on top. Neither is tuned on real outcomes.
 - MRR is truncated at k; coverage denominator is the union of all learner-eligible candidates.
 - No API, real user, or database is used; no automatic paid prediction calls. Use external predictions to evaluate labels/difficulty.
 

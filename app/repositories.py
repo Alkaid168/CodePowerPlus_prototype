@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import json
 
-from app.db import Database, utcnow
+from app.db import FIRST_PROBLEM_ID, Database, utcnow
 
 ANALYSIS_COLUMNS = ('id', 'problem_id', 'payload', 'origin', 'initial_status', 'taxonomy_version', 'created_at')
 SUBMISSION_COLUMNS = ('id', 'user_id', 'problem_id', 'verdict', 'language', 'code', 'knowledge_ids',
@@ -18,9 +18,17 @@ class ProblemRepository:
     def __init__(self, db: Database):
         self.db = db
 
-    def create(self, title: str, description: str, source: str = '') -> dict:
-        cursor = self.db.execute('INSERT INTO problems(title, description, source, created_at) VALUES (?, ?, ?, ?)',
-                                 (title, description, source, utcnow()))
+    def create(self, title: str, description: str, source_url: str = '') -> dict:
+        """插入一道题并分配 OJ 编号。
+
+        编号在 SQL 里用 MAX(id)+1 计算，所以空库第一道题是 1000，
+        而且不依赖 AUTOINCREMENT——旧原型建的库没有 sqlite_sequence 表。
+        写入语句本身是原子的，编号不会因为并发插入而重复。
+        """
+        cursor = self.db.execute(
+            'INSERT INTO problems(id, title, description, source_url, created_at) '
+            'VALUES ((SELECT COALESCE(MAX(id), ? - 1) + 1 FROM problems), ?, ?, ?, ?)',
+            (FIRST_PROBLEM_ID, title, description, source_url, utcnow()))
         return self.get(cursor.lastrowid)
 
     def get(self, problem_id: int) -> dict | None:

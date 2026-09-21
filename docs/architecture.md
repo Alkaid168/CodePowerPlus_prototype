@@ -1,8 +1,12 @@
-# 码力加加系统架构（0.3）
+# 码力加加系统架构（0.4）
 
-本文记录 2026-09-13 的整体重写：后端按 `db → repositories → services → api` 分层，
+本文主体记录 2026-09-13 的整体重写：后端按 `db → repositories → services → api` 分层，
 前端改成无构建步骤的 ES 模块。上一版的问题很具体：接口全挤在 `main.py`，仓储类同时写 SQL
 与业务规则，前端是一个 32KB 的单文件压缩脚本，没有统一错误处理，也没有响应契约。
+
+2026-09-21 重做了「题目录入与分析」模块（架构分层不变）：题面改成 Markdown，
+难度改成 Codeforces 风格评分，题目编号从 1000 起自动分配，来源改成链接，
+录入后调用模型分析并在页面上渲染 LaTeX 公式。下面标注了本次改动的部分。
 
 ## 一、分层与职责
 
@@ -20,7 +24,7 @@
 ## 二、数据模型
 
 ```sql
-problems(id, title, description, source, created_at)
+problems(id, title, description, source_url, created_at)
 problem_analyses(id, problem_id, payload, origin, initial_status, taxonomy_version, created_at)
 analysis_reviews(id, problem_id, original_analysis_id, analysis_id, action, reviewer, comment, created_at)
 submissions(id, user_id, problem_id, verdict, code, language, knowledge_ids,
@@ -33,6 +37,19 @@ schema_meta(key, value)
 1. **分析版本不可变**：每次保存都是新插一行，`MAX(id)` 是当前版本；历史永远可查。
 2. **审核状态由最新一条审核记录推导**：`approve → approved`、`reject → rejected`，
    没有审核记录时看 `initial_status`（`pending` 或旧数据迁移出来的 `legacy`）。
+
+题目相关的三条约定：
+
+1. **`id` 就是对外 OJ 编号**，从 1000 开始。编号在插入语句里用 `MAX(id) + 1` 计算，
+   不依赖 `AUTOINCREMENT`——0.2 版原型建的库是普通 `INTEGER PRIMARY KEY`，
+   根本没有 `sqlite_sequence` 表（这一点踩过一次，见 `findings.md`）。
+2. **题面是 Markdown**，服务端只去掉整段首尾空白，不做任何转换；渲染与公式排版在前端完成。
+3. **难度是 Codeforces 风格整数评分 800–3500**，必须是 100 的整数倍，没有更低档位。
+   中文档位（入门/基础/…/国际赛）不落库，由 `services/difficulty.py` 按评分实时推导，
+   避免两处数据打架。
+
+`source_url` 可以为空，非空时必须是 `http(s)://` 链接；旧库的 `source` 自由文本列
+在启动时自动改名为 `source_url` 并保留原值。
 
 `payload` 里存完整的分析 JSON（标签、难度、证据、置信度、模型名、提示词版本）。
 `knowledge_ids` 是提交发生时从「当前已审核分析」复制下来的快照——这样以后重标注题目，
@@ -47,10 +64,14 @@ schema_meta(key, value)
 
 ```text
 题面 ──模型──┐
-             ├─→ 标签校验（L2/L3、分支唯一、祖先后代互斥、证据、置信度）
+             ├─→ 标签校验（L2/L3、祖先后代互斥、证据、置信度）
 人工标注 ────┘        │
                       └─→ 新分析版本（pending）→ 等待审核
 ```
+
+录入与分析是**两步接口**：`POST /api/problems` 先落库并分配编号，
+`POST /api/problems/{id}/analyze` 再调用模型。这样模型不可用时题目仍然存在，
+用户可以重试分析或改手工标注，不会出现「模型失败、题面一起丢」。
 
 模型输出与人工标注走**同一个**校验函数（`services/analysis.py` 的 `validate`），
 区别只写在 `model_name` 与 `origin` 上。这样模型不可能绕过规则，人工纠错也不必走第二套代码。
@@ -92,13 +113,21 @@ static/js/dom.js        极小 DOM 构造器，替代字符串拼 HTML
 static/js/api.js        统一 fetch + 错误解析
 static/js/store.js      学习者、服务状态、知识树缓存
 static/js/router.js     哈希路由（#/problems/12）
+static/js/search.js     知识点检索（中文名 + 英文 ID，分隔符归一化）
+static/js/markdown.js   Markdown 渲染 + MathJax 公式排版（按需加载）
 static/js/components.js 按钮、卡片、标签、表格、空状态、提示条
 static/js/tagEditor.js  分析 / 纠正共用的标签编辑器
+static/vendor/          marked 12.0.2 与 MathJax 3.2.2（随仓库分发，离线可用）
 static/js/views/*.js    每个页面一个模块
 ```
 
 渲染全部通过 `h()` 创建节点，不拼 `innerHTML`，因此不存在 HTML 注入问题；
 图标由 `scripts/build_icons.py` 从 lucide 生成形状数据，不依赖 npm。
+
+唯一的例外是 Markdown：HTML 必须由解析器产出，所以 `markdown.js` 用
+`createContextualFragment` 挂载，同时在解析前把题面里的原生 HTML 全部转义、
+链接只放行 `http(s)`，把 `h()` 的安全边界搬到了 Markdown 上。
+第三方库用 `scripts/vendor_frontend.py` 下载并按 sha256 校验，不引入构建步骤与 CDN 依赖。
 
 ## 六、技术选型与取舍
 
@@ -114,10 +143,10 @@ static/js/views/*.js    每个页面一个模块
 
 | 手段 | 覆盖内容 |
 | --- | --- |
-| `pytest`（123 项） | 词表规则、数据库与旧库兼容、仓储、分析校验、审核流程、提交、画像、推荐、各接口 |
+| `pytest`（145 项） | 词表规则、数据库与旧库兼容、仓储、分析校验、审核流程、提交、画像、推荐、各接口 |
 | `scripts/smoke_test.py` | 在临时库里跑完整流程：建题 → 标注 → 审核 → 提交 → 画像 → 路径 → 辅导 |
 | `scripts/evaluate.py` | 离线夹具上的标签指标与推荐指标，固定随机种子可复现 |
-| `node --check` | 前端每个 JS 模块的语法 |
+| `scripts/check_frontend.py` | 前端每个 JS 模块按真正的 ES 模块语法解析（`node --check` 会漏报） |
 
 ## 八、已知限制与下一步
 
@@ -126,4 +155,6 @@ static/js/views/*.js    每个页面一个模块
 - 标签粒度目前对齐 OI Wiki 的一页一主题（例如「最短路」而不是「Dijkstra」），
   需要更细时按题目需求补 L3。
 - 前端还没有自动化浏览器测试；目前的保障是接口测试 + 模块语法检查 + 自检脚本。
+- 难度评分的档位锚点由项目负责人给定，尚未用真实人工标注做回归校准；
+  模型对模板题可能给出偏低评分（实测同一道题在 800 与 1200 之间摆动）。
 

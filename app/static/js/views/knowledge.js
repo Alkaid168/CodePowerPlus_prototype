@@ -3,17 +3,9 @@ import { api } from '../api.js';
 import { h, mount } from '../dom.js';
 import { icon } from '../icons.js';
 import { knowledgeIllustration } from '../knowledgeIllustrations.js';
+import { matchesSearch, normalizeSearch } from '../search.js';
 import { store } from '../store.js';
 import { button, emptyState, errorBox, loading } from '../components.js';
-
-function normalizeSearch(value) {
-  return String(value || '').toLowerCase().replace(/[\s._\-/()（）]+/g, ' ').trim();
-}
-
-function matchesSearch(node, keyword) {
-  const query = normalizeSearch(keyword);
-  return !query || normalizeSearch(`${node.name} ${node.id}`).includes(query);
-}
 
 function nodePath(node, byId) {
   const path = [];

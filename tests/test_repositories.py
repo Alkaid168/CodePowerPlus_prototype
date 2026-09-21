@@ -14,13 +14,14 @@ def repos(tmp_path):
 
 def test_problem_crud_and_search(repos):
     db, problems, *_ = repos
-    first = problems.create('两数之和', '给定数组和目标值', 'demo')
+    first = problems.create('两数之和', '给定数组和目标值', 'https://example.com/p/1')
     problems.create('区间和', '多次询问区间和')
     assert problems.get(first['id'])['title'] == '两数之和'
+    assert problems.get(first['id'])['source_url'] == 'https://example.com/p/1'
     assert problems.count() == 2
     items, total = problems.list('区间')
     assert total == 1 and items[0]['title'] == '区间和'
-    assert [problem['id'] for problem in problems.all()] == [2, 1]
+    assert [problem['id'] for problem in problems.all()] == [first['id'] + 1, first['id']]
 
 
 def test_analysis_revisions_are_immutable(repos):

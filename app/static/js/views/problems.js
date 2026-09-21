@@ -1,9 +1,11 @@
 /* 题目库：列表 + 详情（描述、分析状态、知识证据、分析历史）。 */
 import { api } from '../api.js';
 import { h, mount } from '../dom.js';
+import { mountMarkdown } from '../markdown.js';
 import { navigate } from '../router.js';
 import { store } from '../store.js';
-import { button, card, emptyState, errorBox, formatDate, loading, notice, statusBadge, table, tag } from '../components.js';
+import { button, card, difficultyTag, emptyState, errorBox, formatDate, loading, notice, sourceLink,
+  statusBadge, table, tag } from '../components.js';
 
 const PAGE_SIZE = 20;
 
@@ -37,7 +39,8 @@ async function renderList() {
             problem.knowledge_ids.length
               ? h('span', { class: 'row wrap' }, problem.knowledge_ids.map((id) => tag(id, 'muted')))
               : '—',
-            problem.difficulty ?? '—',
+            problem.difficulty === null || problem.difficulty === undefined
+              ? '—' : difficultyTag(problem.difficulty, problem.difficulty_band),
             formatDate(problem.created_at),
             button('查看', { variant: 'secondary', small: true, onClick: () => navigate(`problems/${problem.id}`) }),
           ])),
@@ -98,7 +101,7 @@ async function renderDetail(problemId) {
               tag(item.origin === 'model' ? '模型' : '人工', 'muted'),
               h('span', { class: 'spacer' }),
               h('span', { class: 'hint' }, formatDate(item.created_at))),
-            h('p', { class: 'muted' }, `难度 ${item.difficulty}/5 · 标签 ${[...item.primary_knowledge_ids, ...item.secondary_knowledge_ids].map((id) => names.get(id) || id).join('、') || '无'}`))));
+            h('p', { class: 'muted' }, `难度 ${item.difficulty} · 标签 ${[...item.primary_knowledge_ids, ...item.secondary_knowledge_ids].map((id) => names.get(id) || id).join('、') || '无'}`))));
         } catch (error) {
           historyLoaded = false;
           mount(history, errorBox(error, () => historyButton.click()));
@@ -109,7 +112,7 @@ async function renderDetail(problemId) {
     const analysisCard = analysis
       ? card({ title: '当前分析', actions: h('div', { class: 'row' }, statusBadge(analysis.review_status)) },
           h('div', { class: 'meta-row' },
-            h('span', {}, `难度 ${analysis.difficulty}/5`),
+            difficultyTag(analysis.difficulty, analysis.difficulty_band),
             h('span', {}, `整体置信度 ${Math.round((analysis.confidence || 0) * 100)}%`),
             h('span', {}, `来源 ${analysis.model_name || analysis.origin}`),
             h('span', {}, `知识版本 ${analysis.taxonomy_version || '—'}`)),
@@ -134,10 +137,19 @@ async function renderDetail(problemId) {
         h('span', { class: 'spacer' }),
         actions),
       card({ title: `#${problem.id} ${problem.title}` },
-        h('div', { class: 'meta-row' }, h('span', {}, problem.source || '未标注来源'), h('span', {}, formatDate(problem.created_at))),
-        h('pre', { class: 'code', style: { marginTop: '12px' } }, problem.description)),
+        h('div', { class: 'meta-row' },
+          sourceLink(problem.source_url) || h('span', { class: 'hint' }, '未标注来源'),
+          h('span', { class: 'hint' }, formatDate(problem.created_at))),
+        statementHost(problem.description)),
       analysisCard);
   } catch (error) {
     return h('div', { class: 'stack' }, errorBox(error, () => navigate('problems')));
   }
+}
+
+/** 题面是 Markdown，用题面样式渲染，而不是代码框。 */
+function statementHost(source) {
+  const host = h('article', { class: 'markdown-body', style: { marginTop: '12px' } });
+  mountMarkdown(host, source);
+  return host;
 }

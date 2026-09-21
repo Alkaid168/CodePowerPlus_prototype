@@ -2,6 +2,7 @@
 import { api } from './api.js';
 import { h, mount } from './dom.js';
 import { button, field } from './components.js';
+import { matchesSearch } from './search.js';
 import { store } from './store.js';
 
 export async function createTagEditor(initial = []) {
@@ -14,10 +15,7 @@ export async function createTagEditor(initial = []) {
   const host = h('div', { class: 'stack tight' });
 
   function refreshOptions() {
-    const query = search.value.trim().toLowerCase();
-    const matches = selectable
-      .filter((node) => !query || `${node.name} ${node.id}`.toLowerCase().includes(query))
-      .slice(0, 500);
+    const matches = selectable.filter((node) => matchesSearch(node, search.value)).slice(0, 500);
     mount(picker, matches.map((node) => h('option', { value: node.id }, `${node.name} · ${node.id}`)));
   }
 

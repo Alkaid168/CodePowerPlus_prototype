@@ -3,7 +3,7 @@ import { api } from '../api.js';
 import { h } from '../dom.js';
 import { navigate } from '../router.js';
 import { store } from '../store.js';
-import { button, notice } from '../components.js';
+import { button, notice, sourceHost } from '../components.js';
 
 function greeting() {
   const hour = new Date().getHours();
@@ -22,7 +22,8 @@ function focusCard(problem) {
   if (problem) {
     return h('section', { class: 'card overview-focus' },
       h('div', { class: 'overview-focus-copy' },
-        h('span', { class: 'tag' }, `#${problem.id} · ${problem.source || '题目'}`),
+        h('span', { class: 'tag' }, problem.source_url
+          ? `#${problem.id} · ${sourceHost(problem.source_url)}` : `#${problem.id} · 本地录入`),
         h('h2', {}, problem.title),
         h('div', { class: 'overview-focus-actions' },
           button('开始练习', { iconName: 'play', onClick: () => navigate(`problems/${problem.id}`) }),

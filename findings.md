@@ -175,3 +175,52 @@
 - 只渲染详情会让右栏显示目标知识点、左栏停在第一个领域，看起来像跳错了页面。
 - 正确做法是让 URL 参数走与点击节点完全相同的那条路径：切换 L1 → 展开祖先 → 高亮当前行 → 渲染详情。
 - 浏览器缓存会掩盖前端修复：静态资源没有 `Cache-Control`，模块会被启发式缓存；验证前要重开浏览器上下文或加版本参数。
+
+## 2026-09-21 题目录入与分析模块重做发现
+
+### 实际数据库没有 AUTOINCREMENT
+
+- 现象：把「编号从 1000 开始」实现成「启动时把 `sqlite_sequence` 抬到 999」后，
+  服务在 reload 后不再响应 `/health`，`Invoke-WebRequest` 一直超时。
+- 根因：`data/codepowerplus.db` 是 0.2 版原型建的库，四张表都是普通 `INTEGER PRIMARY KEY`，
+  `CREATE TABLE IF NOT EXISTS` 不会重建它们，因此**根本没有 `sqlite_sequence` 表**，
+  播种语句抛 `OperationalError`，uvicorn reload 的 worker 反复崩溃，
+  而父进程仍占着 8000 端口的 socket，表现为“连接挂起”而不是“连接被拒绝”。
+- 修复：编号不依赖 AUTOINCREMENT，改成在 INSERT 语句里用
+  `(SELECT COALESCE(MAX(id), 999) + 1 FROM problems)` 算，语句本身原子，空库第一题即 1000。
+- 教训：这个项目的历史数据库结构可能和 `db.py` 里的 `SCHEMA` 不一致，
+  任何“依赖建表语句”的新功能都要先用 `PRAGMA table_info` / `sqlite_master` 验证真实结构。
+
+### node --check 会漏报 ES 模块语法错误
+
+- 现象：`node --check app/static/js/views/analysis.js` 返回 0，但浏览器报
+  `SyntaxError: missing ) after argument list`，整个应用白屏。
+- 根因：Node 对 `.js` 先按 CommonJS 尝试，`--check` 在模块检测路径上漏掉了这个错误；
+  `node --input-type=module -e "import(...)"` 与 `vm.SourceTextModule` 都能正常报错。
+- 修复：新增 `scripts/check_frontend.py`，用 `vm.SourceTextModule` 逐个解析模块并输出行号；
+  负向测试（故意少一个括号）确认它会以退出码 1 失败。
+- 教训：前端语法检查必须用真正的 ES 模块解析器，不能只看 `node --check` 的返回码。
+
+### 静态资源缺少 Cache-Control
+
+- 前两次会话都记过「改完前端没生效、要重开浏览器」，根因是静态资源没有缓存头，
+  浏览器按启发式缓存继续跑旧模块。
+- 修复：`app/main.py` 增加中间件，`/static/` 下的响应统一加 `Cache-Control: no-cache`
+  （仍走 ETag 304，不会重复下载），并加了回归测试。
+
+### SOCKS 代理导致模型调用无法初始化
+
+- 现象：页面提示「模型客户端初始化失败：ImportError」。
+- 根因：本机设置了 `ALL_PROXY=socks5://127.0.0.1:7890`，httpx 构建 SOCKS 传输时需要
+  `socksio` 包，未安装时直接抛 ImportError；而原代码只记录异常类型名，丢掉了原因。
+- 修复：`pip install "httpx[socks]"` 并写进 `requirements.txt`；
+  报错信息改为带上底层原因的第一行，避免再出现“只有 ImportError 三个字”的提示。
+
+### 模型难度评分会在同一道题上漂移
+
+- 同一道「单点修改 + 区间查询」模板题，两次真实调用分别给出 800 和 1200；
+  题面更完整、说明更具体时倾向于更高分。
+- 这符合“锚点是人工标尺、尚未校准”的现状，但意味着**当前难度不能当作精确值使用**；
+  需要用真实标注做回归校准后才能用于推荐排序的严格比较。
+- 预期行为已被验证：模型把「树状数组」和「线段树基础」同时标为核心考点，
+  「前缀和」标为涉及考点，符合用户“所有可行解法都要标出来”的要求。

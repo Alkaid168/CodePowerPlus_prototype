@@ -2,15 +2,22 @@
 
 知识树只提供“这道题考什么”的标签，因此推荐只用两个信号：
 - 标签薄弱度：1 - 已掌握程度（没有证据时按先验 0.5 处理）；
-- 难度适配：题目难度与当前水平期望难度的接近程度。
+- 难度适配：题目评分与当前水平期望评分的接近程度（评分是 Codeforces 风格的 800–3500）。
 学习路径就是目标在知识树上的层级（领域 → 分支 → 知识点）。
 """
 from __future__ import annotations
+
+from app.services.difficulty import band_name
 
 ALGORITHM_VERSION = 'knowledge-tag-v2'
 WEAKNESS_WEIGHT = 0.6
 FIT_WEIGHT = 0.4
 UNKNOWN_MASTERY = 0.5
+# 期望评分随掌握度线性上移：完全没掌握约 1200 分，完全掌握约 2800 分。
+EXPECTED_RATING_BASE = 1200
+EXPECTED_RATING_SPAN = 1600
+# 评分差距达到 800 分时难度适配分降到 0。
+FIT_TOLERANCE = 800
 
 
 def tags_of(analysis: dict) -> list[str]:
@@ -42,20 +49,23 @@ def recommend(problems: list[dict], mastery: dict, solved_ids: set | list, taxon
             continue
         average = sum(mastery.get(node_id, UNKNOWN_MASTERY) for node_id in ids) / len(ids)
         weakness = 1 - average
-        desired = 1 + 4 * average
-        fit = max(0.0, 1 - abs(analysis.get('difficulty', 3) - desired) / 4)
+        difficulty = analysis.get('difficulty')
+        desired = EXPECTED_RATING_BASE + EXPECTED_RATING_SPAN * average
+        fit = max(0.0, 1 - abs((difficulty if isinstance(difficulty, int) else desired) - desired) / FIT_TOLERANCE)
         score = round(WEAKNESS_WEIGHT * weakness + FIT_WEIGHT * fit, 4)
         names = [taxonomy.get(node_id)['name'] for node_id in ids]
-        difficulty = analysis.get('difficulty', 3)
         reasons = [f'练习知识点：{"、".join(names)}',
-                   f'题目难度 {difficulty}/5，与当前练习阶段匹配分 {fit:.2f}']
+                   f'题目评分 {difficulty}（{band_name(difficulty)}），'
+                   f'当前期望评分约 {round(desired / 100) * 100}，匹配分 {fit:.2f}']
         if all(node_id not in mastery for node_id in ids):
             reasons.append('这些知识点尚无做题证据，可用本题初步评估')
         else:
             reasons.append('按当前薄弱知识点排序')
         scored.append({
-            'problem_id': problem['id'], 'title': problem['title'], 'source': problem.get('source', ''),
-            'difficulty': analysis.get('difficulty'), 'recommendation_score': score,
+            'problem_id': problem['id'], 'title': problem['title'],
+            'source_url': problem.get('source_url', ''),
+            'difficulty': difficulty, 'difficulty_band': band_name(difficulty),
+            'recommendation_score': score,
             'target_knowledge_ids': ids, 'target_knowledge_names': names, 'reasons': reasons,
             'score_breakdown': {'weakness': round(weakness, 4), 'difficulty_fit': round(fit, 4)},
             'algorithm_version': ALGORITHM_VERSION,

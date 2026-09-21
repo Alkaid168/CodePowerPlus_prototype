@@ -19,12 +19,15 @@ def test_classification_metrics_hand_checked():
 
 
 def test_difficulty_mae_hand_checked_and_rejects_missing_predictions():
-    assert difficulty_mae([1, 3], [2, 2]) == 1.0
-    assert difficulty_mae([1], [1]) == 0.0
+    # 评分是 Codeforces 风格的 800–3500，误差直接用分数差表示。
+    assert difficulty_mae([800, 1600], [1200, 1200]) == 400.0
+    assert difficulty_mae([1200], [1200]) == 0.0
     with pytest.raises(ValueError):
-        difficulty_mae([1], None)
+        difficulty_mae([1200], None)
     with pytest.raises(ValueError):
-        difficulty_mae([1, 2], [2])
+        difficulty_mae([800, 1200], [1200])
+    with pytest.raises(ValueError):
+        difficulty_mae([1250], [1200])
 
 
 def test_recommendation_metrics_hand_checked():
@@ -50,20 +53,20 @@ def test_recommendation_metrics_rejects_invalid_inputs():
 
 def test_predictions_join_by_id_and_do_not_reuse_gold():
     problems = [
-        {'id': 1, 'gold': {'primary_knowledge_ids': ['a'], 'secondary_knowledge_ids': [], 'difficulty': 1}},
-        {'id': 2, 'gold': {'primary_knowledge_ids': ['b'], 'secondary_knowledge_ids': [], 'difficulty': 3}},
+        {'id': 1, 'gold': {'primary_knowledge_ids': ['a'], 'secondary_knowledge_ids': [], 'difficulty': 800}},
+        {'id': 2, 'gold': {'primary_knowledge_ids': ['b'], 'secondary_knowledge_ids': [], 'difficulty': 1600}},
     ]
     missing = evaluate_predictions(problems, None, 'v1')
     assert missing['status'] == 'not_evaluated'
     assert missing['classification'] is None
     assert missing['difficulty_mae'] is None
     predictions = {'taxonomy_version': 'v1', 'model_name': 'external-test', 'prompt_version': 'test-v1', 'provenance': 'test_fixture', 'predictions': [
-        {'problem_id': 2, 'primary_knowledge_ids': ['b'], 'secondary_knowledge_ids': [], 'difficulty': 2},
-        {'problem_id': 1, 'primary_knowledge_ids': ['x'], 'secondary_knowledge_ids': [], 'difficulty': 2},
+        {'problem_id': 2, 'primary_knowledge_ids': ['b'], 'secondary_knowledge_ids': [], 'difficulty': 1200},
+        {'problem_id': 1, 'primary_knowledge_ids': ['x'], 'secondary_knowledge_ids': [], 'difficulty': 1200},
     ]}
     result = evaluate_predictions(problems, predictions, 'v1')
     assert result['classification']['micro']['f1'] == 0.5
-    assert result['difficulty_mae'] == 1
+    assert result['difficulty_mae'] == 400
     predictions['taxonomy_version'] = 'wrong'
     with pytest.raises(ValueError):
         evaluate_predictions(problems, predictions, 'v1')

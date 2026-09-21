@@ -20,7 +20,7 @@
 | 板块 | 状态 | 证据 |
 | --- | --- | --- |
 | 知识体系（标签词表） | ✅ | `data/knowledge_taxonomy.json` 345 节点；校验、版本化、浏览/搜索接口与页面；`tests/test_knowledge.py` |
-| 题目录入与分析 | ✅ | 模型分析 + 手工标注；`app/api/problems.py`；`tests/test_api_problems.py` |
+| 题目录入与分析 | ✅ | Markdown 题面 + LaTeX 渲染、编号从 1000 起、来源链接、录入即调用模型；`app/api/problems.py`、`app/services/analysis.py`、`app/static/js/views/analysis.js`；`tests/test_api_problems.py` |
 | 人工审核流程 | ✅ | 队列 / 通过 / 驳回 / 带纠正通过 / 审计 / 乐观锁；`app/services/review.py`、`tests/test_api_reviews.py` |
 | 提交记录与证据快照 | ✅ | 标签只取自已审核分析；`app/api/submissions.py`、`tests/test_api_submissions.py` |
 | 能力画像（规则基线） | ✅ | 独立题目、忽略 CE、父级汇总与直接证据分开；`app/services/profile.py` |
@@ -63,7 +63,7 @@
 
 ### C. 题目解析智能体
 
-- ✅ 单轮模型分析：知识点标签、难度 1–5、逐标签证据与置信度、解题思路
+- ✅ 单轮模型分析：知识点标签、难度评分 800–3500（Codeforces 风格）、逐标签证据与置信度、解题思路
 - ✅ 服务端校验：模型输出与人工标注走同一套规则，非法 ID 直接拒绝
 - ✅ 失败重试与降级（未配置模型返回 503，可改用手工标注）
 - ✅ 提示词版本记录（`prompt_version`）与模型名溯源
@@ -71,7 +71,8 @@
 - ⬜ 多步智能体（工具调用：查题库、检索知识树、迭代修正）
 - ⬜ 批量分析（一次导入多道题并排队分析）
 - ⬜ 模型/提示词对比实验（准确率、一致性、成本、延迟）
-- ⬜ 难度估计校准（对照 Codeforces rating 或人工评级做回归）
+- 🟡 难度锚点已按负责人给出的四个基准点（800/1200/1600/2000）展开成八档；
+  实测模型对同一道模板题给出过 800 与 1200 两个结果，**未做**真实人工标注回归校准
 
 ### D. 标注质量与人工审核
 

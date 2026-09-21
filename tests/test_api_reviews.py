@@ -8,7 +8,7 @@ def review_body(analysis, action='approve', **overrides):
 
 def correction_payload(version, knowledge_id='basic.binary', evidence='需要在有序序列上二分'):
     return {
-        'difficulty': 3, 'confidence': 0.9,
+        'difficulty': 1600, 'confidence': 0.9,
         'primary_knowledge_ids': [knowledge_id], 'secondary_knowledge_ids': [],
         'evidence': {knowledge_id: evidence}, 'knowledge_confidence': {knowledge_id: 0.9},
         'taxonomy_version': version,

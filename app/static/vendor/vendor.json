@@ -1,0 +1,14 @@
+{
+  "marked.esm.js": {
+    "label": "marked 12.0.2（MIT）",
+    "url": "https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.esm.js",
+    "purpose": "Markdown 解析",
+    "sha256": "288515814e901ea6535521d9fb35a1329455d3d3973de8723db998536f979cf2"
+  },
+  "tex-svg.js": {
+    "label": "MathJax 3.2.2 tex-svg（Apache-2.0）",
+    "url": "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js",
+    "purpose": "LaTeX 公式渲染；SVG 输出，无需字体文件",
+    "sha256": "d4295dc33744836935c1399feece5159577b34c5c8ffb9f1c6324cd82e03a882"
+  }
+}

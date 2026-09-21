@@ -225,3 +225,20 @@
 2. **[pending] 页面按数据流顺序定稿**：题目库 + 题目分析 → 审核队列 → 提交记录 → 能力画像 → 学习路径 + 推荐训练 → 代码辅导
 3. **[pending] CI**：新增 GitHub Actions，跑 `pytest` 与前端 `node --check`
 4. **[pending] 向教练确认中期答辩日期**：roadmap 目前按 2026 年 12 月预留
+
+## 2026-09-21 题目录入与分析模块重做（完成）
+
+用户要求前后端重做第四个页面，目标是基本可日常使用。
+
+- [complete] 难度改为 Codeforces 风格 800–3500 评分，锚点按用户给定值展开成八档
+- [complete] 题面改为 Markdown，前端本地 vendored marked + MathJax，正确排版 LaTeX
+- [complete] 题目编号从 1000 起自动分配（`MAX(id)+1`，不依赖 AUTOINCREMENT）
+- [complete] 来源改为可选的 `source_url`，旧库 `source` 自动改名迁移
+- [complete] 录入即调用模型分析（建题 + 分析两步接口，模型失败保留题目）
+- [complete] 删除「同一 L2 分支最多一个主标签」规则，支持等价解法全部标注
+- [complete] 系统提示词 `problem-analysis-v4` 交用户审阅（未收到修改意见前不再改动）
+- [complete] 前端页面重做为左录入右结果双栏工作台（四个 Tab）
+- [complete] 145 项 pytest、前端语法检查、浏览器全流程与三种宽度验收
+- [pending] 用真实题目批量跑一轮，收集难度评分与标签覆盖的反馈
+- [pending] 难度评分校准：需要人工标注样本做回归，当前只有负责人给的锚点
+- [pending] 后续页面按同一模板重做（审核队列 → 提交记录 → 画像 → 推荐 → 辅导）

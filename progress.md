@@ -264,3 +264,21 @@
 - 在 `codex/knowledge-system` 上提交 `07ea38b`（134 个文件，+23249 / -478），随后快进合并到 `main` 并推送。
 - 远端现状：默认分支 `main`，最新提交 `07ea38b`，工作区干净。
 - 提醒：仓库是公开仓库，提交作者邮箱来自本机 git 配置；如需更换请用 `git config --global user.email` 修改后再提交。
+
+## 2026-09-21 题目录入与分析模块重做（后端 + 前端）
+
+- 用户要求：前后端重做第四个页面「题目录入与分析」，目标基本可日常使用；
+  难度参考 Codeforces 800–3500，题面必须 Markdown 且能解析 LaTeX，题目编号从 1000 起自动分配，
+  来源可选且必须是链接，录入时必须调用模型分析，系统提示词要先给用户过目。
+- 分支 `codex/problem-intake`。后端：新增 `app/services/difficulty.py`；
+  重写 `app/services/analysis.py`（两层提示词 + `problem-analysis-v4`）、`app/api/problems.py`
+  （录入与分析拆成两步）；`problems.source` 改名 `source_url`；难度全链路换成 800–3500；
+  `app/db.py` 升到 schema v2 并补旧库列改名。
+- 前端：新增 `app/static/js/markdown.js`（marked + MathJax，转义原生 HTML，链接白名单）、
+  `app/static/js/search.js`（知识检索唯一实现）、`app/static/css/analysis.css`；
+  重写 `views/analysis.js` 为左录入右结果的双栏工作台（Tabs：分析结果/题面预览/手工标注/版本历史）。
+- 工具：新增 `scripts/vendor_frontend.py`（固定版本下载 + sha256 校验）、
+  `scripts/check_frontend.py`（用 `vm.SourceTextModule` 做真正的 ES 模块语法检查）。
+- 验证：`pytest` 145 项通过；21 个前端模块语法检查通过；浏览器实测
+  「录入 #1000 → 模型分析 → 难度 1200 · 基础 → 核心考点 树状数组 + 线段树基础」全流程可用；
+  1440×900 / 1280×800 主体无滚动、两栏各自滚动，1024px 堆叠无横向溢出；控制台无新错误。

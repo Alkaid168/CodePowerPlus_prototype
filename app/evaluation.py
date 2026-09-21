@@ -5,6 +5,8 @@ import math
 from collections.abc import Sequence
 from typing import Any
 
+from app.services.difficulty import MAX_RATING, MIN_RATING, STEP, is_valid_rating
+
 EVALUATION_VERSION = 'offline-evaluation-v1'
 BASELINE_VERSION = 'difficulty-fit-v1'
 
@@ -43,8 +45,10 @@ def difficulty_mae(gold: Sequence[float], predictions: Sequence[float] | None) -
     if len(gold) != len(predictions) or not gold:
         raise ValueError('gold and predictions must have equal non-zero length')
     for value in [*gold, *predictions]:
-        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or not 1 <= value <= 5:
-            raise ValueError('difficulty must be a finite number in 1..5')
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+            raise ValueError(f'difficulty must be a finite number in {MIN_RATING}..{MAX_RATING}')
+        if not is_valid_rating(int(value)) or value != int(value):
+            raise ValueError(f'difficulty must be a multiple of {STEP} within {MIN_RATING}..{MAX_RATING}')
     return sum(abs(a - b) for a, b in zip(gold, predictions)) / len(gold)
 
 
@@ -137,11 +141,12 @@ def mastery_from_history(history: list[dict], problems: list[dict]) -> tuple[dic
 
 def baseline_recommend(problems: list[dict], mastery: dict[str, float], solved_ids: set, limit: int) -> list[dict]:
     """Difficulty-only reference; no prerequisites and no held-out relevance labels."""
-    target = 1 + 4 * (sum(mastery.values()) / len(mastery) if mastery else 0.5)
+    average = sum(mastery.values()) / len(mastery) if mastery else 0.5
+    target = 1200 + 1600 * average
     ranked = []
     for problem in problems:
         if problem['id'] in solved_ids:
             continue
-        score = max(0.0, 1 - abs(problem['analysis']['difficulty'] - target) / 4)
+        score = max(0.0, 1 - abs(problem['analysis']['difficulty'] - target) / 800)
         ranked.append({**problem, 'recommendation_score': round(score, 6)})
     return sorted(ranked, key=lambda p: p['recommendation_score'], reverse=True)[:limit]

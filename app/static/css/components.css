@@ -139,3 +139,76 @@ pre.code { margin: 0; padding: 12px; background: var(--surface-2); border: 1px s
   .spinner { animation-duration: 1.2s; }
 }
 @keyframes card-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* Markdown 题面排版：题面按正文渲染，不套代码框。 */
+.markdown-body {
+  min-width: 0;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.markdown-body > * + * { margin-top: 12px; }
+.markdown-body h1 { font-size: 20px; }
+.markdown-body h2 { font-size: 17px; }
+.markdown-body h3 { font-size: 15px; }
+.markdown-body h4 { font-size: 13.5px; }
+.markdown-body p { margin: 0; }
+.markdown-body ul, .markdown-body ol { margin: 0; padding-left: 22px; }
+.markdown-body li + li { margin-top: 4px; }
+.markdown-body code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--surface-muted);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.markdown-body pre {
+  margin: 0;
+  padding: 12px 14px;
+  overflow-x: auto;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.markdown-body pre code { padding: 0; background: none; font-size: 12px; line-height: 1.7; }
+.markdown-body blockquote {
+  margin: 0;
+  padding-left: 12px;
+  border-left: 2px solid var(--line-strong);
+  color: var(--ink-soft);
+}
+.markdown-body table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.markdown-body th, .markdown-body td {
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+.markdown-body th { background: var(--surface-muted); font-weight: 620; }
+.markdown-body img { max-width: 100%; height: auto; }
+.markdown-body a { text-decoration: underline; text-underline-offset: 3px; }
+.markdown-body hr { border: 0; border-top: 1px solid var(--line); }
+.markdown-body.compact { font-size: 13px; }
+.markdown-body mjx-container[display='true'] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+.source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+.source-link svg { width: 13px; height: 13px; flex: none; }
+.source-link:hover { color: var(--ink); }
+
+.tag.difficulty {
+  background: var(--ink);
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .01em;
+}

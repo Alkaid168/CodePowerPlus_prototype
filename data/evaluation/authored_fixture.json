@@ -8,7 +8,7 @@
       "id": 1,
       "title": "成绩整理",
       "description": "给定 n 个整数成绩（n≤200000），按非降序输出全部成绩。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -21,7 +21,7 @@
         "knowledge_confidence": {
           "basic.sort": 0.8
         },
-        "difficulty": 1,
+        "difficulty": 800,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -31,7 +31,7 @@
       "id": 2,
       "title": "最早达标位置",
       "description": "给定长度 n 的非降序整数数组和 x（n≤200000），输出第一个不小于 x 的位置，不存在则输出 -1。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -44,7 +44,7 @@
         "knowledge_confidence": {
           "basic.binary": 0.8
         },
-        "difficulty": 2,
+        "difficulty": 1200,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -54,7 +54,7 @@
       "id": 3,
       "title": "试除判素数",
       "description": "输入 2≤n≤10^9，判断 n 是否为素数。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -67,7 +67,7 @@
         "knowledge_confidence": {
           "math.number-theory.prime": 0.8
         },
-        "difficulty": 2,
+        "difficulty": 1200,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -77,7 +77,7 @@
       "id": 4,
       "title": "标准分解式",
       "description": "输入 2≤n≤10^9，按质因子递增输出质因子及指数。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -90,7 +90,7 @@
         "knowledge_confidence": {
           "math.number-theory.basic": 0.8
         },
-        "difficulty": 3,
+        "difficulty": 1600,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -100,7 +100,7 @@
       "id": 5,
       "title": "道路邻接表",
       "description": "给定 n 个顶点、m 条有向边（n,m≤200000），按输入顺序输出每个顶点的出邻居。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -113,7 +113,7 @@
         "knowledge_confidence": {
           "graph.basic": 0.8
         },
-        "difficulty": 2,
+        "difficulty": 1200,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -123,7 +123,7 @@
       "id": 6,
       "title": "动态最小任务",
       "description": "维护整数任务优先级，支持插入和取出最小值，共 q≤200000 次合法操作。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -136,7 +136,7 @@
         "knowledge_confidence": {
           "ds.binary-heap": 0.8
         },
-        "difficulty": 3,
+        "difficulty": 1600,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -146,7 +146,7 @@
       "id": 7,
       "title": "非负道路最短路",
       "description": "给定 n≤100000、m≤200000 的有向图，边权在 0..10^6，输出起点 s 到每点的最短距离。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -159,7 +159,7 @@
         "knowledge_confidence": {
           "graph.shortest-path": 0.8
         },
-        "difficulty": 3,
+        "difficulty": 1600,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -169,7 +169,7 @@
       "id": 8,
       "title": "相邻不能同选",
       "description": "给定 n≤200000 个非负数，选取若干个且下标不相邻，求最大和。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -182,7 +182,7 @@
         "knowledge_confidence": {
           "dp.misc": 0.8
         },
-        "difficulty": 2,
+        "difficulty": 1200,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -192,7 +192,7 @@
       "id": 9,
       "title": "每件物品只用一次",
       "description": "有 n≤100 件物品，各有重量与价值，容量 W≤10000，每件至多选择一次，求最大价值。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -205,7 +205,7 @@
         "knowledge_confidence": {
           "dp.knapsack": 0.8
         },
-        "difficulty": 3,
+        "difficulty": 1600,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -215,7 +215,7 @@
       "id": 10,
       "title": "字符区间比较",
       "description": "输入字符串 s（长度≤10000）和两个等长区间，逐字符判断对应内容是否完全相同。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -228,7 +228,7 @@
         "knowledge_confidence": {
           "string.basic": 0.8
         },
-        "difficulty": 1,
+        "difficulty": 800,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -238,7 +238,7 @@
       "id": 11,
       "title": "模式出现次数",
       "description": "给定文本 T 和非空模式 P，总长度≤1000000，统计 P 在 T 中出现的次数，允许重叠。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -251,7 +251,7 @@
         "knowledge_confidence": {
           "string.kmp": 0.8
         },
-        "difficulty": 3,
+        "difficulty": 1600,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -261,7 +261,7 @@
       "id": 12,
       "title": "静态区间和",
       "description": "给定 n≤200000 个整数和 q≤200000 个闭区间询问，无修改，输出每段和。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -274,7 +274,7 @@
         "knowledge_confidence": {
           "basic.prefix-sum": 0.8
         },
-        "difficulty": 2,
+        "difficulty": 1200,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -284,7 +284,7 @@
       "id": 13,
       "title": "增量与区间和",
       "description": "给定长度 n≤200000 数组，支持单点增加整数与区间求和，共 q≤200000 次操作。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -297,7 +297,7 @@
         "knowledge_confidence": {
           "ds.fenwick": 0.8
         },
-        "difficulty": 3,
+        "difficulty": 1600,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -307,7 +307,7 @@
       "id": 14,
       "title": "递归归并",
       "description": "给定 n≤200000 个整数，必须通过将区间递归分半、合并两个有序区间完成排序。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -320,7 +320,7 @@
         "knowledge_confidence": {
           "basic.divide-and-conquer": 0.8
         },
-        "difficulty": 2,
+        "difficulty": 1200,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -330,7 +330,7 @@
       "id": 15,
       "title": "修改与最小值",
       "description": "给定 n≤200000 数组，支持单点赋值与任意区间最小值查询，共 q≤200000 次。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -343,7 +343,7 @@
         "knowledge_confidence": {
           "ds.segment-tree": 0.8
         },
-        "difficulty": 4,
+        "difficulty": 2200,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -353,7 +353,7 @@
       "id": 16,
       "title": "小范围枚举",
       "description": "给定 1≤N≤1000，输出所有满足 a²+b²=N 的整数对 0≤a≤b≤N。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -366,7 +366,7 @@
         "knowledge_confidence": {
           "basic.enumerate": 0.8
         },
-        "difficulty": 1,
+        "difficulty": 800,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -376,7 +376,7 @@
       "id": 17,
       "title": "原地数组反转",
       "description": "给定长度 n≤200000 的整数数组，用 O(1) 额外空间反转后输出。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -389,7 +389,7 @@
         "knowledge_confidence": {
           "misc.two-pointer": 0.8
         },
-        "difficulty": 1,
+        "difficulty": 800,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"
@@ -399,7 +399,7 @@
       "id": 18,
       "title": "无权迷宫步数",
       "description": "给定不超过 1000×1000 的障碍网格，只允许四邻移动，求 S 到 T 最少步数或 -1。",
-      "source": "项目自编流程验证题，不引用学校 OJ 数据",
+      "source_url": "",
       "provenance": "authored_fixture",
       "gold": {
         "primary_knowledge_ids": [
@@ -412,7 +412,7 @@
         "knowledge_confidence": {
           "search.bfs": 0.8
         },
-        "difficulty": 2,
+        "difficulty": 1200,
         "confidence": 0.8,
         "annotation_source": "authored_fixture",
         "annotation_note": "代理自编参考标注；未经教师/专家独立评审，confidence 是夹具元数据而非校准概率。"

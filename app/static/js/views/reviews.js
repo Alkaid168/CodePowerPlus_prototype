@@ -47,7 +47,8 @@ export default {
       const head = h('div', { class: 'row wrap' },
         h('button', { class: 'btn link', onClick: () => navigate(`problems/${problem.id}`) }, `#${problem.id} ${problem.title}`),
         statusBadge(analysis.review_status),
-        h('span', { class: 'hint' }, `分析 #${analysis.analysis_id} · 难度 ${analysis.difficulty}/5 · ${formatDate(analysis.created_at)}`));
+        h('span', { class: 'hint' },
+          `分析 #${analysis.analysis_id} · 难度 ${analysis.difficulty} · ${formatDate(analysis.created_at)}`));
 
       const tags = h('div', { class: 'stack tight', style: { marginTop: '10px' } }, ids.map((id) => h('div', {},
         h('div', { class: 'row' }, h('strong', {}, names.get(id) || id),

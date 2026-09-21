@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -44,6 +44,18 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     @app.get('/', include_in_schema=False)
     def homepage():
         return FileResponse(container.settings.web_dir / 'index.html')
+
+    @app.middleware('http')
+    async def revalidate_static_assets(request: Request, call_next):
+        """静态资源每次都带 ETag 重新校验。
+
+        开发期改前端最容易踩的坑是浏览器用启发式缓存继续跑旧模块，
+        让人误判“改了没效果”。这里统一加 no-cache（仍然走 304，不会重复下载）。
+        """
+        response = await call_next(request)
+        if request.url.path.startswith('/static/'):
+            response.headers.setdefault('Cache-Control', 'no-cache')
+        return response
 
     app.mount('/static', StaticFiles(directory=container.settings.web_dir), name='static')
     return app

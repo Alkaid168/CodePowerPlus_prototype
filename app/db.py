@@ -13,7 +13,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from threading import RLock
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
+
+# 题目的 OJ 编号从 1000 开始；`problems.id` 本身就是对外编号，不再另设一套。
+# 编号由 ProblemRepository 在插入时用 MAX(id)+1 计算，不依赖 AUTOINCREMENT——
+# 0.2 版原型建的库是普通 INTEGER PRIMARY KEY，没有 sqlite_sequence 表。
+FIRST_PROBLEM_ID = 1000
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS schema_meta (
@@ -24,7 +29,7 @@ CREATE TABLE IF NOT EXISTS problems (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     description TEXT NOT NULL,
-    source TEXT NOT NULL DEFAULT '',
+    source_url TEXT NOT NULL DEFAULT '',
     created_at TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS problem_analyses (
@@ -68,7 +73,7 @@ CREATE INDEX IF NOT EXISTS submissions_by_problem ON submissions(problem_id, id)
 # 0.2 版原型的库没有这些列。补上以后旧数据仍可读；旧分析按 legacy 处理，不参与画像。
 LEGACY_COLUMNS: dict[str, dict[str, str]] = {
     'problems': {
-        'source': "TEXT NOT NULL DEFAULT ''",
+        'source_url': "TEXT NOT NULL DEFAULT ''",
         'created_at': "TEXT NOT NULL DEFAULT ''",
     },
     'problem_analyses': {
@@ -114,6 +119,7 @@ class Database:
     def _ensure_schema(self) -> None:
         with self.conn:
             self.conn.executescript(SCHEMA)
+            self._rename_legacy_source()
             for table, columns in LEGACY_COLUMNS.items():
                 existing = {row['name'] for row in self.conn.execute(f'PRAGMA table_info({table})')}
                 for name, definition in columns.items():
@@ -121,6 +127,13 @@ class Database:
                         self.conn.execute(f'ALTER TABLE {table} ADD COLUMN {name} {definition}')
             self.conn.execute('INSERT OR REPLACE INTO schema_meta(key, value) VALUES (?, ?)',
                               ('schema_version', str(SCHEMA_VERSION)))
+
+    def _rename_legacy_source(self) -> None:
+        """旧库的 problems.source 是自由文本；新库改叫 source_url 并保留原值。"""
+        columns = {row['name'] for row in self.conn.execute('PRAGMA table_info(problems)')}
+        if 'source' in columns and 'source_url' not in columns:
+            self.conn.execute('ALTER TABLE problems RENAME COLUMN source TO source_url')
+
 
     @property
     def schema_version(self) -> int:

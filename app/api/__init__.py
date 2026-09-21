@@ -11,7 +11,7 @@ def problem_summary(problem: dict, analysis: dict | None) -> dict:
     return {
         'id': problem['id'],
         'title': problem['title'],
-        'source': problem.get('source', ''),
+        'source_url': problem.get('source_url', ''),
         'created_at': problem.get('created_at', ''),
         'analysis_status': analysis['review_status'] if analysis else None,
         'knowledge_ids': tags_of(analysis) if analysis else [],

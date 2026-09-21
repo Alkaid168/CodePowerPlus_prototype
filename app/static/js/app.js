@@ -21,7 +21,7 @@ const ROUTES = [
   { id: 'overview', label: '总览', icon: 'layout-dashboard', title: '学习总览', view: overviewView },
   { id: 'knowledge', label: '知识树', icon: 'book-open', title: '知识树', showTitle: false, view: knowledgeView },
   { id: 'problems', label: '题目库', icon: 'list-checks', title: '题目库', view: problemsView },
-  { id: 'analysis', label: '题目分析', icon: 'sparkles', title: '题目分析', view: analysisView },
+  { id: 'analysis', label: '题目录入与分析', icon: 'sparkles', title: '题目录入与分析', view: analysisView },
   { id: 'reviews', label: '审核队列', icon: 'clipboard-check', title: '审核队列', view: reviewsView },
   { id: 'submissions', label: '提交记录', icon: 'send', title: '提交记录', view: submissionsView },
   { id: 'profile', label: '能力画像', icon: 'user-round', title: '能力画像', view: profileView },
