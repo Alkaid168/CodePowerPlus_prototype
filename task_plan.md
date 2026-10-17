@@ -1,12 +1,13 @@
 # 码力加加项目工作计划
 
-## 2026-10-17 总控合并题目录入与分析模块（用户已授权，进行中）
+## 2026-10-17 总控合并题目录入与分析模块（用户已授权，主模块已合并）
 
 - [complete] 工具恢复后核对分支 codex/problem-intake、origin/main 与仓库 CodePowerPlus_prototype；main 仍是开发分支祖先，无远端新增提交。
 - [complete] 新跑完整隔离 pytest：227 passed；27 个前端模块语法、377 节点词表和临时库全流程自检通过。
 - [complete] 正式库只读检查：41 题/120 分析/47 审核/0 提交，quick_check=ok、外键错误0；保留逐表指纹以便合并后比较。
 - [complete] 提交范围包括源码、测试、提示词、词表、历史评测与最终两份工作簿；排除 .env、正式库、运行日志、临时截图/fixture。作者笔记只读并留在本机。
-- [in_progress] 提交开发分支，推送并创建 PR 合并至 main，最终核对 GitHub 状态及本地数据未变。
+- [complete] 开发提交4345980经PR #1合并main（208551c），GitHub MERGED、本地同步、正式库指纹不变均已验证。
+- [in_progress] 合并后发现Windows autocrlf破坏vendor哈希；根因已证实，新增.gitattributes固定LF后重新验收并以小PR合并。
 
 ## 2026-10-17 v8二测（用户明确授权，完成）
 
