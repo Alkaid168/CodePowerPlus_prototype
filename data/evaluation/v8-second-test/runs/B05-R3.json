@@ -1,0 +1,249 @@
+{
+  "event": "v8二测",
+  "key": "B05-R3",
+  "public_id": "B05",
+  "repetition": 3,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "0142e6c366f9c9fe0ad1ccd92eba0e7d46ffc1dd3a7fcb52658204c8f8ddd6e5",
+  "completed_at": "2026-10-17T03:45:21.859357+00:00",
+  "analysis": {
+    "title": "职员宴会邀请最大快乐指数",
+    "difficulty": 1400,
+    "difficulty_reason": "本题是标准的树形 DP 入门题。核心状态和转移一旦想到就比较直接，但需要先具备树结构、DFS 后序和树形 DP 两状态合并的知识；正确性依赖对子树的简单归纳，且负权值下要保留空方案。实现不复杂、复杂度为 O(n)，整体门槛高于单纯基础算法题，落在进阶档的较低位置，定为 1400。",
+    "solution_idea": "将邀请方案看作树上的结点集合，要求不含直接父子边，即求树的最大权独立集。对每个结点 u 设 dp[u][0] 表示不邀请 u 时子树内最大快乐和，dp[u][1] 表示邀请 u 时的最大快乐和。若 u 不邀请，则其每个孩子 v 可邀请或不邀请，贡献 max(dp[v][0],dp[v][1])；若 u 邀请，则所有孩子都不能邀请，贡献 r_u + sum dp[v][0]。叶子初值为 dp[u][0]=0，dp[u][1]=r_u。先由输入的父子边建立孩子表，并找到没有父结点的根；从根进行后序遍历计算。答案为 max(dp[root][0],dp[root][1])。不邀请任何职员是合法方案，因此全为负数时答案可为 0。每个结点状态只计算一次，总复杂度 O(n)，空间复杂度 O(n)。",
+    "confidence": 0.88,
+    "primary_knowledge_ids": [
+      "dp.tree"
+    ],
+    "secondary_knowledge_ids": [
+      "graph.tree-basic",
+      "search.dfs"
+    ],
+    "evidence": {
+      "dp.tree": "核心状态与转移为每个结点维护邀请/不邀请两种子树最优值，是树形动态规划。",
+      "graph.tree-basic": "输入给出父子关系，需要建立有根树并确定根结点后按子树合并答案。",
+      "search.dfs": "从根进行DFS后序遍历，使子结点DP先于父结点计算。"
+    },
+    "knowledge_confidence": {
+      "dp.tree": 0.99,
+      "graph.tree-basic": 0.9,
+      "search.dfs": 0.85
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "树形 DP",
+      "树基础",
+      "深度优先搜索（DFS）"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "65d8997d-2ca8-4cae-a2a8-05322c937384",
+          "usage": {
+            "completion_tokens": 5620,
+            "prompt_tokens": 5610,
+            "total_tokens": 11230,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 5198,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 5376,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 5376,
+            "prompt_cache_miss_tokens": 234
+          },
+          "elapsed_seconds": 27.852,
+          "valid": true,
+          "response_text": "{\"title\":\"职员宴会邀请最大快乐指数\",\"kind\":\"algorithm\",\"solution_idea\":\"将邀请方案看作树上的结点集合，要求不含直接父子边，即求树的最大权独立集。对每个结点 u 设 dp[u][0] 表示不邀请 u 时子树内最大快乐和，dp[u][1] 表示邀请 u 时的最大快乐和。若 u 不邀请，则其每个孩子 v 可邀请或不邀请，贡献 max(dp[v][0],dp[v][1])；若 u 邀请，则所有孩子都不能邀请，贡献 r_u + sum dp[v][0]。叶子初值为 dp[u][0]=0，dp[u][1]=r_u。先由输入的父子边建立孩子表，并找到没有父结点的根；从根进行后序遍历计算。答案为 max(dp[root][0],dp[root][1])。不邀请任何职员是合法方案，因此全为负数时答案可为 0。每个结点状态只计算一次，总复杂度 O(n)，空间复杂度 O(n)。\",\"methods\":[{\"name\":\"树形动态规划（DFS后序）\",\"knowledge_ids\":[\"dp.tree\",\"graph.tree-basic\",\"search.dfs\"],\"time_complexity\":\"O(n)\",\"space_complexity\":\"O(n)\"}],\"primary_knowledge_ids\":[\"dp.tree\"],\"secondary_knowledge_ids\":[\"graph.tree-basic\",\"search.dfs\"],\"evidence\":{\"dp.tree\":\"核心状态与转移为每个结点维护邀请/不邀请两种子树最优值，是树形动态规划。\",\"graph.tree-basic\":\"输入给出父子关系，需要建立有根树并确定根结点后按子树合并答案。\",\"search.dfs\":\"从根进行DFS后序遍历，使子结点DP先于父结点计算。\"},\"knowledge_confidence\":{\"dp.tree\":0.99,\"graph.tree-basic\":0.9,\"search.dfs\":0.85},\"confidence\":0.95}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "346f6973-032d-407c-9ef3-70b7c48d3909",
+          "usage": {
+            "completion_tokens": 1834,
+            "prompt_tokens": 2112,
+            "total_tokens": 3946,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1464,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1152,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 960
+          },
+          "elapsed_seconds": 10.784,
+          "valid": true,
+          "response_text": "{\"rubric\":{\"knowledge\":\"需要掌握树的基本表示、有根树的父子关系、DFS/后序遍历，以及树形 DP 中‘选/不选当前结点’这一基本状态设计。对新生而言，树形 DP 是需要预先学习过的模板，不能仅靠数组和循环经验自然得到。\",\"modelling\":\"题意可直接转化为树的最大权独立集：相邻的父结点与孩子结点不能同时选。关键在于为每个结点定义 dp[u][0/1] 两种状态，并把子树最优值向上合并；转化本身较直接，但需要识别出这是树形 DP。\",\"proof\":\"正确性可用对子树归纳说明：不选 u 时，每个孩子可独立取较优状态；选 u 时，所有孩子必须不选。需要说明根结点答案取两种状态最大值，且允许空邀请方案，因此全负时结果为 0。证明链较短但必要。\",\"implementation\":\"需要读入权值、根据父子边建立孩子表并找根，然后 DFS 后序计算两种 DP 值。实现简单，但要注意父子方向、根结点识别、负权值、空集合法以及递归深度。整体时间和空间均为 O(n)。\"},\"consistency_issues\":[],\"difficulty\":1400,\"difficulty_reason\":\"本题是标准的树形 DP 入门题。核心状态和转移一旦想到就比较直接，但需要先具备树结构、DFS 后序和树形 DP 两状态合并的知识；正确性依赖对子树的简单归纳，且负权值下要保留空方案。实现不复杂、复杂度为 O(n)，整体门槛高于单纯基础算法题，落在进阶档的较低位置，定为 1400。\",\"confidence\":0.88}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "职员宴会邀请最大快乐指数",
+        "kind": "algorithm",
+        "solution_idea": "将邀请方案看作树上的结点集合，要求不含直接父子边，即求树的最大权独立集。对每个结点 u 设 dp[u][0] 表示不邀请 u 时子树内最大快乐和，dp[u][1] 表示邀请 u 时的最大快乐和。若 u 不邀请，则其每个孩子 v 可邀请或不邀请，贡献 max(dp[v][0],dp[v][1])；若 u 邀请，则所有孩子都不能邀请，贡献 r_u + sum dp[v][0]。叶子初值为 dp[u][0]=0，dp[u][1]=r_u。先由输入的父子边建立孩子表，并找到没有父结点的根；从根进行后序遍历计算。答案为 max(dp[root][0],dp[root][1])。不邀请任何职员是合法方案，因此全为负数时答案可为 0。每个结点状态只计算一次，总复杂度 O(n)，空间复杂度 O(n)。",
+        "methods": [
+          {
+            "name": "树形动态规划（DFS后序）",
+            "knowledge_ids": [
+              "dp.tree",
+              "graph.tree-basic",
+              "search.dfs"
+            ],
+            "time_complexity": "O(n)",
+            "space_complexity": "O(n)"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "dp.tree"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.tree-basic",
+          "search.dfs"
+        ],
+        "evidence": {
+          "dp.tree": "核心状态与转移为每个结点维护邀请/不邀请两种子树最优值，是树形动态规划。",
+          "graph.tree-basic": "输入给出父子关系，需要建立有根树并确定根结点后按子树合并答案。",
+          "search.dfs": "从根进行DFS后序遍历，使子结点DP先于父结点计算。"
+        },
+        "knowledge_confidence": {
+          "dp.tree": 0.99,
+          "graph.tree-basic": 0.9,
+          "search.dfs": 0.85
+        },
+        "confidence": 0.95
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要掌握树的基本表示、有根树的父子关系、DFS/后序遍历，以及树形 DP 中‘选/不选当前结点’这一基本状态设计。对新生而言，树形 DP 是需要预先学习过的模板，不能仅靠数组和循环经验自然得到。",
+          "modelling": "题意可直接转化为树的最大权独立集：相邻的父结点与孩子结点不能同时选。关键在于为每个结点定义 dp[u][0/1] 两种状态，并把子树最优值向上合并；转化本身较直接，但需要识别出这是树形 DP。",
+          "proof": "正确性可用对子树归纳说明：不选 u 时，每个孩子可独立取较优状态；选 u 时，所有孩子必须不选。需要说明根结点答案取两种状态最大值，且允许空邀请方案，因此全负时结果为 0。证明链较短但必要。",
+          "implementation": "需要读入权值、根据父子边建立孩子表并找根，然后 DFS 后序计算两种 DP 值。实现简单，但要注意父子方向、根结点识别、负权值、空集合法以及递归深度。整体时间和空间均为 O(n)。"
+        },
+        "consistency_issues": [],
+        "difficulty": 1400,
+        "difficulty_reason": "本题是标准的树形 DP 入门题。核心状态和转移一旦想到就比较直接，但需要先具备树结构、DFS 后序和树形 DP 两状态合并的知识；正确性依赖对子树的简单归纳，且负权值下要保留空方案。实现不复杂、复杂度为 O(n)，整体门槛高于单纯基础算法题，落在进阶档的较低位置，定为 1400。",
+        "confidence": 0.88
+      },
+      "elapsed_seconds": 38.638,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "9966292cadd28b9ad53bb8517ad09b85523b2feb4da8344fc7a19044a21b5a4e",
+      "response_model": "deepseek-flash",
+      "response_id": "65d8997d-2ca8-4cae-a2a8-05322c937384",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 19623,
+      "reasoning_content_sha256": "f33fda2c3cbc632b09daf7cb51c9593f7841b4e8d0a44a2ae6ac19356f469729",
+      "usage": {
+        "completion_tokens": 5620,
+        "prompt_tokens": 5610,
+        "total_tokens": 11230,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 5198,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 5376,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 5376,
+        "prompt_cache_miss_tokens": 234
+      },
+      "elapsed_seconds": 27.852
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "0c1ffc6deb331247218f0e5dcd10bb63a405740839e2e219fcbf4a781e34ca55",
+      "response_model": "deepseek-flash",
+      "response_id": "346f6973-032d-407c-9ef3-70b7c48d3909",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 5770,
+      "reasoning_content_sha256": "7a55b1ccb5efe945a68f90330912ef8a7158c1764c2f56300b9d64e46b7eb303",
+      "usage": {
+        "completion_tokens": 1834,
+        "prompt_tokens": 2112,
+        "total_tokens": 3946,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 1464,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1152,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 1152,
+        "prompt_cache_miss_tokens": 960
+      },
+      "elapsed_seconds": 10.784
+    }
+  ]
+}

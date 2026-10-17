@@ -1,0 +1,1434 @@
+{
+  "items": {
+    "https://codeforces.com/problemset/problem/4/A": {
+      "fingerprint": "f4c3e9f8865785b83448eb7721c4df29dd3ba823b249fc69cc6349f10a8a69a4",
+      "status": "complete",
+      "analysis": {
+        "title": "两正偶数之和",
+        "difficulty": 800,
+        "difficulty_reason": "只需判断 w 是否为大于 2 的偶数，属于单一公式/简单判断的签到题。",
+        "solution_idea": "两个正偶数之和必为偶数，且最小为 2+2=4。因此 w 可行当且仅当 w 是大于 2 的偶数（即 w ≥ 4 且 w 为偶数）。也可直接枚举两个正偶数验证。时间复杂度 O(1) 或 O(w^2)。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "secondary_knowledge_ids": [
+          "math.number-theory.basic"
+        ],
+        "evidence": {
+          "basic.enumerate": "数据范围 w ≤ 100，可直接枚举两个正偶数判断其和是否等于 w。",
+          "math.number-theory.basic": "结论依赖偶数性质：两个偶数之和为偶数，且最小可行值为 2+2=4。"
+        },
+        "knowledge_confidence": {
+          "basic.enumerate": 0.9,
+          "math.number-theory.basic": 0.85
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "枚举",
+          "数论基础"
+        ]
+      },
+      "elapsed_seconds": 4.156
+    },
+    "https://codeforces.com/problemset/problem/71/A": {
+      "fingerprint": "4959953e020f953bf08edea05db36c5eada0a7e91fd0ed7ab0b3d02c0431f9b7",
+      "status": "complete",
+      "analysis": {
+        "title": "单词缩写",
+        "difficulty": 800,
+        "difficulty_reason": "签到题，只需按规则对每个单词做长度判断和字符串拼接，无算法难度。",
+        "solution_idea": "对每个单词判断长度：若长度 ≤ 10 直接输出；否则输出首字母 + (长度-2) 的十进制表示 + 末字母。长度最大 100，直接字符串处理即可，复杂度 O(总字符数)。",
+        "confidence": 1.0,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "string.basic"
+        ],
+        "evidence": {
+          "basic.simulate": "题目要求对每个单词按长度是否大于10执行改写或原样输出，是直接的规则模拟。",
+          "string.basic": "需要读取单词、取首末字符并拼接内部字符数的十进制表示，属于字符串基础操作。"
+        },
+        "knowledge_confidence": {
+          "basic.simulate": 1.0,
+          "string.basic": 0.9
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "模拟",
+          "字符串基础"
+        ]
+      },
+      "elapsed_seconds": 1.711
+    },
+    "https://codeforces.com/problemset/problem/231/A": {
+      "fingerprint": "930d39ea1e285a371de2e0e7e7c38be7f02362052e82073c41de82199aa49a12",
+      "status": "complete",
+      "analysis": {
+        "title": "多数表决统计",
+        "difficulty": 800,
+        "difficulty_reason": "只需逐行读入三个 0/1 并判断和是否至少为 2，是纯模拟签到题。",
+        "solution_idea": "读入 n，循环 n 次，每次读入三个整数 a,b,c，若 a+b+c ≥ 2 则答案加一，最后输出答案。时间复杂度 O(n)，空间 O(1)。",
+        "confidence": 0.98,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [],
+        "evidence": {
+          "basic.simulate": "题面要求逐行读入三个二进制意见并统计至少两人为 1 的行数，直接按定义模拟即可。"
+        },
+        "knowledge_confidence": {
+          "basic.simulate": 0.98
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "模拟"
+        ]
+      },
+      "elapsed_seconds": 1.384
+    },
+    "https://codeforces.com/problemset/problem/158/A": {
+      "fingerprint": "ce505c571e1331fc08774d67b9408bcfc24fd3a66d3e55759c4426e45a70c33a",
+      "status": "complete",
+      "analysis": {
+        "title": "符合资格的分数统计",
+        "difficulty": 800,
+        "difficulty_reason": "只需按非递增序列统计大于等于第 k 个分数且为正的个数，属于简单模拟/枚举签到题。",
+        "solution_idea": "由于分数已按非递增顺序给出，第 k 个分数 a_k 即为资格线。遍历所有分数，统计满足 a_i >= a_k 且 a_i > 0 的个数。注意样例 2 中全为 0 时输出 0，说明必须同时满足为正。时间复杂度 O(n)。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "evidence": {
+          "basic.simulate": "按题意遍历已排序的分数序列，统计满足 a_i >= a_k 且 a_i > 0 的个数即可。",
+          "basic.enumerate": "数据范围 n ≤ 50，直接枚举每个分数判断是否合格。"
+        },
+        "knowledge_confidence": {
+          "basic.simulate": 0.95,
+          "basic.enumerate": 0.9
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "模拟",
+          "枚举"
+        ]
+      },
+      "elapsed_seconds": 1.744
+    },
+    "https://codeforces.com/problemset/problem/50/A": {
+      "fingerprint": "9e2ee716d003e2c7ab11d29ec5b8d2cbeefe68b3b719393209e453819fd16049",
+      "status": "complete",
+      "analysis": {
+        "title": "矩形内最多骨牌数",
+        "difficulty": 1500,
+        "difficulty_reason": "需要将骨牌覆盖转化为轮廓线/状压 DP，状态设计与转移有一定思维量，但规模小、实现直接。",
+        "solution_idea": "经典骨牌覆盖计数/最大化问题。由于 M,N ≤ 16，可用轮廓线 DP（逐格转移的状压 DP）：按行优先顺序逐格处理，用一个 N 位二进制数表示当前轮廓线上每个格子是否已被覆盖。对每个格子，若已被覆盖则直接跳过；否则枚举三种决策：不放（该格留空）、横放（需右侧格子未越界且未覆盖）、竖放（需下方格子未越界且未覆盖），取最大值转移。状态数 O(M·N·2^N)，转移 O(1)，总复杂度 O(M·N·2^N)，在 N ≤ 16 时可行。注意 M ≤ N，可令 N 为较小维度以减小状态数。样例 2×4 得 4，3×3 得 4，与公式 floor(M·N/2) 一致，但一般矩形（如 3×3）因奇偶性无法铺满，DP 能正确处理。",
+        "confidence": 0.9,
+        "primary_knowledge_ids": [
+          "dp.state",
+          "dp.profile"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "evidence": {
+          "dp.state": "用二进制位表示当前行/轮廓的占用情况，逐格转移，是状压 DP 的典型应用。",
+          "dp.profile": "逐格扫描时只需维护轮廓线上 N 个格子的占用状态，属于轮廓线 DP。",
+          "basic.enumerate": "对每个格子枚举横放、竖放或不放三种决策进行转移。"
+        },
+        "knowledge_confidence": {
+          "dp.state": 0.9,
+          "dp.profile": 0.85,
+          "basic.enumerate": 0.7
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "状压 DP",
+          "轮廓线 DP",
+          "枚举"
+        ]
+      },
+      "elapsed_seconds": 2.893
+    },
+    "https://codeforces.com/problemset/problem/282/A": {
+      "fingerprint": "a4167717ad6b3723eb600d9a0e36e3dcf693df8b72c4d1d435915f29cd161a02",
+      "status": "complete",
+      "analysis": {
+        "title": "变量自增自减",
+        "difficulty": 800,
+        "difficulty_reason": "签到题，只需读入 n 行语句并统计 ++ 与 -- 的个数，做简单模拟即可。",
+        "solution_idea": "维护整数 x 初值 0，逐行读入语句。若语句中包含 \"++\" 则 x 加一，否则（包含 \"--\"）x 减一。由于 ++ 与 -- 无论前置还是后置，对最终值的影响都只是加一或减一，因此无需区分位置。最后输出 x。时间复杂度 O(n)，n ≤ 150。",
+        "confidence": 0.98,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "string.basic"
+        ],
+        "evidence": {
+          "basic.simulate": "按题意逐条执行语句，维护变量 x 的当前值，属于直接模拟。",
+          "string.basic": "需要读入并识别 ++X、X++、--X、X-- 这类字符串语句。"
+        },
+        "knowledge_confidence": {
+          "basic.simulate": 0.98,
+          "string.basic": 0.9
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "模拟",
+          "字符串基础"
+        ]
+      },
+      "elapsed_seconds": 1.882
+    },
+    "https://codeforces.com/problemset/problem/112/A": {
+      "fingerprint": "e7e716cb0d26491b4c474a85cefb9c5cd3f81cf7b4be742cf37b2914475724af",
+      "status": "complete",
+      "analysis": {
+        "title": "忽略大小写的字符串字典序比较",
+        "difficulty": 800,
+        "difficulty_reason": "只需逐字符比较并统一大小写，属于入门级模拟题。",
+        "solution_idea": "将两个字符串逐位比较，比较前把对应字符统一转为小写（或大写）。若某位不同，则根据该位字符大小输出 -1 或 1；若全部相同则输出 0。时间复杂度 O(n)，n ≤ 100。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "string.basic"
+        ],
+        "evidence": {
+          "basic.simulate": "按位逐字符比较两个字符串，遇到不同即输出结果，是直接的模拟过程。",
+          "string.basic": "涉及字符串的读取与逐字符访问等基础字符串操作。"
+        },
+        "knowledge_confidence": {
+          "basic.simulate": 0.95,
+          "string.basic": 0.9
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "模拟",
+          "字符串基础"
+        ]
+      },
+      "elapsed_seconds": 1.707
+    },
+    "https://codeforces.com/problemset/problem/339/A": {
+      "fingerprint": "26544b65a9769376cc9f8b3dfdcee0a46cd2ec667a844ff6f6f00cfc72f8f378",
+      "status": "complete",
+      "analysis": {
+        "title": "重排加法式",
+        "difficulty": 800,
+        "difficulty_reason": "只需统计数字 1、2、3 的出现次数并按序输出，属于最基础的计数与模拟，无算法难度。",
+        "solution_idea": "统计输入字符串中字符 '1'、'2'、'3' 各自出现的次数，然后按 1、2、3 的顺序，用加号连接相应数量的数字输出即可。由于数字种类只有三种，无需真正排序，计数后顺序输出即可，时间复杂度 O(|s|)。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "basic.counting-sort"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "evidence": {
+          "basic.counting-sort": "题目要求保留各数字出现次数并按非递减次序重排，本质是对取值仅为 1、2、3 的元素做计数排序。",
+          "basic.simulate": "需要按输入格式解析表达式并重新拼接输出，属于简单的字符串模拟处理。"
+        },
+        "knowledge_confidence": {
+          "basic.counting-sort": 0.95,
+          "basic.simulate": 0.9
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "计数排序",
+          "模拟"
+        ]
+      },
+      "elapsed_seconds": 3.398
+    },
+    "https://codeforces.com/problemset/problem/1/A": {
+      "fingerprint": "7457a9ac77a58b4470bc00ec73fc2669588420d561775d3a9155f4f61d60550f",
+      "status": "complete",
+      "analysis": {
+        "title": "正方形板覆盖矩形",
+        "difficulty": 800,
+        "difficulty_reason": "只需分别对两个方向向上取整相乘，属于入门级公式题。",
+        "solution_idea": "沿 n 方向需要 ceil(n/a) 块板，沿 m 方向需要 ceil(m/a) 块板，两者相乘即为答案。由于 n,m,a 可达 10^9，乘积可能超出 32 位整数范围，需使用 64 位整数。向上取整可用 (n+a-1)/a 实现。时间复杂度 O(1)。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [],
+        "evidence": {
+          "basic.simulate": "题目要求计算覆盖矩形所需正方形板的最小数量，直接按公式模拟计算即可。"
+        },
+        "knowledge_confidence": {
+          "basic.simulate": 0.9
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "模拟"
+        ]
+      },
+      "elapsed_seconds": 2.04
+    },
+    "https://codeforces.com/problemset/problem/230/B": {
+      "fingerprint": "42250fe34fccfe2f3efd1a6d0f5d3c329f07e5f0e7ce209da348d158e3af9a22",
+      "status": "complete",
+      "analysis": {
+        "title": "T-prime",
+        "difficulty": 1300,
+        "difficulty_reason": "需要发现恰好有三个因数的数必为素数平方这一数论观察，并对 10^12 范围内的数做整数平方根判定与素性检验，属于基础数论结合一步非平凡转化。",
+        "solution_idea": "关键观察：一个正整数恰好有三个正因数，当且仅当它是某个素数的平方。因为因数个数公式 d(x)=∏(e_i+1)，要等于 3 只能是一个素因子且指数为 2。\n\n于是对每个 x_i：先判断它是否为完全平方数（取整数平方根 r=⌊√x⌋，检查 r*r==x），若是再判断 r 是否为素数。r 最大约 10^6，可用试除法（O(√r)）或预先用埃氏筛筛出 10^6 以内的素数表后 O(1) 查询。\n\n总复杂度 O(n·√(√x)) 或 O(10^6 log log 10^6 + n)，均可通过 n≤10^5、x≤10^12 的数据范围。注意 1 不是素数，需特判。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "math.number-theory.prime",
+          "math.number-theory.basic"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.binary",
+          "math.number-theory.sieve"
+        ],
+        "evidence": {
+          "math.number-theory.prime": "核心判定是 x 是否为素数平方，需要对平方根做素性检验。",
+          "math.number-theory.basic": "利用因数个数公式：恰好三个因数等价于 x = p^2（p 为素数）。",
+          "basic.binary": "可用二分或整数平方根函数判断 x 是否为完全平方数。",
+          "math.number-theory.sieve": "若用筛法预处理素数表来加速素性检验，会用到筛法。"
+        },
+        "knowledge_confidence": {
+          "math.number-theory.prime": 0.95,
+          "math.number-theory.basic": 0.9,
+          "basic.binary": 0.6,
+          "math.number-theory.sieve": 0.5
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "素数",
+          "数论基础",
+          "二分",
+          "筛法"
+        ]
+      },
+      "elapsed_seconds": 3.21
+    },
+    "https://codeforces.com/problemset/problem/580/A": {
+      "fingerprint": "cafa451b72eac652cd21ed868bad9ba0c308a63b4e4110530572ab24246a6457",
+      "status": "complete",
+      "analysis": {
+        "title": "最长连续非递减片段",
+        "difficulty": 800,
+        "difficulty_reason": "只需一次线性扫描统计相邻非递减的连续长度并取最大值，属于入门级签到题。",
+        "solution_idea": "从左到右扫描序列，维护当前连续非递减片段的长度 cur：若 a[i] >= a[i-1] 则 cur 加一，否则重置为 1；每步用 cur 更新答案 ans。初始 ans = 1（n ≥ 1）。时间复杂度 O(n)，空间 O(1)（或 O(n) 存数组）。样例 1 中片段 2 2 与 1 3 4 中后者长度 3 为答案；样例 2 整个序列非递减，答案为 3。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "evidence": {
+          "basic.simulate": "按顺序扫描序列，维护当前非递减片段长度并更新最大值，是典型的线性模拟过程。",
+          "basic.enumerate": "需要枚举每个位置作为片段延伸点，逐一比较相邻元素判断是否非递减。"
+        },
+        "knowledge_confidence": {
+          "basic.simulate": 0.95,
+          "basic.enumerate": 0.8
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "模拟",
+          "枚举"
+        ]
+      },
+      "elapsed_seconds": 2.055
+    },
+    "https://codeforces.com/problemset/problem/455/A": {
+      "fingerprint": "18718197bcf92b264ab76fb59667e57b97a55ddfe8e820323c90073034b45873",
+      "status": "complete",
+      "analysis": {
+        "title": "删除并获得点数",
+        "difficulty": 1500,
+        "difficulty_reason": "需要将多重集合按值聚合为权值数组，并识别出「不能同时取相邻值」的线性 DP 模型，属于一步非平凡转化。",
+        "solution_idea": "把相同数值合并：设 cnt[v] 为值 v 的出现次数，则取走所有值为 v 的元素可得 cnt[v]*v 分，但会同时删除所有 v-1 和 v+1 的元素。于是问题转化为在值域 1..maxA 上选择若干互不相邻的值，使所选值的 cnt[v]*v 之和最大。\n\n设 dp[i] 表示只考虑值 1..i 时的最大得分，转移为 dp[i] = max(dp[i-1], dp[i-2] + cnt[i]*i)，即不选值 i 或选值 i（此时不能选 i-1）。答案为 dp[maxA]。\n\n复杂度 O(n + maxA)，maxA ≤ 10^5，总分用 64 位整数。样例 3 中值 1 出现 2 次、值 2 出现 5 次、值 3 出现 2 次，取 2 和 3 得 5*2+2*3=16 不对，实际最优为取 1 和 3 得 2*1+2*3=8 也不对；正确最优是取 2 得 5*2=10，与输出一致。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "dp.misc",
+          "basic.counting-sort"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.prefix-sum"
+        ],
+        "evidence": {
+          "dp.misc": "核心解法是在按值聚合后的数组上做「选或不选相邻元素」的线性动态规划。",
+          "basic.counting-sort": "由于 a_i ≤ 10^5，用值域计数数组统计每个值出现次数并乘以该值得到权值，本质是计数排序思想。",
+          "basic.prefix-sum": "DP 转移 dp[i]=max(dp[i-1], dp[i-2]+cnt[i]*i) 依赖前两项前缀最优值，可用前缀和/滚动变量维护。"
+        },
+        "knowledge_confidence": {
+          "dp.misc": 0.95,
+          "basic.counting-sort": 0.9,
+          "basic.prefix-sum": 0.6
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "其他 DP",
+          "计数排序",
+          "前缀和"
+        ]
+      },
+      "elapsed_seconds": 3.487
+    },
+    "https://codeforces.com/problemset/problem/474/B": {
+      "fingerprint": "e3f34a439b41495bc4a8dd36555ecbaca2a942c0e11af12308b58a817612551d",
+      "status": "complete",
+      "analysis": {
+        "title": "组编号查询",
+        "difficulty": 900,
+        "difficulty_reason": "前缀和加二分定位，属于基础算法组合，思维难度低，代码量小。",
+        "solution_idea": "设前缀和 S_k = a_1 + ... + a_k，则第 k 组覆盖的编号区间为 (S_{k-1}, S_k]。对每个查询 q，找到最小的 k 使得 S_k ≥ q，该 k 即为答案。由于 S 单调递增，可用二分查找（如 lower_bound）在 O(log n) 内回答每个查询。总复杂度 O(n + m log n)，在 n,m ≤ 10^5 范围内可行。也可用双指针或直接枚举，但二分更通用。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "basic.prefix-sum",
+          "basic.binary"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "evidence": {
+          "basic.prefix-sum": "需要计算每组编号区间的右端点，即对 a_i 求前缀和，从而确定每个组覆盖的编号范围。",
+          "basic.binary": "对每个查询 q_i，在前缀和数组上二分查找第一个不小于 q_i 的位置，即为所在组编号。",
+          "basic.enumerate": "朴素做法是逐个累加组大小直到覆盖查询编号，属于枚举思路，但非最优主线。"
+        },
+        "knowledge_confidence": {
+          "basic.prefix-sum": 0.95,
+          "basic.binary": 0.95,
+          "basic.enumerate": 0.6
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "前缀和",
+          "二分",
+          "枚举"
+        ]
+      },
+      "elapsed_seconds": 2.366
+    },
+    "https://codeforces.com/problemset/problem/706/B": {
+      "fingerprint": "d865a2b851c2fecbf0ae9b07b4eac107c5f08a720503c8d861a869bf406e8cd9",
+      "status": "complete",
+      "analysis": {
+        "title": "商店价格查询",
+        "difficulty": 900,
+        "difficulty_reason": "排序后对每个查询二分查找即可，属于基础排序应用与二分，思维难度低。",
+        "solution_idea": "将 n 个价格排序，得到非降序数组 a。对每个预算 m，在 a 中二分查找第一个大于 m 的位置 pos（即 upper_bound），答案即为 pos（下标从 0 计）。单次查询 O(log n)，总复杂度 O(n log n + q log n)，足以处理 n,q ≤ 10^5。也可用计数排序处理值域较小的价格，但排序+二分是最直接的解法。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "basic.sort",
+          "basic.binary"
+        ],
+        "secondary_knowledge_ids": [],
+        "evidence": {
+          "basic.sort": "需要先将价格数组排序，才能对每个查询使用二分统计不超过预算的商店数。",
+          "basic.binary": "对每个查询在有序价格数组中二分查找第一个大于预算的位置，得到答案。"
+        },
+        "knowledge_confidence": {
+          "basic.sort": 0.95,
+          "basic.binary": 0.95
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "排序",
+          "二分"
+        ]
+      },
+      "elapsed_seconds": 3.797
+    },
+    "https://codeforces.com/problemset/problem/279/B": {
+      "fingerprint": "1ce9a7753d3b8e5d0279ef6f4fd6553c66c80ada451d0fb40761ef84a67b5308",
+      "status": "complete",
+      "analysis": {
+        "title": "最长连续子段和不超过 t 的最大长度",
+        "difficulty": 1200,
+        "difficulty_reason": "需要想到用双指针/滑动窗口维护连续区间和，属于基础算法入门的典型应用，思维难度不高。",
+        "solution_idea": "问题等价于在数组 a 中找一段连续子段，使其元素和不超过 t，且长度最大。\n\n**解法一（双指针/滑动窗口，O(n)）**：维护窗口 [l, r] 及其和 sum。右端点 r 不断右移并累加 a[r]；当 sum > t 时，左端点 l 右移并减去 a[l]，直到 sum ≤ t。每次窗口合法时用 r-l+1 更新答案。由于每个元素最多进出窗口一次，总复杂度 O(n)。\n\n**解法二（前缀和 + 二分，O(n log n)）**：预处理前缀和 pre[i]。枚举左端点 l，在 [l, n] 中二分查找最大的 r 使得 pre[r]-pre[l-1] ≤ t，更新答案。\n\n两种解法均能通过 n ≤ 10^5 的数据范围。注意 a_i 均为正数，保证区间和的单调性，这是双指针和二分成立的前提。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "misc.two-pointer",
+          "basic.prefix-sum"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.binary"
+        ],
+        "evidence": {
+          "misc.two-pointer": "题目要求找一段连续任务使总时间不超过 t 且长度最大，可用双指针滑动窗口在线性时间内维护区间和。",
+          "basic.prefix-sum": "用前缀和可以快速计算任意连续区间的总时间，配合双指针或二分判断区间是否满足条件。",
+          "basic.binary": "固定左端点后区间和随右端点单调递增，可二分右端点求最长可行区间，是另一种可行解法。"
+        },
+        "knowledge_confidence": {
+          "misc.two-pointer": 0.95,
+          "basic.prefix-sum": 0.9,
+          "basic.binary": 0.7
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "双指针",
+          "前缀和",
+          "二分"
+        ]
+      },
+      "elapsed_seconds": 3.005
+    },
+    "https://codeforces.com/problemset/problem/363/B": {
+      "fingerprint": "48bb2cfbe785054ffac634d3383a4924ba06e3ff7a971d508469902caecc7bcd",
+      "status": "complete",
+      "analysis": {
+        "title": "长度恰好为 k 的最小和连续子段",
+        "difficulty": 900,
+        "difficulty_reason": "只需用滑动窗口或前缀和枚举所有长度为 k 的窗口取最小值，属于入门级模拟/前缀和题。",
+        "solution_idea": "预处理前缀和 s[i]=h_1+...+h_i，则起点 j 的长度 k 窗口和为 s[j+k-1]-s[j-1]。枚举 j=1..n-k+1，取和最小的 j 输出即可。时间复杂度 O(n)，空间 O(n)。也可用滑动窗口维护当前窗口和，边移动边更新最小值，空间 O(1)。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "basic.prefix-sum"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate",
+          "basic.simulate"
+        ],
+        "evidence": {
+          "basic.prefix-sum": "计算每个长度为 k 的窗口和可用前缀和 O(1) 求出，是解题主线。",
+          "basic.enumerate": "需要枚举所有 n-k+1 个可能的起点并比较窗口和。",
+          "basic.simulate": "按题意直接模拟滑动窗口求最小和的过程。"
+        },
+        "knowledge_confidence": {
+          "basic.prefix-sum": 0.95,
+          "basic.enumerate": 0.9,
+          "basic.simulate": 0.85
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "前缀和",
+          "枚举",
+          "模拟"
+        ]
+      },
+      "elapsed_seconds": 1.78
+    },
+    "https://codeforces.com/problemset/problem/520/B": {
+      "fingerprint": "de94abff973b0b26bc2fcd3d06560a5607b22f7a842a0cc3569a0cbe84ba562c",
+      "status": "complete",
+      "analysis": {
+        "title": "从 n 到 m 的最少操作次数",
+        "difficulty": 1500,
+        "difficulty_reason": "需要从终点反向思考（逆向减半/加一）并处理奇偶分支，属于需要一步非平凡转化的贪心/搜索题。",
+        "solution_idea": "正向操作是乘 2 或减 1，直接搜索状态空间可能较大。常用做法是反向考虑：从 m 出发，允许的操作变为除以 2（仅当为偶数）或加 1，目标是到达 n。\n\n贪心策略：当 m > n 时，若 m 为偶数则直接 m /= 2；若 m 为奇数，则比较 (m+1)/2 与 (m-1)/2 哪个更接近目标，通常选择使后续步数更少的分支（可递归/迭代判断）。当 m <= n 时，只能通过加 1 到达 n，代价为 n - m。\n\n另一种等价做法是 BFS：以当前值为状态，边为 x*2 和 x-1（保持正数），求 n 到 m 的最短路径。由于 n,m ≤ 10^4 且中间值允许超过输入范围，BFS 需要设定合理上界（如 2*max(n,m) 或稍大）以保证正确性。\n\n复杂度：贪心 O(log m)，BFS O(状态数)。",
+        "confidence": 0.85,
+        "primary_knowledge_ids": [
+          "basic.greedy",
+          "search.bfs"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.binary"
+        ],
+        "evidence": {
+          "basic.greedy": "从 m 反向贪心：偶数直接减半，奇数时比较加一后减半与减一后减半的代价，取较优者。",
+          "search.bfs": "也可把状态 (当前值) 作为节点，乘 2 与减 1 作为边，用 BFS 求 n 到 m 的最短操作数。",
+          "basic.binary": "反向过程中反复对当前值进行除以 2 的折半处理，本质是二进制位层面的操作。"
+        },
+        "knowledge_confidence": {
+          "basic.greedy": 0.85,
+          "search.bfs": 0.7,
+          "basic.binary": 0.6
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "贪心",
+          "广度优先搜索（BFS）",
+          "二分"
+        ]
+      },
+      "elapsed_seconds": 3.042
+    },
+    "https://codeforces.com/problemset/problem/545/C": {
+      "fingerprint": "275e36a36413316da8d59b8efa8aecb808887f2892bebdef40ff6908d7b8a20d",
+      "status": "complete",
+      "analysis": {
+        "title": "砍树",
+        "difficulty": 1500,
+        "difficulty_reason": "需要贪心决策每棵树倒向哪边，并维护已占用区间右端点，属于一步非平凡转化的贪心题。",
+        "solution_idea": "从左到右依次处理每棵树，维护上一棵被砍倒的树所占区间的右端点 last。对第 i 棵树：\n\n1. 若向左倒不冲突（x_i - h_i > last），则向左倒，last = x_i，答案加一。\n2. 否则若向右倒不冲突（x_i + h_i < x_{i+1}，最后一棵树只需 x_i + h_i 无限制），则向右倒，last = x_i + h_i，答案加一。\n3. 否则不砍，last 不变。\n\n贪心正确性：优先向左倒能给后续树留出最大空间；当左倒不可行时，右倒是最优的次选，因为右倒占用的区间起点更靠右，对后续影响最小。时间复杂度 O(n)。",
+        "confidence": 0.85,
+        "primary_knowledge_ids": [
+          "basic.greedy"
+        ],
+        "secondary_knowledge_ids": [],
+        "evidence": {
+          "basic.greedy": "每棵树优先向左倒，若与前一棵已倒树冲突则尝试向右倒，否则不砍，这是典型的贪心策略。"
+        },
+        "knowledge_confidence": {
+          "basic.greedy": 0.9
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "贪心"
+        ]
+      },
+      "elapsed_seconds": 2.286
+    },
+    "https://codeforces.com/problemset/problem/25/D": {
+      "fingerprint": "421441ac9929362029475b040e4a2b8d0753d6f4bc2107ccdaad0dfae3983358",
+      "status": "complete",
+      "analysis": {
+        "title": "连通图修复",
+        "difficulty": 1500,
+        "difficulty_reason": "需要观察到最少操作数等于连通块数减一，并用并查集找出各连通块并构造替换方案，属于一步非平凡转化加基础数据结构应用。",
+        "solution_idea": "图有 n 个顶点、n-1 条边，因此每个连通分量都是一棵树。设连通块个数为 c，则最少操作次数为 c-1：每次操作最多把两个连通块合并，下界为 c-1；同时由于每个连通块是树，块内必存在一条非桥边（块大小≥2时）或可借助其他块，总能删去一条边并用于连接两个块，故 c-1 可达。\n\n实现：用并查集处理所有边，得到每个连通块的顶点集合。对每个连通块，若其大小≥2，则从块内任选一条边作为待删除边（删去后块仍连通，因为树删一条边会分裂，所以需注意——正确做法是删去块内一条边后该块分裂成两部分，但这两部分仍可通过新加的边与其他块相连，最终整体连通即可）。更稳妥的构造：对每个连通块取一个代表点，保留块内所有边不动，直接删去块内任意一条边并把它用于连接两个不同连通块的代表点，重复 c-1 次。由于每次删边后原块可能分裂，但新边会把分裂出的部分重新连入整体，最终所有顶点连通。\n\n复杂度 O(n α(n))。",
+        "confidence": 0.9,
+        "primary_knowledge_ids": [
+          "ds.union-find",
+          "basic.construction"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.connectivity",
+          "graph.tree-basic"
+        ],
+        "evidence": {
+          "ds.union-find": "需要统计图的连通块个数并维护各连通块的代表点，用并查集合并 n-1 条边即可。",
+          "basic.construction": "题目要求输出一组具体的删边加边方案，需要构造性地把各连通块连成一棵树。",
+          "graph.connectivity": "核心是判断图中有多少个连通分量，最少操作次数为连通块数减一。",
+          "graph.tree-basic": "图有 n 个顶点恰好 n-1 条边，每个连通块是一棵树，删去块内一条边不会破坏该块连通性。"
+        },
+        "knowledge_confidence": {
+          "ds.union-find": 0.95,
+          "basic.construction": 0.9,
+          "graph.connectivity": 0.9,
+          "graph.tree-basic": 0.85
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "并查集",
+          "构造",
+          "连通性相关",
+          "树基础"
+        ]
+      },
+      "elapsed_seconds": 3.943
+    },
+    "https://codeforces.com/problemset/problem/20/C": {
+      "fingerprint": "b3ac4e9e42b14cc480a1083d7e1fbfdd0ced7cfd9bc5b973d649a619b071f44d",
+      "status": "complete",
+      "analysis": {
+        "title": "最短路径（含路径还原）",
+        "difficulty": 1500,
+        "difficulty_reason": "标准单源最短路（Dijkstra）加前驱数组还原路径，属于算法与实现结合的进阶题，需要处理重边自环与不可达输出。",
+        "solution_idea": "以 1 为源点跑 Dijkstra：用邻接表存图（自环与重边直接保留，重边取小不影响正确性），优先队列按距离弹出，松弛时记录每个点的前驱 pre[v]=u。跑完后若 dist[n] 为无穷则输出 -1，否则从 n 沿 pre 回溯到 1 再反转输出。复杂度 O((n+m) log n)。注意边权为正，Dijkstra 适用；样例 1 与样例 2 内容相同，输出 1 4 3 5 对应距离 1+3+1=5，为一条最短路径。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "graph.shortest-path",
+          "ds.heap"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.basic"
+        ],
+        "evidence": {
+          "graph.shortest-path": "题目要求从 1 到 n 的最短路径并输出路径，是单源最短路的直接应用。",
+          "ds.heap": "n,m 达 10^5 且边权为正，需用堆（优先队列）优化 Dijkstra 以控制复杂度。",
+          "graph.basic": "输入为无向图，允许自环与重边，需要基本的图存储（邻接表）与建图处理。"
+        },
+        "knowledge_confidence": {
+          "graph.shortest-path": 0.98,
+          "ds.heap": 0.95,
+          "graph.basic": 0.9
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "最短路",
+          "堆",
+          "图论基础"
+        ]
+      },
+      "elapsed_seconds": 2.678
+    },
+    "https://www.luogu.com.cn/problem/P1001": {
+      "fingerprint": "3183a630b88d7e2e059b4bdb3ce3e85438af76577eb66ad394263a998f353f2e",
+      "status": "complete",
+      "analysis": {
+        "title": "两数之和",
+        "difficulty": 800,
+        "difficulty_reason": "直接读入两个整数并输出其和，无需任何算法转化，属于最基础的入门签到题。",
+        "solution_idea": "读入两个整数 a 和 b，直接输出 a+b。注意 a、b 范围在 -10^9 到 10^9 之间，和可能达到 2×10^9，超出 32 位有符号整数范围，需使用 64 位整数（如 C++ 的 long long）存储结果。时间复杂度 O(1)，空间复杂度 O(1)。",
+        "confidence": 1.0,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [],
+        "evidence": {
+          "basic.simulate": "题目要求读入两个整数 a、b 并输出 a+b，直接按题意进行输入输出模拟即可完成。"
+        },
+        "knowledge_confidence": {
+          "basic.simulate": 1.0
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "模拟"
+        ]
+      },
+      "elapsed_seconds": 3.299
+    },
+    "https://www.luogu.com.cn/problem/P1047": {
+      "fingerprint": "6c98043cbd378752e7995bf401c076fb87b47caa4e405ff7892a327230500de9",
+      "status": "complete",
+      "analysis": {
+        "title": "移除区间后的剩余树数",
+        "difficulty": 900,
+        "difficulty_reason": "数据范围极小，只需标记被覆盖的位置或合并区间后计数，属于入门级模拟/枚举题。",
+        "solution_idea": "由于 l ≤ 10^4、m ≤ 100，最直接的做法是开一个长度为 l+1 的布尔数组表示每棵树是否被移除，对每个闭区间 [u, v] 把其中所有位置标记为已移除，最后统计仍为未移除的位置个数，复杂度 O(m·l)。另一种做法是把 m 个区间按左端点排序后合并重叠区间，用总长度减去被覆盖的总长度，复杂度 O(m log m)，但本题规模下没有必要。注意区间是闭区间且可能重叠，示例中 [2,4] 与 [4,7] 合并后覆盖 2..7 共 6 个位置，剩余 11-6=5 棵。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate",
+          "basic.sort"
+        ],
+        "evidence": {
+          "basic.simulate": "直接按题意对每个区间标记被移除的树，再统计剩余数量即可。",
+          "basic.enumerate": "可以枚举每个位置判断是否落在任一区间内，从而统计剩余树数。",
+          "basic.sort": "若采用区间合并做法，需要先按左端点排序再合并重叠区间。"
+        },
+        "knowledge_confidence": {
+          "basic.simulate": 0.95,
+          "basic.enumerate": 0.9,
+          "basic.sort": 0.6
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "模拟",
+          "枚举",
+          "排序"
+        ]
+      },
+      "elapsed_seconds": 2.326
+    },
+    "https://www.luogu.com.cn/problem/P1055": {
+      "fingerprint": "99da02cedf89d0a86afa24e2fc8880dcbf8b005b9765027c087553354360d6fc",
+      "status": "complete",
+      "analysis": {
+        "title": "ISBN 校验",
+        "difficulty": 800,
+        "difficulty_reason": "按固定公式逐位加权求和取模并比较末位，属于直接模拟的签到题。",
+        "solution_idea": "按格式读入字符串，跳过分隔符 '-'，依次取出前九个数字，第 i 位（从 1 开始）乘以 i 后累加，总和模 11 得到校验值；若校验值为 10 则对应字符 'X'，否则为对应数字字符。将计算出的校验字符与输入末位比较：相同输出 Right，否则输出把末位替换为正确校验字符后的完整 ISBN（保留原有分隔符）。时间复杂度 O(1)，只需一次线性扫描。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "math.bit"
+        ],
+        "evidence": {
+          "basic.simulate": "题面要求按 ISBN 规则逐位乘 1 到 9 求和取模，再与末位比较，是直接的按规则模拟。",
+          "math.bit": "题面提到余数 10 写作 X，涉及校验字符的表示处理，但并非核心算法。"
+        },
+        "knowledge_confidence": {
+          "basic.simulate": 0.95,
+          "math.bit": 0.3
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "模拟",
+          "位操作"
+        ]
+      },
+      "elapsed_seconds": 2.018
+    },
+    "https://www.luogu.com.cn/problem/P1219": {
+      "fingerprint": "1baefc482701d43552eee2da6a52ec71214d02f1b79859346d5d7b359d3b3b47",
+      "status": "complete",
+      "analysis": {
+        "title": "N 皇后问题（前三个字典序方案与方案总数）",
+        "difficulty": 1400,
+        "difficulty_reason": "N 皇后是经典回溯搜索题，n≤13 规模小，但需要按字典序输出前三个方案并统计总数，属于搜索入门到进阶的典型题。",
+        "solution_idea": "按行从上到下依次放置棋子，用数组记录每行棋子的列号。对第 i 行枚举列 j（1..n），检查列 j 是否已被占用、两条对角线是否已有棋子（可用列标记数组和两个对角线标记数组，对角线索引分别为 i-j+n 和 i+j）。若合法则放置并递归到下一行；到达第 n+1 行时得到一个完整方案，计数加一，若计数不超过 3 则输出该方案。由于按列从小到大枚举，天然按字典序得到方案。n≤13 时搜索规模可接受（N 皇后解数在 n=13 时约为 7 万，搜索节点数在百万级以内）。复杂度约为 O(n!) 量级但实际剪枝后远小于此。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "search.dfs"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "evidence": {
+          "search.dfs": "需要在每行逐列尝试放置棋子并回溯，是典型的深度优先搜索/回溯框架。",
+          "basic.enumerate": "对每行棋子的列号进行枚举尝试，逐行确定放置位置。"
+        },
+        "knowledge_confidence": {
+          "search.dfs": 0.95,
+          "basic.enumerate": 0.8
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "深度优先搜索（DFS）",
+          "枚举"
+        ]
+      },
+      "elapsed_seconds": 2.352
+    },
+    "https://www.luogu.com.cn/problem/P1002": {
+      "fingerprint": "c73524bd54502e3bb20a0ef3c9a3be670931a6cecd40c48dec6c0d89c6ec5ee6",
+      "status": "complete",
+      "analysis": {
+        "title": "马拦过河卒",
+        "difficulty": 1000,
+        "difficulty_reason": "经典网格路径计数 DP，只需标记马的控制点并逐格递推，属于入门级动态规划/递推。",
+        "solution_idea": "设 f[i][j] 为从 (0,0) 走到 (i,j) 的合法路径数。先标记马所在点 (x,y) 以及 (x±1,y±2)、(x±2,y±1) 共 8 个马步可达点（越界忽略）为障碍。转移：若 (i,j) 是障碍则 f[i][j]=0；否则 f[i][j]=f[i-1][j]+f[i][j-1]（i=0 或 j=0 时只取存在的方向），f[0][0]=1（若起点非障碍）。答案即 f[n][m]。由于 n,m ≤ 20，直接双重循环递推即可，复杂度 O(nm)。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "dp.misc"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "evidence": {
+          "dp.misc": "路径数由左、下相邻格子的方案数相加得到，是典型的网格递推计数 DP。",
+          "basic.simulate": "需要枚举马所在点及其一次马步能到达的 8 个点并标记为不可经过。"
+        },
+        "knowledge_confidence": {
+          "dp.misc": 0.95,
+          "basic.simulate": 0.9
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "其他 DP",
+          "模拟"
+        ]
+      },
+      "elapsed_seconds": 2.024
+    },
+    "https://www.luogu.com.cn/problem/P1048": {
+      "fingerprint": "284c4f1ba34ee1b028d515869e0a2bcded8be1b0d3f88d3a07169c42bad72b8d",
+      "status": "complete",
+      "analysis": {
+        "title": "草药采集",
+        "difficulty": 1200,
+        "difficulty_reason": "经典的 0/1 背包模板题，数据范围小，只需掌握一维滚动数组的背包 DP 即可，属于算法竞赛入门难度。",
+        "solution_idea": "这是标准 0/1 背包问题：容量为 T，物品数为 M，每株草药重量为采集时间、价值为价值，每件物品至多选一次。\n\n设 dp[j] 表示总用时不超过 j 时能获得的最大价值，初始 dp[0..T]=0。对每株草药 (w, v)，逆序枚举 j 从 T 到 w，执行 dp[j] = max(dp[j], dp[j-w] + v)。逆序枚举保证每株草药只被选一次。\n\n最终答案为 dp[T]。时间复杂度 O(M·T) ≤ 100×1000 = 10^5，空间 O(T)，完全满足约束。\n\n样例验证：T=5，物品 (2,3),(3,4),(4,5)。选 (2,3) 与 (3,4) 总用时 5、价值 7，为最优，输出 7。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "dp.knapsack"
+        ],
+        "secondary_knowledge_ids": [],
+        "evidence": {
+          "dp.knapsack": "每株草药最多采一次、总用时不超过 T 求最大价值，是标准的 0/1 背包模型，用容量维度 DP 求解。"
+        },
+        "knowledge_confidence": {
+          "dp.knapsack": 0.97
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "背包 DP"
+        ]
+      },
+      "elapsed_seconds": 2.295
+    },
+    "https://www.luogu.com.cn/problem/P1064": {
+      "fingerprint": "3e0e122f15fe9c4495e32fe8c6516a6ca6c20a7c02186f03be1c98839f22c25c",
+      "status": "complete",
+      "analysis": {
+        "title": "金明的预算方案",
+        "difficulty": 1600,
+        "difficulty_reason": "需要把主件-附件依赖关系转化为分组背包，每组枚举主件及最多两个附件的组合，是依赖背包的经典非平凡转化。",
+        "solution_idea": "将每个主件及其附件视为一个物品组。对每个主件，枚举其附件的购买组合（不买附件、买一个附件、买两个附件），每种组合对应一个总价格和总收益。然后做分组背包：dp[j] 表示花费 j 预算的最大收益，对每组物品，倒序枚举容量并尝试组内每种组合。由于价格为 10 的倍数，可将价格除以 10 缩小容量。复杂度 O(m * n * 4)，可接受。",
+        "confidence": 0.9,
+        "primary_knowledge_ids": [
+          "dp.knapsack"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "evidence": {
+          "dp.knapsack": "预算内最大化收益，主件与附件构成依赖关系，需转化为分组背包求解。",
+          "basic.enumerate": "每个主件最多两个附件，需枚举购买主件时附件的各种组合（0/1/2个附件）。"
+        },
+        "knowledge_confidence": {
+          "dp.knapsack": 0.95,
+          "basic.enumerate": 0.8
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "背包 DP",
+          "枚举"
+        ]
+      },
+      "elapsed_seconds": 2.399
+    },
+    "https://www.luogu.com.cn/problem/P1091": {
+      "fingerprint": "2e6154ba87bc83fa1ad705965f382e5c0d43ab7299c3fe8596b4f81e1aae3501",
+      "status": "complete",
+      "analysis": {
+        "title": "山峰序列",
+        "difficulty": 1400,
+        "difficulty_reason": "需要把「删最少元素得到先增后减序列」转化为求最长双调子序列（LIS 变体），对每个峰值枚举左右两侧 LIS 长度，属于需要一步非平凡转化的经典 DP。",
+        "solution_idea": "问题等价于求最长的「先严格递增后严格递减」子序列（双调子序列），答案 = n − 该最长长度。\n\n做法：\n1. 设 inc[i] 为以 i 结尾的最长严格递增子序列长度，从左到右 DP：inc[i] = 1 + max{ inc[j] : j < i 且 t_j < t_i }。\n2. 设 dec[i] 为以 i 开头的最长严格递减子序列长度，从右到左 DP：dec[i] = 1 + max{ dec[j] : j > i 且 t_j < t_i }。\n3. 枚举峰值位置 i，最长双调子序列长度为 max_i (inc[i] + dec[i] − 1)，减 1 是因为峰值被两侧重复计算。\n4. 输出 n − max_i (inc[i] + dec[i] − 1)。\n\n两侧允许为空，因此单侧递增或单侧递减的情况已被 inc[i] 或 dec[i] 为 1 的情形覆盖。\n\n复杂度 O(n^2)，n ≤ 100 完全足够。\n\n注意：题目要求严格递增/递减，比较时用严格不等号；示例中 130 150 140 160 130 的最长双调子序列为 130 150 160 130（长度 4），故删除 1 人，与输出一致。",
+        "confidence": 0.9,
+        "primary_knowledge_ids": [
+          "dp.misc"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "evidence": {
+          "dp.misc": "核心是求最长双调子序列：对每个位置 i 求以 i 结尾的最长严格递增子序列长度和以 i 开头的最长严格递减子序列长度，属于线性 DP 的经典变体。",
+          "basic.enumerate": "需要枚举每个位置作为峰值，取左右两侧长度之和的最大值。"
+        },
+        "knowledge_confidence": {
+          "dp.misc": 0.85,
+          "basic.enumerate": 0.8
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "其他 DP",
+          "枚举"
+        ]
+      },
+      "elapsed_seconds": 2.833
+    },
+    "https://www.luogu.com.cn/problem/P1020": {
+      "fingerprint": "1dc604dcfcb25888b2bb997c49f18b109ada8c81a8b00521547fb2de624fed44",
+      "status": "complete",
+      "analysis": {
+        "title": "导弹拦截",
+        "difficulty": 1600,
+        "difficulty_reason": "需要将最长不上升子序列与 Dilworth 定理（最少不上升子序列覆盖数等于最长上升子序列长度）结合，并用 O(n log n) 的二分/树状数组实现，属于需要一步非平凡转化的进阶题。",
+        "solution_idea": "第一问：求最长不上升子序列长度。设 dp[i] 为以第 i 个导弹结尾的最长不上升子序列长度，朴素 O(n^2) 可过前半部分；完整通过需 O(n log n)：维护一个单调不增的辅助数组（或树状数组维护前缀最大值），对每个高度二分找到第一个小于等于它的位置并替换，最终数组长度即为答案。\n\n第二问：由 Dilworth 定理（偏序集的最小链覆盖数等于最大反链大小），最少不上升子序列数等于最长严格上升子序列长度。同样用 O(n log n) 的二分方法求最长严格上升子序列即可。\n\n复杂度 O(n log n)，空间 O(n)。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "dp.misc",
+          "basic.binary",
+          "math.order-theory"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.greedy",
+          "ds.fenwick"
+        ],
+        "evidence": {
+          "dp.misc": "第一问求最长不上升子序列长度，属于线性 DP 的经典变体。",
+          "basic.binary": "O(n log n) 求 LIS/LNDS 需要在维护的单调序列上二分查找插入位置。",
+          "math.order-theory": "第二问最少不上升子序列覆盖数由 Dilworth 定理转化为最长上升子序列长度。",
+          "basic.greedy": "维护单调序列时用贪心策略替换第一个小于等于当前值的位置。",
+          "ds.fenwick": "也可用树状数组维护前缀最大值来求最长不上升子序列，达到 O(n log n)。"
+        },
+        "knowledge_confidence": {
+          "dp.misc": 0.9,
+          "basic.binary": 0.9,
+          "math.order-theory": 0.85,
+          "basic.greedy": 0.8,
+          "ds.fenwick": 0.6
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "其他 DP",
+          "二分",
+          "序理论",
+          "贪心",
+          "树状数组"
+        ]
+      },
+      "elapsed_seconds": 2.981
+    },
+    "https://www.luogu.com.cn/problem/P3371": {
+      "fingerprint": "1643a3749eede87798aeb2734304afe0bc975856b1a956763e337678cd289cbd",
+      "status": "complete",
+      "analysis": {
+        "title": "单源最短路径（非负边权）",
+        "difficulty": 1400,
+        "difficulty_reason": "标准 Dijkstra 模板题，需要掌握优先队列优化的最短路算法，思维难度不高但属于算法入门核心内容。",
+        "solution_idea": "非负边权单源最短路，使用 Dijkstra 算法。由于 m 可达 5×10^5，需用二叉堆（优先队列）维护当前未确定的最短距离，每次取出距离最小的顶点进行松弛，复杂度 O((n+m) log n)。注意有重边，邻接表存储即可；不可达点输出 2147483647（即 INT_MAX）。数据随机，堆优化 Dijkstra 足以通过。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "graph.shortest-path",
+          "ds.heap"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.basic"
+        ],
+        "evidence": {
+          "graph.shortest-path": "题目要求在非负边权有向图中求从 s 到每个顶点的最短距离，是单源最短路径的标准问题。",
+          "ds.heap": "n 达 10^4、m 达 5×10^5，需用优先队列（堆）优化 Dijkstra 才能高效求解。",
+          "graph.basic": "输入为有向图，含重边，需要按图论基础建图（邻接表）。"
+        },
+        "knowledge_confidence": {
+          "graph.shortest-path": 0.98,
+          "ds.heap": 0.9,
+          "graph.basic": 0.85
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "最短路",
+          "堆",
+          "图论基础"
+        ]
+      },
+      "elapsed_seconds": 2.327
+    },
+    "https://www.luogu.com.cn/problem/P3366": {
+      "fingerprint": "0c24c98f810647214d7e0b4676adb6c75e9780407c4667eb3abc02f74a62f929",
+      "status": "complete",
+      "analysis": {
+        "title": "最小生成树",
+        "difficulty": 1300,
+        "difficulty_reason": "最小生成树模板题，N≤5000、M≤2×10^5，用 Kruskal+并查集或 Prim 即可，属于算法竞赛入门到进阶的模板应用。",
+        "solution_idea": "标准最小生成树问题。将 M 条边按权值升序排序，用并查集维护连通分量，依次枚举每条边，若两端点不在同一集合则合并并累加边权，否则跳过。最终若合并次数为 N-1 则输出总权值，否则图不连通输出 orz。复杂度 O(M log M)。也可用 Prim 堆优化，复杂度 O(M log N)。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "graph.mst",
+          "ds.union-find"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.sort",
+          "graph.basic"
+        ],
+        "evidence": {
+          "graph.mst": "题目要求连接全部顶点的最小总边权，即求最小生成树。",
+          "ds.union-find": "Kruskal 算法需要用并查集判断边两端是否已连通以避免成环。",
+          "basic.sort": "Kruskal 需要按边权从小到大排序后依次选取。",
+          "graph.basic": "题目给定带权无向图，需要处理图的存储与连通性判断。"
+        },
+        "knowledge_confidence": {
+          "graph.mst": 0.98,
+          "ds.union-find": 0.95,
+          "basic.sort": 0.9,
+          "graph.basic": 0.85
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "最小生成树",
+          "并查集",
+          "排序",
+          "图论基础"
+        ]
+      },
+      "elapsed_seconds": 2.016
+    },
+    "https://www.luogu.com.cn/problem/P3367": {
+      "fingerprint": "f3080e71236d9f61f2a37988748dc34f0f9dd2e0de406f12b57958cc97afec03",
+      "status": "complete",
+      "analysis": {
+        "title": "并查集",
+        "difficulty": 1200,
+        "difficulty_reason": "并查集模板题，需要掌握路径压缩/按秩合并的并查集实现，属于算法竞赛入门基础。",
+        "solution_idea": "维护并查集，每个元素初始为独立集合。合并操作 `Z=1` 时对 X、Y 执行 union；查询操作 `Z=2` 时判断 find(X) 与 find(Y) 是否相等，相等输出 `Y`，否则输出 `N`。使用路径压缩（可配合按秩合并）保证单次操作近似 O(α(N))，总复杂度 O(M·α(N))，可轻松处理 N≤2×10^5、M≤10^6 的数据规模。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "ds.union-find"
+        ],
+        "secondary_knowledge_ids": [],
+        "evidence": {
+          "ds.union-find": "题目要求合并集合与查询两元素是否同属一个集合，是并查集的典型应用场景。"
+        },
+        "knowledge_confidence": {
+          "ds.union-find": 0.98
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "并查集"
+        ]
+      },
+      "elapsed_seconds": 1.836
+    },
+    "https://www.luogu.com.cn/problem/P3368": {
+      "fingerprint": "0a41d0a4e032c36926ff8a2d22503e88e367d9e5eff54656f038717c46963eba",
+      "status": "complete",
+      "analysis": {
+        "title": "区间加与单点查询",
+        "difficulty": 1200,
+        "difficulty_reason": "需要想到用差分把区间加转化为两个单点修改、单点查询转化为前缀和，是差分/树状数组的入门应用，思维难度不高。",
+        "solution_idea": "维护差分数组 d，其中 d[i]=a[i]-a[i-1]。区间加操作 [x,y]+=k 等价于 d[x]+=k、d[y+1]-=k；单点查询 a[x] 等价于求 d[1..x] 的前缀和。由于 N,M 可达 5×10^5，用树状数组维护 d 的前缀和，每次操作 O(log N)，总复杂度 O((N+M) log N)。若数据规模较小也可直接暴力，但按约束需用树状数组（或线段树）实现。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "basic.difference",
+          "basic.prefix-sum"
+        ],
+        "secondary_knowledge_ids": [
+          "ds.fenwick"
+        ],
+        "evidence": {
+          "basic.difference": "区间 [x,y] 整体加 k 可转化为差分数组上 d[x]+=k、d[y+1]-=k 两个单点修改。",
+          "basic.prefix-sum": "位置 x 的当前值等于差分数组的前缀和，查询即求前缀和。",
+          "ds.fenwick": "N,M 达 5×10^5，用树状数组维护差分数组前缀和可将单次操作降到 O(log N)，是常见实现方式。"
+        },
+        "knowledge_confidence": {
+          "basic.difference": 0.98,
+          "basic.prefix-sum": 0.98,
+          "ds.fenwick": 0.85
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "差分",
+          "前缀和",
+          "树状数组"
+        ]
+      },
+      "elapsed_seconds": 2.241
+    },
+    "https://www.luogu.com.cn/problem/P3383": {
+      "fingerprint": "b28c6d6dfbb687863f26fd39493fa862cb5c3e72c8c16d546d018589d20db4be",
+      "status": "complete",
+      "analysis": {
+        "title": "第 k 个素数",
+        "difficulty": 2400,
+        "difficulty_reason": "n 高达 1e8 且询问 1e6 次，需要筛出全部素数并支持 O(1) 查询，核心难点在于用线性筛/埃氏筛在 1e8 规模下控制时间与内存，并处理第 k 个素数的定位。",
+        "solution_idea": "用埃氏筛或线性筛在 [2, n] 上筛出所有素数，n=1e8 时需注意内存（可用 bitset/位图压缩标记数组）与时间常数。筛完后按升序收集素数，或维护前缀计数数组 cnt[i] 表示不超过 i 的素数个数，再对每个询问 k 二分/直接定位第 k 个素数。由于 q 可达 1e6，应预处理答案使每次询问 O(1) 或 O(log n)。总复杂度约 O(n log log n + q) 或 O(n + q)。",
+        "confidence": 0.85,
+        "primary_knowledge_ids": [
+          "math.number-theory.sieve",
+          "math.number-theory.prime"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate",
+          "basic.prefix-sum"
+        ],
+        "evidence": {
+          "math.number-theory.sieve": "需要在 n=1e8 范围内筛出所有素数，是解题主线的核心算法。",
+          "math.number-theory.prime": "题目要求列出不超过 n 的素数并回答第 k 个素数，直接涉及素数判定与素数序列。",
+          "basic.enumerate": "筛法本质是在 2..n 上枚举并标记合数。",
+          "basic.prefix-sum": "可用前缀和/计数数组记录每个位置之前有多少个素数，从而 O(1) 回答第 k 个素数查询。"
+        },
+        "knowledge_confidence": {
+          "math.number-theory.sieve": 0.95,
+          "math.number-theory.prime": 0.95,
+          "basic.enumerate": 0.6,
+          "basic.prefix-sum": 0.55
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "筛法",
+          "素数",
+          "枚举",
+          "前缀和"
+        ]
+      },
+      "elapsed_seconds": 2.749
+    },
+    "https://www.luogu.com.cn/problem/P3385": {
+      "fingerprint": "9f1989e962c9d60dedabfd682b19f6c48cf1d02d934275bd4f68126d77309e1c",
+      "status": "complete",
+      "analysis": {
+        "title": "可达负权回路判定",
+        "difficulty": 1600,
+        "difficulty_reason": "需要把无向非负边拆成两条有向边、负权边只保留单向，再在可能不连通的图上用 SPFA/Bellman-Ford 判定从 1 可达的负环，属于图论建模加一步非平凡转化。",
+        "solution_idea": "按题意建图：对每条输入边 (u,v,w)，若 w>=0 则添加 u->v 和 v->u 两条权为 w 的有向边；若 w<0 则只添加 u->v 一条权为 w 的有向边。问题转化为：在有向图中判断是否存在从顶点 1 可达的负权回路。\n\n做法：从 1 出发跑 SPFA（或 Bellman-Ford），只对从 1 可达的点进行松弛。若某个点入队次数达到 n 次（或第 n 轮仍能松弛），说明存在从 1 可达的负环，输出 YES，否则 NO。\n\n注意图可能不连通，不能对全图统一判负环，必须限制在从 1 可达的范围内；多组数据需清空邻接表和计数数组。\n\n复杂度：SPFA 最坏 O(nm)，n<=2000、m<=3000、T<=10，可接受；Bellman-Ford 为 O(nm) 同样可行。",
+        "confidence": 0.9,
+        "primary_knowledge_ids": [
+          "graph.shortest-path",
+          "graph.basic"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.bfs",
+          "graph.dfs"
+        ],
+        "evidence": {
+          "graph.shortest-path": "判定从源点可达的负权回路是 Bellman-Ford/SPFA 最短路算法的经典应用。",
+          "graph.basic": "需要按题意把非负权边双向添加、负权边单向添加，构建有向图。",
+          "graph.bfs": "SPFA 基于队列的松弛过程本质上是 BFS 式的扩展。",
+          "graph.dfs": "也可用 DFS 版 SPFA 或从源点 DFS 标记可达点后判定负环。"
+        },
+        "knowledge_confidence": {
+          "graph.shortest-path": 0.95,
+          "graph.basic": 0.9,
+          "graph.bfs": 0.6,
+          "graph.dfs": 0.5
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "最短路",
+          "图论基础",
+          "图上广度优先搜索（BFS）",
+          "图上深度优先搜索（DFS）"
+        ]
+      },
+      "elapsed_seconds": 2.963
+    },
+    "https://www.luogu.com.cn/problem/P3375": {
+      "fingerprint": "052ae28196ed7256e32948ab22ee5ad2233687fff9f32d7d168f8550eb2f7757",
+      "status": "complete",
+      "analysis": {
+        "title": "字符串匹配与前缀函数",
+        "difficulty": 1400,
+        "difficulty_reason": "需要掌握 KMP 前缀函数这一非平凡算法，并同时完成模式匹配与每个前缀最长真前后缀的计算，属于算法与思维结合的进阶题。",
+        "solution_idea": "对模式串 s2 计算前缀函数数组 π，其中 π[i] 表示 s2[0..i] 的最长真前后缀长度。然后利用 KMP 算法在文本串 s1 上扫描：维护当前已匹配长度 j，当 s1[i] 与 s2[j] 相等时 j 加一，否则沿 π 回退 j，当 j 达到 |s2| 时记录匹配起点 i-|s2|+2（1 编号），并令 j = π[j-1] 以允许重叠匹配。最后按格式输出所有匹配起点及 π 数组。时间复杂度 O(|s1|+|s2|)，空间 O(|s2|)。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "string.kmp"
+        ],
+        "secondary_knowledge_ids": [
+          "string.match",
+          "string.basic"
+        ],
+        "evidence": {
+          "string.kmp": "题目要求输出模式每个前缀的最长真前后缀长度，这正是前缀函数（KMP 算法核心）的定义。",
+          "string.match": "题目要求在文本中找出模式的所有匹配起点，属于字符串匹配任务。",
+          "string.basic": "题目涉及字符串前后缀、重叠匹配等基本字符串概念。"
+        },
+        "knowledge_confidence": {
+          "string.kmp": 0.98,
+          "string.match": 0.95,
+          "string.basic": 0.9
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "前缀函数与 KMP 算法",
+          "字符串匹配",
+          "字符串基础"
+        ]
+      },
+      "elapsed_seconds": 2.354
+    },
+    "https://www.luogu.com.cn/problem/P3808": {
+      "fingerprint": "c05b202e22abfc84b9ef4eae88fc2986ec253700d5b0ad515b9c359c542d4a94",
+      "status": "complete",
+      "analysis": {
+        "title": "多模式串出现计数",
+        "difficulty": 1700,
+        "difficulty_reason": "需要将多模式串匹配问题转化为 AC 自动机上的 fail 树子树标记问题，并用树状数组/DFS 序去重统计，属于组合两个知识点的非平凡转化。",
+        "solution_idea": "将所有模式串插入 Trie，构建 AC 自动机，fail 指针构成一棵 fail 树。文本 t 在 AC 自动机上跑一遍，每到达一个状态就说明该状态对应的所有 fail 祖先（即其到根的路径上的状态）所代表的模式串都在 t 中出现。问题转化为：对 t 经过的每个状态，标记其 fail 树上的根到该点路径，最后统计有多少个模式串对应的终止节点被标记。\n\n去重做法：把 t 经过的状态按 fail 树的 DFS 序排序，对每个状态做单点 +1，并对其与上一个状态的 LCA 处 -1（经典虚树/路径并技巧），最后对 fail 树做子树求和，终止节点权值 >0 即出现。也可用树状数组维护 DFS 序实现。\n\n复杂度 O((总模式串长 + |t|) log)。注意 n 和长度均达 10^6，需注意内存与常数，模式串内容相同但编号不同要分别计数，因此每个终止节点需记录其对应的模式编号集合。",
+        "confidence": 0.9,
+        "primary_knowledge_ids": [
+          "string.ac-automaton",
+          "graph.tree",
+          "ds.fenwick"
+        ],
+        "secondary_knowledge_ids": [
+          "string.trie",
+          "string.kmp",
+          "basic.sort"
+        ],
+        "evidence": {
+          "string.ac-automaton": "需要在文本 t 上同时匹配 n 个模式串，标准做法是建立 AC 自动机。",
+          "graph.tree": "AC 自动机的 fail 指针构成一棵 fail 树，统计出现需要在这棵树上做子树操作。",
+          "ds.fenwick": "用树状数组维护 fail 树 DFS 序上的标记，实现子树求和/单点修改以去重统计。",
+          "string.trie": "AC 自动机建立在所有模式串构成的 Trie 之上。",
+          "string.kmp": "fail 指针本质是 KMP 前缀函数思想在多串上的推广。",
+          "basic.sort": "将模式串按字典序排序后相邻去重，可减少重复模式串的处理量。"
+        },
+        "knowledge_confidence": {
+          "string.ac-automaton": 0.95,
+          "graph.tree": 0.85,
+          "ds.fenwick": 0.8,
+          "string.trie": 0.9,
+          "string.kmp": 0.7,
+          "basic.sort": 0.5
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "AC 自动机",
+          "树上问题",
+          "树状数组",
+          "字典树 (Trie)",
+          "前缀函数与 KMP 算法",
+          "排序"
+        ]
+      },
+      "elapsed_seconds": 3.771
+    },
+    "https://www.luogu.com.cn/problem/P4779": {
+      "fingerprint": "1c948f72f4419eaa9c15c001d37205c552ebe9e0b407a559bc0492086bd0e257",
+      "status": "complete",
+      "analysis": {
+        "title": "非负权有向图单源最短路",
+        "difficulty": 1500,
+        "difficulty_reason": "标准 Dijkstra 模板题，但要求应对非随机数据（即需要堆优化而非朴素 O(n^2)），属于算法与实现结合的进阶难度。",
+        "solution_idea": "使用堆优化的 Dijkstra 算法。由于边权非负，维护一个优先队列（小根堆）存储 (距离, 顶点)，初始将源点距离设为 0 入队，其余为无穷大。每次取出当前距离最小的顶点，若其距离已被更新则跳过；否则遍历其所有出边，若松弛成功则更新距离并入队。复杂度 O((n+m) log n)，可处理 n=10^5、m=2×10^5 的数据规模。注意边权和可达 10^9，距离需用 64 位整数。题目强调“非随机数据”，提示不能依赖 SPFA 等随机性算法，必须使用稳定的堆优化 Dijkstra。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "graph.shortest-path",
+          "ds.heap"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.basic"
+        ],
+        "evidence": {
+          "graph.shortest-path": "题目要求在非负权有向图中求源点到所有顶点的最短距离，是单源最短路问题的直接应用。",
+          "ds.heap": "n 达 10^5、m 达 2×10^5，需用堆（优先队列）优化 Dijkstra 以应对非随机数据，避免 O(n^2) 退化。",
+          "graph.basic": "输入为有向图的边表，需要建图存储邻接关系。"
+        },
+        "knowledge_confidence": {
+          "graph.shortest-path": 0.98,
+          "ds.heap": 0.95,
+          "graph.basic": 0.9
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "最短路",
+          "堆",
+          "图论基础"
+        ]
+      },
+      "elapsed_seconds": 6.95
+    },
+    "https://www.luogu.com.cn/problem/P1075": {
+      "fingerprint": "7b4a5a209e40655cb6ec80dbd182876ed4b17ba42fea440758fb4923ae421f4a",
+      "status": "complete",
+      "analysis": {
+        "title": "较大质因数",
+        "difficulty": 1200,
+        "difficulty_reason": "需要意识到只需试除到 sqrt(n) 即可找到较小质因数，再相除得到较大质因数，属于基础数论与枚举结合。",
+        "solution_idea": "因为 n = p × q（p < q 且均为质数），只需从 2 开始枚举 i，直到 i × i > n，找到第一个能整除 n 的 i，它必为较小质数 p，则较大质数 q = n / i。枚举上界为 sqrt(n) ≤ sqrt(2×10^9) ≈ 44721，复杂度 O(sqrt(n))，完全可行。",
+        "confidence": 0.9,
+        "primary_knowledge_ids": [
+          "math.number-theory.prime",
+          "basic.enumerate"
+        ],
+        "secondary_knowledge_ids": [
+          "math.number-theory.basic"
+        ],
+        "evidence": {
+          "math.number-theory.prime": "题目保证 n 是两个不同质数的乘积，需要判断/寻找质因数。",
+          "basic.enumerate": "通过从小到大枚举可能的因子来找到较小的质因数。",
+          "math.number-theory.basic": "涉及因数分解与质因数概念。"
+        },
+        "knowledge_confidence": {
+          "math.number-theory.prime": 0.95,
+          "basic.enumerate": 0.9,
+          "math.number-theory.basic": 0.8
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "素数",
+          "枚举",
+          "数论基础"
+        ]
+      },
+      "elapsed_seconds": 2.064
+    },
+    "https://www.luogu.com.cn/problem/P1115": {
+      "fingerprint": "fdfb43d35b9216e29fea0c0d9407201efc374609ff44a3e607b36d88d0275ab6",
+      "status": "complete",
+      "analysis": {
+        "title": "最大子段和",
+        "difficulty": 1100,
+        "difficulty_reason": "经典最大子段和问题，需要想到用前缀和最小值或线性 DP 维护当前最优，属于算法入门级别的非平凡转化。",
+        "solution_idea": "经典最大子段和（Kadane 算法）。设 f[i] 表示以第 i 个元素结尾的最大非空子段和，则 f[i] = max(f[i-1] + a[i], a[i])，答案为 max f[i]。由于允许全负数，初始化 f[1]=a[1] 并全程取最大值即可，不能把答案初始化为 0。等价地，用前缀和 pre[i]，答案 = max_{j} (pre[j] - min_{i<j} pre[i])，维护最小前缀即可。时间复杂度 O(n)，空间 O(1) 或 O(n)。",
+        "confidence": 0.95,
+        "primary_knowledge_ids": [
+          "dp.misc",
+          "basic.prefix-sum"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate",
+          "basic.greedy"
+        ],
+        "evidence": {
+          "dp.misc": "标准解法为线性 DP：f[i]=max(f[i-1]+a[i], a[i])，维护以 i 结尾的最大子段和。",
+          "basic.prefix-sum": "另一种等价解法：答案 = max_{j}(pre[j] - min_{i<j} pre[i])，利用前缀和与最小前缀。",
+          "basic.enumerate": "朴素做法枚举所有子段起点终点，O(n^2) 或 O(n^3)，是理解问题的出发点。",
+          "basic.greedy": "Kadane 算法本质是贪心：当前累计和为负时重新开始。"
+        },
+        "knowledge_confidence": {
+          "dp.misc": 0.9,
+          "basic.prefix-sum": 0.85,
+          "basic.enumerate": 0.6,
+          "basic.greedy": 0.7
+        },
+        "taxonomy_version": "2026.09.9",
+        "model_name": "deepseek-chat",
+        "prompt_version": "problem-analysis-v5",
+        "tags": [
+          "其他 DP",
+          "前缀和",
+          "枚举",
+          "贪心"
+        ]
+      },
+      "elapsed_seconds": 2.675
+    }
+  },
+  "version": "public-problem-predictions-v1",
+  "taxonomy_version": "2026.09.9",
+  "model_name": "deepseek-chat",
+  "prompt_version": "problem-analysis-v5",
+  "validation_repair_notes": {
+    "source_id": "706B",
+    "protocol": "same-v5-prompt-with-rejected-response-in-repair-conversation",
+    "extra_attempts": 2,
+    "invalid_reasons": [
+      "Do not select both ancestor and descendant"
+    ],
+    "reference_used": false
+  }
+}

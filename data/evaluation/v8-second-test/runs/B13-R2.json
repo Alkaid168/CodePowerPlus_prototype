@@ -1,0 +1,333 @@
+{
+  "event": "v8二测",
+  "key": "B13-R2",
+  "public_id": "B13",
+  "repetition": 2,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "e06db4f73c971b4c0292e8bd049fc850ed1e55dd77609436251e636d8e5d21fc",
+  "completed_at": "2026-10-17T03:43:50.129893+00:00",
+  "analysis": {
+    "title": "统计不同字符串个数",
+    "difficulty": 800,
+    "difficulty_reason": "核心转化从“统计不同字符串”直接得到用哈希集合或排序去重，状态和计数规则几乎由题意给出；正确性只需说明按完整字符串判重，证明门槛低；实现为基本读入与插入判重，仅需处理大小写、长度和总长度等常规边界。虽然需要掌握哈希集合或排序这一基础工具，但综合发现、证明和实现负担属于 800 档的入门算法/数据结构题。",
+    "solution_idea": "题意是统计 $N$ 个区分大小写、长度可不同的字符串中有多少个互不相同。自然主线是用哈希集合保存已经出现过的完整字符串：每读入一个字符串就尝试插入，若插入成功说明此前未出现，答案加一；若插入失败说明已出现过，不增加答案。正确性依据是哈希集合在哈希冲突时仍用完整字符串相等性比较，因此只把每个位置都相同且长度相同的字符串判重；只有首次出现会贡献答案。边界包括 $N=0$ 时输出 $0$，以及不能忽略大小写或字符串长度。用 `unordered_set` 的期望总时间为 $O(\\sum M_i)$，空间为 $O(\\sum M_i)$，最坏情况下哈希冲突严重时可能退化。另一个可行方案是排序后统计相邻不同字符串，最坏时间为 $O(N\\log N\\cdot L_{\\max}+\\sum M_i)$，空间为 $O(\\sum M_i)$。",
+    "confidence": 0.9,
+    "primary_knowledge_ids": [
+      "ds.hash",
+      "string.basic"
+    ],
+    "secondary_knowledge_ids": [
+      "basic.sort"
+    ],
+    "evidence": {
+      "ds.hash": "用哈希集合记录已经出现的完整字符串，插入失败即表示该字符串重复。",
+      "string.basic": "需要处理长度可变、区分大小写的字符串，并按整串内容判断是否相等。",
+      "basic.sort": "备选方法将所有字符串按字典序排序，排序后相同字符串必然相邻，从而统计不同字符串数量。"
+    },
+    "knowledge_confidence": {
+      "ds.hash": 0.95,
+      "string.basic": 0.9,
+      "basic.sort": 0.9
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "哈希表",
+      "字符串基础",
+      "排序"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "045c3cdb-9138-49a8-85cd-fe6a1f46c73e",
+          "usage": {
+            "completion_tokens": 4353,
+            "prompt_tokens": 5502,
+            "total_tokens": 9855,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 3801,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 5248,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 5248,
+            "prompt_cache_miss_tokens": 254
+          },
+          "elapsed_seconds": 24.155,
+          "valid": false,
+          "response_text": "{\"title\": \"统计不同字符串个数\", \"kind\": \"algorithm\", \"solution_idea\": \"题意是统计 $N$ 个区分大小写、长度可不同的字符串中有多少个互不相同。自然主线是用哈希集合保存已经出现过的完整字符串：每读入一个字符串就尝试插入，若插入成功说明此前未出现，答案加一；若插入失败说明已出现过，不增加答案。正确性依据是哈希集合在哈希冲突时仍用完整字符串相等性比较，因此只把每个位置都相同且长度相同的字符串判重；只有首次出现会贡献答案。边界包括 $N=0$ 时输出 $0$，以及不能忽略大小写或字符串长度。用 `unordered_set` 的期望总时间为 $O(\\\\sum M_i)$，空间为 $O(\\\\sum M_i)$，最坏情况下哈希冲突严重时可能退化。另一个可行方案是排序后统计相邻不同字符串，最坏时间为 $O(N\\\\log N\\\\cdot L_{\\\\max}+\\\\sum M_i)$，空间为 $O(\\\\sum M_i)$。\", \"methods\": [{\"name\": \"哈希集合去重\", \"knowledge_ids\": [\"ds.hash\", \"string.basic\"], \"time_complexity\": \"期望 O(∑M_i)，最坏 O(N^2·L_max)（哈希冲突严重时）\", \"space_complexity\": \"O(∑M_i)\"}, {\"name\": \"排序后统计相邻不同字符串\", \"knowledge_ids\": [\"basic.sort\", \"basic.use-of-sort\", \"string.basic\"], \"time_complexity\": \"O(N log N·L_max + ∑M_i)\", \"space_complexity\": \"O(∑M_i)\"}], \"primary_knowledge_ids\": [\"ds.hash\", \"string.basic\"], \"secondary_knowledge_ids\": [\"basic.sort\", \"basic.use-of-sort\"], \"evidence\": {\"ds.hash\": \"用哈希集合记录已经出现的完整字符串，插入失败即表示该字符串重复。\", \"string.basic\": \"需要处理长度可变、区分大小写的字符串，并按整串内容判断是否相等。\", \"basic.sort\": \"备选方法将所有字符串按字典序排序。\", \"basic.use-of-sort\": \"排序后相同字符串必然相邻，因此统计相邻字符串变化次数即可得到不同字符串数量。\"}, \"knowledge_confidence\": {\"ds.hash\": 0.95, \"string.basic\": 0.9, \"basic.sort\": 0.9, \"basic.use-of-sort\": 0.88}, \"confidence\": 0.93}",
+          "validation_error": "Do not select both ancestor and descendant"
+        },
+        {
+          "stage": "solve",
+          "attempt": 2,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "12dd4568-636b-4785-8816-a05cfdd7a98a",
+          "usage": {
+            "completion_tokens": 1011,
+            "prompt_tokens": 6079,
+            "total_tokens": 7090,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 534,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 5376,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 5376,
+            "prompt_cache_miss_tokens": 703
+          },
+          "elapsed_seconds": 4.548,
+          "valid": true,
+          "response_text": "{\"title\":\"统计不同字符串个数\",\"kind\":\"algorithm\",\"solution_idea\":\"题意是统计 $N$ 个区分大小写、长度可不同的字符串中有多少个互不相同。自然主线是用哈希集合保存已经出现过的完整字符串：每读入一个字符串就尝试插入，若插入成功说明此前未出现，答案加一；若插入失败说明已出现过，不增加答案。正确性依据是哈希集合在哈希冲突时仍用完整字符串相等性比较，因此只把每个位置都相同且长度相同的字符串判重；只有首次出现会贡献答案。边界包括 $N=0$ 时输出 $0$，以及不能忽略大小写或字符串长度。用 `unordered_set` 的期望总时间为 $O(\\\\sum M_i)$，空间为 $O(\\\\sum M_i)$，最坏情况下哈希冲突严重时可能退化。另一个可行方案是排序后统计相邻不同字符串，最坏时间为 $O(N\\\\log N\\\\cdot L_{\\\\max}+\\\\sum M_i)$，空间为 $O(\\\\sum M_i)$。\",\"methods\":[{\"name\":\"哈希集合去重\",\"knowledge_ids\":[\"ds.hash\",\"string.basic\"],\"time_complexity\":\"期望 O(∑M_i)，最坏 O(N^2·L_max)（哈希冲突严重时）\",\"space_complexity\":\"O(∑M_i)\"},{\"name\":\"排序后统计相邻不同字符串\",\"knowledge_ids\":[\"basic.sort\",\"string.basic\"],\"time_complexity\":\"O(N log N·L_max + ∑M_i)\",\"space_complexity\":\"O(∑M_i)\"}],\"primary_knowledge_ids\":[\"ds.hash\",\"string.basic\"],\"secondary_knowledge_ids\":[\"basic.sort\"],\"evidence\":{\"ds.hash\":\"用哈希集合记录已经出现的完整字符串，插入失败即表示该字符串重复。\",\"string.basic\":\"需要处理长度可变、区分大小写的字符串，并按整串内容判断是否相等。\",\"basic.sort\":\"备选方法将所有字符串按字典序排序，排序后相同字符串必然相邻，从而统计不同字符串数量。\"},\"knowledge_confidence\":{\"ds.hash\":0.95,\"string.basic\":0.9,\"basic.sort\":0.9},\"confidence\":0.93}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "83960695-e5aa-4d5e-ab5e-d4e8748bd656",
+          "usage": {
+            "completion_tokens": 2662,
+            "prompt_tokens": 2003,
+            "total_tokens": 4665,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 2366,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1152,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 851
+          },
+          "elapsed_seconds": 15.864,
+          "valid": true,
+          "response_text": "{\"rubric\":{\"knowledge\":\"需要掌握字符串按区分大小写、完整内容和长度比较；会使用哈希集合（或排序）保存并判重。对刚入学新生，标准库字符串与哈希集合的使用可能需要事先学习。\",\"modelling\":\"题意直接对应“每读入一个字符串就插入集合，若此前未出现则计数加一”，状态转化非常直接，无需构造复杂模型。\",\"proof\":\"正确性只需说明集合按完整字符串相等性判重，首次插入代表该字符串首次出现；论证很短但需明确长度和大小写均参与相等判断。\",\"implementation\":\"循环读入、插入判重、输出计数即可；主要注意区分大小写、长度不同的字符串不相等，以及总长度带来的期望时间与内存。哈希集合期望 O(∑M_i)，实现简单，边界较少。\"},\"consistency_issues\":[],\"difficulty\":800,\"difficulty_reason\":\"核心转化从“统计不同字符串”直接得到用哈希集合或排序去重，状态和计数规则几乎由题意给出；正确性只需说明按完整字符串判重，证明门槛低；实现为基本读入与插入判重，仅需处理大小写、长度和总长度等常规边界。虽然需要掌握哈希集合或排序这一基础工具，但综合发现、证明和实现负担属于 800 档的入门算法/数据结构题。\",\"confidence\":0.9}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "统计不同字符串个数",
+        "kind": "algorithm",
+        "solution_idea": "题意是统计 $N$ 个区分大小写、长度可不同的字符串中有多少个互不相同。自然主线是用哈希集合保存已经出现过的完整字符串：每读入一个字符串就尝试插入，若插入成功说明此前未出现，答案加一；若插入失败说明已出现过，不增加答案。正确性依据是哈希集合在哈希冲突时仍用完整字符串相等性比较，因此只把每个位置都相同且长度相同的字符串判重；只有首次出现会贡献答案。边界包括 $N=0$ 时输出 $0$，以及不能忽略大小写或字符串长度。用 `unordered_set` 的期望总时间为 $O(\\sum M_i)$，空间为 $O(\\sum M_i)$，最坏情况下哈希冲突严重时可能退化。另一个可行方案是排序后统计相邻不同字符串，最坏时间为 $O(N\\log N\\cdot L_{\\max}+\\sum M_i)$，空间为 $O(\\sum M_i)$。",
+        "methods": [
+          {
+            "name": "哈希集合去重",
+            "knowledge_ids": [
+              "ds.hash",
+              "string.basic"
+            ],
+            "time_complexity": "期望 O(∑M_i)，最坏 O(N^2·L_max)（哈希冲突严重时）",
+            "space_complexity": "O(∑M_i)"
+          },
+          {
+            "name": "排序后统计相邻不同字符串",
+            "knowledge_ids": [
+              "basic.sort",
+              "string.basic"
+            ],
+            "time_complexity": "O(N log N·L_max + ∑M_i)",
+            "space_complexity": "O(∑M_i)"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "ds.hash",
+          "string.basic"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.sort"
+        ],
+        "evidence": {
+          "ds.hash": "用哈希集合记录已经出现的完整字符串，插入失败即表示该字符串重复。",
+          "string.basic": "需要处理长度可变、区分大小写的字符串，并按整串内容判断是否相等。",
+          "basic.sort": "备选方法将所有字符串按字典序排序，排序后相同字符串必然相邻，从而统计不同字符串数量。"
+        },
+        "knowledge_confidence": {
+          "ds.hash": 0.95,
+          "string.basic": 0.9,
+          "basic.sort": 0.9
+        },
+        "confidence": 0.93
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要掌握字符串按区分大小写、完整内容和长度比较；会使用哈希集合（或排序）保存并判重。对刚入学新生，标准库字符串与哈希集合的使用可能需要事先学习。",
+          "modelling": "题意直接对应“每读入一个字符串就插入集合，若此前未出现则计数加一”，状态转化非常直接，无需构造复杂模型。",
+          "proof": "正确性只需说明集合按完整字符串相等性判重，首次插入代表该字符串首次出现；论证很短但需明确长度和大小写均参与相等判断。",
+          "implementation": "循环读入、插入判重、输出计数即可；主要注意区分大小写、长度不同的字符串不相等，以及总长度带来的期望时间与内存。哈希集合期望 O(∑M_i)，实现简单，边界较少。"
+        },
+        "consistency_issues": [],
+        "difficulty": 800,
+        "difficulty_reason": "核心转化从“统计不同字符串”直接得到用哈希集合或排序去重，状态和计数规则几乎由题意给出；正确性只需说明按完整字符串判重，证明门槛低；实现为基本读入与插入判重，仅需处理大小写、长度和总长度等常规边界。虽然需要掌握哈希集合或排序这一基础工具，但综合发现、证明和实现负担属于 800 档的入门算法/数据结构题。",
+        "confidence": 0.9
+      },
+      "elapsed_seconds": 44.568,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "bec7c6fad3adc63a7eafb807877983e1eede17b9db1da19eff80399fb0f10584",
+      "response_model": "deepseek-flash",
+      "response_id": "045c3cdb-9138-49a8-85cd-fe6a1f46c73e",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 15172,
+      "reasoning_content_sha256": "fa66691291b2404fbde5db7123b4f2f9e3b78b39e1c1cbbdd97b1fa01fb3b7a9",
+      "usage": {
+        "completion_tokens": 4353,
+        "prompt_tokens": 5502,
+        "total_tokens": 9855,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 3801,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 5248,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 5248,
+        "prompt_cache_miss_tokens": 254
+      },
+      "elapsed_seconds": 24.154
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "9305cc07729c961e166c9682289fcbef58125dd54a503d20fa6a77d372ddde45",
+      "response_model": "deepseek-flash",
+      "response_id": "12dd4568-636b-4785-8816-a05cfdd7a98a",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 1385,
+      "reasoning_content_sha256": "f2d4753a5a033b675cde6c5b3438ae17b6bbe344fc2fa468c8fbe03dbef9fdc4",
+      "usage": {
+        "completion_tokens": 1011,
+        "prompt_tokens": 6079,
+        "total_tokens": 7090,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 534,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 5376,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 5376,
+        "prompt_cache_miss_tokens": 703
+      },
+      "elapsed_seconds": 4.548
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "945baf8ca44c7837307cee21fec2d5e24f0378def4aa57fe3ab0992ff9bbe88f",
+      "response_model": "deepseek-flash",
+      "response_id": "83960695-e5aa-4d5e-ab5e-d4e8748bd656",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 8841,
+      "reasoning_content_sha256": "b14393c91b47fb37f62d6fb1f6e9a203dd0991e8845c899ca7ac5feccc848d31",
+      "usage": {
+        "completion_tokens": 2662,
+        "prompt_tokens": 2003,
+        "total_tokens": 4665,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 2366,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1152,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 1152,
+        "prompt_cache_miss_tokens": 851
+      },
+      "elapsed_seconds": 15.864
+    }
+  ]
+}

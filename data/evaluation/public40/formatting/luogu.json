@@ -1,0 +1,125 @@
+{
+  "version": "statement-formatting-v1",
+  "items": [
+    {
+      "source_id": "P1001",
+      "source_url": "https://www.luogu.com.cn/problem/P1001",
+      "original_sha256": "f18e2b131093d73386b771131965a13c5bef50ac550e31ba2d798945c007a73c",
+      "description": "## 任务\n计算两个整数的和。\n\n## 输入\n两个整数 $a$、$b$。\n\n## 输出\n一个整数 $a+b$。\n\n## 约束\n$-10^9 \\le a,b \\le 10^9$。\n\n## 示例\n官方样例，已逐字核对。\n\n输入：\n```text\n20 30\n```\n\n输出：\n```text\n50\n```"
+    },
+    {
+      "source_id": "P1047",
+      "source_url": "https://www.luogu.com.cn/problem/P1047",
+      "original_sha256": "30f3b6c67fa23a7afd4732b4c913aa9f7f70305adae99e63d62618190b65086a",
+      "description": "## 任务\n整数位置 $0$ 到 $l$ 各有一棵树。移除 $m$ 个闭区间中的所有树，区间可重叠；求剩余棵数。\n\n## 输入\n首行 $l$、$m$；之后 $m$ 行各为闭区间端点 $u$、$v$。\n\n## 输出\n剩余树的数量。\n\n## 约束\n$1 \\le l \\le 10^4$，$1 \\le m \\le 100$，$0 \\le u \\le v \\le l$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n10 2\n2 4\n4 7\n```\n\n输出：\n```text\n5\n```"
+    },
+    {
+      "source_id": "P1055",
+      "source_url": "https://www.luogu.com.cn/problem/P1055",
+      "original_sha256": "0c7020ddce22075b7f95b0c51174ed43ba0a7a5bb9f55e2b16554d5cf002d41b",
+      "description": "## 任务\nISBN 格式为 `x-xxx-xxxxx-x`。将前九个数字从左到右分别乘 $1$ 到 $9$ 后求和，再模 $11$；余数 $10$ 写作 `X`。判断末位校验字符是否正确。\n\n## 输入\n一个符合上述格式的 ISBN 字符串。\n\n## 输出\n校验正确输出 `Right`，否则输出保留分隔符、修正末位后的 ISBN。\n\n## 约束\n前九位均为十进制数字；分隔符和长度符合格式。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n0-000-00001-0\n```\n\n输出：\n```text\n0-000-00001-9\n```"
+    },
+    {
+      "source_id": "P1219",
+      "source_url": "https://www.luogu.com.cn/problem/P1219",
+      "original_sha256": "d2174702d5a21687ad39ca978032b4cf064c74101c9123df3bf20168d78cf938",
+      "description": "## 任务\n在 $n\\times n$ 棋盘放 $n$ 个棋子，每行每列恰有一个，任一对角线上至多一个。以每行棋子的列号表示方案，求按字典序排列的前三个方案及总方案数。\n\n## 输入\n一个整数 $n$。\n\n## 输出\n前三行各输出一个方案的 $n$ 个列号；第四行输出方案总数。\n\n## 约束\n$6 \\le n \\le 13$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n6\n```\n\n输出：\n```text\n2 4 6 1 3 5\n3 6 2 5 1 4\n4 1 5 2 6 3\n4\n```"
+    },
+    {
+      "source_id": "P1002",
+      "source_url": "https://www.luogu.com.cn/problem/P1002",
+      "original_sha256": "bc56f7c3b1e55adda055600d01461203695c2d6beabc082de0d9852abbb2884c",
+      "description": "## 任务\n从 $(0,0)$ 到 $(n,m)$，每步只能让横坐标或纵坐标增加 $1$。固定的马位于 $(x,y)$，其所在点及一次马步能到达的点均不可经过；求合法路径数。\n\n## 输入\n四个整数 $n$、$m$、$x$、$y$。\n\n## 输出\n合法路径总数。\n\n## 约束\n$1 \\le n,m \\le 20$，$0 \\le x,y \\le 20$；起点不在马的控制点内。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n3 3 0 3\n```\n\n输出：\n```text\n3\n```"
+    },
+    {
+      "source_id": "P1048",
+      "source_url": "https://www.luogu.com.cn/problem/P1048",
+      "original_sha256": "53e429527b45f73db89c8c704847440734a43407b24e95925577b616674f73e9",
+      "description": "## 任务\n每株草药都有采集时间和价值，最多采一次。在总用时不超过 $T$ 的条件下，求最大总价值。\n\n## 输入\n首行 $T$、$M$；接着 $M$ 行每行给出一株草药的时间与价值。\n\n## 输出\n能获得的最大总价值。\n\n## 约束\n$1 \\le T \\le 1000$，$1 \\le M \\le 100$；每株的时间、价值均在 $1$ 到 $100$ 内。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n5 3\n2 3\n3 4\n4 5\n```\n\n输出：\n```text\n7\n```"
+    },
+    {
+      "source_id": "P1064",
+      "source_url": "https://www.luogu.com.cn/problem/P1064",
+      "original_sha256": "6e5879d7f284a7e179626c57bddcfe3b342e65bb803c578a19a7c44111ddf888",
+      "description": "## 任务\n物品有价格和重要度，收益为两者乘积。附件只有在其主件被购买时才能购买；每个主件最多两个附件，附件没有下属。预算内最大化总收益。\n\n## 输入\n首行预算 $n$、物品数 $m$；接着 $m$ 行为价格 $v$、重要度 $w$、所属主件编号 $q$；$q=0$ 表示主件。\n\n## 输出\n最大收益。\n\n## 约束\n$1 \\le n \\le 32000$，$1 \\le m \\le 60$，$0 \\le v \\le 10000$，$1 \\le w \\le 5$，$0 \\le q \\le m$；价格为 $10$ 的倍数，答案不超过 $200000$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n100 3\n40 2 0\n20 3 1\n50 2 0\n```\n\n输出：\n```text\n180\n```"
+    },
+    {
+      "source_id": "P1091",
+      "source_url": "https://www.luogu.com.cn/problem/P1091",
+      "original_sha256": "ab1af351a5d8c824ca80947146fd06972fc03c8d183ed22fabf6e93f965c24f9",
+      "description": "## 任务\n删除尽量少的元素，保留原顺序，使身高序列在某个峰值前严格递增、峰值后严格递减；两侧允许为空。\n\n## 输入\n首行 $n$；第二行 $n$ 个身高 $t_i$。\n\n## 输出\n最少删除人数。\n\n## 约束\n$2 \\le n \\le 100$，$130 \\le t_i \\le 230$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n5\n130 150 140 160 130\n```\n\n输出：\n```text\n1\n```"
+    },
+    {
+      "source_id": "P1020",
+      "source_url": "https://www.luogu.com.cn/problem/P1020",
+      "original_sha256": "73e0bbd8f3ddb604c17f61b5a8b02f4ce90cd08125268715d3608ae1e0a9ddbe",
+      "description": "## 任务\n导弹高度按到达顺序给出。一套系统所选高度必须不递增。求一套系统最多拦截数，以及覆盖所有导弹所需的最少系统数。\n\n## 输入\n一行若干个正整数，读至输入结束。\n\n## 输出\n两行分别输出最多拦截数和最少系统数。\n\n## 约束\n$\\text{高度}\\le 50000$；$\\text{前半部分数据个数}\\le 10^4$，$\\text{后半部分}\\le 10^5$，完整通过应采用 $O(n \\log n)$ 方法。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n5 3 4 2 2\n```\n\n输出：\n```text\n4\n2\n```"
+    },
+    {
+      "source_id": "P3371",
+      "source_url": "https://www.luogu.com.cn/problem/P3371",
+      "original_sha256": "ce7f95d0295418e83d9b273ed8eaf793440b4a04d20759d0105e94d7753a89cd",
+      "description": "## 任务\n在非负边权有向图中，求从 $s$ 到每个顶点的最短距离；可有重边。\n\n## 输入\n首行 $n$、$m$、$s$；之后 $m$ 行 $u$、$v$、$w$，表示 $u$ 到 $v$ 的有向边及权值。\n\n## 输出\n输出 $n$ 个距离；不可达点输出 $2147483647$。\n\n## 约束\n$1 \\le n \\le 10^4$，$1 \\le m \\le 5\\times 10^5$，$1 \\le u,v \\le n$，$w\\ge 0$，$\\text{所有边权之和}<2^{31}$；题目说明数据随机。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4 4 1\n1 2 5\n1 3 2\n3 2 1\n2 4 4\n```\n\n输出：\n```text\n0 3 2 7\n```"
+    },
+    {
+      "source_id": "P3366",
+      "source_url": "https://www.luogu.com.cn/problem/P3366",
+      "original_sha256": "dcdaaa3f28621b1d0bdcb7e13514dc7a95e7906dcc14c5817e8f4f1d7acb4525",
+      "description": "## 任务\n给定带权无向图，求连接全部顶点的最小总边权；图不连通时报告失败。\n\n## 输入\n首行 $N$、$M$；之后 $M$ 行 $X$、$Y$、$Z$，表示无向边及权值。\n\n## 输出\n连通则输出最小生成树总边权，否则输出 `orz`。\n\n## 约束\n$1 \\le N \\le 5000$，$1 \\le M \\le 2\\times 10^5$，$1 \\le Z \\le 10^4$，$1 \\le X,Y \\le N$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4 5\n1 2 2\n2 3 3\n3 4 1\n1 4 8\n1 3 7\n```\n\n输出：\n```text\n6\n```"
+    },
+    {
+      "source_id": "P3367",
+      "source_url": "https://www.luogu.com.cn/problem/P3367",
+      "original_sha256": "82199abcea6edba05c697f669e6fcd486a3766f77c7637926b96eaef87960b63",
+      "description": "## 任务\n初始 $N$ 个元素各自成集合。按操作合并两个元素所在集合，或判断两元素是否同属一个集合。\n\n## 输入\n首行 $N$、$M$；之后 $M$ 行 $Z$、$X$、$Y$。$Z=1$ 合并集合，$Z=2$ 查询。\n\n## 输出\n每个查询输出 `Y`（同集合）或 `N`（不同集合）。\n\n## 约束\n$1 \\le N \\le 2\\times 10^5$，$1 \\le M \\le 10^6$，$1 \\le X,Y \\le N$，$Z\\in\\{1,2\\}$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4 5\n2 1 2\n1 1 2\n1 2 3\n2 1 3\n2 1 4\n```\n\n输出：\n```text\nN\nY\nN\n```"
+    },
+    {
+      "source_id": "P3368",
+      "source_url": "https://www.luogu.com.cn/problem/P3368",
+      "original_sha256": "4a03683406f9ca807ed6f1a6ee806550c6f6327da1b154a128dfe6d9434cbfff",
+      "description": "## 任务\n维护整数序列，支持闭区间整体增加一个整数，以及查询某一位置的当前值。\n\n## 输入\n首行 $N$、$M$；第二行 $N$ 个初始值；之后 $M$ 行操作：$1\\ x\\ y\\ k$ 将 $[x,y]$ 加 $k$，$2\\ x$ 查询位置 $x$。\n\n## 输出\n每个查询输出一行当前值。\n\n## 约束\n$1 \\le N,M \\le 5\\times 10^5$；下标在 $1$ 到 $N$ 内，区间 $x\\le y$；$\\text{任意时刻元素绝对值}\\le 2^{30}$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4 4\n1 2 3 4\n2 2\n1 2 4 5\n2 3\n2 1\n```\n\n输出：\n```text\n2\n8\n1\n```"
+    },
+    {
+      "source_id": "P3383",
+      "source_url": "https://www.luogu.com.cn/problem/P3383",
+      "original_sha256": "74b83515207e940049a05dce5a405843f84019baa6919a06d6c3938ab6d9a83e",
+      "description": "## 任务\n列出不超过 $n$ 的素数并按升序编号。每次询问给出 $k$，输出第 $k$ 个素数。\n\n## 输入\n首行 $n$、$q$；之后 $q$ 行每行一个正整数 $k$。\n\n## 输出\n每个询问输出一行素数。\n\n## 约束\n全量数据 $n=10^8$，$1 \\le q \\le 10^6$；保证$\\text{被查询的素数}\\le n$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n100000000 3\n1\n2\n5\n```\n\n输出：\n```text\n2\n3\n11\n```"
+    },
+    {
+      "source_id": "P3385",
+      "source_url": "https://www.luogu.com.cn/problem/P3385",
+      "original_sha256": "73ff699fa0b3cb2b8468313034c059df79c7d551d6d833635f45f9ab0301b01f",
+      "description": "## 任务\n判断是否存在从顶点 $1$ 能到达的负权回路。每条输入边在权值非负时双向添加，在权值为负时只添加给出的方向。\n\n## 输入\n首行测试组数 $T$；每组首行 $n$、$m$，随后 $m$ 行 $u$、$v$、$w$。$m$ 是输入信息条数，不是展开后的有向边数。\n\n## 输出\n每组输出 `YES`（存在可达负环）或 `NO`。\n\n## 约束\n$1 \\le T \\le 10$，$1 \\le n \\le 2000$，$1 \\le m \\le 3000$，$1 \\le u,v \\le n$，$-10^4 \\le w \\le 10^4$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n2\n2 2\n1 2 -1\n2 1 -1\n3 2\n2 3 -1\n3 2 -1\n```\n\n输出：\n```text\nYES\nNO\n```"
+    },
+    {
+      "source_id": "P3375",
+      "source_url": "https://www.luogu.com.cn/problem/P3375",
+      "original_sha256": "3dc5b437f4b16a3e7fef0feeac68668dbad92c96c4fbf989c5be787ad539ddeb",
+      "description": "## 任务\n给定文本 $s_1$ 和模式 $s_2$，输出模式在文本中的所有匹配起点（从 $1$ 编号）。另输出模式每个前缀的最长真前后缀长度。\n\n## 输入\n两行分别为 $s_1$、$s_2$。\n\n## 输出\n匹配起点按升序逐行输出，允许重叠匹配；最后一行输出 $|s_2|$ 个最长真前后缀长度。\n\n## 约束\n$1 \\le |s_1|,|s_2| \\le 10^6$；字符均为大写英文字母。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\nABABABA\nABA\n```\n\n输出：\n```text\n1\n3\n5\n0 0 1\n```"
+    },
+    {
+      "source_id": "P3808",
+      "source_url": "https://www.luogu.com.cn/problem/P3808",
+      "original_sha256": "36c0e9647b21488ed6a4ded1206e0fc8f89c9abf0c1a11464e3735288bcf91f0",
+      "description": "## 任务\n给定 $n$ 个有编号的模式串和文本 $t$，统计至少在 $t$ 中出现一次的模式编号数。内容相同而编号不同的模式分别计数，同一编号出现多次只计一次。\n\n## 输入\n首行 $n$；之后 $n$ 行模式串；最后一行文本 $t$。\n\n## 输出\n至少出现一次的模式编号总数。\n\n## 约束\n$1 \\le n \\le 10^6$，$1 \\le |t| \\le 10^6$，$1 \\le \\text{所有模式串长度之和} \\le 10^6$；均为小写字母。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4\na\na\nb\nab\nabab\n```\n\n输出：\n```text\n4\n```"
+    },
+    {
+      "source_id": "P4779",
+      "source_url": "https://www.luogu.com.cn/problem/P4779",
+      "original_sha256": "dd20f46fcc7e47a9924414ab6cbd18e83ee3c76468e765dc25805a0bef7bdb61",
+      "description": "## 任务\n在非负权有向图中求 $s$ 到所有顶点的最短距离。保证源点可以到达全部顶点，需应对非随机数据。\n\n## 输入\n首行 $n$、$m$、$s$；之后 $m$ 行 $u$、$v$、$w$，表示有向边及权值。\n\n## 输出\n一行输出 $n$ 个距离。\n\n## 约束\n$1 \\le n \\le 10^5$，$1 \\le m \\le 2\\times 10^5$，$s=1$，$1 \\le u,v \\le n$，$0 \\le w \\le 10^9$；$\\text{所有边权之和}\\le 10^9$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4 4 1\n1 2 5\n1 3 2\n3 2 1\n2 4 4\n```\n\n输出：\n```text\n0 3 2 7\n```"
+    },
+    {
+      "source_id": "P1075",
+      "source_url": "https://www.luogu.com.cn/problem/P1075",
+      "original_sha256": "6e6a4e14093b801156d104677c8a42335aaa322c7f96bd0e7dd97a12ecfe815c",
+      "description": "## 任务\n保证 $n$ 是两个不同质数的乘积，求其中较大的质数。\n\n## 输入\n一个正整数 $n$。\n\n## 输出\n较大质因数。\n\n## 约束\n$1 \\le n \\le 2\\times 10^9$，且满足两个不同质数乘积的保证。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n91\n```\n\n输出：\n```text\n13\n```"
+    },
+    {
+      "source_id": "P1115",
+      "source_url": "https://www.luogu.com.cn/problem/P1115",
+      "original_sha256": "04bf38ab584b773f519fdf6dfbc203d3c30fb98c61457406e226d46a4944b816",
+      "description": "## 任务\n从整数序列选择连续且非空的一段，使其元素和最大；序列允许全负数。\n\n## 输入\n首行 $n$；第二行 $n$ 个整数 $a_i$。\n\n## 输出\n最大非空子段和。\n\n## 约束\n$1 \\le n \\le 2\\times 10^5$，$-10^4 \\le a_i \\le 10^4$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n5\n-2 3 -1 4 -5\n```\n\n输出：\n```text\n6\n```"
+    }
+  ]
+}

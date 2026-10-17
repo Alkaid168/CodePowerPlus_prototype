@@ -1,0 +1,2643 @@
+{
+  "version": "2026.10.1",
+  "provenance": "算法结构参考 OI Wiki（oi-wiki.org）；C 语言入门层级参考 CS50 官方 Lecture 1/2 与 Microsoft C 运行库文档，标签边界和 100–700 门槛为本项目教学约定，中文介绍独立撰写。来源与限制见 docs/c-syntax-taxonomy-2026-10-16.md。",
+  "nodes": [
+    {
+      "id": "syntax",
+      "name": "语法基础",
+      "level": 1,
+      "parent_id": null
+    },
+    {
+      "id": "syntax.output",
+      "name": "输出",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 100,
+      "summary": "输出章节用于没有输入和计算要求的第一批程序练习。题目关注按指定顺序打印固定文字、空格、换行或简单图案；掌握输出函数与转义字符即可完成，不需要把程序编译过程当作题目知识标签。"
+    },
+    {
+      "id": "syntax.output.literal-output",
+      "name": "固定文本输出",
+      "level": 3,
+      "parent_id": "syntax.output",
+      "intro_rating": 100,
+      "summary": "固定文本输出要求把题目给定的文字原样显示，例如输出 Hello World 或几行说明。重点是引号内的内容、大小写、标点和行末换行；不涉及读取变量、算术计算或依据输入改变答案。"
+    },
+    {
+      "id": "syntax.output.escape-output",
+      "name": "转义字符与排版输出",
+      "level": 3,
+      "parent_id": "syntax.output",
+      "intro_rating": 100,
+      "summary": "转义字符与排版输出处理换行、制表符、反斜杠和引号等不能直接照抄的内容。适用于固定多行文字和字符画；要逐行核对空格与换行，避免多输出提示文字导致答案格式不符。"
+    },
+    {
+      "id": "syntax.variables-io",
+      "name": "变量与输入输出",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 200,
+      "summary": "变量与输入输出章节覆盖读取并保存简单数值，再按题目格式输出的入门任务。标签用于考查变量赋值、基本类型与格式控制的题目；即使出现数字，也不因此默认需要算术公式、循环或算法知识。"
+    },
+    {
+      "id": "syntax.variables-io.variables",
+      "name": "变量赋值与基本类型",
+      "level": 3,
+      "parent_id": "syntax.variables-io",
+      "intro_rating": 200,
+      "summary": "变量赋值与基本类型用于保存一个数、更新它的值或交换少量数据的入门题。要区分整数与浮点数，先初始化再使用，并理解赋值会覆盖原来的内容；此标签不包含指针、结构体或动态内存管理。"
+    },
+    {
+      "id": "syntax.variables-io.numeric-input",
+      "name": "基本数值输入输出",
+      "level": 3,
+      "parent_id": "syntax.variables-io",
+      "intro_rating": 200,
+      "summary": "基本数值输入输出用于读入若干整数或小数并原样输出、调整顺序等任务。以标准 C 的 scanf 和 printf 为典型方式，注意格式说明与变量类型匹配，以及输入时普通变量需要提供地址。"
+    },
+    {
+      "id": "syntax.variables-io.formatted-output",
+      "name": "数值格式控制",
+      "level": 3,
+      "parent_id": "syntax.variables-io",
+      "intro_rating": 200,
+      "summary": "数值格式控制处理小数位数、字段宽度、前导零和数据之间的分隔符。适用于核心要求是按指定样式显示已有数值的题目；输出保留几位小数与改变变量本身的值不同，应按题面逐项核对。"
+    },
+    {
+      "id": "syntax.expressions",
+      "name": "表达式运算",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 300,
+      "summary": "表达式运算章节覆盖读入少量数据后直接计算答案的题目，例如 A+B、周长面积和单位换算。重点是四则运算、整除取余、类型转换与表达式顺序；不要求循环搜索或依赖额外数学定理。"
+    },
+    {
+      "id": "syntax.expressions.arithmetic",
+      "name": "四则运算与简单公式",
+      "level": 3,
+      "parent_id": "syntax.expressions",
+      "intro_rating": 300,
+      "summary": "四则运算与简单公式将题目给出的关系直接写成表达式，例如两个数求和、长方形面积或简单单位换算。要检查运算优先级与括号，区分题面给定的直接公式和需要另行推导证明的数学结论。"
+    },
+    {
+      "id": "syntax.expressions.division-remainder",
+      "name": "整数除法与取余",
+      "level": 3,
+      "parent_id": "syntax.expressions",
+      "intro_rating": 300,
+      "summary": "整数除法与取余用于计算商、余数以及直接的整量拆分，例如把秒数换算成时分秒。要注意整数相除不会自动保留小数，除数不能为零；多次循环拆分数位属于后续的数位循环综合标签。"
+    },
+    {
+      "id": "syntax.expressions.conversion",
+      "name": "数值类型转换",
+      "level": 3,
+      "parent_id": "syntax.expressions",
+      "intro_rating": 300,
+      "summary": "数值类型转换处理整数与浮点数混合计算、平均值和显式转换等任务。应在需要保留小数的除法发生前转换类型，并选取足够大的数值范围；不能等整数除法截断后再转换来补回已经丢失的小数。"
+    },
+    {
+      "id": "syntax.conditions",
+      "name": "条件分支",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 400,
+      "summary": "条件分支章节用于依据输入的大小、范围或多个布尔条件选择输出结果的题目。能够用少量比较和分支直接完成是本章边界；把判断语句用于贪心、二分等算法时，不应仅凭代码出现 if 就归为语法题。"
+    },
+    {
+      "id": "syntax.conditions.comparison",
+      "name": "关系比较与单分支",
+      "level": 3,
+      "parent_id": "syntax.conditions",
+      "intro_rating": 400,
+      "summary": "关系比较与单分支用于比较两个数、判断正负或检查是否达到阈值等任务。要区分相等比较与赋值，核对小于和小于等于的边界；问题的核心是一次条件判断，而不是搜索某个最优方案。"
+    },
+    {
+      "id": "syntax.conditions.logical-condition",
+      "name": "逻辑条件组合",
+      "level": 3,
+      "parent_id": "syntax.conditions",
+      "intro_rating": 400,
+      "summary": "逻辑条件组合用于把多个简单判断用且、或、非连接起来，例如判定区间、闰年或合法输入。要根据文字条件正确加括号，并分别检查端点和互斥情况；掌握短路求值有助于避免无效表达式被执行。"
+    },
+    {
+      "id": "syntax.conditions.multi-branch",
+      "name": "多分支分类讨论",
+      "level": 3,
+      "parent_id": "syntax.conditions",
+      "intro_rating": 400,
+      "summary": "多分支分类讨论按若干互斥范围或类别选择不同计算规则，例如分段收费、成绩等级和简单菜单。重点是分支顺序、条件覆盖以及边界归属；可以使用 if、else if 或 switch 表达对应规则。"
+    },
+    {
+      "id": "syntax.loops-arrays",
+      "name": "循环与数组",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 500,
+      "summary": "循环与数组章节覆盖重复执行、逐项统计和保存一组同类型数据的入门任务。可用于固定图案、序列求和、数组读写和直接遍历；数组只是存储手段，使用数组实现排序、前缀和等算法时仍须标注对应算法知识。"
+    },
+    {
+      "id": "syntax.loops-arrays.for-while",
+      "name": "循环控制与终止",
+      "level": 3,
+      "parent_id": "syntax.loops-arrays",
+      "intro_rating": 500,
+      "summary": "循环控制与终止用于重复输出、按次数处理输入或读到约定结束标志等任务。要明确初值、继续条件和每次更新，区分先判断与后判断的循环；核对零次执行、最后一次执行以及避免死循环。"
+    },
+    {
+      "id": "syntax.loops-arrays.loop-accumulation",
+      "name": "循环累加与统计",
+      "level": 3,
+      "parent_id": "syntax.loops-arrays",
+      "intro_rating": 500,
+      "summary": "循环累加与统计逐个处理输入或简单数列，维护总和、数量、最大值或最小值等少量结果。重点是累加变量初始化和每轮更新规则；不保存所有前缀答案，也不包含动态规划或复杂状态转移。"
+    },
+    {
+      "id": "syntax.loops-arrays.array-traversal",
+      "name": "数组读写与遍历",
+      "level": 3,
+      "parent_id": "syntax.loops-arrays",
+      "intro_rating": 500,
+      "summary": "数组读写与遍历将一组同类型数据保存后按下标逐项访问，例如顺序输出、逆序输出或查找指定值。重点是有效下标范围、数组容量和初始化；它不等同于排序、二分查找或数据结构算法。"
+    },
+    {
+      "id": "syntax.loops-arrays.array-basic-update",
+      "name": "数组元素修改与搬移",
+      "level": 3,
+      "parent_id": "syntax.loops-arrays",
+      "intro_rating": 500,
+      "summary": "数组元素修改与搬移处理指定位置替换、删除后顺次前移或插入前顺次后移等直接操作。要分清逻辑长度与实际容量，搬移时选择不会覆盖未处理数据的方向；不涉及链表或维护复杂查询结构。"
+    },
+    {
+      "id": "syntax.loops-arrays.nested-loop",
+      "name": "嵌套循环与简单图案",
+      "level": 3,
+      "parent_id": "syntax.loops-arrays",
+      "intro_rating": 500,
+      "summary": "嵌套循环与简单图案用外层控制行、内层控制列，输出矩形、三角形或直接访问二维表格。需要区分各层变量和边界，并估计执行次数；依靠多重循环搜索条件组合的综合题可使用更高阶段标签。"
+    },
+    {
+      "id": "syntax.characters-strings",
+      "name": "字符与字符串",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 600,
+      "summary": "字符与字符串章节面向单个字符的判断转换，以及以字符数组保存、读取和逐项处理文本的入门题。应理解字符串结束标记与容量边界；不把 CS50 的 string 别名视为标准 C 类型，也不包含 KMP 等匹配算法。"
+    },
+    {
+      "id": "syntax.characters-strings.char-classification",
+      "name": "字符判断与大小写转换",
+      "level": 3,
+      "parent_id": "syntax.characters-strings",
+      "intro_rating": 600,
+      "summary": "字符判断与大小写转换用于识别数字、英文字母、空白字符，或按题意转换英文字母大小写。要区分单字符与字符串，以及字符值和数字值；可以按给定字符范围判断，也可以使用适当的字符分类函数。"
+    },
+    {
+      "id": "syntax.characters-strings.string-input",
+      "name": "字符数组与字符串输入输出",
+      "level": 3,
+      "parent_id": "syntax.characters-strings",
+      "intro_rating": 600,
+      "summary": "字符数组与字符串输入输出使用足够容量的字符数组保存文本，并保留字符串末尾的结束标记。要区分读取一个单词与读取整行，设置输入长度限制；读取带空格的文本时需采用符合题意的方式。"
+    },
+    {
+      "id": "syntax.characters-strings.string-traversal",
+      "name": "字符串遍历与字符统计",
+      "level": 3,
+      "parent_id": "syntax.characters-strings",
+      "intro_rating": 600,
+      "summary": "字符串遍历与字符统计按顺序访问文本中的字符，完成长度统计、某类字符计数或直接替换等任务。遍历应在结束标记或已知长度处停止，不能越过有效范围；这里不包含哈希、自动机或高级模式匹配。"
+    },
+    {
+      "id": "syntax.characters-strings.string-comparison",
+      "name": "字符串比较与基础变换",
+      "level": 3,
+      "parent_id": "syntax.characters-strings",
+      "intro_rating": 600,
+      "summary": "字符串比较与基础变换用于判断两段文本是否相同、按字典序比较，以及复制、反转或拼接等直接操作。注意字符串内容不能用数组地址是否相等来比较，并检查目标数组容量及结束标记是否完整保留。"
+    },
+    {
+      "id": "syntax.basic-integration",
+      "name": "基础综合与数学",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 700,
+      "summary": "基础综合与数学章节把循环、分支和小学整数知识组合起来，覆盖数位拆分、小规模因数试除、单数质数判断与有限条件组合。题目仍靠直接步骤即可解决；筛法、数论定理、复杂剪枝等归入原算法领域。"
+    },
+    {
+      "id": "syntax.basic-integration.digit-loop",
+      "name": "数位拆分与循环综合",
+      "level": 3,
+      "parent_id": "syntax.basic-integration",
+      "intro_rating": 700,
+      "summary": "数位拆分与循环综合通过反复取余和整除逐位处理十进制整数，例如数位和、数字个数、逆序数与回文判断。要单独考虑零以及题目允许的负数范围，构造新数时注意溢出；不包含数位动态规划。"
+    },
+    {
+      "id": "syntax.basic-integration.divisor-trial",
+      "name": "基础因数试除",
+      "level": 3,
+      "parent_id": "syntax.basic-integration",
+      "intro_rating": 700,
+      "summary": "基础因数试除用循环逐一检查小规模正整数能否被候选数整除，完成列举因数、求因数个数或因数和。可成对处理约数并避免平方根重复计数；不涉及筛法、乘法函数或依赖素因数结构的高级数论推导。"
+    },
+    {
+      "id": "syntax.basic-integration.prime-trial",
+      "name": "基础质数试除",
+      "level": 3,
+      "parent_id": "syntax.basic-integration",
+      "intro_rating": 700,
+      "summary": "基础质数试除用于小规模单个整数的质数判断：先排除小于二的数，再检查可能的非平凡因数。可以只试除到平方根，并注意循环条件的溢出；批量筛法、快速素性测试与其他高级数论标签仍留在数学领域。"
+    },
+    {
+      "id": "syntax.basic-integration.loop-integration",
+      "name": "多重循环条件综合",
+      "level": 3,
+      "parent_id": "syntax.basic-integration",
+      "intro_rating": 700,
+      "summary": "多重循环条件综合用于小范围内直接列出组合并检查题目给定条件，例如鸡兔同笼变式或简单整数配比。核心是把关系翻译成循环和判断，并估计总次数；需要复杂剪枝、状态搜索或贪心证明时应使用算法标签。"
+    },
+    {
+      "id": "basic",
+      "name": "算法基础",
+      "level": 1,
+      "parent_id": null
+    },
+    {
+      "id": "basic.enumerate",
+      "name": "枚举",
+      "level": 2,
+      "parent_id": "basic",
+      "summary": "枚举把所有候选方案逐个列出来再逐一验证，是最朴素也最可靠的解法。规模小时直接写循环即可；规模变大前先估计状态总数，再决定用剪枝、位运算还是前缀信息去掉重复计算。它通常还充当对拍用的暴力基准。"
+    },
+    {
+      "id": "basic.simulate",
+      "name": "模拟",
+      "level": 2,
+      "parent_id": "basic",
+      "summary": "模拟题要求忠实执行题目描述的规则，把状态和每一步的变化写成代码。关键在于把同一时刻发生的多件事拆成明确顺序，避免边读边改互相干扰。动手前先列出状态变量与推进条件，往往比直接敲代码更快也更少出错。"
+    },
+    {
+      "id": "basic.divide-and-conquer",
+      "name": "分治",
+      "level": 2,
+      "parent_id": "basic",
+      "summary": "分治把原问题拆成若干规模更小、结构相同的子问题，分别求解后再合并。递归只是常见实现方式，核心是划分边界、子问题独立和合并代价。归并排序、快速选择、点分治都体现了这一思路。"
+    },
+    {
+      "id": "basic.greedy",
+      "name": "贪心",
+      "level": 2,
+      "parent_id": "basic",
+      "summary": "贪心在每一步都选择当前看来最优的方案，希望全局也最优。它只在问题具备特定结构时才正确，常见证明手段是交换论证与归纳：把最优解逐步调整成贪心的样子而不变差。动手前先想清楚按什么关键字排序、为什么这样选不吃亏。"
+    },
+    {
+      "id": "basic.sort",
+      "name": "排序",
+      "level": 2,
+      "parent_id": "basic"
+    },
+    {
+      "id": "basic.selection-sort",
+      "name": "选择排序",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "选择排序每一轮从未排序部分挑出最小的元素，放到已排序部分的末尾。无论输入如何，比较次数都是 O(n²)，但交换次数最多只有 n−1 次，因此在元素移动代价高时仍有价值。它不稳定，交换可能打乱相等元素的相对顺序。"
+    },
+    {
+      "id": "basic.bubble-sort",
+      "name": "冒泡排序",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "冒泡排序反复比较相邻元素并交换逆序的一对，让较大的元素逐步向末尾移动。加上本轮没有发生交换就提前结束的优化后，对近似有序的数据很快。它是理解逆序对与稳定性的直观例子，但一般不用于大数据。"
+    },
+    {
+      "id": "basic.insertion-sort",
+      "name": "插入排序",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "插入排序把每个新元素插入前面已经排好序的序列里，像整理扑克牌。它对小规模或近似有序的数据非常高效，最坏 O(n²) 但常数很小，因此常被 Tim 排序这类混合算法用作小区间的收尾手段，也是编写对拍暴力解的好工具。"
+    },
+    {
+      "id": "basic.counting-sort",
+      "name": "计数排序",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "计数排序先统计每个值出现的次数，再按值从小到大输出，全程不需要比较。复杂度是 O(n+V)，V 是值域大小，适合值域不大的整数排序。代价是需要一个长度为 V 的计数数组，值域过大时无法使用。"
+    },
+    {
+      "id": "basic.radix-sort",
+      "name": "基数排序",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "基数排序把整数按位拆分，从低位到高位逐轮做一次稳定排序，多轮之后整体有序。复杂度为 O(d(n+V))，d 是位数，适合位数固定或字符串排序。它必须保证每一轮内部排序稳定，否则前面几轮的结果会被打乱。"
+    },
+    {
+      "id": "basic.quick-sort",
+      "name": "快速排序",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "快速排序选一个基准把序列划分成两部分，再分别递归排序。平均复杂度 O(n log n)，常数小、缓存友好，是使用最广的通用排序。最坏会退化成 O(n²)，随机选取基准或三数取中可以避免被构造数据卡掉。"
+    },
+    {
+      "id": "basic.merge-sort",
+      "name": "归并排序",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "归并排序把序列对半切开分别排序，再把两个有序段合并成一个。复杂度稳定为 O(n log n)，并且是稳定排序；合并过程还能顺带统计逆序对。它需要 O(n) 的辅助空间，也是分治与 CDQ 分治的基础。"
+    },
+    {
+      "id": "basic.heap-sort",
+      "name": "堆排序",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "堆排序先把数组整理成大根堆，然后反复把堆顶与末尾元素交换并缩小堆的范围，逐个确定最大值。它在原数组上完成，复杂度稳定为 O(n log n)，不需要额外空间，但访问模式跳跃、缓存不友好，实际常数通常大于快速排序。"
+    },
+    {
+      "id": "basic.bucket-sort",
+      "name": "桶排序",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "桶排序把数据按取值的区间分配到若干桶里，每个桶内部各自排序后顺序拼接。当数据近似均匀分布时接近 O(n)，否则可能全部落进同一个桶而退化。它适合值域大但分布均匀的场景，桶的数量与划分需要按数据特点调整。"
+    },
+    {
+      "id": "basic.shell-sort",
+      "name": "希尔排序",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "希尔排序是插入排序的改进：先用较大的间隔把元素分组做插入排序，再逐步缩小间隔，最后间隔为 1 时整体做一次插入排序。这样远处的元素能更快就位，平均复杂度优于 O(n²)，具体表现与间隔序列的选择有关。"
+    },
+    {
+      "id": "basic.tournament-sort",
+      "name": "锦标赛排序",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "锦标赛排序用完全二叉树模拟淘汰赛，内部结点保存胜者，建树后每次取根即可得到最小值，再利用败者信息沿路径更新。建树是线性时间，每次取最值与修复是对数时间，适合需要反复取最值的场景，代价是需要额外空间。"
+    },
+    {
+      "id": "basic.tim-sort",
+      "name": "Tim 排序",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "Tim 排序先扫描数据找出天然有序的小段，对过短的段用插入排序补齐，再按规则两两归并。它利用了真实数据往往局部有序的特点，最坏仍是 O(n log n)，是 Python、Java 等语言默认排序所采用的思路。"
+    },
+    {
+      "id": "basic.use-of-sort",
+      "name": "排序应用",
+      "level": 3,
+      "parent_id": "basic.sort",
+      "summary": "很多问题把排序当作第一步：去重、找中位数、统计逆序对、按关键字贪心，或者把无序集合变成可以顺序扫描的结构。排序本身是 O(n log n)，之后的处理往往只需一次线性扫描，因此先想清楚排完序之后能看出什么。"
+    },
+    {
+      "id": "basic.prefix-sum",
+      "name": "前缀和",
+      "level": 2,
+      "parent_id": "basic",
+      "summary": "前缀和通过一次预处理保存序列的累计值，使任意静态区间和都能用两个前缀值相减得到。它适合查询多、修改少的场景，二维时借容斥计算矩形和，也常用于统计与计数转化。"
+    },
+    {
+      "id": "basic.difference",
+      "name": "差分",
+      "level": 2,
+      "parent_id": "basic",
+      "summary": "差分记录相邻元素的增量，把区间统一加值转化为两个端点修改，最后再通过前缀和还原数组。它适合批量区间修改和离线查询，树上差分还能把路径修改拆到节点上处理。"
+    },
+    {
+      "id": "basic.binary",
+      "name": "二分",
+      "level": 2,
+      "parent_id": "basic",
+      "summary": "二分每次把候选区间对半缩小，前提是答案具有单调性：条件成立之后不会再失效。除了在有序序列里查找，更常见的用法是二分答案，把最优化问题转成判定问题再逐步逼近最优值。写法要固定左右边界的含义，避免死循环。"
+    },
+    {
+      "id": "basic.binary-lifting",
+      "name": "倍增",
+      "level": 2,
+      "parent_id": "basic",
+      "summary": "倍增预先算出跳跃 2^k 步之后的信息，再用二进制拼凑出任意长度的跳跃。快速幂、倍增求最近公共祖先、稀疏表都是它的应用。前提是两步的结果能在常数时间内合并，否则倍增只能加快查询而无法表达信息。"
+    },
+    {
+      "id": "basic.construction",
+      "name": "构造",
+      "level": 2,
+      "parent_id": "basic",
+      "summary": "构造题要求给出一组满足条件的方案，而不是求最优值。常见手段是从小规模情形归纳、按奇偶或大小分类讨论、先排好再局部调整。由于答案不唯一，评测通常用特判检查合法性，因此提交前必须逐条核对约束是否满足。"
+    },
+    {
+      "id": "search",
+      "name": "搜索",
+      "level": 1,
+      "parent_id": null
+    },
+    {
+      "id": "search.dfs",
+      "name": "深度优先搜索（DFS）",
+      "level": 2,
+      "parent_id": "search",
+      "summary": "深度优先搜索沿一条路径不断深入，无法继续时再回溯到最近的分支点。它天然适合枚举状态、搜索解空间和遍历树，实现时通常使用递归或显式栈，并需要处理访问标记与回溯顺序。"
+    },
+    {
+      "id": "search.bfs",
+      "name": "广度优先搜索（BFS）",
+      "level": 2,
+      "parent_id": "search",
+      "summary": "广度优先搜索按层扩展状态，先访问距离起点更近的节点，因此能求无权图最短步数。它通常借助队列实现，并要在入队时标记访问，避免同一状态重复进入造成指数级膨胀。"
+    },
+    {
+      "id": "search.bidirectional",
+      "name": "双向搜索",
+      "level": 2,
+      "parent_id": "search",
+      "summary": "双向搜索从起点和终点同时扩展，两棵搜索树相遇时得到最短路径，状态数从 b^d 降到大约 b^(d/2)。折半搜索是它的另一种形式：把枚举规模一分为二，各自处理后再排序拼接。两者都要求能从两端描述同一状态空间。"
+    },
+    {
+      "id": "search.heuristic",
+      "name": "启发式搜索",
+      "level": 2,
+      "parent_id": "search",
+      "summary": "启发式搜索用估价函数判断哪些分支更有希望，优先扩展它们以减少搜索量。估价函数要能快速计算，并且不能高估真实代价，否则可能错过最优解。A* 与 IDA* 是它的两种典型实现。"
+    },
+    {
+      "id": "search.astar",
+      "name": "A*",
+      "level": 2,
+      "parent_id": "search",
+      "summary": "A* 按 f = g + h 的顺序扩展状态，g 是已经付出的代价，h 是对剩余代价的估计。只要 h 不高估，第一次取出目标时的代价就是最优。h 越接近真实值扩展的状态越少，h 恒为零时它就退化成 Dijkstra。"
+    },
+    {
+      "id": "search.iterative",
+      "name": "迭代加深搜索",
+      "level": 2,
+      "parent_id": "search",
+      "summary": "迭代加深按深度上限 1、2、3 依次反复做深度优先搜索，直到找到答案。它同时拥有 BFS 的最优性和 DFS 的线性空间，代价是浅层状态被重复访问；由于搜索树按指数增长，重复部分的开销通常可以忽略。"
+    },
+    {
+      "id": "search.idastar",
+      "name": "IDA*",
+      "level": 2,
+      "parent_id": "search",
+      "summary": "IDA* 把迭代加深与启发式估价结合起来：每轮以当前阈值做深度优先搜索，遇到 f 超过阈值的分支就剪掉，并把阈值抬高到这些值中的最小值。它只保存一条路径，空间是线性的，适合八数码这类内存紧张的状态搜索。"
+    },
+    {
+      "id": "search.dlx",
+      "name": "Dancing Links",
+      "level": 2,
+      "parent_id": "search",
+      "summary": "Dancing Links 用十字双向链表表示稀疏矩阵，删除与恢复一列只需改动常数个指针，从而高效实现精确覆盖问题的回溯搜索。数独、多联骨牌覆盖都能归约成精确覆盖，因此它是这类问题的通用高效解法。"
+    },
+    {
+      "id": "search.alpha-beta",
+      "name": "Alpha-Beta 剪枝",
+      "level": 2,
+      "parent_id": "search",
+      "summary": "Alpha-Beta 剪枝用于两人零和博弈的极小极大搜索：一方取最大值、另一方取最小值，当某个分支已经不可能影响上层结果时就整枝剪掉。剪枝效果高度依赖子节点顺序，先搜索更可能好的着法可以把复杂度大幅降低。"
+    },
+    {
+      "id": "dp",
+      "name": "动态规划",
+      "level": 1,
+      "parent_id": null
+    },
+    {
+      "id": "dp.memo",
+      "name": "记忆化搜索",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "记忆化搜索用递归实现动态规划：写出转移式后把每个状态的结果存起来，下次遇到直接返回。它不必事先想清楚递推顺序，适合依赖关系复杂或状态稀疏的问题；代价是递归开销，状态数很大时要留意栈深度与常数。"
+    },
+    {
+      "id": "dp.knapsack",
+      "name": "背包 DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "背包问题在容量限制下选择物品使总价值最大。0/1 背包按物品顺序、容量倒序更新；完全背包容量正序；多重背包用二进制拆分或单调队列；分组背包外层按组、组内倒序容量。它是理解阶段与容量二维状态的最好例子。"
+    },
+    {
+      "id": "dp.interval",
+      "name": "区间 DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "区间 DP 用左右端点描述连续子区间，转移时枚举分割点或合并相邻区间，因此按区间长度从小到大递推。典型问题是石子合并、括号匹配计数与矩阵链乘，复杂度常为 O(n³)，可用四边形不等式优化到 O(n²)。"
+    },
+    {
+      "id": "dp.dag",
+      "name": "DAG DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "DAG DP 在有向无环图上定义状态转移，按拓扑序保证计算某状态时所有前驱已经确定。最长路、计数、方案数和依赖调度都可用这一模型，关键是确定状态含义、转移边和合法初始条件。"
+    },
+    {
+      "id": "dp.tree",
+      "name": "树形 DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "树形 DP 在树上选定根之后，自底向上合并子树信息。设计时先想清楚每个节点要向父节点汇报哪些量，再写出合并两个子树的规则。常见技巧是选与不选两类状态、换根 DP，以及在子树范围内做背包式合并。"
+    },
+    {
+      "id": "dp.state",
+      "name": "状压 DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "状压 DP 用二进制位表示集合，把哪些元素已经被选压进状态。它适合元素个数不超过 20 左右的问题，典型是旅行商与棋盘覆盖。转移时枚举未选元素或下一行状态，需要注意位运算细节与 2^n 的状态规模。"
+    },
+    {
+      "id": "dp.profile",
+      "name": "轮廓线 DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "轮廓线 DP 在逐格或逐行填表时，只记录当前边界附近的一条轮廓状态。它适合网格覆盖、插头和连通性约束问题，能显著压缩完整棋盘状态，但转移编码和边界处理需要非常细致。"
+    },
+    {
+      "id": "dp.number",
+      "name": "数位 DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "数位 DP 统计满足数位条件的数的个数，按位从左到右枚举，用状态记录是否贴着上界、是否已经开始，以及题目关心的量。区间统计用前缀差分拆成 F(r) 减 F(l) 的形式，状态数等于位数与附加信息的乘积。"
+    },
+    {
+      "id": "dp.plug",
+      "name": "插头 DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "插头 DP 逐格递推并记录轮廓线上的连通性信息，用于棋盘上的连通性计数与覆盖问题，例如铺砖、哈密顿回路计数。实现时要给每个插头编号并处理合并与独立，状态常用最小表示法或括号表示法压缩。"
+    },
+    {
+      "id": "dp.count",
+      "name": "计数 DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "计数 DP 求满足条件的方案数，转移是加法，有时还要乘上组合系数，初值通常对应空方案为 1。要注意区分不同方案的定义、避免重复计数，并在取模运算下正确处理负数与溢出。"
+    },
+    {
+      "id": "dp.dynamic",
+      "name": "动态 DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "动态 DP 处理带修改的树上动态规划：把每个节点的转移写成矩阵或线性变换，再用树链剖分配合线段树维护，使一次修改只需对数次合并。它的关键是找到一个可以结合的转移表示，从而支持区间合并。"
+    },
+    {
+      "id": "dp.probability",
+      "name": "概率 DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "概率 DP 把状态值定义为到达该状态的概率，或从该状态出发的期望代价。顺推时按转移概率加权求和；出现自环或互相依赖时需要逆推或解线性方程组。转换过程中要利用期望的线性性，注意取模概率的处理方式。"
+    },
+    {
+      "id": "dp.dp-of-dp",
+      "name": "DP 套 DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "DP 套 DP 把一个动态规划的状态作为另一个动态规划的维度，常见于自动机上的计数与按位构造：外层枚举构造过程，内层记录匹配状态。它通常伴随状态压缩，代价是两层状态数相乘，需要控制内外层规模。"
+    },
+    {
+      "id": "dp.opt",
+      "name": "DP 优化",
+      "level": 2,
+      "parent_id": "dp"
+    },
+    {
+      "id": "dp.opt.monotonic-queue-stack",
+      "name": "单调队列/单调栈优化",
+      "level": 3,
+      "parent_id": "dp.opt",
+      "summary": "当转移只依赖固定长度区间内的最值时，用单调队列维护窗口可以把 O(n²) 降到 O(n)；单调栈处理的是左右第一个更大或更小元素这类结构信息。两者的共同点是及时删掉不可能成为答案的元素。"
+    },
+    {
+      "id": "dp.opt.slope",
+      "name": "斜率优化",
+      "level": 3,
+      "parent_id": "dp.opt",
+      "summary": "斜率优化适用于转移式中含有下标乘积项、可以整理成直线形式的情况：把每个候选决策看作一条直线，求某个横坐标处的最小或最大截距。若横坐标单调可用单调栈或队列，否则用凸包加二分，或改用李超线段树维护。"
+    },
+    {
+      "id": "dp.opt.quadrangle",
+      "name": "四边形不等式优化",
+      "level": 3,
+      "parent_id": "dp.opt",
+      "summary": "四边形不等式优化适用于代价函数满足特定凸性的区间 DP 或分治 DP，此时最优决策点随区间端点单调移动，可以据此把枚举范围大幅缩小，常见做法是分治式转移或记录可行的决策区间。"
+    },
+    {
+      "id": "dp.opt.slope-trick",
+      "name": "Slope Trick 优化",
+      "level": 3,
+      "parent_id": "dp.opt",
+      "summary": "Slope Trick 针对转移形如取左右相邻状态最小值再加上与目标值距离的一类动态规划，用堆维护分段线性函数的斜率变化点，把每次操作降到对数时间。它适合需要求出关于某个状态量的整条函数而非单点值的问题。"
+    },
+    {
+      "id": "dp.opt.wqs-binary-search",
+      "name": "WQS 二分",
+      "level": 3,
+      "parent_id": "dp.opt",
+      "summary": "WQS 二分处理恰好选择 k 个元素的优化问题：给每次选择附加一个代价并二分它，使最优解恰好取到 k 个。它要求关于选择个数的答案是凸的，从而把二维状态压缩成一维，常用于最优化数量受限的贪心式动态规划。"
+    },
+    {
+      "id": "dp.misc",
+      "name": "其他 DP",
+      "level": 2,
+      "parent_id": "dp",
+      "summary": "其他 DP 收录不易归入固定模型、但仍在竞赛中常见的动态规划技巧。解题重点通常是从小规模状态找到可合并的信息，再确定阶段、转移和边界，而不是套用单一模板。"
+    },
+    {
+      "id": "string",
+      "name": "字符串",
+      "level": 1,
+      "parent_id": null
+    },
+    {
+      "id": "string.basic",
+      "name": "字符串基础",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "字符串是字符组成的序列，子串必须连续，子序列只要求保持相对顺序。竞赛中常用下标从 1 开始的写法、以空字符结尾的字符数组或标准库的 string，需要明确长度、比较规则与拼接代价，很多问题都可以先用这些概念描述清楚。"
+    },
+    {
+      "id": "string.match",
+      "name": "字符串匹配",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "字符串匹配要在一个长文本中找出所有模式串出现的位置。朴素做法对每个起点逐字符比较，最坏是 O(nm)；改用 KMP、Z 函数或后缀结构后可以做到线性。扩展问题包括多模式串匹配、带通配符与近似匹配。"
+    },
+    {
+      "id": "string.hash",
+      "name": "字符串哈希",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "字符串哈希把字符串映射成一个整数指纹，预处理前缀哈希之后可以在常数时间内比较任意两段子串是否相同。常用做法是多项式取模或自然溢出，必须考虑碰撞风险，双哈希或随机基数能明显降低被构造数据攻击的可能。"
+    },
+    {
+      "id": "string.trie",
+      "name": "字典树 (Trie)",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "字典树按字符逐层建立树结构，公共前缀只保存一份，因此插入与查询的代价都是串长。它支持前缀统计、单词检索与异或最值等问题，节点上可以携带计数与终止标记，代价是节点总数正比于所有串的总长度。"
+    },
+    {
+      "id": "string.kmp",
+      "name": "前缀函数与 KMP 算法",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "KMP 先对模式串求前缀函数，也就是每个位置的最长相等前后缀长度。匹配失配时沿着前缀函数回退而不是从头再来，因此总复杂度是 O(n+m)。前缀函数本身还能求最小循环节、判断周期串，是字符串算法的基本功。"
+    },
+    {
+      "id": "string.bm",
+      "name": "Boyer-Moore 算法",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "Boyer-Moore 从模式串末尾向前比较，利用坏字符与好后缀规则一次跳过多个位置，在字符集较大、模式串较长时往往明显快于 KMP。它的实现细节较多，最坏复杂度与具体规则有关，通常作为实用匹配库的组成部分。"
+    },
+    {
+      "id": "string.z-func",
+      "name": "Z 函数（扩展 KMP）",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "Z 函数 z[i] 表示后缀 i 与原串的最长公共前缀长度，可以在线性时间内求出。利用它能够快速比较子串与原串前缀，也能做单模式匹配：把模式串与文本拼成一个串后求每个位置的 Z 值。它与前缀函数是同一类信息。"
+    },
+    {
+      "id": "string.ac-automaton",
+      "name": "AC 自动机",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "AC 自动机把多个模式串建成字典树，并为每个节点补出失配指针，因此扫描一遍文本就能找出所有出现的模式串。失配指针用广度优先搜索求出，复杂度与所有串长之和成正比；把失配指针看成树边就得到 fail 树。"
+    },
+    {
+      "id": "string.sa",
+      "name": "后缀数组（SA）",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "后缀数组（SA）把字符串所有后缀按字典序排序并保存其起始位置，常配合 height 数组处理重复子串、不同子串计数和最长公共前缀。它能在 O(n log n) 或线性时间内完成预处理，是字符串算法的重要基础。"
+    },
+    {
+      "id": "string.sam",
+      "name": "后缀自动机 (SAM)",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "后缀自动机把字符串的所有子串压缩到线性数量的状态上，每个状态代表一族结束位置相同的子串。它可以统计不同子串个数、子串出现次数与最长公共子串，构造过程是增量维护转移与后缀链接。"
+    },
+    {
+      "id": "string.suffix-bst",
+      "name": "后缀平衡树",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "后缀平衡树用平衡树维护所有后缀的相对顺序，支持在字符串前端插入字符后依然保持有序。它常用于需要动态比较后缀、在线处理字符串并回答排名或子串比较的问题，实现时依赖后缀的稳定比较方式。"
+    },
+    {
+      "id": "string.general-sam",
+      "name": "广义后缀自动机",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "广义后缀自动机把多个串的公共结构建在同一台自动机上，做法是每插入一个串就把当前状态重置到初始节点，并在建点时处理好已有转移。它能回答多个串的不同子串数与公共子串统计问题，是后缀自动机的多串版本。"
+    },
+    {
+      "id": "string.suffix-tree",
+      "name": "后缀树",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "后缀树把字符串所有后缀的公共前缀压缩成一棵树，配合后缀链接与广义后缀树可以线性地解决大量字符串问题。它的理论性质很漂亮，但实现复杂、常数较大，实际竞赛中常用后缀数组或后缀自动机替代。"
+    },
+    {
+      "id": "string.manacher",
+      "name": "Manacher",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "Manacher 利用回文的对称性，在已知最右回文边界的基础上用镜像位置初始化半径，从而线性地求出每个中心的最长回文半径。它常用来求最长回文子串与回文子串个数，处理时在字符之间插入分隔符以统一奇偶长度。"
+    },
+    {
+      "id": "string.pam",
+      "name": "回文树",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "回文树的每个节点代表一个本质不同的回文子串，长度为奇数和偶数的根节点是构造起点。通过失配链可以统计每个回文串的出现次数，构造是均摊线性的，适合处理回文子串计数与回文拆分问题。"
+    },
+    {
+      "id": "string.seq-automaton",
+      "name": "序列自动机",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "序列自动机记录每个位置之后各个字符下一次出现的位置，从而在常数时间内找到下一个能匹配某字符的位置。它常用于子序列判定、最短未出现子序列与子序列计数，构建方式是自后向前递推。"
+    },
+    {
+      "id": "string.minimal-string",
+      "name": "最小表示法",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "最小表示法在字符串的所有循环移位中找出字典序最小的那个，用双指针比较可以在线性时间内完成。它常用于判定两个字符串是否循环同构，以及把环形结构规范化为唯一的表示形式。"
+    },
+    {
+      "id": "string.lyndon",
+      "name": "Lyndon 分解",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "Lyndon 分解把一个字符串拆成若干 Lyndon 串的降序拼接，其中 Lyndon 串严格小于自己的所有真后缀。分解可以用 Duval 算法在线性时间内完成，常用于求最小表示、处理周期性以及与后缀结构相关的问题。"
+    },
+    {
+      "id": "string.main-lorentz",
+      "name": "Main-Lorentz 算法",
+      "level": 2,
+      "parent_id": "string",
+      "summary": "Main-Lorentz 算法在 O(n log n) 时间内找出所有具有平方结构（形如两个相同串拼接）的子串，属于重复结构检测的经典方法。它通过分治处理跨越中点的重复，是后缀结构之外处理串重复问题的一条思路。"
+    },
+    {
+      "id": "math",
+      "name": "数学",
+      "level": 1,
+      "parent_id": null
+    },
+    {
+      "id": "math.boolean-algebra",
+      "name": "布尔代数",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "布尔代数研究只有真假的命题运算，基本运算是与、或、非，由它们可以推出德摩根律、分配律等恒等式。在竞赛中它用于简化位运算表达式、分析位运算的代数性质，也是集合运算与逻辑电路的基础。"
+    },
+    {
+      "id": "math.numeral-system",
+      "name": "进位制",
+      "level": 2,
+      "parent_id": "math"
+    },
+    {
+      "id": "math.numeral-sys.base",
+      "name": "进制转换",
+      "level": 3,
+      "parent_id": "math.numeral-system",
+      "summary": "进制转换把整数在不同基底之间重新表示，常通过不断取余得到低位、再反向读取结果。负进制、平衡进制和高精度数需要额外处理符号与位权，字符串转整数时还要检查溢出与非法字符。"
+    },
+    {
+      "id": "math.numeral-sys.balanced-ternary",
+      "name": "平衡三进制",
+      "level": 3,
+      "parent_id": "math.numeral-system",
+      "summary": "平衡三进制以 3 为基数，但允许 −1、0、1 三种数码，因此每个整数都有唯一的对称表示，不需要单独的符号位。它在构造题中出现较多，例如用最少的砝码称出任意重量，转换时按模 3 的余数选择数码并处理进位。"
+    },
+    {
+      "id": "math.numeral-sys.gray-code",
+      "name": "格雷码",
+      "level": 3,
+      "parent_id": "math.numeral-system",
+      "summary": "格雷码是一种相邻两个编码只差一位的二进制编码，常用于减少状态切换时的出错概率。n 位格雷码与二进制数可以互相转换，第 k 个格雷码等于 k 与 k 右移一位的异或，它也是枚举与状态压缩的常用工具。"
+    },
+    {
+      "id": "math.bit",
+      "name": "位操作",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "位运算把整数当成二进制位串处理，与、或、异或、取反和移位都能在常数时间内完成。常见技巧包括取最低位的 1、统计二进制中 1 的个数、枚举子集，以及用异或实现交换与去重。注意有符号数的移位与溢出属于未定义行为。"
+    },
+    {
+      "id": "math.binary-set",
+      "name": "二进制集合操作",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "用整数的第 i 位表示集合中是否含有元素 i，可以把集合的并、交、差与补运算变成位运算，从而在常数时间内处理小规模集合。配合容斥与子集枚举，它能实现各类集合计数与子集动态规划。"
+    },
+    {
+      "id": "math.bignum",
+      "name": "高精度计算",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "当结果超出 64 位整数范围时就需要高精度计算：用数组按位或压位存储数字，手工实现加、减、乘、除与比较。加减法是线性时间，朴素乘法是平方级，规模较大时可以用快速傅里叶变换加速，注意进位、借位与前导零。"
+    },
+    {
+      "id": "math.binary-exponentiation",
+      "name": "快速幂",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "快速幂按指数的二进制位反复平方，并在对应位为 1 时相乘，把求 a 的 n 次幂所需的乘法次数从 n 降到 log n，取模时每一步都可以约简。同样的想法可用于矩阵幂与线性递推加速，是最常用的常数级优化之一。"
+    },
+    {
+      "id": "math.permutation",
+      "name": "置换和排列",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "置换是集合到自身的一一映射，通常写成若干个不相交的循环。分析置换时要找出循环长度与阶，用于判断重复操作之后的状态、计算最少交换次数，以及统计 Burnside 引理中的不动点。排列的奇偶性由逆序数决定。"
+    },
+    {
+      "id": "math.complex",
+      "name": "复数",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "复数写成实部加虚部乘以 i 的形式，其中 i 的平方等于 −1，可以用实数对表示并定义加法与乘法。竞赛中它主要用于快速傅里叶变换：把单位根看作复数，用复数运算实现多项式乘法，也用于平面几何中的旋转与坐标变换。"
+    },
+    {
+      "id": "math.number-theory",
+      "name": "数论",
+      "level": 2,
+      "parent_id": "math"
+    },
+    {
+      "id": "math.number-theory.basic",
+      "name": "数论基础",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "数论研究整数的性质，竞赛中最常用的是整除、同余、最大公约数与素因子分解。许多问题可以归结为模运算下的等式与计数，掌握欧几里得算法、唯一分解定理以及同余的基本性质，是后续学习数论算法的前提。"
+    },
+    {
+      "id": "math.number-theory.prime",
+      "name": "素数",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "素数是大于 1 且只有 1 和自身两个因数的整数。单个数的素性可用试除或 Miller-Rabin 判断，范围内所有素数用埃氏或线性筛得到。素数分布、最小质因子与质因数分解是数论题的入口。"
+    },
+    {
+      "id": "math.number-theory.gcd",
+      "name": "最大公约数",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "最大公约数是同时整除两数的最大正整数，欧几里得算法用 gcd(a,b)=gcd(b,a mod b) 在对数时间求出。扩展欧几里得还能同时得到裴蜀系数，是求模逆元和解一次不定方程的基础，最小公倍数可由乘积除以 gcd 得到。"
+    },
+    {
+      "id": "math.number-theory.euler-totient",
+      "name": "欧拉函数",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "欧拉函数 φ(n) 统计 1 到 n 中与 n 互素的整数个数。它等于 n 乘以各不同质因子的 (1-1/p)，是积性函数，可用线性筛批量求出。欧拉定理、指数循环节和原根的存在性都与它有关。"
+    },
+    {
+      "id": "math.number-theory.sieve",
+      "name": "筛法",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "筛法用较小的代价批量标记合数或统计积性函数。埃氏筛适合求素数表，线性筛保证每个数只被最小质因子筛一次，可同时维护最小质因子和常见积性函数值。空间换时间是这类算法的共同思路。"
+    },
+    {
+      "id": "math.number-theory.pollard-rho",
+      "name": "分解质因数",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "Pollard-Rho 用随机函数迭代制造环，借助 gcd 找出大数的一个非平凡因子再递归分解。配合 Miller-Rabin 素性测试，它能在期望亚指数时间内分解 64 位整数，是处理大数分解的常用手段。"
+    },
+    {
+      "id": "math.number-theory.bezouts",
+      "name": "裴蜀定理与一次不定方程",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "裴蜀定理指出 ax+by=gcd(a,b) 必有整数解，扩展欧几里得能构造出一组解。其余解在这组解上叠加 (b/g, -a/g) 的整数倍；由此可以判断 ax+by=c 是否有解，并求最小正整数解。"
+    },
+    {
+      "id": "math.number-theory.fermat",
+      "name": "费马小定理",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "费马小定理指出，当 p 为素数且 a 不被 p 整除时，a^(p-1) 与 1 同余。它可用于快速幂求逆元、幂次约简和素性检验，但必须检查模数为素数这一前提。"
+    },
+    {
+      "id": "math.number-theory.euler-theorem",
+      "name": "欧拉定理",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "欧拉定理指出，当 a 与模数 m 互素时，a^φ(m) 与 1 同余。它把费马小定理推广到非素数模，常与指数循环节、快速幂和欧拉函数结合用于幂次约简。"
+    },
+    {
+      "id": "math.number-theory.inverse",
+      "name": "逆元",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "逆元是模乘法意义下的倒数：a·x 与 1 同余时，x 就是 a 的逆元。它只在 a 与模数互素时存在，可用扩展欧几里得或费马小定理求解，是除法、组合数和线性递推中的基础工具。"
+    },
+    {
+      "id": "math.number-theory.linear-equation",
+      "name": "线性同余方程",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "线性同余方程 ax≡b (mod m) 等价于不定方程 ax+my=b，有解当且仅当 gcd(a,m) 整除 b。约去最大公约数后解的个数为 gcd(a,m)，可用扩展欧几里得求出最小非负解，再写出通解。"
+    },
+    {
+      "id": "math.number-theory.crt",
+      "name": "中国剩余定理",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "中国剩余定理说明模数两两互素时同余方程组有唯一解，构造方法是把每个方程用其余模数之积的逆元加权求和。模数不互素时需要两两合并并判断条件是否相容，常用于大模数计数与答案还原。"
+    },
+    {
+      "id": "math.number-theory.lift-the-exponent",
+      "name": "升幂引理",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "升幂引理研究素数幂在同余式中的指数规律，给出 v_p(x^n±y^n) 的分解式。它把高次同余或整除问题转化为指数比较，是处理含素数幂的证明与构造题的常用工具。"
+    },
+    {
+      "id": "math.number-theory.factorial",
+      "name": "阶乘取模",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "阶乘取模要解决 n! mod p 在 n 较大时的计算。p 为素数时可用 Wilson 定理、分段预处理，或结合 Lucas 定理处理 n 超过模数的情形；统计阶乘中质因子的指数则常用于分析组合数的整除性。"
+    },
+    {
+      "id": "math.number-theory.lucas",
+      "name": "卢卡斯定理",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "卢卡斯定理把 C(n,m) mod p（p 为素数）按 p 进制拆位，转化为各位组合数之积再取模，适合 n、m 很大而模数较小的情形。扩展卢卡斯可以处理模数为素数幂或一般合数的组合数取模。"
+    },
+    {
+      "id": "math.number-theory.congruence-equation",
+      "name": "同余方程",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "同余方程是含未知数并以同余号连接整数的方程，解是一个模数下的剩余类。一次方程用扩展欧几里得求解，高次方程常借助费马小定理、原根或离散对数转化为线性问题，多个方程可以联立。"
+    },
+    {
+      "id": "math.number-theory.quad-residue",
+      "name": "二次剩余",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "二次剩余讨论 x^2≡a (mod p) 何时有解。欧拉判别法用 Legendre 符号判断，Tonelli-Shanks 可在模素数时开平方，配合中国剩余定理能处理合数模数，也是离散对数与二次域计算的准备。"
+    },
+    {
+      "id": "math.number-theory.primitive-root",
+      "name": "阶与原根",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "元素 a 模 p 的阶是使 a^k≡1 的最小正整数 k，它整除 φ(p)。若阶恰好等于 φ(p)，则 a 称为原根；原根存在时它的幂遍历所有与模数互素的剩余类，可以把乘法问题转化为指数加法。"
+    },
+    {
+      "id": "math.number-theory.discrete-logarithm",
+      "name": "离散对数",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "离散对数是已知 a、b 与模数求满足 a^x≡b 的指数。BSGS 把指数拆半分块，在 O(√m) 时间和空间中求解；扩展 BSGS 可处理底数与模数不互素的情况，它是许多密码学问题的数学核心。"
+    },
+    {
+      "id": "math.number-theory.residue",
+      "name": "高次剩余与单位根",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "高次剩余研究 x^k≡a 何时可解，可借助原根把乘法结构化为指数上的线性同余，再按最大公约数分类讨论。单位根是模 n 下满足 ω^n≡1 的元素，用于构造离散傅里叶与分析剩余结构。"
+    },
+    {
+      "id": "math.number-theory.sqrt-decomposition",
+      "name": "数论分块",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "数论分块利用 floor(n/i) 只有 O(√n) 种取值，把按整除值分段的求和从 O(n) 降到 O(√n)。它常与积性函数前缀和、整除式化简以及杜教筛配合，是实现数论求和的常见第一层优化。"
+    },
+    {
+      "id": "math.number-theory.dirichlet",
+      "name": "狄利克雷卷积",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "狄利克雷卷积 (f*g)(n)=Σ_{d|n} f(d)g(n/d) 把积性函数按因子关系组合。单位函数、恒等函数、常数函数与莫比乌斯函数在卷积下构成一套代数关系，是推导反演公式的语言。"
+    },
+    {
+      "id": "math.number-theory.mobius",
+      "name": "莫比乌斯反演",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "莫比乌斯函数 μ(n) 在 n 含平方因子时取 0，否则按质因子个数的奇偶取 ±1。它满足 μ*1=ε，可把形如 Σ_{d|n} f(d) 的求和反演为带 μ 的式子，是处理互素条件求和的常用技巧。"
+    },
+    {
+      "id": "math.number-theory.hyperbola",
+      "name": "狄利克雷双曲线法与杜教筛",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "狄利克雷双曲线法把因子求和按 d≤√n 与 n/d≤√n 两段拆分，减少枚举量。杜教筛用构造的卷积式子把积性函数前缀和递归归约，预处理前 n^(2/3) 项后可达亚线性复杂度。"
+    },
+    {
+      "id": "math.number-theory.prime-counting",
+      "name": "素数计数",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "素数计数 π(x) 统计不超过 x 的素数个数。除直接筛外，Meissel-Lehmer 类算法用递归计数与记忆化把复杂度降到接近 O(x^(2/3)/log x)，适合 x 在 10^11 量级的多次查询。"
+    },
+    {
+      "id": "math.number-theory.powerful-number",
+      "name": "Powerful Number 筛",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "Powerful Number 筛把目标积性函数写成 h*g 的卷积，其中 g 的前缀和容易求出，h 只在强数上非零。强数的每个质因子指数至少为 2，个数为 O(√n)，因此枚举强数即可在亚线性时间求前缀和。"
+    },
+    {
+      "id": "math.number-theory.min-25",
+      "name": "Min_25 筛",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "Min_25 筛按素数幂递推，把积性函数前缀和拆成素数贡献与合数贡献，先求出所有 floor(n/i) 处的素数权值和，再逐层合并。它能处理较广的一类积性函数，复杂度约为 O(n^(3/4)/log n)。"
+    },
+    {
+      "id": "math.number-theory.zhou",
+      "name": "洲阁筛",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "洲阁筛把积性函数前缀和按最小质因子分类递推，只保留 floor(n/i) 这些关键下标，并预处理素数前缀信息。它与 Min_25 筛思路相近，适合在 n 较大且函数满足特定递推时求亚线性前缀和。"
+    },
+    {
+      "id": "math.number-theory.euclidean",
+      "name": "类欧几里德算法",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "类欧几里德算法求形如 Σ floor((a*i+b)/m) 的和，通过与辗转相除同构的变换迅速减小 a、m 的规模。它可推广到带 i 或 i^2 权重的版本，常用于格点计数和对整除式求和。"
+    },
+    {
+      "id": "math.number-theory.continued-fraction",
+      "name": "连分数",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "连分数把实数写成整数与逐层倒数之和，它的渐进分数给出最佳有理逼近，误差小于任何分母更小的分数。渐进分数由递推系数生成，可用于还原分数、解 Pell 方程并分析欧几里得算法的收敛过程。"
+    },
+    {
+      "id": "math.number-theory.stern-brocot",
+      "name": "Stern-Brocot 树与 Farey 序列",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "Stern-Brocot 树从 0/1 与 1/0 出发，通过反复取中位分数生成全部最简分数，每个正有理数恰好出现一次。Farey 序列列出分母不超过 n 的分数，两者可用于分数逼近与查找区间内的最简分数。"
+    },
+    {
+      "id": "math.number-theory.quadratic",
+      "name": "二次域",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "二次域是在有理数上添加平方根 d 得到的数域，元素形如 a+b√d。研究其整数环、范数与单位群，可以解决整数的平方和表示、Pell 方程以及二次剩余的结构问题，是数论与代数结合的入门对象。"
+    },
+    {
+      "id": "math.number-theory.pell-equation",
+      "name": "Pell 方程",
+      "level": 3,
+      "parent_id": "math.number-theory",
+      "summary": "Pell 方程形如 x^2-Dy^2=1，其中 D 为非平方正整数。它的最小正整数解由 √D 的连分数渐进分数给出，全部解可由基本解取幂生成；它是二次域单位群的具体例子，常用于逼近与递推构造。"
+    },
+    {
+      "id": "math.poly",
+      "name": "多项式与生成函数",
+      "level": 2,
+      "parent_id": "math"
+    },
+    {
+      "id": "math.poly.fundamental",
+      "name": "代数基本定理",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "代数基本定理说任意次数大于零的复系数多项式至少有一个复根，因此 n 次多项式在复数域上恰有 n 个根（计重数）。它保证多项式可分解为一次因式之积，是插值、求根和多项式运算的理论基础。"
+    },
+    {
+      "id": "math.poly.fft",
+      "name": "快速傅里叶变换",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "快速傅里叶变换用分治把 n 点离散傅里叶变换从 O(n^2) 降到 O(n log n)，核心是单位根的性质与蝴蝶操作。它把卷积转为点值相乘，是多项式乘法、大整数乘法与信号处理的基础算法。"
+    },
+    {
+      "id": "math.poly.ntt",
+      "name": "快速数论变换",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "快速数论变换在模素数的有限域上用原根代替复数单位根做 FFT，运算全为整数、没有浮点误差。它要求模数减一含有足够大的 2 的幂，常用 998244353，适合多项式乘法与卷积取模。"
+    },
+    {
+      "id": "math.poly.fwt",
+      "name": "快速沃尔什变换",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "快速沃尔什变换在 O(n log n) 时间内计算按位异或、与、或等运算定义的卷积。每种运算各有自己的变换核，先把数组变换到频域逐点相乘，再逆变换回来，是位运算卷积题的标准工具。"
+    },
+    {
+      "id": "math.poly.czt",
+      "name": "Chirp Z 变换",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "Chirp Z 变换又称 Bluestein 算法，用于计算等差角度抽样点 z_k=a·b^k 处的点值。它把求和式配方成卷积，从而只需一次 FFT，就能在 O(n log n) 时间内求出任意长度与起点的变换。"
+    },
+    {
+      "id": "math.poly.newton",
+      "name": "多项式牛顿迭代",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "多项式牛顿迭代求方程 F(G)≡0 在形式幂级数下的解，用 G 减去 F(G)/F'(G) 迭代，每一步把正确项数翻倍。它可用来求逆元、开方、对数与指数，是多项式全家桶的核心框架。"
+    },
+    {
+      "id": "math.poly.multipoint-eval-interpolation",
+      "name": "多项式多点求值与快速插值",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "多点求值把多项式在 n 个点处的取值转化为分治与余式运算，每次对子树对应的多项式取模，复杂度 O(n log^2 n)。快速插值是它的逆过程，用分治合并与拉格朗日基还原原多项式。"
+    },
+    {
+      "id": "math.poly.elementary-func",
+      "name": "多项式初等函数",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "在形式幂级数下，exp、log、sin、cos 等初等函数可由牛顿迭代及其导数关系定义。给定合适的常数项条件，它们都能在 O(n log n) 时间展开到 n 项，是生成函数推导之后落地计算的关键一步。"
+    },
+    {
+      "id": "math.poly.linear-recurrence",
+      "name": "常系数齐次线性递推",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "常系数齐次线性递推由前若干项与固定系数确定后续项。其特征多项式可以把转移写成多项式取模，用快速幂在 O(k log k log n) 内求第 n 项，也常与生成函数和 BM 算法配合使用。"
+    },
+    {
+      "id": "math.poly.shift",
+      "name": "多项式平移与连续点值平移",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "多项式平移求 f(x+c) 的系数，可通过二项式展开与卷积在 O(n log n) 完成。连续点值平移则在已知 0 到 n 处取值时，用差分或拉格朗日插值推出相邻区间的值，常用于插值题的增量计算。"
+    },
+    {
+      "id": "math.poly.symbolic-method",
+      "name": "符号化方法",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "符号化方法用组合构造的算子，如并、积、序列、集合与环，直接写出普通或指数生成函数，再由函数方程提取系数。它把计数问题转化为代数运算，是推导卡特兰数、排列组合等封闭形式的通用框架。"
+    },
+    {
+      "id": "math.poly.lagrange-inversion",
+      "name": "Lagrange 反演",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "Lagrange 反演给出复合逆函数的系数公式：若 f 与 g 互为复合逆，则 g 的 n 次项系数可由 x/f(x) 的 n 次方系数除以 n 得到。它常用于求解函数方程与树形结构的计数。"
+    },
+    {
+      "id": "math.poly.comp-rev",
+      "name": "形式幂级数复合与复合逆",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "形式幂级数复合计算 f(g(x))，一般可通过分块与泰勒展开在 O(n log n) 完成。复合逆求 g 使 f(g(x))=x，可用牛顿迭代或 Lagrange 反演；二者是处理生成函数方程的高级工具。"
+    },
+    {
+      "id": "math.poly.ogf",
+      "name": "普通生成函数",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "普通生成函数把序列 a_n 写成 Σ a_n x^n，序列的加法对应逐项相加，卷积对应多项式乘法，组合构造对应代数运算。它适合无标号计数，系数就是答案，是组合计数中最常用的翻译工具。"
+    },
+    {
+      "id": "math.poly.egf",
+      "name": "指数生成函数",
+      "level": 3,
+      "parent_id": "math.poly",
+      "summary": "指数生成函数把序列写成 Σ a_n x^n/n!，此时两个序列的乘积恰好对应有标号集合的划分与拼接。排列、集合与图等带标号计数问题用它能写出简洁的函数方程，再从中提取系数。"
+    },
+    {
+      "id": "math.combinatorics",
+      "name": "组合数学",
+      "level": 2,
+      "parent_id": "math"
+    },
+    {
+      "id": "math.combinatorics.combination",
+      "name": "排列组合",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "排列计数关注有顺序的选取，组合计数只关心选出的集合，基本公式为 n!/(n-m)! 与 C(n,m)。常用技巧包括捆绑、插空、隔板、递推与容斥，计算时通常要在模意义下预处理阶乘与逆元。"
+    },
+    {
+      "id": "math.combinatorics.drawer-principle",
+      "name": "抽屉原理",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "抽屉原理说把 n+1 个物品放入 n 个抽屉，必有一个抽屉含至少两件物品，推广形式可证明存在性而不给出构造。解题关键是设计合适的抽屉与物品，常用于鸽巢构造、同余分类与存在性证明。"
+    },
+    {
+      "id": "math.combinatorics.inclusion-exclusion-principle",
+      "name": "容斥原理",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "容斥原理用交集大小的交错和计算并集：并集等于各集合大小之和，减去两两交集，加回三三交集。它可推广到子集卷积与莫比乌斯反演，常用于统计至少满足一个或恰好满足若干条件的方案数。"
+    },
+    {
+      "id": "math.combinatorics.fibonacci",
+      "name": "斐波那契数列",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "斐波那契数列满足 F_1=F_2=1 且 F_n=F_{n-1}+F_{n-2}，通项可由特征方程或生成函数给出。它出现在爬楼梯、骨牌覆盖等计数问题中，也常用来练习矩阵快速幂与模意义下的周期。"
+    },
+    {
+      "id": "math.combinatorics.derangement",
+      "name": "错位排列",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "错位排列要求每个元素都不在自己的原位置，其数量记为 D_n，满足 D_n=(n-1)(D_{n-1}+D_{n-2})，也可由容斥公式 D_n=n!Σ(-1)^k/k! 得到，常出现在信件错装与全排列限制计数中。"
+    },
+    {
+      "id": "math.combinatorics.catalan",
+      "name": "卡特兰数",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "卡特兰数 C_n=1/(n+1)·C(2n,n)，计数合法括号序列、二叉树形态、出栈序列与不越界格路等结构。它满足 C_n=Σ C_i C_{n-i} 的卷积递推，也可由生成函数解出闭式。"
+    },
+    {
+      "id": "math.combinatorics.stirling",
+      "name": "斯特林数",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "第一类斯特林数统计 n 个元素的排列中恰有 k 个轮换的个数，第二类斯特林数统计把 n 个不同元素划分成 k 个非空子集的方案数。二者都有递推公式与生成函数，常与幂次转换和集合划分相连。"
+    },
+    {
+      "id": "math.combinatorics.bell",
+      "name": "贝尔数",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "贝尔数 B_n 统计 n 个不同元素的所有划分方案数，满足 B_{n+1}=Σ C(n,k)B_k，其指数生成函数为 exp(e^x-1)。它是第二类斯特林数按子集个数求和的结果，可用 Touchard 同余研究模性质。"
+    },
+    {
+      "id": "math.combinatorics.bernoulli",
+      "name": "伯努利数",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "伯努利数由生成函数 x/(e^x-1)=Σ B_n x^n/n! 定义，大于 1 的奇数下标项为零。它出现在幂和公式、欧拉-麦克劳林求和与正切函数展开中，是解析数论和组合恒等式里的常见常数序列。"
+    },
+    {
+      "id": "math.combinatorics.entringer",
+      "name": "Entringer Number",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "Entringer 数统计从给定起点出发的交替排列个数，满足 E(n,k)=E(n,k-1)+E(n-1,n-k) 的递推。它与欧拉数关系紧密，可用于计算波浪形排列与上下交替序列的计数。"
+    },
+    {
+      "id": "math.combinatorics.eulerian",
+      "name": "Eulerian Number",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "欧拉数 A(n,m) 统计 n 个元素的排列中恰有 m 个上升位置的个数，满足 A(n,m)=(m+1)A(n-1,m)+(n-m)A(n-1,m-1)。它由 Worpitzky 恒等式与幂和、伯努利数相联系。"
+    },
+    {
+      "id": "math.combinatorics.partition",
+      "name": "分拆数",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "分拆数 p(n) 把正整数 n 写成若干正整数之和，不考虑顺序。它的生成函数为 ∏1/(1-x^k)，可用五边形数定理做 O(n√n) 递推，也可借助欧拉函数与杜教筛求大规模前缀和。"
+    },
+    {
+      "id": "math.combinatorics.vandermonde-convolution",
+      "name": "范德蒙德卷积",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "范德蒙德卷积给出 Σ_k C(n,k)C(m,r-k)=C(n+m,r)，本质是先在两个集合中选取再合并的计数。它是组合恒等式推导的常用起点，也可用于化简含组合数乘积的求和与生成函数系数。"
+    },
+    {
+      "id": "math.combinatorics.polya",
+      "name": "Pólya 计数",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "Pólya 计数用群作用下的 Burnside 引理统计本质不同的染色方案：答案等于各置换不动点数的平均值。引入循环指标与轮换长度后，可以处理带权、多颜色以及旋转翻转等对称等价问题。"
+    },
+    {
+      "id": "math.combinatorics.graph-enumeration",
+      "name": "图论计数",
+      "level": 3,
+      "parent_id": "math.combinatorics",
+      "summary": "图论计数研究标号或无标号图的个数与结构统计。标号图通常用指数生成函数处理，无标号图需要借助 Pólya 与图的自同构群；常见结论包括 Cayley 公式 n^{n-2} 以及连通图、二分图的计数技巧。"
+    },
+    {
+      "id": "math.linear-algebra",
+      "name": "线性代数",
+      "level": 2,
+      "parent_id": "math"
+    },
+    {
+      "id": "math.linear-algebra.vector",
+      "name": "向量",
+      "level": 3,
+      "parent_id": "math.linear-algebra",
+      "summary": "向量是带大小与方向的量，在竞赛中通常表示为坐标元组或数组。它支持加法与数乘，可做点积、叉积和模长计算；把状态表示为向量、把转移表示为矩阵，是许多线性代数建模的第一步。"
+    },
+    {
+      "id": "math.linear-algebra.product",
+      "name": "内积和外积",
+      "level": 3,
+      "parent_id": "math.linear-algebra",
+      "summary": "内积 a·b=Σa_i b_i 是标量，衡量两个向量的投影与夹角；外积在三维中给出垂直于两者的向量，其模长为平行四边形面积，也可写成反对称矩阵形式。二者用于正交判定、面积计算与旋转。"
+    },
+    {
+      "id": "math.linear-algebra.matrix",
+      "name": "矩阵",
+      "level": 3,
+      "parent_id": "math.linear-algebra",
+      "summary": "矩阵是数的矩形阵列，乘法对应线性映射的复合，满足结合律但不满足交换律。竞赛中常用矩阵快速幂加速线性递推，用高斯消元解方程组与求逆，用矩阵维护带线性转移的动态规划。"
+    },
+    {
+      "id": "math.linear-algebra.elementary-operations",
+      "name": "初等变换",
+      "level": 3,
+      "parent_id": "math.linear-algebra",
+      "summary": "初等行变换包括交换两行、某行乘非零数、把一行的倍数加到另一行，它们不改变行空间与方程组的解集。高斯消元正是反复施行初等变换把矩阵化为阶梯形，是求秩、解方程与求逆的统一工具。"
+    },
+    {
+      "id": "math.linear-algebra.determinant",
+      "name": "行列式",
+      "level": 3,
+      "parent_id": "math.linear-algebra",
+      "summary": "行列式是方阵的标量函数，等于所有带符号排列乘积之和，几何上表示线性映射对体积的缩放倍数。计算时用高斯消元化为上三角后取对角元乘积，可判断可逆性并用于克拉默法则与矩阵树定理。"
+    },
+    {
+      "id": "math.linear-algebra.vector-space",
+      "name": "线性空间",
+      "level": 3,
+      "parent_id": "math.linear-algebra",
+      "summary": "线性空间是对加法与数乘封闭的集合，包含零元并满足分配律等公理。子空间、生成集、线性相关与维数刻画了它的结构；理解这些概念后，方程组的解集以及矩阵的核与像就有了统一解释。"
+    },
+    {
+      "id": "math.linear-algebra.basis",
+      "name": "线性基",
+      "level": 3,
+      "parent_id": "math.linear-algebra",
+      "summary": "线性基是一组极大线性无关向量，可以张成原来的向量集合。竞赛里通常对二进制向量按位贪心插入，维护一组最高位互不相同的基，用于求异或最大值、最小值、第 k 大以及可表示性判定。"
+    },
+    {
+      "id": "math.linear-algebra.linear-mapping",
+      "name": "线性映射",
+      "level": 3,
+      "parent_id": "math.linear-algebra",
+      "summary": "线性映射是保持加法与数乘的映射，选定基后可用矩阵表示，坐标变换与矩阵乘法对应映射的复合。核、像、秩与零化度描述它的行为，矩阵的相似与对角化正是在寻找合适的基。"
+    },
+    {
+      "id": "math.linear-algebra.char-poly",
+      "name": "特征多项式",
+      "level": 3,
+      "parent_id": "math.linear-algebra",
+      "summary": "特征多项式定义为 det(λI-A)，其根是矩阵的特征值。由 Cayley-Hamilton 定理，矩阵满足自身的特征多项式，因此任意高次幂可约化为低次多项式组合，这是线性递推加速与多项式取模的基础。"
+    },
+    {
+      "id": "math.linear-algebra.diagonalization",
+      "name": "对角化",
+      "level": 3,
+      "parent_id": "math.linear-algebra",
+      "summary": "若矩阵有 n 个线性无关的特征向量，就可以通过相似变换化为对角阵，幂运算与函数求值都变得简单。判据是各特征值的几何重数等于代数重数；实对称矩阵一定可以正交对角化。"
+    },
+    {
+      "id": "math.linear-algebra.jordan",
+      "name": "Jordan标准型",
+      "level": 3,
+      "parent_id": "math.linear-algebra",
+      "summary": "Jordan 标准型把不可对角化的矩阵在相似意义下化为由 Jordan 块组成的分块对角阵，块的大小反映特征值的几何重数与代数重数之差。它给出所有矩阵的统一分类，并便于计算矩阵幂与矩阵指数。"
+    },
+    {
+      "id": "math.simplex",
+      "name": "单纯形法",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "单纯形法求解线性规划：把约束化为标准形后，从初始可行基出发沿目标函数改善方向换基，直到检验数满足最优性条件。它可以处理变量多、约束少的问题，也常与对偶理论和网络流建模配合。"
+    },
+    {
+      "id": "math.probability",
+      "name": "概率论",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "概率论用概率、条件概率、随机变量和期望刻画随机过程。竞赛中常把事件拆成期望线性相加，或按状态建立概率转移，重点是把目标量写成可计算的和，而不是套用纯理论定义。"
+    },
+    {
+      "id": "math.game-theory",
+      "name": "博弈论",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "博弈论研究双方在规则约束下如何选择策略。竞赛常见公平组合游戏、必胜必败状态和 SG 函数，核心是判断局面能否等价为若干独立子游戏，并据转移图计算胜负。"
+    },
+    {
+      "id": "math.numerical",
+      "name": "数值算法",
+      "level": 2,
+      "parent_id": "math"
+    },
+    {
+      "id": "math.numerical.interp",
+      "name": "插值",
+      "level": 3,
+      "parent_id": "math.numerical",
+      "summary": "已知若干采样点，构造一个恰好穿过它们的多项式或分段函数，用来估计其他位置的取值。拉格朗日形式便于推导和取模计算，牛顿形式适合逐步追加节点，等距高次插值则会出现龙格现象。"
+    },
+    {
+      "id": "math.numerical.integral",
+      "name": "数值积分",
+      "level": 3,
+      "parent_id": "math.numerical",
+      "summary": "在原函数难以求出时，用有限个采样点的加权和逼近定积分。梯形公式与辛普森公式分别用一次和二次多项式拟合曲线，把区间不断细分后误差按阶下降，是自适应积分与概率数值计算的基础。"
+    },
+    {
+      "id": "math.numerical.gauss",
+      "name": "高斯消元",
+      "level": 3,
+      "parent_id": "math.numerical",
+      "summary": "通过初等行变换把线性方程组化为上三角矩阵再回代求解，复杂度 O(n^3)。选取主元能抑制舍入误差放大，消元过程中同时可以读出矩阵的秩与行列式，也用于求逆和判断解的存在与个数。"
+    },
+    {
+      "id": "math.numerical.newton",
+      "name": "牛顿迭代法",
+      "level": 3,
+      "parent_id": "math.numerical",
+      "summary": "用当前点处的切线与坐标轴的交点不断逼近方程的根，收敛正常时误差按平方速度下降。它对初值敏感，遇到重根或导数接近零的位置容易停滞甚至发散，实际使用时常先做变形或改用割线法。"
+    },
+    {
+      "id": "math.order-theory",
+      "name": "序理论",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "研究偏序、全序与格等结构的数学分支。Dilworth 定理给出最小链覆盖与最长反链相等的关系，把偏序集问题转化为二分图匹配；格与布尔代数的性质也为若干贪心和计数策略提供了统一的正确性解释。"
+    },
+    {
+      "id": "math.young-tableau",
+      "name": "杨氏矩阵",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "每行从左到右、每列从上到下都严格递增的表格。行列插入与删除对应 RSK 对应，可以给出对称函数的组合解释；把元素按顺序插入后，第一行的长度等统计量也能转化为最长递增子序列一类的问题。"
+    },
+    {
+      "id": "math.matroid",
+      "name": "拟阵",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "把线性无关、森林这类结构抽象出来的组合对象，满足独立集公理与交换性质，并配有基和秩函数。在拟阵上按权从小到大取元素的贪心一定得到最大权独立集，这解释了最小生成树与部分匹配算法的正确性。"
+    },
+    {
+      "id": "math.berlekamp-massey",
+      "name": "Berlekamp-Massey 算法",
+      "level": 2,
+      "parent_id": "math",
+      "summary": "在模意义下由数列的前若干项递推出最短线性递推式，再配合多项式快速幂与取模求出第 n 项，整体复杂度 O(k^2 log n)。难点在先猜出足够长的递推关系，常用于计数问题的加速与规律验证。"
+    },
+    {
+      "id": "ds",
+      "name": "数据结构",
+      "level": 1,
+      "parent_id": null
+    },
+    {
+      "id": "ds.stack",
+      "name": "栈",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "只允许在表尾插入和删除的线性结构，遵循后进先出。括号匹配、表达式求值、深度优先搜索的回退以及函数调用都依赖它；用数组加栈顶指针实现时常数极小，也是单调栈等结构的组成基础。"
+    },
+    {
+      "id": "ds.queue",
+      "name": "队列",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "在表尾插入、表头删除的线性结构，遵循先进先出。广度优先搜索的按层扩展、任务按到达顺序处理以及滑动窗口的维护都依赖它；用循环数组加头尾指针实现，可以避免频繁搬移元素。"
+    },
+    {
+      "id": "ds.linked-list",
+      "name": "链表",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "用指针把结点依次连接起来的线性结构，插入和删除只需改动相邻的几个指针，代价是按下标访问要沿链逐个走过。单向、双向与循环链表适合不同的维护需求，也常用于实现邻接表与块状链表。"
+    },
+    {
+      "id": "ds.hash",
+      "name": "哈希表",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "用哈希函数把关键字映射到桶中，使查找、插入与删除在平均情况下接近 O(1)。冲突可以用链地址法或开放寻址处理，装载因子过大时需要扩容或重哈希；当哈希函数可被预测时，构造数据能把它逼到最坏情况。"
+    },
+    {
+      "id": "ds.union-find",
+      "name": "并查集",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "并查集维护不相交集合的合并与查询，主要支持寻找代表元、判断连通性和按秩合并。路径压缩与按大小合并可使多次操作接近常数时间，是处理动态连通关系的基础数据结构。"
+    },
+    {
+      "id": "ds.union-find-extended",
+      "name": "扩展域并查集",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "扩展域并查集把每个元素的多种关系拆成多个虚拟域，通过合并不同域表达“同类”与“异类”等约束。它常用于带敌友关系的连通性、种类划分和矛盾检测问题。"
+    },
+    {
+      "id": "ds.union-find-weighted",
+      "name": "带权并查集",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "带权并查集在维护连通性的同时保存节点到代表元的权值，并通过路径压缩传播相对关系。它适合处理距离差、偏移量、比例关系以及需要判断约束是否矛盾的动态合并问题。"
+    },
+    {
+      "id": "ds.heap",
+      "name": "堆",
+      "level": 2,
+      "parent_id": "ds"
+    },
+    {
+      "id": "ds.binary-heap",
+      "name": "二叉堆",
+      "level": 3,
+      "parent_id": "ds.heap",
+      "summary": "用完全二叉树维护偏序的结构，父结点的值总是不大于子结点。插入与删除堆顶都是 O(log n)，自底向上建堆可以线性完成；用数组表示父子下标即可，无需指针，是优先队列与堆排序最常见的实现。"
+    },
+    {
+      "id": "ds.pairing-heap",
+      "name": "配对堆",
+      "level": 3,
+      "parent_id": "ds.heap",
+      "summary": "实现简单的可并堆，合并时直接把一棵树挂到另一棵的根下，删除堆顶后把子堆两两配对再依次合并。单次操作最坏可能退化，但均摊复杂度优秀、常数很小，适合需要频繁合并的优先队列场景。"
+    },
+    {
+      "id": "ds.leftist-tree",
+      "name": "左偏树",
+      "level": 3,
+      "parent_id": "ds.heap",
+      "summary": "带距离标记的可并堆，每个结点记录到最近空结点的距离。合并时沿右链递归下探，并把较长的子树换到左边以保证右链长度是对数级，从而支持 O(log n) 的合并、插入、删除堆顶与删除任意结点。"
+    },
+    {
+      "id": "ds.block",
+      "name": "分块",
+      "level": 2,
+      "parent_id": "ds"
+    },
+    {
+      "id": "ds.decompose",
+      "name": "分块思想",
+      "level": 3,
+      "parent_id": "ds.block",
+      "summary": "把序列或询问按大小与位置切成若干块，整块批量处理、零散元素逐个暴力，块长通常取根号级别，使修改与查询的复杂度都落在根号附近。它是根号算法与莫队一类离线做法的共同思想来源。"
+    },
+    {
+      "id": "ds.block-array",
+      "name": "块状数组",
+      "level": 3,
+      "parent_id": "ds.block",
+      "summary": "把数组切成若干连续块，并为每块额外维护和、最值或整体标记等信息。区间操作时中间整块批量处理、两端零散元素单独计算，块长取根号级时总复杂度最优，适合线段树不便合并的信息。"
+    },
+    {
+      "id": "ds.block-list",
+      "name": "块状链表",
+      "level": 3,
+      "parent_id": "ds.block",
+      "summary": "把链表与数组结合的线性结构，每个结点保存一小段连续元素。块内可以快速插入删除，块过大时分裂、过小时与相邻块合并，并按块长维护定位信息，从而同时支持较快的随机访问与频繁的插入删除。"
+    },
+    {
+      "id": "ds.tree-decompose",
+      "name": "树分块",
+      "level": 3,
+      "parent_id": "ds.block",
+      "summary": "按深度、子树规模或关键点把树划分成若干连通块，使跨块的路径只经过少量边界点。它让树上莫队、路径统计以及需要暴力修改的问题把代价控制在根号级，是树上根号算法的主要组织方式。"
+    },
+    {
+      "id": "ds.sqrt-tree",
+      "name": "Sqrt Tree",
+      "level": 3,
+      "parent_id": "ds.block",
+      "summary": "针对静态序列做多层分块，每一层保存不同粒度区间的信息，使满足结合律的区间查询可以在 O(1) 时间内回答。代价是 O(n log log n) 级别的预处理与空间开销，而且完全不支持修改。"
+    },
+    {
+      "id": "ds.monotonic-stack",
+      "name": "单调栈",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "在栈中保持元素单调的结构，插入新元素前先弹出破坏单调性的旧元素。这样能在线性时间内求出每个位置左右第一个比它大或比它小的位置，用于直方图最大矩形、单调序列计数与斜率优化等问题。"
+    },
+    {
+      "id": "ds.monotonic-queue",
+      "name": "单调队列",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "用双端队列维护滑动窗口内元素的单调性，队首始终是当前窗口的最值。窗口移动时从队尾淘汰劣于新元素的旧值、从队首移除过期下标，使一类定长区间最值查询和动态规划优化降到线性。"
+    },
+    {
+      "id": "ds.sparse-table",
+      "name": "ST 表",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "基于倍增的静态区间查询结构，f[i][k] 表示从下标 i 开始、长度为 2^k 的区间信息。对最值、最大公约数这类可重复贡献的运算可以 O(1) 回答一次询问，预处理与空间都是 O(n log n)，但不支持修改。"
+    },
+    {
+      "id": "ds.fenwick",
+      "name": "树状数组",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "用 lowbit 把前缀区间拆成若干个可直接取用的段落，使单点修改与前缀求和都是 O(log n)，常数远小于线段树。配合差分数组可做区间修改、单点查询，也能扩展出区间最值、二维与前缀统计等用法。"
+    },
+    {
+      "id": "ds.segment-tree",
+      "name": "线段树",
+      "level": 2,
+      "parent_id": "ds"
+    },
+    {
+      "id": "ds.segment-tree.basic",
+      "name": "线段树基础",
+      "level": 3,
+      "parent_id": "ds.segment-tree",
+      "summary": "线段树基础包括用完全二叉树维护区间信息，以及单点修改、区间查询、懒标记和标记下传。它要求节点的合并运算满足结合律，是处理动态区间统计的核心结构。"
+    },
+    {
+      "id": "ds.seg-merge-split",
+      "name": "线段树合并与分裂",
+      "level": 3,
+      "parent_id": "ds.segment-tree",
+      "summary": "动态开点的线段树可以按位置区间分裂成两棵，也可以把两棵树对应位置的计数相加合并。合并常用于统计子树信息，分裂适合维护可切割的序列，总代价与参与合并或分裂的结点数相关。"
+    },
+    {
+      "id": "ds.li-chao-tree",
+      "name": "李超线段树",
+      "level": 3,
+      "parent_id": "ds.segment-tree",
+      "summary": "在线段树的每个结点上维护一条在该区间内最优的直线或线段，插入比较两条线在区间中点的取值决定走向，查询最值时沿路径取答案。单次插入 O(log^2 n)，用于斜率优化与直线集合的最值查询。"
+    },
+    {
+      "id": "ds.cat-tree",
+      "name": "猫树",
+      "level": 3,
+      "parent_id": "ds.segment-tree",
+      "summary": "面向静态区间查询的预处理结构，在每一层取区间中点，并把从中点向两侧延伸的答案依次存下来。满足结合律的运算可以 O(1) 回答询问，预处理和空间为 O(n log n)，但只能处理静态序列。"
+    },
+    {
+      "id": "ds.kinetic-tournament-tree",
+      "name": "Kinetic Tournament Tree",
+      "level": 3,
+      "parent_id": "ds.segment-tree",
+      "summary": "支持区间加、区间赋值并查询区间最值的线段树变体，每个结点记录击败当前胜者所需的最小增量。做区间加时，若该增量大于本次加量则整段最优者不变，可以整段跳过，从而把总复杂度摊还到对数级。"
+    },
+    {
+      "id": "ds.dividing",
+      "name": "划分树",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "对序列按值域逐层划分，记录每个元素进入左子树的次数，形成稳定的划分结构。查询静态区间第 k 小时，只需比较该区间落在左子树的元素个数决定走向，单次查询 O(log n)，实现比主席树更直观。"
+    },
+    {
+      "id": "ds.balanced-tree",
+      "name": "平衡树",
+      "level": 2,
+      "parent_id": "ds"
+    },
+    {
+      "id": "ds.bst",
+      "name": "二叉搜索树",
+      "level": 3,
+      "parent_id": "ds.balanced-tree",
+      "summary": "任一结点左子树的关键字都比它小、右子树都比它大，中序遍历便得到有序序列。查找、插入与删除的平均代价是 O(log n)，但按有序数据依次插入会退化成链，因此实际使用需要配合平衡或随机化策略。"
+    },
+    {
+      "id": "ds.treap",
+      "name": "Treap",
+      "level": 3,
+      "parent_id": "ds.balanced-tree",
+      "summary": "给每个结点分配随机优先级，使树同时满足二叉搜索树与堆的性质，期望树高为 O(log n)。用旋转或分裂合并可以实现插入删除与区间操作，代码短小且便于扩展成可持久化版本，是常用的手写平衡树。"
+    },
+    {
+      "id": "ds.splay",
+      "name": "Splay 树",
+      "level": 3,
+      "parent_id": "ds.balanced-tree",
+      "summary": "每次访问后把结点通过旋转移动到根，形成自调整的二叉搜索树。连续操作具有摊还对数的复杂度，还天然支持按排名分裂与合并、区间翻转等操作，是 Link Cut Tree 等动态树结构的基础。"
+    },
+    {
+      "id": "ds.wblt",
+      "name": "WBLT",
+      "level": 3,
+      "parent_id": "ds.balanced-tree",
+      "summary": "以权重平衡为条件的二叉搜索树，通过旋转维持左右子树大小的比例，从而保证对数树高。它实现简单、常数较小，并且像线段树一样支持区间信息的合并与分裂，适合需要按大小切分序列的场景。"
+    },
+    {
+      "id": "ds.sgt",
+      "name": "替罪羊树",
+      "level": 3,
+      "parent_id": "ds.balanced-tree",
+      "summary": "插入后若某棵子树失去平衡，就把它整棵拍平后用中序序列重建，用偶尔的重建代价换取实现简单与较高的查询效率。它适合按大小划分序列或作为其他结构的底层容器，但需要控制重建的频率。"
+    },
+    {
+      "id": "ds.cartesian-tree",
+      "name": "笛卡尔树",
+      "level": 3,
+      "parent_id": "ds.balanced-tree",
+      "summary": "以序列下标满足二叉搜索树性质、以元素值满足堆性质的二叉树。用单调栈可以在线性时间内建树，建好之后区间最值问题转化为两点的最近公共祖先，也能用来刻画序列的子树区间结构。"
+    },
+    {
+      "id": "ds.sbt",
+      "name": "Size Balanced Tree",
+      "level": 3,
+      "parent_id": "ds.balanced-tree",
+      "summary": "用子树大小而不是树高来判断平衡的二叉搜索树，失衡时按几种固定情形旋转并递归维护 size。它的判定条件直观、常数表现良好，是手写平衡树时常见的选择之一。"
+    },
+    {
+      "id": "ds.avl",
+      "name": "AVL 树",
+      "level": 3,
+      "parent_id": "ds.balanced-tree",
+      "summary": "要求任意结点左右子树高度差不超过 1 的平衡二叉搜索树。插入和删除后用单旋或双旋恢复平衡，树高严格保持对数级，查询效率稳定，但维护代价比红黑树这类宽松平衡的结构更高。"
+    },
+    {
+      "id": "ds.rbtree",
+      "name": "红黑树",
+      "level": 3,
+      "parent_id": "ds.balanced-tree",
+      "summary": "通过给结点着色并限制红结点不能相邻、根到叶子的黑结点数相同来近似平衡，最长路径不超过最短路径的两倍。插入删除的调整情形固定，因此被大量标准库用作有序容器的底层实现。"
+    },
+    {
+      "id": "ds.llrbt",
+      "name": "左偏红黑树",
+      "level": 3,
+      "parent_id": "ds.balanced-tree",
+      "summary": "用左倾的红色链接表示三结点，使插入后通常只需少量旋转与变色就能修复平衡。它保留了红黑树的对数树高，代码却明显更短，常用于教学以及自制符号表和有序映射。"
+    },
+    {
+      "id": "ds.aa-tree",
+      "name": "AA 树",
+      "level": 3,
+      "parent_id": "ds.balanced-tree",
+      "summary": "把红色结点统一规定为右链接，并用 level 标记结点的层数，使插入与删除只在少数几种情形下调整。实现短小、易于记忆，适合在竞赛中快速手写一棵平衡二叉搜索树。"
+    },
+    {
+      "id": "ds.skiplist",
+      "name": "跳表",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "在有序链表上叠加多层索引，查找时从高层快速跳跃、发现越过目标后逐层下降，期望复杂度 O(log n)。插入删除靠随机决定层数，实现比平衡树简单，也便于扩展范围查询与并发访问。"
+    },
+    {
+      "id": "ds.persistent",
+      "name": "可持久化数据结构",
+      "level": 2,
+      "parent_id": "ds"
+    },
+    {
+      "id": "ds.persistent-seg",
+      "name": "可持久化线段树",
+      "level": 3,
+      "parent_id": "ds.persistent",
+      "summary": "每次修改只新建沿途 O(log n) 个结点，其余子树与旧版本共享，从而保留任意历史状态。按值域建树后访问第 v 个版本即可回答区间第 k 小、区间不同数个数等可以作差统计的问题。"
+    },
+    {
+      "id": "ds.persistent-block-array",
+      "name": "可持久化块状数组",
+      "level": 3,
+      "parent_id": "ds.persistent",
+      "summary": "把数组分块并持久化每一块的引用，修改时只复制受影响的块与块表，因此单次更新新建的结点数是块长级别。适合需要保留多个版本、又不愿承担线段树额外常数与复杂度的序列问题。"
+    },
+    {
+      "id": "ds.persistent-balanced",
+      "name": "可持久化平衡树",
+      "level": 3,
+      "parent_id": "ds.persistent",
+      "summary": "依靠分裂合并与路径复制来保存历史版本的平衡树，支持带版本的区间插入删除、区间统计与排名查询。它比可持久化线段树更通用，代价是更高的实现难度与更大的空间开销。"
+    },
+    {
+      "id": "ds.persistent-trie",
+      "name": "可持久化字典树",
+      "level": 3,
+      "parent_id": "ds.persistent",
+      "summary": "插入字符串时只复制沿途经过的结点，其余分支与旧版本共用，于是每个版本都是一棵完整的前缀树。它常用于处理区间异或最值、历史版本集合查询以及需要保留多个前缀集合的字符串问题。"
+    },
+    {
+      "id": "ds.persistent.other",
+      "name": "其他可持久化数据结构",
+      "level": 3,
+      "parent_id": "ds.persistent",
+      "summary": "其他可持久化数据结构用于保存历史版本，使一次修改只复制发生变化的部分。它不限于可持久化线段树，也可与平衡树、Trie 或数组结构结合，关键是控制版本引用和空间共享。"
+    },
+    {
+      "id": "ds.persistent-heap",
+      "name": "可持久化可并堆",
+      "level": 3,
+      "parent_id": "ds.persistent",
+      "summary": "在可并堆上做路径复制，使每次合并都产生一个新堆而旧结构仍然可用。它适合需要同时维护多条演化分支的贪心、最短路变体与带历史查询的调度问题，空间代价与操作次数同阶。"
+    },
+    {
+      "id": "ds.tree-in-tree",
+      "name": "树套树",
+      "level": 2,
+      "parent_id": "ds"
+    },
+    {
+      "id": "ds.seg-in-seg",
+      "name": "线段树套线段树",
+      "level": 3,
+      "parent_id": "ds.tree-in-tree",
+      "summary": "外层按下标、内层按值域各建一棵线段树，可以支持二维矩形修改查询或带修改的区间第 k 小。单次操作复杂度是 O(log^2 n)，空间要靠动态开点或按需合并来控制。"
+    },
+    {
+      "id": "ds.seg-in-balanced",
+      "name": "平衡树套线段树",
+      "level": 3,
+      "parent_id": "ds.tree-in-tree",
+      "summary": "外层用平衡树维护元素顺序，每个结点挂一棵按值域建立的线段树，使结构同时支持按下标插入删除和按值域统计。适合动态序列上的区间排名、第 k 小与前后缀计数问题。"
+    },
+    {
+      "id": "ds.balanced-in-seg",
+      "name": "线段树套平衡树",
+      "level": 3,
+      "parent_id": "ds.tree-in-tree",
+      "summary": "外层按位置分治，每个结点维护一棵保存该区间元素有序集合的平衡树，从而支持区间排名、前驱后继等无法由左右儿子直接合并的信息。查询时需要沿外层路径访问 O(log n) 棵平衡树。"
+    },
+    {
+      "id": "ds.seg-in-bit",
+      "name": "树状数组套权值线段树",
+      "level": 3,
+      "parent_id": "ds.tree-in-tree",
+      "summary": "对下标建立树状数组，树状数组的每个结点维护一棵动态开点的权值线段树，用 O(log^2 n) 支持单点修改与区间第 k 小查询。它是静态主席树在带修改情形下最常见的替代方案，空间按操作次数增长。"
+    },
+    {
+      "id": "ds.bit-in-block-array",
+      "name": "分块套树状数组",
+      "level": 3,
+      "parent_id": "ds.tree-in-tree",
+      "summary": "对序列分块，块内再用树状数组维护计数或前缀信息，把根号级与对数级的操作结合起来。它适合修改和查询都比较频繁的场景，能在不引入复杂树套树的前提下获得更好的常数。"
+    },
+    {
+      "id": "ds.tree-in-tree.other",
+      "name": "其他树套树",
+      "level": 3,
+      "parent_id": "ds.tree-in-tree",
+      "summary": "其他树套树组合不局限于线段树套线段树，也可以用平衡树、树状数组或分块嵌套。设计时要先明确每一层维护的维度与查询操作，再选择能支持修改和查询的复杂度组合。"
+    },
+    {
+      "id": "ds.kdt",
+      "name": "K-D Tree",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "把 k 维点集按坐标轮换选择划分维度并取中位数切分，形成一棵每个结点对应一个超矩形空间的分割树。常用于最近邻搜索、矩形内点数统计与带剪枝的搜索，效率依赖数据分布与划分策略。"
+    },
+    {
+      "id": "ds.dynamic-tree",
+      "name": "动态树",
+      "level": 2,
+      "parent_id": "ds"
+    },
+    {
+      "id": "ds.lct",
+      "name": "Link Cut Tree",
+      "level": 3,
+      "parent_id": "ds.dynamic-tree",
+      "summary": "用 splay 维护森林中的实链与虚边，支持动态加边删边、换根、路径信息查询与连通性判断，是处理动态树问题的一套通用工具。它通过 access 操作把根到某个点的路径展开成一条 splay。"
+    },
+    {
+      "id": "ds.global-bst",
+      "name": "全局平衡二叉树",
+      "level": 3,
+      "parent_id": "ds.dynamic-tree",
+      "summary": "对静态树做重链剖分后，按各条链的规模自底向上构造出一棵全局平衡的辅助二叉树，使单点修改与路径查询的摊还复杂度都是 O(log n)。它可以看作树链剖分加线段树组合的一种常数更优的替代。"
+    },
+    {
+      "id": "ds.ett",
+      "name": "Euler Tour Tree",
+      "level": 3,
+      "parent_id": "ds.dynamic-tree",
+      "summary": "把树的欧拉环游序列存进平衡树，每条边在序列中出现两次，子树对应一段连续区间，换边只需改动常数个元素。它适合在动态树上维护子树信息以及各个连通块的统计量。"
+    },
+    {
+      "id": "ds.top-tree",
+      "name": "Top Tree",
+      "level": 3,
+      "parent_id": "ds.dynamic-tree",
+      "summary": "把树的边与路径按簇自底向上合并的动态树结构，簇与簇之间共享端点，可以统一表达路径与子树两类操作。它的理论表达力很强，能覆盖 Link Cut Tree 的功能，但实现相当复杂，通常只在必要时使用。"
+    },
+    {
+      "id": "ds.divide-combine",
+      "name": "析合树",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "刻画排列中连续段嵌套关系的树形结构，合点表示两段可以拼接成更大的连续段，析点表示无法再合并。它把连续段计数问题转化为树上的动态规划，是处理连续段相关计数问题的主要工具。"
+    },
+    {
+      "id": "ds.pq-tree",
+      "name": "PQ 树",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "用 P 结点和 Q 结点分别表示子集合可以任意排列与必须保持相邻约束，通过自底向上的归约判断是否存在满足全部约束的元素排列。它在历史上用于平面图判定与区间约束问题。"
+    },
+    {
+      "id": "ds.finger-tree",
+      "name": "手指树",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "把序列组织成带测量信息的树，并在两端额外保留指向当前首尾的指针，使两端的访问、拼接与切分接近常数时间。它特别适合函数式环境下的持久序列，但实现细节较多。"
+    },
+    {
+      "id": "ds.huffman-tree",
+      "name": "霍夫曼树",
+      "level": 2,
+      "parent_id": "ds",
+      "summary": "每次取出权值最小的两个结点合并成一棵子树，最终得到带权路径长度最小的二叉树，对应最优前缀编码。用优先队列即可在 O(n log n) 时间内构造，也用于证明多种贪心合并策略的最优性。"
+    },
+    {
+      "id": "graph",
+      "name": "图论",
+      "level": 1,
+      "parent_id": null
+    },
+    {
+      "id": "graph.dfs",
+      "name": "图上深度优先搜索（DFS）",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "图上的深度优先搜索沿边一路深入，再回退寻找未访问分支。它能配合时间戳刻画搜索树、祖先关系与环，是割点、桥和强连通分量算法的基础，使用时要区分树边、回退边及访问状态。"
+    },
+    {
+      "id": "graph.basic",
+      "name": "图论基础",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "图论基础包括图的定义、度、路径、连通块、邻接矩阵与邻接表等表示方法，以及 DFS/BFS 的基本框架。它是割点、最短路、生成树和网络流等算法的共同前提。"
+    },
+    {
+      "id": "graph.bfs",
+      "name": "图上广度优先搜索（BFS）",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "图上的广度优先搜索从起点按层扩展，能在无权图或边权相同的图中求出最短距离。遍历时需要记录距离和访问状态，并注意多源起点、重边和自环不会破坏层次性质。"
+    },
+    {
+      "id": "graph.tree",
+      "name": "树上问题",
+      "level": 2,
+      "parent_id": "graph"
+    },
+    {
+      "id": "graph.tree-basic",
+      "name": "树基础",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "连通且无环的无向图，任意两点之间的路径唯一，n 个结点的树恰好有 n-1 条边。通常选定一个根来讨论父子关系，子树区间、深度与高度等概念都建立在根树之上。"
+    },
+    {
+      "id": "graph.tree-diameter",
+      "name": "树的直径",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "树上距离最远的两点之间的距离。任意选一点找出离它最远的点，再从该点找一次最远点即可得到直径，正确性依赖边权非负；也可以用树形 DP 合并子树中最长的两条向下链来求得。"
+    },
+    {
+      "id": "graph.tree-center",
+      "name": "树的中心",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "到其余所有结点最大距离最小的点，它一定落在直径的中点上，一棵树至多有两个。可以先求出直径再取其中间位置，也可以用换根 DP 逐点计算最大距离后比较得到。"
+    },
+    {
+      "id": "graph.tree-centroid",
+      "name": "树的重心",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "删去后使剩余各连通块中最大者最小的结点，每棵树至多有两个重心且彼此相邻。重心保证每个子树规模不超过总点数的一半，因此成为点分治与树上启发式合并的划分依据。"
+    },
+    {
+      "id": "graph.lca",
+      "name": "最近公共祖先",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "根树上两个结点的最深公共祖先。常用倍增在 O(log n) 时间内回答，也可以用树链剖分或欧拉序加 RMQ 求解；它把树上路径拆成两段祖先链，是路径统计与树上差分的基础工具。"
+    },
+    {
+      "id": "graph.hld",
+      "name": "树链剖分",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "按子树大小选出重儿子，把树剖分成若干条重链，使每条链在 DFS 序中连续。配合线段树就能把树上的路径操作与子树操作都转化为序列上的区间操作，复杂度降到对数级。"
+    },
+    {
+      "id": "graph.dsu-on-tree",
+      "name": "树上启发式合并",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "遍历子树时保留重儿子的统计结果，轻儿子则先算后清或暴力重算，用较小的一侧更新答案，总代价是 O(n log n)。它适合回答每个子树内颜色数、出现次数或最大频次一类的问题。"
+    },
+    {
+      "id": "graph.virtual-tree",
+      "name": "虚树",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "只保留询问涉及的关键点以及它们两两之间的最近公共祖先，按 DFS 序用栈建出一棵规模更小的树。这样多次路径或子树询问的总代价只与关键点个数相关，用于批量处理树上查询。"
+    },
+    {
+      "id": "graph.tree-divide",
+      "name": "树分治",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "每次找出当前连通块的重心并删去，再递归处理各个子树，使分治层数保持对数级。点分治用于统计所有路径的信息，边分治是目的相近的另一套划分方式，能处理不同类型的计数问题。"
+    },
+    {
+      "id": "graph.dynamic-tree-divide",
+      "name": "动态树分治",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "在点分治形成的重心树上记录每个结点管辖的信息，修改一个点时沿重心树的祖先链逐层更新，从而在带修改的路径统计问题中维持对数级复杂度。代价是常数较大且实现细节较多。"
+    },
+    {
+      "id": "graph.tree-ahu",
+      "name": "AHU 算法",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "一种自底向上的树同构判定方法：先给所有叶子相同编号，再把每个结点子树编号的集合排序后映射成新的编号。两棵有根树同构当且仅当根得到相同的规范编号，无根树则需要比较中心。"
+    },
+    {
+      "id": "graph.tree-hash",
+      "name": "树哈希",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "给每个结点按子树信息计算一个哈希值，用较小的数值刻画树的形状，可以判定同构、统计不同结构或支持动态修改。实现中需要随机化或双哈希来降低被构造数据碰撞的风险。"
+    },
+    {
+      "id": "graph.tree-random-walk",
+      "name": "树上随机游走",
+      "level": 3,
+      "parent_id": "graph.tree",
+      "summary": "在树上等概率走向相邻结点，用首次到达目标位置的期望步数描述整个过程。列出期望方程后用高斯消元可以求出全部未知量，简单情形下也能利用树的结构和深度关系直接推出封闭表达式。"
+    },
+    {
+      "id": "graph.dag",
+      "name": "有向无环图",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "不存在有向环的有向图。它一定可以拓扑排序，并在拓扑序上做递推式动态规划；判断是否有环可以看拓扑排序能否完成，或者 DFS 中是否遇到指向尚未回溯结点的边。"
+    },
+    {
+      "id": "graph.topo",
+      "name": "拓扑排序",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "把有向无环图的结点排成一个序列，使每条有向边都从序列前面指向后面。常用入度为零的结点队列实现，也可以借助 DFS 的回溯顺序；它既能判断是否存在环，也确定了动态规划的计算顺序。"
+    },
+    {
+      "id": "graph.shortest-path",
+      "name": "最短路",
+      "level": 2,
+      "parent_id": "graph"
+    },
+    {
+      "id": "graph.diff-constraints",
+      "name": "差分约束",
+      "level": 3,
+      "parent_id": "graph.shortest-path",
+      "summary": "把形如 x_j - x_i <= c 的条件整理成最短路中的三角不等式，用 Bellman-Ford 或 SPFA 求一组可行解。若图中存在负环则说明约束互相矛盾，无环时各点的最短路值就是一个合法赋值。"
+    },
+    {
+      "id": "graph.kth-path",
+      "name": "k 短路",
+      "level": 3,
+      "parent_id": "graph.shortest-path",
+      "summary": "在图上按长度从小到大列举路径，常用 A* 配合到终点的估价函数，或者把每条边展开成状态后做最短路。它用于求第 k 短路、边权非负时的前 k 条路径以及类似的枚举问题。"
+    },
+    {
+      "id": "graph.mod-shortest-path",
+      "name": "同余最短路",
+      "level": 3,
+      "parent_id": "graph.shortest-path",
+      "summary": "取一个模数，把每个可能的余数当作结点，边表示在余数上加上某个系数的效果，用最短路求出该余数可达的最小整数。于是能回答用固定几个数线性组合能表示出哪些数、最少需要几项等问题。"
+    },
+    {
+      "id": "graph.spanning-tree",
+      "name": "生成树",
+      "level": 2,
+      "parent_id": "graph"
+    },
+    {
+      "id": "graph.mst",
+      "name": "最小生成树",
+      "level": 3,
+      "parent_id": "graph.spanning-tree",
+      "summary": "在带权连通图中选出 n-1 条边使总权值最小。Kruskal 按边权排序并用并查集判断是否成环，Prim 从已选点集向外扩展，两者的正确性都来自切分性质：跨越割的最小边一定属于某棵最小生成树。"
+    },
+    {
+      "id": "graph.dmst",
+      "name": "最小树形图",
+      "level": 3,
+      "parent_id": "graph.spanning-tree",
+      "summary": "有向图的最小树形图要求选出一棵以给定根为起点的有向生成树，使边权和最小。朱刘算法先为每个非根点取最小入边，若不成环即得解；否则把环缩成一点并调整相关边权，重复缩环直到得到结果，复杂度为 O(nm)。"
+    },
+    {
+      "id": "graph.mdst",
+      "name": "最小直径生成树",
+      "level": 3,
+      "parent_id": "graph.spanning-tree",
+      "summary": "在无向连通图中选出直径最小的生成树。做法是先求图的绝对中心，即到最远点距离最小的位置，它可能落在某条边上；再从该中心出发求最短路径树，所得生成树的直径即为最小。计算通常先用全源最短路预处理，再在每条边上枚举最优中心位置。"
+    },
+    {
+      "id": "graph.steiner-tree",
+      "name": "斯坦纳树",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "给定图和若干必须连通的终端点，要求用最小总边权把它们连起来，允许使用额外点，这是 NP 难问题。常见做法是状态压缩 DP：设 dp[S][u] 表示让终端集合 S 与点 u 连通的最小代价，先按子集合并，再用最短路松弛，复杂度与 2^k 相关，k 是终端数。"
+    },
+    {
+      "id": "graph.node",
+      "name": "拆点",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "把原图的一个点拆成入点与出点，中间连一条带容量或代价的边，用来把点的限制转化为边的限制。最大流中可借此限制经过某点的流量，分层图中可表示状态转移，最短路中可处理点权，是图论建模里最常见的技巧之一。"
+    },
+    {
+      "id": "graph.connectivity",
+      "name": "连通性相关",
+      "level": 2,
+      "parent_id": "graph"
+    },
+    {
+      "id": "graph.scc",
+      "name": "强连通分量",
+      "level": 3,
+      "parent_id": "graph.connectivity",
+      "summary": "有向图中任意两点互相可达的极大点集。Tarjan 算法用一次 DFS 维护时间戳 dfn 与追溯值 low，通过栈在回溯时弹出整块分量，复杂度 O(n+m)。把每个分量缩成一个点后，图变成有向无环图，常用于处理可达性、2-SAT 与环上问题。"
+    },
+    {
+      "id": "graph.bcc",
+      "name": "双连通分量",
+      "level": 3,
+      "parent_id": "graph.connectivity",
+      "summary": "点双连通分量要求内部任意删去一个点后仍连通，边双连通分量要求删去任意一条边后仍连通。可用 Tarjan 算法基于 dfn 与 low 求出割点、桥并在栈中分块，复杂度 O(n+m)。边双缩点后得到一棵树，点双常与圆方树结合，是处理连通性问题的基本工具。"
+    },
+    {
+      "id": "graph.cut",
+      "name": "割点",
+      "level": 3,
+      "parent_id": "graph.connectivity",
+      "summary": "割点是一个删除后会使连通分量增加的顶点。求割点时可结合 DFS 时间戳、low 值和根节点子树数量判断，它也是理解双连通分量与网络脆弱性的基础。"
+    },
+    {
+      "id": "graph.bridge",
+      "name": "桥",
+      "level": 3,
+      "parent_id": "graph.connectivity",
+      "summary": "桥是一条删除后会使连通分量增加的边。求桥时可用 DFS 时间戳与 low 值判断子节点能否绕过当前边回到祖先，常用于双连通分量和网络脆弱性分析。"
+    },
+    {
+      "id": "graph.block-forest",
+      "name": "圆方树",
+      "level": 3,
+      "parent_id": "graph.connectivity",
+      "summary": "把无向图的每个点双连通分量建成方点，原图顶点保留为圆点，方点与它包含的所有圆点相连，得到的树状结构称为圆方树。它把复杂的点双关系化成树上路径问题，方便处理必经点与简单路径计数，构造一般基于 Tarjan 求点双，复杂度 O(n+m)。"
+    },
+    {
+      "id": "graph.connectivity-degree",
+      "name": "点连通度与边连通度",
+      "level": 3,
+      "parent_id": "graph.connectivity",
+      "summary": "点连通度是使图不连通或只剩一个点所需删去的最少顶点数，边连通度是所需删去的最少边数，它们反映图的容错能力。Menger 定理把这两个量与点不相交、边不相交路径的最大条数联系起来，可用最大流建模求解，完全图等特殊情形的连通度需单独约定。"
+    },
+    {
+      "id": "graph.rings-count",
+      "name": "环计数问题",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "统计简单图中环的数量，常见情形是数三元环。核心做法是按度数给边定向，使图变成有向无环图，再枚举起点与中间点，累加两段有向路径并在首尾相邻时计数，复杂度可控制在 O(m√m) 量级；完全图等密集情形可另用组合公式处理。"
+    },
+    {
+      "id": "graph.min-cycle",
+      "name": "最小环",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "在带权图中寻找边权和最小的环。Floyd 算法可以在求最短路的过程中顺带统计：枚举中间点 k 时，用 k 之前的最短路加上 i、j 与 k 之间的两条边更新答案。也可固定环上编号最大的点后枚举其余两点，复杂度 O(n^3)，稀疏图可另作优化。"
+    },
+    {
+      "id": "graph.2-sat",
+      "name": "2-SAT",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "每个布尔变量最多出现在两个文字的合取范式求可满足解的问题。把每个变量与其否定各建一个点，对子句 (a∨b) 连边 ¬a→b 与 ¬b→a，再用 SCC 缩点：若变量与它的否定落在同一分量则无解，否则按分量编号顺序取值即可得到一组解，复杂度 O(n+m)。"
+    },
+    {
+      "id": "graph.euler",
+      "name": "欧拉图",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "经过每条边恰好一次的回路称为欧拉回路，经过每条边恰好一次的路径称为欧拉路径。无向图要求所有点度数为偶数，或恰有两个奇度点作为起点与终点；有向图要求每个点入度等于出度且底图弱连通。Hierholzer 算法沿可用边走并在回退时记录顶点，可在 O(n+m) 内构造方案。"
+    },
+    {
+      "id": "graph.hamilton",
+      "name": "哈密顿图",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "指存在经过每个顶点恰好一次的回路或路径的图。判定哈密顿回路是 NP 完全问题，没有已知的多项式算法，一般用状态压缩 DP 在 O(2^n n^2) 内解决小规模情形，或用 Dirac、Ore 等充分条件判断。竞赛中更常见的是在竞赛图等结构特殊的图上讨论。"
+    },
+    {
+      "id": "graph.bi-graph",
+      "name": "二分图",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "顶点能分成两个集合、所有边都连接不同集合的图。可用 BFS 或 DFS 做黑白染色判定，不存在奇环是充要条件。二分图的最大匹配、最小点覆盖、最大独立集与 König 定理紧密相关，是网络流与组合优化中很常见的出发点。"
+    },
+    {
+      "id": "graph.planar",
+      "name": "平面图",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "能画在平面上使任意两条边除端点外不相交的图。满足欧拉公式 V−E+F=2，因此简单平面图有 E≤3V−6，简单二部平面图有 E≤2V−4。判定平面图可依据 Kuratowski 定理或相关线性算法，竞赛中更多是利用这些计数关系推出矛盾或估计规模。"
+    },
+    {
+      "id": "graph.chord",
+      "name": "弦图",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "任意长度大于三的环都含有一条连接环上两个不相邻点的弦的图。弦图是完美图，存在完美消除序列，可用最大势算法在 O(n+m) 内求出，并借此判断弦图、求最小染色数与最大团。它是结构性质较强、算法结论丰富的图类。"
+    },
+    {
+      "id": "graph.color",
+      "name": "图的着色",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "给每个顶点分配一种颜色，使相邻顶点颜色不同，所需的最少颜色数称为色数。判定 k≥3 时的可着色性是 NP 困难问题，一般用搜索加剪枝，或针对二分图、平面图、弦图等特殊图使用专门算法。平面图有四色定理，竞赛题多考察染色模型的转化而非通用求解。"
+    },
+    {
+      "id": "graph.flow",
+      "name": "网络流",
+      "level": 2,
+      "parent_id": "graph"
+    },
+    {
+      "id": "graph.flow.max-flow",
+      "name": "最大流",
+      "level": 3,
+      "parent_id": "graph.flow",
+      "summary": "给定源点、汇点与带容量的有向图，求从源点能发送到汇点的最大流量，同时满足每条边的容量限制与中间点的流量守恒。常用 Dinic 算法：在残量网络上 BFS 分层后反复 DFS 增广，并加入当前弧优化，是网络流建模与求解的基础工具。"
+    },
+    {
+      "id": "graph.flow.min-cut",
+      "name": "最小割",
+      "level": 3,
+      "parent_id": "graph.flow",
+      "summary": "在网络中删去一组边，使源点与汇点不再连通，并要求删去边的容量之和最小。最大流最小割定理说明最小割的容量等于最大流。求出最大流后，在残量网络中取源点可达的点集 S，割 (S, V−S) 即为一组最小割，这一对应关系常用于转化最小代价分割问题。"
+    },
+    {
+      "id": "graph.flow.max-flow-min-cut",
+      "name": "最大流最小割定理",
+      "level": 3,
+      "parent_id": "graph.flow",
+      "summary": "最大流最小割定理指出，网络中的最大可行流量等于所有割的最小容量。它不仅给出最大流的判定标准，也能把最小割问题转化为最大流计算，是网络流建模和证明的核心定理。"
+    },
+    {
+      "id": "graph.flow.min-cost",
+      "name": "费用流",
+      "level": 3,
+      "parent_id": "graph.flow",
+      "summary": "在容量之外给每条边加上单位费用，要求在流量最大或达到指定流量的前提下使总费用最小。做法是在残量网络上用 SPFA 或带势能的 Dijkstra 寻找费用最小的增广路，反复增广直到目标达成。边权设计可用于带权匹配、区间调度等最优化问题。"
+    },
+    {
+      "id": "graph.flow.bound",
+      "name": "上下界网络流",
+      "level": 3,
+      "parent_id": "graph.flow",
+      "summary": "每条边除容量上界外还有流量下界，需要判断可行流并求出最小流或最大流。做法是先强制每条边流满下界，把不守恒的部分通过虚拟源汇吸收，求一次可行流；若有解，再按需求最小流或最大流。循环流与有源汇等情形可通过加边转成基本模型，常用 Dinic 实现。"
+    },
+    {
+      "id": "graph.stoer-wagner",
+      "name": "Stoer-Wagner 算法",
+      "level": 3,
+      "parent_id": "graph.flow",
+      "summary": "用于求无向带权图全局最小割的多项式算法。每次从任意点开始做类似 Prim 的最大邻接扩展，得到当前阶段的割以及最后加入的两个点，然后把这两个点合并，重复 n−1 次并取最小值。朴素实现复杂度 O(n^3)，配合堆可进一步优化。"
+    },
+    {
+      "id": "graph.matching",
+      "name": "图的匹配",
+      "level": 2,
+      "parent_id": "graph"
+    },
+    {
+      "id": "graph.graph-matching.graph-match",
+      "name": "图匹配",
+      "level": 3,
+      "parent_id": "graph.matching",
+      "summary": "在图中选出若干条没有公共端点的边，边数最多的称为最大匹配。一般图存在奇环，增广路的搜索需要额外处理带花结构，不能用二分图那样的简单结论，常用带花树算法在 O(n^3) 或更优时间内求解，是组合优化中的基本问题。"
+    },
+    {
+      "id": "graph.graph-matching.bigraph-match",
+      "name": "二分图最大匹配",
+      "level": 3,
+      "parent_id": "graph.matching",
+      "summary": "在二分图中求互不相交的边的最大数量。常用匈牙利算法沿增广路反复调整匹配，复杂度 O(nm)；也可建成源点、左部、右部、汇点的单位容量网络用 Dinic 求最大流。由 König 定理，最大匹配数等于最小点覆盖数，可用于许多覆盖与分配问题。"
+    },
+    {
+      "id": "graph.graph-matching.bigraph-weight-match",
+      "name": "二分图最大权匹配",
+      "level": 3,
+      "parent_id": "graph.matching",
+      "summary": "在二分图匹配的基础上给边赋权，要求权值和最大的匹配，也可能附加完备匹配约束。KM 算法维护左右顶点的顶标与相等子图，不断寻找增广路并调整顶标，在 O(n^3) 内求出答案；也可转为最小费用最大流解决，是任务分配类问题的常用方法。"
+    },
+    {
+      "id": "graph.graph-matching.general-match",
+      "name": "一般图最大匹配",
+      "level": 3,
+      "parent_id": "graph.matching",
+      "summary": "一般图存在奇环，增广路搜索需要处理花结构。带花树算法在 BFS 过程中一旦发现奇环，就把整个环缩成一个点，在缩点后的图上继续寻找增广路，最终得到最大匹配，复杂度 O(n^3)。实现细节较多，是图匹配中的进阶内容。"
+    },
+    {
+      "id": "graph.graph-matching.general-weight-match",
+      "name": "一般图最大权匹配",
+      "level": 3,
+      "parent_id": "graph.matching",
+      "summary": "在一般图上求边权和最大的匹配，需要同时处理奇环与权值优化。常用带权带花树算法，在带花树框架上维护对偶变量，并专门处理花结构与增广过程，复杂度 O(n^3)。代码量较大，属于高阶模板，使用前需仔细验证小规模情形。"
+    },
+    {
+      "id": "graph.graph-matching.stable-match",
+      "name": "稳定匹配",
+      "level": 3,
+      "parent_id": "graph.matching",
+      "summary": "在两组对象各有偏好排序的前提下，寻找不存在互相更偏好对方的配对，即稳定匹配。Gale-Shapley 算法让一方不断向尚未拒绝过自己的最想对象提出请求，对方择优保留，可在 O(n^2) 内得到一个稳定匹配，常与志愿录取、婚姻匹配等场景对应。"
+    },
+    {
+      "id": "graph.prufer",
+      "name": "Prüfer 序列",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "把带标号的无向树与长度为 n−2 的序列建立一一对应。构造时每次删除编号最小的叶子并记下它的邻居；解码时用堆维护尚未出现的编号来还原树。Cayley 公式由此得到 n 个点的带标号树共有 n^{n−2} 棵，也常用于树的计数与组合推导。"
+    },
+    {
+      "id": "graph.matrix-tree",
+      "name": "矩阵树定理",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "把图的度数矩阵减去邻接矩阵得到拉普拉斯矩阵，去掉任意一行一列后取行列式，其绝对值就是生成树的数量。对带权图可把度数换成边权和，得到所有生成树边权乘积之和；有向图也有对应的外向树与内向树形式，计算时通常配合取模高斯消元。"
+    },
+    {
+      "id": "graph.lgv",
+      "name": "LGV 引理",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "用于计算有向无环图中若干条起点到终点路径两两不相交的方案数。把第 i 个起点到第 j 个终点的路径数排成矩阵，其行列式等于按起点与终点一一对应、路径互不相交的方案数，并带符号。它把复杂的相交容斥变成行列式计算，常用于网格路径计数与平面图计数。"
+    },
+    {
+      "id": "graph.max-clique",
+      "name": "最大团搜索算法",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "团是两两相邻的顶点集合，最大团问题是 NP 困难问题。Bron–Kerbosch 算法通过递归维护候选顶点并回溯搜索，加入分支与剪枝后效率大幅提升；配合染色上界可进一步减少搜索量。在稀疏图和小规模图上表现良好，实现时按点数与边数选择合适版本。"
+    },
+    {
+      "id": "graph.dominator-tree",
+      "name": "支配树",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "在有向图固定起点 r 的情况下，若从 r 到 v 的每条路径都经过 u，则称 u 支配 v。把每个点的最近支配点连边可得到一棵树，称为支配树，可用于求必经点、程序流分析与可达性剪枝。Lengauer–Tarjan 算法能在近线性时间内构造支配树。"
+    },
+    {
+      "id": "graph.graph-random-walk",
+      "name": "图上随机游走",
+      "level": 2,
+      "parent_id": "graph",
+      "summary": "在一个图上按转移概率不断从当前点跳到邻点，用来描述随机过程的长期行为。常关注命中时间、期望步数与平稳分布，求解时对各点列出期望方程后高斯消元，或利用马尔可夫链的性质化简。它在概率期望类题目与近似算法中出现较多。"
+    },
+    {
+      "id": "geometry",
+      "name": "计算几何",
+      "level": 1,
+      "parent_id": null
+    },
+    {
+      "id": "geometry.2d",
+      "name": "二维计算几何基础",
+      "level": 2,
+      "parent_id": "geometry",
+      "summary": "平面几何的向量工具：点与向量的加减、数乘，点积用于判断夹角与垂直，叉积用于判断方向、计算有向面积与判断凸性。多数问题先用叉积处理逆时针关系和线段相交，再配合排序、扫描等技巧。浮点运算要设置 eps 控制误差，能整数化时应优先使用整数运算坐标系与弧度制用于把几何对象量化，极角、旋转和方位比较都依赖三角函数，需注意周期与浮点误差。"
+    },
+    {
+      "id": "geometry.3d",
+      "name": "三维计算几何基础",
+      "level": 2,
+      "parent_id": "geometry",
+      "summary": "三维空间中的点与向量运算：点积、叉积、混合积分别对应投影、法向量与体积。常用它们判断共面、求平面方程与交线、计算点到平面与直线的距离。三维问题对精度和退化情况更敏感，通常需要设定 eps，并利用混合积的正负统一处理方向判断。"
+    },
+    {
+      "id": "geometry.pick",
+      "name": "Pick 定理",
+      "level": 2,
+      "parent_id": "geometry",
+      "summary": "对顶点都在整点上的简单多边形，面积 S、内部整点数 I 与边界整点数 B 满足 S=I+B/2−1。边界整点数可把每条边上的整点个数 gcd(|dx|,|dy|)+1 累加后再扣掉重复顶点得到。该定理常用来求格点多边形内部的整点数，也可由面积反推内部点数。"
+    },
+    {
+      "id": "geometry.triangulation",
+      "name": "三角剖分",
+      "level": 2,
+      "parent_id": "geometry",
+      "summary": "把多边形或点集剖分成若干互不相交三角形的过程。对简单多边形可用耳切法在 O(n^2) 内完成；点集三角剖分常要求满足 Delaunay 性质，可用分治或扫描线构造。它是图形学与网格生成的基础，竞赛中多用于多边形面积、重心与区域计数。"
+    },
+    {
+      "id": "geometry.convex-hull",
+      "name": "凸包",
+      "level": 2,
+      "parent_id": "geometry",
+      "summary": "包围给定点集的最小凸多边形。常用 Andrew 单调链算法：按坐标排序后分别求上下凸壳，用叉积判断转向并弹出非凸点，复杂度 O(n log n)。三维凸包可用增量法构造。凸包是旋转卡壳、半平面交与最远点对等问题的基础。"
+    },
+    {
+      "id": "geometry.scanning",
+      "name": "扫描线",
+      "level": 2,
+      "parent_id": "geometry",
+      "summary": "用一条不断移动的直线把平面问题转化为沿一维方向的事件序列，在事件点更新数据结构并统计答案。常见于矩形面积并、周长并、最近点对与离线区间问题，一般配合线段树或平衡树实现，总复杂度由排序和每次查询或更新的开销决定。"
+    },
+    {
+      "id": "geometry.rotating-calipers",
+      "name": "旋转卡壳",
+      "level": 2,
+      "parent_id": "geometry",
+      "summary": "沿凸包边界按同一方向同时旋转两条平行支撑线，利用点到边距离的单峰性，在 O(n) 内求出凸包直径、最小外接矩形与宽度等指标。实现时通常用双指针枚举对踵点，并配合叉积判断是否继续移动，是凸包相关问题的常用工具。"
+    },
+    {
+      "id": "geometry.half-plane",
+      "name": "半平面交",
+      "level": 2,
+      "parent_id": "geometry",
+      "summary": "求若干半平面的公共部分所构成的多边形区域。常用做法是把每个半平面化为有向直线并排序，用双端队列维护当前交的边界，加入新直线时弹出已经失效的直线，最后得到凸多边形，复杂度 O(n log n)。它可用于求解线性规划的可行域与相关几何问题。"
+    },
+    {
+      "id": "geometry.nearest-points",
+      "name": "平面最近点对",
+      "level": 2,
+      "parent_id": "geometry",
+      "summary": "在平面上求距离最近的一对点。分治做法按横坐标排序，左右两半递归求解后，再按纵坐标扫描跨越中线的点集，每个点只需比较常数个候选，总复杂度 O(n log n)。也可使用随机化网格或扫描线实现期望线性或近似的效果。"
+    },
+    {
+      "id": "geometry.random-incremental",
+      "name": "随机增量法",
+      "level": 2,
+      "parent_id": "geometry",
+      "summary": "一种通过随机打乱输入顺序、逐个加入元素来降低期望复杂度的技巧。典型例子是随机增量求最小圆覆盖：每次加入点若落在当前圆外，就重建边界圆，期望复杂度为 O(n)。它常用于几何与线性规划类问题，证明依赖随机顺序带来的低概率冲突。"
+    },
+    {
+      "id": "geometry.inverse",
+      "name": "反演变换",
+      "level": 2,
+      "parent_id": "geometry",
+      "summary": "以某点为圆心、R 为半径作反演：把平面上的点 P 映射到射线 OP 上满足 OP·OP′=R^2 的点。它把过反演中心的圆变成直线、不过中心的圆变成圆，并保持相切关系，常用于把圆与圆、圆与直线的问题转化为直线问题，从而简化构造与计数。"
+    },
+    {
+      "id": "geometry.misc",
+      "name": "计算几何杂项",
+      "level": 2,
+      "parent_id": "geometry",
+      "summary": "包括凸多边形面积与重心、点在多边形内判定、线段求交、最小圆覆盖、圆与多边形交面积等常用工具。实现时要统一 eps 与符号比较，优先使用整数或长双精度，并单独处理共线、重合、退化成点等边界情况，以减少误差带来的错误。"
+    },
+    {
+      "id": "misc",
+      "name": "杂项",
+      "level": 1,
+      "parent_id": null
+    },
+    {
+      "id": "misc.discrete",
+      "name": "离散化",
+      "level": 2,
+      "parent_id": "misc",
+      "summary": "当坐标或数值的取值范围很大、实际出现的数量却不多时，把它们排序去重后映射成小下标，从而用数组、线段树或树状数组处理。常用于区间覆盖、扫描线与坐标压缩。注意查询位置落在相邻取值之间时，要额外插入边界点以保证信息完整。"
+    },
+    {
+      "id": "misc.cdq-divide",
+      "name": "CDQ 分治",
+      "level": 2,
+      "parent_id": "misc",
+      "summary": "把问题按区间中分，先递归处理左右两半，再统计左半对右半的贡献，从而把多维偏序与动态问题转化为静态统计。常用来做三维偏序、斜率优化 DP 以及带时间维的修改与查询，配合树状数组或排序可把复杂度降到 O(n log^2 n) 量级。"
+    },
+    {
+      "id": "misc.parallel-binsearch",
+      "name": "整体二分",
+      "level": 2,
+      "parent_id": "misc",
+      "summary": "把多个询问放在一起二分答案，每轮按中值把询问分成答案较小与较大两组并递归处理，同时用数据结构维护当前贡献。它把每个询问单独二分所需的重复计算合并起来，常用于区间第 k 小与带修改的查询，总复杂度约为 O((n+q) log V log n)。"
+    },
+    {
+      "id": "misc.two-pointer",
+      "name": "双指针",
+      "level": 2,
+      "parent_id": "misc",
+      "summary": "用两个下标在序列上同向或相向移动，每一步根据单调性调整位置并更新答案，把 O(n^2) 的枚举降为 O(n)。它要求问题具有可利用的单调性质，常见于区间和、子数组计数、归并排序与链表问题。移动方向与判断条件决定算法的正确性。"
+    },
+    {
+      "id": "misc.mo-algo",
+      "name": "莫队算法",
+      "level": 2,
+      "parent_id": "misc"
+    },
+    {
+      "id": "misc.modifiable-mo-algo",
+      "name": "带修改莫队",
+      "level": 3,
+      "parent_id": "misc.mo-algo",
+      "summary": "普通莫队的扩展，除左右端点外再维护时间维度，把操作分为修改与询问并按左端点块、右端点块、时间排序，移动时同步应用或撤销修改。块大小通常取 n^{2/3} 以平衡代价，总复杂度约为 O(n^{5/3})，适合带单点修改的区间询问。"
+    },
+    {
+      "id": "misc.mo-algo-on-tree",
+      "name": "树上莫队",
+      "level": 3,
+      "parent_id": "misc.mo-algo",
+      "summary": "把莫队从序列搬到树上，常用括号序（欧拉序）：每个点进入时记一次、离开时再记一次，于是树上的路径询问可转化为对出现奇数次的点计数，并单独处理最近公共祖先。这样能在 O((n+q)√n) 内处理树上路径的区间统计问题。"
+    },
+    {
+      "id": "misc.rollback-mo-algo",
+      "name": "回滚莫队",
+      "level": 3,
+      "parent_id": "misc.mo-algo",
+      "summary": "针对只方便加入、不方便删除的统计量。莫队移动时只增加元素，并在块边界保存状态，跨块时回滚到快照再继续处理。常用于维护最大值、最值计数等不支持删除的信息。按左端点所在块排序后，总复杂度仍可保持在 O((n+q)√n)。"
+    },
+    {
+      "id": "misc.mo-algo-2dimen",
+      "name": "二维莫队",
+      "level": 3,
+      "parent_id": "misc.mo-algo",
+      "summary": "把莫队推广到二维平面上的矩形询问，用四个边界变量分别移动，并按块排序后依次处理。由于每次移动一个边界会影响较多元素，块大小需要按 n^{2/3} 等比例选取以平衡代价，复杂度通常高于一维莫队，适合在网格上做区间统计。"
+    },
+    {
+      "id": "misc.mo-algo-secondary-offline",
+      "name": "莫队二次离线",
+      "level": 3,
+      "parent_id": "misc.mo-algo",
+      "summary": "当莫队转移的代价与区间长度密切相关时，把每次左右端点移动产生的贡献拆成与当前前缀相关的两部分，再分别用离线前缀和或树状数组批量计算。这样可把每次移动中复杂的统计开销降下来，常用于转移函数较难直接维护的区间问题。"
+    },
+    {
+      "id": "misc.mo-algo-with-bitset",
+      "name": "莫队配合 bitset",
+      "level": 3,
+      "parent_id": "misc.mo-algo",
+      "summary": "用位集表示某段区间内出现的数值集合，配合莫队维护区间信息，再用位运算批量判断交集、并集或是否出现某个值。这样可把单次统计压到字长级别，适合值域不大且需要快速做集合运算的区间询问，代价是额外维护位集的开销。"
+    },
+    {
+      "id": "misc.frac-programming",
+      "name": "分数规划",
+      "level": 2,
+      "parent_id": "misc",
+      "summary": "求形如 Σa_i/Σb_i 的最大值或最小值。二分答案 λ 后，只需判断最优目标是否超过 λ，也就是判断 Σ(a_i−λb_i) 的符号，从而把分数目标转为线性目标。它常与二分、最小生成树、最短路或网络流结合，也称为 0-1 分数规划。"
+    },
+    {
+      "id": "misc.randomize",
+      "name": "随机化",
+      "level": 2,
+      "parent_id": "misc"
+    },
+    {
+      "id": "misc.rand-technique",
+      "name": "随机化技巧",
+      "level": 3,
+      "parent_id": "misc.randomize",
+      "summary": "用随机选择、随机扰动或多次尝试来简化确定性算法难处理的问题。常见形式有随机哈希，即用随机权值判断集合是否相等，以及随机采样验证、随机顺序下的期望复杂度分析和 Monte Carlo、Las Vegas 算法。结论通常以高概率成立，需要权衡重复次数与出错概率。"
+    },
+    {
+      "id": "misc.hill-climbing",
+      "name": "爬山算法",
+      "level": 3,
+      "parent_id": "misc.randomize",
+      "summary": "一种局部搜索方法：从当前解出发，在邻域内选择使目标更优的解并不断移动，直到没有改进为止。它实现简单，但容易停在局部最优，可通过多次随机起点、接受等值解或与模拟退火结合来缓解。适合目标函数可快速评估、解空间巨大或连续的优化题。"
+    },
+    {
+      "id": "misc.simulated-annealing",
+      "name": "模拟退火",
+      "level": 3,
+      "parent_id": "misc.randomize",
+      "summary": "借鉴物理退火的随机搜索算法。按温度控制接受较差解的概率，温度高时允许跳出局部最优，随后逐步降温并收敛。实现需要设计邻域变换、初始与终止温度以及降温系数，常多次重跑取最优。结果具有随机性，适合旅行商、布局等难解优化问题。"
+    },
+    {
+      "id": "misc.hoverline",
+      "name": "悬线法",
+      "level": 2,
+      "parent_id": "misc",
+      "summary": "在网格中求最大全 1 子矩形或子正方形的经典方法。对每个格子向上计算连续可用高度，再用单调栈求出左右能够扩展到的最远位置，最后以每个位置为底边计算面积并取最大值，复杂度 O(nm)。它适合处理带障碍格子的最大矩形类问题。"
+    },
+    {
+      "id": "misc.main-element",
+      "name": "主元素问题",
+      "level": 2,
+      "parent_id": "misc",
+      "summary": "在长度为 n 的序列中找出出现次数超过一半的元素，若存在则称为主元素。Boyer–Moore 投票算法用候选值与计数器一次遍历完成：遇到相同值计数加一，不同则抵消，计数归零时更换候选。最后再验证候选是否真的超过一半，时间复杂度 O(n)，空间 O(1)。"
+    },
+    {
+      "id": "misc.garsia-wachs",
+      "name": "Garsia-Wachs 算法",
+      "level": 2,
+      "parent_id": "misc",
+      "summary": "求解最优字母二叉树的 O(n log n) 算法，要求构造出的二叉树保持键的中序顺序，并最小化按权值计算的代价。它反复在满足条件的相邻权值中选出最小的进行合并，并用栈结构处理调整，避免区间动态规划的 O(n^3) 复杂度，常用于带顺序约束的合并代价最小化问题。"
+    },
+    {
+      "id": "misc.kahan-summation",
+      "name": "Kahan 求和",
+      "level": 2,
+      "parent_id": "misc",
+      "summary": "浮点数相加时低位会因舍入而丢失，Kahan 求和用一个补偿变量记录每次产生的舍入误差，并在下一步加回结果，从而显著提高求和精度。它适合累加大量量级相近的数，对量级差异极大的输入改善有限，更高精度可用双精度补偿或分组求和。"
+    },
+    {
+      "id": "misc.odt",
+      "name": "珂朵莉树（颜色段均摊）",
+      "level": 2,
+      "parent_id": "misc",
+      "summary": "把序列中值相同的连续段合并成一个节点，用 set 或平衡树按区间端点维护，区间赋值时拆开边界并删除被覆盖的节点。这种结构在随机数据或赋值操作较多时均摊效率很高，复杂度依赖数据随机性，常用于区间推平类问题，也可能被专门构造的数据卡到退化。"
+    },
+    {
+      "id": "misc.rmq",
+      "name": "RMQ",
+      "level": 2,
+      "parent_id": "misc",
+      "summary": "区间最值查询要求在静态数组上多次询问某区间的最小值或最大值。ST 表预处理 O(n log n)、每次询问 O(1)，代价是不支持修改；线段树支持修改但查询 O(log n)，稀疏表与分块也各有适用场景。选择方法时主要看修改次数与询问次数的比例。"
+    }
+  ]
+}

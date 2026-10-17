@@ -1,0 +1,10 @@
+{
+  "event": "v8二测",
+  "completed": 60,
+  "sealed_at": "2026-10-17T03:47:39.920777+00:00",
+  "predictions_sha256": "b2d3ba08ca1bedcd6331cbcdb063b5bf53892f292241a403fd9247eeb14fb42b",
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "database_unchanged": true,
+  "first_predictions_unchanged": true,
+  "state": "awaiting_semantic_review"
+}

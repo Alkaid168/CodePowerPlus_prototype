@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-from app.knowledge import Taxonomy, TaxonomyError
+from app.knowledge import ROOT, Taxonomy, TaxonomyError
 
 
 def load_modified(tmp_path, mutate):
@@ -41,18 +41,18 @@ def test_parent_must_exist_and_levels_stay_continuous(tmp_path):
             load_modified(tmp_path, mutate)
 
 
-ALLOWED_FIELDS = {'id', 'name', 'level', 'parent_id', 'summary'}
+ALLOWED_FIELDS = {'id', 'name', 'level', 'parent_id', 'summary', 'intro_rating'}
 
 
 def test_node_fields_are_structure_plus_leaf_summary():
-    """分支节点只有位置信息；叶子知识点额外带一段介绍。"""
+    """语法章节可带介绍和门槛；原算法分支维持精简结构。"""
     taxonomy = Taxonomy()
     leaves = {node['id'] for node in taxonomy.leaves()}
     for node in taxonomy.data['nodes']:
         assert set(node) <= ALLOWED_FIELDS
         if node['id'] in leaves:
             assert node.get('summary')
-        else:
+        elif not node['id'].startswith('syntax.'):
             assert 'summary' not in node
 
 
@@ -89,7 +89,7 @@ def test_branch_leaf_and_tree_navigation():
     assert taxonomy.branch('math.binary-exponentiation') == 'math.binary-exponentiation'
     assert taxonomy.children('math.binary-exponentiation') == []
     assert [node['name'] for node in taxonomy.tree()] == [
-        '基础', '搜索', '动态规划', '字符串', '数学', '数据结构', '图论', '计算几何', '杂项']
+        '语法基础', '算法基础', '搜索', '动态规划', '字符串', '数学', '数据结构', '图论', '计算几何', '杂项']
     assert [node['id'] for node in taxonomy.search('快速幂')] == ['math.binary-exponentiation']
     with pytest.raises(TaxonomyError):
         taxonomy.ancestors('unknown')
@@ -103,8 +103,6 @@ def test_validate_assignment_rules():
         (['invented'], [], {'invented': '不存在'}, None),
         (['math.number-theory', 'math.number-theory.prime'], [],
          {'math.number-theory': '分支', 'math.number-theory.prime': '素数'}, None),
-        (['math.number-theory.prime', 'math.number-theory.gcd'], [],
-         {'math.number-theory.prime': '素数', 'math.number-theory.gcd': '公因数'}, None),
         (['math.number-theory.prime'], [], {}, None),
         (['math.number-theory.prime'], [], {'math.number-theory.prime': '  '}, None),
         (['math.number-theory.prime'], [], {'math.number-theory.prime': '素数'},
@@ -116,13 +114,19 @@ def test_validate_assignment_rules():
     taxonomy.validate_assignment(['math.number-theory.prime'], [],
                                  {'math.number-theory.prime': '试除判素数'},
                                  {'math.number-theory.prime': 0.8})
+    # 同一 L2 分支可以有多个主标签：筛法和素数经常同时出现在一道题里。
+    same_branch = ['math.number-theory.prime', 'math.number-theory.sieve']
+    taxonomy.validate_assignment(same_branch, [],
+                                 {node_id: '先筛后判' for node_id in same_branch},
+                                 {node_id: 0.8 for node_id in same_branch})
 
 
 def test_catalog_scale_and_unique_names():
     taxonomy = Taxonomy()
     nodes = taxonomy.data['nodes']
-    assert taxonomy.data['version'] == '2026.09.9'
-    assert len(nodes) >= 330
+    assert taxonomy.data['version'] == '2026.10.1'
+    assert len(nodes) == 377
+    assert len(taxonomy.tree()) == 10
     assert len({node['name'] for node in nodes}) == len(nodes)
     levels = {node['id']: node['level'] for node in nodes}
     for node in nodes:
@@ -134,10 +138,10 @@ def test_catalog_scale_and_unique_names():
 
 
 def test_no_course_or_tool_style_nodes():
-    """标签词表里不应出现课程式、工具式节点：没有题目会考“编译与调试”。"""
+    """旧算法快照保留去课程目录结果；新语法词表另有专门的题型边界测试。"""
     banned_parts = ('编译', '调试', 'C++', '标准库', '专题')
     banned_names = {'变量', '函数', '数组', '指针', '结构体', '类', '引用', '常量', '命名空间', '文件操作'}
-    for node in Taxonomy().data['nodes']:
+    for node in Taxonomy(ROOT / 'data/taxonomy_versions/2026.09.9.json').data['nodes']:
         assert node['name'] not in banned_names, node['name']
         for word in banned_parts:
             assert word not in node['name'], node['name']
@@ -145,7 +149,7 @@ def test_no_course_or_tool_style_nodes():
 
 def test_revised_tag_catalog_for_2026_09_8():
     """目录按题目标签原则清理后，关键层级与叶子介绍保持一致。"""
-    taxonomy = Taxonomy()
+    taxonomy = Taxonomy(ROOT / 'data/taxonomy_versions/2026.09.9.json')
     nodes = {node['id']: node for node in taxonomy.data['nodes']}
     assert taxonomy.version == '2026.09.9'
 
@@ -214,7 +218,7 @@ def test_revised_tag_catalog_for_2026_09_8():
 
 
 def test_follow_up_tag_cleanup_for_2026_09_9():
-    taxonomy = Taxonomy()
+    taxonomy = Taxonomy(ROOT / 'data/taxonomy_versions/2026.09.9.json')
     nodes = {node['id']: node for node in taxonomy.data['nodes']}
     assert taxonomy.version == '2026.09.9'
     assert 'math.coordinate' not in nodes

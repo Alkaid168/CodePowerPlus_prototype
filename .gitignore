@@ -11,4 +11,11 @@ data/*.db-wal
 
 CodePowerPlus/
 
-output/playwright/
+# Keep final evaluation workbooks; logs, screenshots and QA fixtures stay local.
+output/*
+!output/v8-blind-form/
+output/v8-blind-form/*
+!output/v8-blind-form/v8首测-人工难度评测.xlsx
+!output/v8-second-test/
+output/v8-second-test/*
+!output/v8-second-test/v8二测-四次对比与代理复核.xlsx

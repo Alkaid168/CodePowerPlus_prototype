@@ -16,6 +16,7 @@ from app.evaluation import (
     mastery_from_history, recommendation_metrics,
 )
 from app.knowledge import Taxonomy
+from app.services.difficulty import MAX_RATING, MIN_RATING, STEP, is_valid_rating
 from app.services.profile import ALGORITHM_VERSION as PROFILE_VERSION
 from app.services.recommend import ALGORITHM_VERSION, recommend
 
@@ -39,8 +40,8 @@ def validate_dataset(dataset: dict, taxonomy: Taxonomy) -> None:
             raise ValueError('each problem and annotation must disclose authored_fixture provenance')
         taxonomy.validate_assignment(gold['primary_knowledge_ids'], gold['secondary_knowledge_ids'],
                                      gold['evidence'], gold['knowledge_confidence'])
-        if isinstance(gold['difficulty'], bool) or gold['difficulty'] not in range(1, 6):
-            raise ValueError('gold difficulty must be an integer in 1..5')
+        if not is_valid_rating(gold['difficulty']):
+            raise ValueError(f'gold difficulty must be a multiple of {STEP} within {MIN_RATING}..{MAX_RATING}')
     for learner in learners:
         if learner.get('provenance') != 'authored_fixture':
             raise ValueError('simulated learner provenance is required')
@@ -61,7 +62,8 @@ def run_experiment(dataset: dict, taxonomy: Taxonomy, predictions: dict | None =
     # Simulated approval is only an in-memory adapter for this offline experiment.
     # It never creates an audit event or writes approved analyses to application storage.
     problems = [{
-        'id': p['id'], 'title': p['title'], 'description': p['description'], 'source': p['source'],
+        'id': p['id'], 'title': p['title'], 'description': p['description'],
+        'source_url': p.get('source_url', ''),
         'provenance': 'authored_fixture',
         'analysis': {**p['gold'], 'taxonomy_version': taxonomy.version, 'review_status': 'approved',
                      'model_name': 'authored_fixture', 'prompt_version': 'none',
@@ -110,7 +112,7 @@ def run_experiment(dataset: dict, taxonomy: Taxonomy, predictions: dict | None =
             'Positive/negative relevance examples were authored for scenarios, not independently assessed; unlisted candidates are treated as non-relevant for hit/MRR.',
             'Recommendations use fixture gold analyses, so this is an oracle-label ranking experiment and excludes prediction errors.',
             'Mastery uses only simulated history: latest non-CE result per problem; (1+final AC problem count)/(2+independent problem count) per knowledge ID, reusing the production formula in services/profile.py. These are heuristics, not calibrated learning probabilities.',
-            'Difficulty-only baseline targets 1+4*mean(observed mastery), default 3; the knowledge ranker adds tag weakness on top. Neither is tuned on real outcomes.',
+            'Difficulty-only baseline targets 1200+1600*mean(observed mastery) on the 800-3500 Codeforces-style scale; the knowledge ranker adds tag weakness on top. Neither is tuned on real outcomes.',
             'MRR is truncated at k; coverage denominator is the union of all learner-eligible candidates.',
             'No API, real user, or database is used; no automatic paid prediction calls. Use external predictions to evaluate labels/difficulty.',
         ],
@@ -137,7 +139,8 @@ def markdown_report(report: dict) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--dataset', type=Path, default=ROOT / 'data/evaluation/authored_fixture.json')
-    parser.add_argument('--taxonomy', type=Path, default=ROOT / 'data/knowledge_taxonomy.json')
+    parser.add_argument('--taxonomy', type=Path, default=ROOT / 'data/taxonomy_versions/2026.09.9.json',
+                        help='默认固定到 authored_fixture 对应的历史快照；新数据集需显式指定版本')
     parser.add_argument('--predictions', type=Path, help='External complete predictions JSON; never generated from gold.')
     parser.add_argument('--output-dir', type=Path, default=ROOT / 'data/evaluation/reports')
     parser.add_argument('--seed', type=int, default=42)

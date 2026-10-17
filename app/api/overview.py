@@ -27,7 +27,8 @@ def overview(user_id: str | None = None, container: Container = Depends(get_cont
         'problems': len(problems),
         'analyses': container.analyses.count(),
         'pending_reviews': sum(1 for p in problems if p['analysis'] and p['analysis']['review_status'] == 'pending'),
-        'approved_analyses': sum(1 for p in problems if p['analysis'] and p['analysis']['review_status'] == 'approved'),
+        'approved_analyses': sum(1 for p in problems if p['analysis']
+                                 and p['analysis']['review_status'] == 'approved' and not p['analysis'].get('is_stale')),
         'submissions': container.submissions.count(),
         'learners': len(container.submissions.users()),
         'knowledge_nodes': len(container.taxonomy.nodes),

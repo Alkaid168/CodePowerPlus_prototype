@@ -5,11 +5,11 @@ from app.knowledge import Taxonomy
 from app.services.recommend import learning_path, recommend
 
 
-def problem(problem_id, ids, *, difficulty=3, status='approved', version=None, title=None):
+def problem(problem_id, ids, *, difficulty=1600, status='approved', version=None, title=None):
     return {
         'id': problem_id,
         'title': title or f'题{problem_id}',
-        'source': 'demo',
+        'source_url': 'https://example.com/p/1',
         'analysis': {
             'primary_knowledge_ids': list(ids),
             'secondary_knowledge_ids': [],
@@ -34,14 +34,15 @@ def test_only_approved_current_version_problems_are_candidates():
 
 def test_weak_tag_and_difficulty_fit_drive_the_score():
     taxonomy = Taxonomy()
-    weak = problem(1, ['math.number-theory.prime'], difficulty=3)
-    strong = problem(2, ['math.number-theory.gcd'], difficulty=3)
+    weak = problem(1, ['math.number-theory.prime'], difficulty=1600)
+    strong = problem(2, ['math.number-theory.gcd'], difficulty=1600)
     mastery = {'math.number-theory.prime': 0.1, 'math.number-theory.gcd': 0.9}
     result = recommend([weak, strong], mastery, [], taxonomy)
     assert [item['problem_id'] for item in result] == [1, 2]
     assert result[0]['recommendation_score'] > result[1]['recommendation_score']
     assert set(result[0]['score_breakdown']) == {'weakness', 'difficulty_fit'}
     assert result[0]['target_knowledge_names'] == ['素数']
+    assert result[0]['difficulty_band'] == '进阶'
     assert result[0]['reasons'] and result[0]['algorithm_version']
 
 
@@ -72,6 +73,19 @@ def test_learning_path_rejects_l1_or_unknown_target():
 
 def test_learning_path_without_target_uses_weakest_recommendations():
     taxonomy = Taxonomy()
-    items = [problem(1, ['math.number-theory.prime'], difficulty=3)]
+    items = [problem(1, ['math.number-theory.prime'], difficulty=1600)]
     steps = learning_path(items, {'math.number-theory.prime': 0.1}, [], taxonomy)
     assert steps[-1]['knowledge_id'] == 'math.number-theory.prime'
+
+
+def test_expected_rating_scales_with_mastery():
+    """期望评分随掌握度上移：掌握度 0.5 时期望 2000，正好匹配一道 2000 分的题。"""
+    taxonomy = Taxonomy()
+    item = problem(1, ['math.number-theory.prime'], difficulty=2000)
+    beginner = recommend([item], {'math.number-theory.prime': 0.0}, [], taxonomy)[0]
+    matched = recommend([item], {'math.number-theory.prime': 0.5}, [], taxonomy)[0]
+    advanced = recommend([item], {'math.number-theory.prime': 1.0}, [], taxonomy)[0]
+    assert matched['score_breakdown']['difficulty_fit'] == 1.0
+    assert beginner['score_breakdown']['difficulty_fit'] == 0.0
+    assert advanced['score_breakdown']['difficulty_fit'] == 0.0
+    assert beginner['score_breakdown']['weakness'] > advanced['score_breakdown']['weakness']

@@ -27,7 +27,9 @@ def main():
      rows=list(csv.DictReader(f)); data={'version':rows[0].get('version') or Taxonomy().version,'provenance':rows[0].get('provenance',''),'nodes':[]}
      for r in rows:
       # CSV 里的空单元格：parent_id 表示根节点（写成 null），其他字段视为没有该字段。
-      n={k:(None if (k=='parent_id' and v in ('','None')) else v) for k,v in r.items() if k not in ('version','provenance') and (v!='' or k=='parent_id')}; n['level']=int(n['level']); data['nodes'].append(n)
+      n={k:(None if (k=='parent_id' and v in ('','None')) else v) for k,v in r.items() if k not in ('version','provenance') and (v!='' or k=='parent_id')}; n['level']=int(n['level'])
+      if 'intro_rating' in n: n['intro_rating']=int(n['intro_rating'])
+      data['nodes'].append(n)
    t=Path(a.output or 'data/knowledge_taxonomy.json'); temp=Path(tempfile.mktemp(suffix='.json')); temp.write_text(json.dumps(data,ensure_ascii=False),encoding='utf8'); Taxonomy(temp); temp.unlink(); atomic(t,json.dumps(data,ensure_ascii=False,indent=2))
   else:
    src=json.loads(Path(a.input).read_text(encoding='utf8')); mp=json.loads(Path(a.mapping).read_text(encoding='utf8')); target=Taxonomy(); mapping=mp['mapping'];

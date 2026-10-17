@@ -1,7 +1,7 @@
 {
   "evaluation_version": "offline-evaluation-v1",
   "dataset_version": "authored-fixture-2026.09.17-v2",
-  "dataset_sha256": "9547470bd71951814abc37b275236978774a555af0005dd7814878076e200774",
+  "dataset_sha256": "264f7fc488e039788e9d87451d38794a960c4ac6c8420fc978faabaebf183e58",
   "taxonomy_version": "2026.09.9",
   "provenance": "authored_fixture",
   "seed": 42,
@@ -26,8 +26,8 @@
     "baseline": {
       "k": 5,
       "queries": 5,
-      "hit_at_k": 0.6,
-      "mrr": 0.33999999999999997,
+      "hit_at_k": 0.4,
+      "mrr": 0.26666666666666666,
       "coverage": 0.3333333333333333,
       "unique_recommended": 6,
       "eligible_catalog_size": 18,
@@ -37,9 +37,9 @@
       "k": 5,
       "queries": 5,
       "hit_at_k": 0.8,
-      "mrr": 0.8,
-      "coverage": 0.3888888888888889,
-      "unique_recommended": 7,
+      "mrr": 0.7,
+      "coverage": 0.4444444444444444,
+      "unique_recommended": 8,
       "eligible_catalog_size": 18,
       "recommendation_count": 25
     }
@@ -67,100 +67,100 @@
       "rationale": "冷启动样例先练基础；高阶组合题作不适宜负例，非真实教学判断。",
       "baseline": [
         {
+          "problem_id": 15,
+          "score": 0.75,
+          "reasons": [],
+          "score_breakdown": {}
+        },
+        {
           "problem_id": 13,
-          "score": 1.0,
+          "score": 0.5,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 6,
-          "score": 1.0,
+          "score": 0.5,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 7,
-          "score": 1.0,
+          "score": 0.5,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 11,
-          "score": 1.0,
-          "reasons": [],
-          "score_breakdown": {}
-        },
-        {
-          "problem_id": 9,
-          "score": 1.0,
+          "score": 0.5,
           "reasons": [],
           "score_breakdown": {}
         }
       ],
       "graph": [
         {
-          "problem_id": 4,
-          "score": 0.7,
+          "problem_id": 15,
+          "score": 0.6,
           "reasons": [
-            "练习知识点：数论基础",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "练习知识点：线段树",
+            "题目评分 2200（区域赛铜牌），当前期望评分约 2000，匹配分 0.75",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.75
+          }
+        },
+        {
+          "problem_id": 4,
+          "score": 0.5,
+          "reasons": [
+            "练习知识点：数论基础",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
+            "这些知识点尚无做题证据，可用本题初步评估"
+          ],
+          "score_breakdown": {
+            "weakness": 0.5,
+            "difficulty_fit": 0.5
           }
         },
         {
           "problem_id": 6,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：二叉堆",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         },
         {
           "problem_id": 7,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：最短路",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         },
         {
           "problem_id": 9,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：背包 DP",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
-          }
-        },
-        {
-          "problem_id": 11,
-          "score": 0.7,
-          "reasons": [
-            "练习知识点：前缀函数与 KMP 算法",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
-            "这些知识点尚无做题证据，可用本题初步评估"
-          ],
-          "score_breakdown": {
-            "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         }
       ]
@@ -191,100 +191,100 @@
       "rationale": "排序和枚举已过，练二分或修复判素数；区间和为自编基础扩展正例。",
       "baseline": [
         {
+          "problem_id": 15,
+          "score": 0.861133,
+          "reasons": [],
+          "score_breakdown": {}
+        },
+        {
           "problem_id": 13,
-          "score": 0.944433,
+          "score": 0.388867,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 6,
-          "score": 0.944433,
+          "score": 0.388867,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 7,
-          "score": 0.944433,
+          "score": 0.388867,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 11,
-          "score": 0.944433,
-          "reasons": [],
-          "score_breakdown": {}
-        },
-        {
-          "problem_id": 9,
-          "score": 0.944433,
+          "score": 0.388867,
           "reasons": [],
           "score_breakdown": {}
         }
       ],
       "graph": [
         {
+          "problem_id": 15,
+          "score": 0.6,
+          "reasons": [
+            "练习知识点：线段树",
+            "题目评分 2200（区域赛铜牌），当前期望评分约 2000，匹配分 0.75",
+            "这些知识点尚无做题证据，可用本题初步评估"
+          ],
+          "score_breakdown": {
+            "weakness": 0.5,
+            "difficulty_fit": 0.75
+          }
+        },
+        {
           "problem_id": 3,
-          "score": 0.7667,
+          "score": 0.5334,
           "reasons": [
             "练习知识点：素数",
-            "题目难度 2/5，与当前练习阶段匹配分 0.92",
+            "题目评分 1200（基础），当前期望评分约 1700，匹配分 0.33",
             "按当前薄弱知识点排序"
           ],
           "score_breakdown": {
             "weakness": 0.6667,
-            "difficulty_fit": 0.9167
+            "difficulty_fit": 0.3334
           }
         },
         {
           "problem_id": 4,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：数论基础",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         },
         {
           "problem_id": 6,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：二叉堆",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         },
         {
           "problem_id": 7,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：最短路",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
-          }
-        },
-        {
-          "problem_id": 9,
-          "score": 0.7,
-          "reasons": [
-            "练习知识点：背包 DP",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
-            "这些知识点尚无做题证据，可用本题初步评估"
-          ],
-          "score_breakdown": {
-            "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         }
       ]
@@ -315,32 +315,32 @@
       "rationale": "记录掌握数组、邻接表、堆，Dijkstra 仍 WA；CE 不替换算法证据。",
       "baseline": [
         {
+          "problem_id": 15,
+          "score": 0.9167,
+          "reasons": [],
+          "score_breakdown": {}
+        },
+        {
           "problem_id": 13,
-          "score": 0.91665,
+          "score": 0.3333,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 7,
-          "score": 0.91665,
+          "score": 0.3333,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 11,
-          "score": 0.91665,
+          "score": 0.3333,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 9,
-          "score": 0.91665,
-          "reasons": [],
-          "score_breakdown": {}
-        },
-        {
-          "problem_id": 4,
-          "score": 0.91665,
+          "score": 0.3333,
           "reasons": [],
           "score_breakdown": {}
         }
@@ -348,67 +348,67 @@
       "graph": [
         {
           "problem_id": 7,
-          "score": 0.7333,
+          "score": 0.7334,
           "reasons": [
             "练习知识点：最短路",
-            "题目难度 3/5，与当前练习阶段匹配分 0.83",
+            "题目评分 1600（进阶），当前期望评分约 1700，匹配分 0.83",
             "按当前薄弱知识点排序"
           ],
           "score_breakdown": {
             "weakness": 0.6667,
-            "difficulty_fit": 0.8333
+            "difficulty_fit": 0.8334
+          }
+        },
+        {
+          "problem_id": 15,
+          "score": 0.6,
+          "reasons": [
+            "练习知识点：线段树",
+            "题目评分 2200（区域赛铜牌），当前期望评分约 2000，匹配分 0.75",
+            "这些知识点尚无做题证据，可用本题初步评估"
+          ],
+          "score_breakdown": {
+            "weakness": 0.5,
+            "difficulty_fit": 0.75
           }
         },
         {
           "problem_id": 4,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：数论基础",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         },
         {
           "problem_id": 9,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：背包 DP",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         },
         {
           "problem_id": 11,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：前缀函数与 KMP 算法",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
-          }
-        },
-        {
-          "problem_id": 13,
-          "score": 0.7,
-          "reasons": [
-            "练习知识点：树状数组",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
-            "这些知识点尚无做题证据，可用本题初步评估"
-          ],
-          "score_breakdown": {
-            "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         }
       ]
@@ -438,32 +438,32 @@
       "rationale": "前缀和与递归已有 AC，动态区间题可练；树状数组多次失败只按最新证据计。",
       "baseline": [
         {
+          "problem_id": 15,
+          "score": 0.861133,
+          "reasons": [],
+          "score_breakdown": {}
+        },
+        {
           "problem_id": 13,
-          "score": 0.944433,
+          "score": 0.388867,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 6,
-          "score": 0.944433,
+          "score": 0.388867,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 7,
-          "score": 0.944433,
+          "score": 0.388867,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 11,
-          "score": 0.944433,
-          "reasons": [],
-          "score_breakdown": {}
-        },
-        {
-          "problem_id": 9,
-          "score": 0.944433,
+          "score": 0.388867,
           "reasons": [],
           "score_breakdown": {}
         }
@@ -471,67 +471,67 @@
       "graph": [
         {
           "problem_id": 13,
-          "score": 0.7333,
+          "score": 0.7334,
           "reasons": [
             "练习知识点：树状数组",
-            "题目难度 3/5，与当前练习阶段匹配分 0.83",
+            "题目评分 1600（进阶），当前期望评分约 1700，匹配分 0.83",
             "按当前薄弱知识点排序"
           ],
           "score_breakdown": {
             "weakness": 0.6667,
-            "difficulty_fit": 0.8333
+            "difficulty_fit": 0.8334
+          }
+        },
+        {
+          "problem_id": 15,
+          "score": 0.6,
+          "reasons": [
+            "练习知识点：线段树",
+            "题目评分 2200（区域赛铜牌），当前期望评分约 2000，匹配分 0.75",
+            "这些知识点尚无做题证据，可用本题初步评估"
+          ],
+          "score_breakdown": {
+            "weakness": 0.5,
+            "difficulty_fit": 0.75
           }
         },
         {
           "problem_id": 4,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：数论基础",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         },
         {
           "problem_id": 6,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：二叉堆",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         },
         {
           "problem_id": 7,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：最短路",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
-          }
-        },
-        {
-          "problem_id": 9,
-          "score": 0.7,
-          "reasons": [
-            "练习知识点：背包 DP",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
-            "这些知识点尚无做题证据，可用本题初步评估"
-          ],
-          "score_breakdown": {
-            "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         }
       ]
@@ -558,32 +558,32 @@
       "rationale": "状态定义后来 AC，背包仍 WA；早期失败不可覆盖较新的状态证据。",
       "baseline": [
         {
+          "problem_id": 15,
+          "score": 0.75,
+          "reasons": [],
+          "score_breakdown": {}
+        },
+        {
           "problem_id": 13,
-          "score": 1.0,
+          "score": 0.5,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 6,
-          "score": 1.0,
+          "score": 0.5,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 7,
-          "score": 1.0,
+          "score": 0.5,
           "reasons": [],
           "score_breakdown": {}
         },
         {
           "problem_id": 11,
-          "score": 1.0,
-          "reasons": [],
-          "score_breakdown": {}
-        },
-        {
-          "problem_id": 9,
-          "score": 1.0,
+          "score": 0.5,
           "reasons": [],
           "score_breakdown": {}
         }
@@ -591,67 +591,67 @@
       "graph": [
         {
           "problem_id": 9,
-          "score": 0.7333,
+          "score": 0.7334,
           "reasons": [
             "练习知识点：背包 DP",
-            "题目难度 3/5，与当前练习阶段匹配分 0.83",
+            "题目评分 1600（进阶），当前期望评分约 1700，匹配分 0.83",
             "按当前薄弱知识点排序"
           ],
           "score_breakdown": {
             "weakness": 0.6667,
-            "difficulty_fit": 0.8333
+            "difficulty_fit": 0.8334
+          }
+        },
+        {
+          "problem_id": 15,
+          "score": 0.6,
+          "reasons": [
+            "练习知识点：线段树",
+            "题目评分 2200（区域赛铜牌），当前期望评分约 2000，匹配分 0.75",
+            "这些知识点尚无做题证据，可用本题初步评估"
+          ],
+          "score_breakdown": {
+            "weakness": 0.5,
+            "difficulty_fit": 0.75
           }
         },
         {
           "problem_id": 4,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：数论基础",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         },
         {
           "problem_id": 6,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：二叉堆",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         },
         {
           "problem_id": 7,
-          "score": 0.7,
+          "score": 0.5,
           "reasons": [
             "练习知识点：最短路",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
+            "题目评分 1600（进阶），当前期望评分约 2000，匹配分 0.50",
             "这些知识点尚无做题证据，可用本题初步评估"
           ],
           "score_breakdown": {
             "weakness": 0.5,
-            "difficulty_fit": 1.0
-          }
-        },
-        {
-          "problem_id": 11,
-          "score": 0.7,
-          "reasons": [
-            "练习知识点：前缀函数与 KMP 算法",
-            "题目难度 3/5，与当前练习阶段匹配分 1.00",
-            "这些知识点尚无做题证据，可用本题初步评估"
-          ],
-          "score_breakdown": {
-            "weakness": 0.5,
-            "difficulty_fit": 1.0
+            "difficulty_fit": 0.5
           }
         }
       ]
@@ -663,7 +663,7 @@
     "Positive/negative relevance examples were authored for scenarios, not independently assessed; unlisted candidates are treated as non-relevant for hit/MRR.",
     "Recommendations use fixture gold analyses, so this is an oracle-label ranking experiment and excludes prediction errors.",
     "Mastery uses only simulated history: latest non-CE result per problem; (1+final AC problem count)/(2+independent problem count) per knowledge ID, reusing the production formula in services/profile.py. These are heuristics, not calibrated learning probabilities.",
-    "Difficulty-only baseline targets 1+4*mean(observed mastery), default 3; the knowledge ranker adds tag weakness on top. Neither is tuned on real outcomes.",
+    "Difficulty-only baseline targets 1200+1600*mean(observed mastery) on the 800-3500 Codeforces-style scale; the knowledge ranker adds tag weakness on top. Neither is tuned on real outcomes.",
     "MRR is truncated at k; coverage denominator is the union of all learner-eligible candidates.",
     "No API, real user, or database is used; no automatic paid prediction calls. Use external predictions to evaluate labels/difficulty."
   ]

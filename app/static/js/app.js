@@ -21,7 +21,7 @@ const ROUTES = [
   { id: 'overview', label: '总览', icon: 'layout-dashboard', title: '学习总览', view: overviewView },
   { id: 'knowledge', label: '知识树', icon: 'book-open', title: '知识树', showTitle: false, view: knowledgeView },
   { id: 'problems', label: '题目库', icon: 'list-checks', title: '题目库', view: problemsView },
-  { id: 'analysis', label: '题目分析', icon: 'sparkles', title: '题目分析', view: analysisView },
+  { id: 'analysis', label: '题目录入与分析', icon: 'sparkles', title: '题目录入与分析', view: analysisView },
   { id: 'reviews', label: '审核队列', icon: 'clipboard-check', title: '审核队列', view: reviewsView },
   { id: 'submissions', label: '提交记录', icon: 'send', title: '提交记录', view: submissionsView },
   { id: 'profile', label: '能力画像', icon: 'user-round', title: '能力画像', view: profileView },
@@ -35,23 +35,35 @@ function paintNav(activeId) {
     type: 'button',
     class: `nav-item${route.id === activeId ? ' active' : ''}`,
     title: route.label,
+    'aria-label': route.label,
+    'aria-current': route.id === activeId ? 'page' : null,
     onClick: () => navigate(route.id),
   }, icon(route.icon), h('span', {}, route.label))));
 }
 
+let renderVersion = 0;
 async function renderRoute() {
+  const version = ++renderVersion;
   const { id, param } = currentRoute();
   const route = ROUTES.find((item) => item.id === id) || ROUTES[0];
+  const problemDetail = route.id === 'problems' && Boolean(param);
+  const reviewDetail = route.id === 'reviews' && Boolean(param);
+  byId('app').classList.toggle('app-standalone', problemDetail || reviewDetail);
+  byId('sidebar').hidden = problemDetail || reviewDetail;
   paintNav(route.id);
   document.title = `${route.title} · CodePowerPlus`;
   const main = byId('main');
   mount(main, loading());
   try {
     const view = await route.view.render({ param });
+    if (version !== renderVersion) return;
+    if (problemDetail) document.title = `${view.querySelector('.problem-heading')?.textContent || '题目详情'} · CodePowerPlus`;
+    if (reviewDetail) document.title = `审核 ${view.querySelector('.review-heading')?.textContent || '题目'} · CodePowerPlus`;
     mount(main, route.id === 'overview'
       ? view
-      : h('div', { class: `route-shell route-shell-${route.id}` }, route.showTitle === false ? null : h('h1', { class: 'route-title' }, route.title), view));
+      : h('div', { class: `route-shell route-shell-${route.id}${reviewDetail ? ' route-shell-review-detail' : ''}` }, route.showTitle === false || problemDetail || reviewDetail ? null : h('h1', { class: 'route-title' }, route.title), view));
   } catch (error) {
+    if (version !== renderVersion) return;
     mount(main, h('div', { class: 'stack' }, errorBox(error, renderRoute)));
   }
   main.focus({ preventScroll: true });

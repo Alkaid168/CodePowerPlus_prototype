@@ -43,6 +43,27 @@ export function verdictBadge(verdict) {
   return h('span', { class: `badge ${kind}` }, verdict);
 }
 
+/** 难度使用 100–3500 评分：100–700 为语法入门细分，800 起沿用 Codeforces 风格，档位名作为补充。 */
+export function difficultyTag(rating, band = '') {
+  if (rating === null || rating === undefined) return h('span', { class: 'tag' }, '未评估');
+  const text = band ? `${rating} · ${band}` : String(rating);
+  return h('span', { class: 'tag difficulty', title: rating < 800 ? `语法入门评分 ${rating}` : `Codeforces 风格评分 ${rating}` }, text);
+}
+
+export function sourceLink(sourceUrl, label = '') {
+  if (!sourceUrl) return null;
+  return h('a', { class: 'source-link', href: sourceUrl, target: '_blank', rel: 'noopener noreferrer',
+    title: sourceUrl }, icon('external-link'), h('span', {}, label || sourceHost(sourceUrl)));
+}
+
+export function sourceHost(sourceUrl) {
+  try {
+    return new URL(sourceUrl).host.replace(/^www\./, '');
+  } catch {
+    return sourceUrl;
+  }
+}
+
 export function table(headers, rows) {
   return h('table', { class: 'table' },
     h('thead', {}, h('tr', {}, headers.map((header) => h('th', {}, header)))),
@@ -77,7 +98,9 @@ export function progress(value) {
     h('span', { class: 'mono nowrap' }, percent === null ? '无证据' : `${percent}%`));
 }
 
+let fieldSequence = 0;
 export function field(label, control, hint = '') {
+  if (!control.id) control.id = `field-${++fieldSequence}`;
   return h('div', { class: 'field' },
     h('label', { class: 'field-label', for: control.id || undefined }, label),
     control,

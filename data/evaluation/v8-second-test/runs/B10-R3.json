@@ -1,0 +1,241 @@
+{
+  "event": "v8二测",
+  "key": "B10-R3",
+  "public_id": "B10",
+  "repetition": 3,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "a0cfac0d8a162c0d2623bc2e5595766aa3b224ffadc1a7410b6adff130824647",
+  "completed_at": "2026-10-17T03:46:36.267878+00:00",
+  "analysis": {
+    "title": "乘2与减1的最少操作次数",
+    "difficulty": 1100,
+    "difficulty_reason": "题目状态转移直接，核心是把整数和两种操作转化为无权状态图并用 BFS 求最短路，属于常规基础算法选用；主要门槛在于设定可证明的搜索上界及处理 n>m 的直接情形，但证明和实现负担都不深，未达到需要复杂动态维护或较长构造链的档位，因此定在 1100。",
+    "solution_idea": "把当前正整数看作状态图中的结点，一次操作 `x -> 2x` 或 `x -> x-1`（要求 `x>1`）都是边权为 1 的有向边，因此所求就是 `n` 到 `m` 的最短路径长度，使用 BFS 分层扩展即可保证首次到达 `m` 时操作数最少。\n\n关键边界与状态上界：\n- 若 `n>m`，乘法只会增大数值并增加后续减法次数，最优一定是连续减 `n-m` 次，答案为 `n-m`。\n- 若 `n<m`，一旦当前值 `x>=m`，继续乘法会让目标更远，最优只需不断减到 `m`；因此有用的乘法只发生在 `x<m` 时，结果满足 `2x<2m`。故 BFS 只需限制在 `[1, 2m+2]` 内，不会漏掉更优路径。\n- 减法必须保持正数，所以仅在 `x>1` 时扩展 `x-1`。\n\nBFS 使用队列按操作次数逐层搜索，每个状态最多扩展两次，状态数为 `O(max(n,m))`。",
+    "confidence": 0.9,
+    "primary_knowledge_ids": [
+      "search.bfs"
+    ],
+    "secondary_knowledge_ids": [
+      "ds.queue"
+    ],
+    "evidence": {
+      "search.bfs": "将整数状态和乘2、减1操作视为无权有向图，最少操作次数即最短路径，BFS 首次到达目标即为最优。",
+      "ds.queue": "BFS 需要队列按层保存并扩展待访问状态，以保证搜索距离单调递增。"
+    },
+    "knowledge_confidence": {
+      "search.bfs": 0.98,
+      "ds.queue": 0.95
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "广度优先搜索（BFS）",
+      "队列"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "67c7a57a-8c8b-484d-a0a0-a130bb76a0c6",
+          "usage": {
+            "completion_tokens": 8309,
+            "prompt_tokens": 5427,
+            "total_tokens": 13736,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 7809,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 5248,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 5248,
+            "prompt_cache_miss_tokens": 179
+          },
+          "elapsed_seconds": 41.075,
+          "valid": true,
+          "response_text": "{\"title\":\"乘2与减1的最少操作次数\",\"kind\":\"algorithm\",\"solution_idea\":\"把当前正整数看作状态图中的结点，一次操作 `x -> 2x` 或 `x -> x-1`（要求 `x>1`）都是边权为 1 的有向边，因此所求就是 `n` 到 `m` 的最短路径长度，使用 BFS 分层扩展即可保证首次到达 `m` 时操作数最少。\\n\\n关键边界与状态上界：\\n- 若 `n>m`，乘法只会增大数值并增加后续减法次数，最优一定是连续减 `n-m` 次，答案为 `n-m`。\\n- 若 `n<m`，一旦当前值 `x>=m`，继续乘法会让目标更远，最优只需不断减到 `m`；因此有用的乘法只发生在 `x<m` 时，结果满足 `2x<2m`。故 BFS 只需限制在 `[1, 2m+2]` 内，不会漏掉更优路径。\\n- 减法必须保持正数，所以仅在 `x>1` 时扩展 `x-1`。\\n\\nBFS 使用队列按操作次数逐层搜索，每个状态最多扩展两次，状态数为 `O(max(n,m))`。\",\"methods\":[{\"name\":\"有界整数状态 BFS\",\"knowledge_ids\":[\"search.bfs\",\"ds.queue\"],\"time_complexity\":\"整体 O(max(n,m))；n>m 时可 O(1) 直接得 n-m，n<m 时 BFS 状态上界为 2m+2\",\"space_complexity\":\"O(max(n,m))，用于距离数组和 BFS 队列\"}],\"primary_knowledge_ids\":[\"search.bfs\"],\"secondary_knowledge_ids\":[\"ds.queue\"],\"evidence\":{\"search.bfs\":\"将整数状态和乘2、减1操作视为无权有向图，最少操作次数即最短路径，BFS 首次到达目标即为最优。\",\"ds.queue\":\"BFS 需要队列按层保存并扩展待访问状态，以保证搜索距离单调递增。\"},\"knowledge_confidence\":{\"search.bfs\":0.98,\"ds.queue\":0.95},\"confidence\":0.96}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "e7cf55ce-680b-43df-981a-671a7620f3e4",
+          "usage": {
+            "completion_tokens": 5197,
+            "prompt_tokens": 1909,
+            "total_tokens": 7106,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 4916,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1024,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 885
+          },
+          "elapsed_seconds": 27.604,
+          "valid": true,
+          "response_text": "{\"rubric\":{\"knowledge\":\"需要掌握广度优先搜索和队列，以及无权图中“最少操作次数等于最短路径长度”的基本观点。\",\"modelling\":\"把正整数当前值看作状态，乘 2 和减 1 看作有向边，整体较直接；但需要处理 n>m 时的直接结论，并说明 BFS 只需搜索到约 2m 的范围，存在一定边界建模门槛。\",\"proof\":\"正确性主要依赖 BFS 首次到达即最短，以及 n>m 时乘法不会优于连续减、n<m 时不必在上界之外继续扩展的论证；论证不长但不可完全省略。\",\"implementation\":\"实现为队列加距离/访问数组，状态规模 O(m)，操作常数小；需注意正数限制、搜索上界和 n>m 的边界分支。\"},\"consistency_issues\":[],\"difficulty\":1100,\"difficulty_reason\":\"题目状态转移直接，核心是把整数和两种操作转化为无权状态图并用 BFS 求最短路，属于常规基础算法选用；主要门槛在于设定可证明的搜索上界及处理 n>m 的直接情形，但证明和实现负担都不深，未达到需要复杂动态维护或较长构造链的档位，因此定在 1100。\",\"confidence\":0.9}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "乘2与减1的最少操作次数",
+        "kind": "algorithm",
+        "solution_idea": "把当前正整数看作状态图中的结点，一次操作 `x -> 2x` 或 `x -> x-1`（要求 `x>1`）都是边权为 1 的有向边，因此所求就是 `n` 到 `m` 的最短路径长度，使用 BFS 分层扩展即可保证首次到达 `m` 时操作数最少。\n\n关键边界与状态上界：\n- 若 `n>m`，乘法只会增大数值并增加后续减法次数，最优一定是连续减 `n-m` 次，答案为 `n-m`。\n- 若 `n<m`，一旦当前值 `x>=m`，继续乘法会让目标更远，最优只需不断减到 `m`；因此有用的乘法只发生在 `x<m` 时，结果满足 `2x<2m`。故 BFS 只需限制在 `[1, 2m+2]` 内，不会漏掉更优路径。\n- 减法必须保持正数，所以仅在 `x>1` 时扩展 `x-1`。\n\nBFS 使用队列按操作次数逐层搜索，每个状态最多扩展两次，状态数为 `O(max(n,m))`。",
+        "methods": [
+          {
+            "name": "有界整数状态 BFS",
+            "knowledge_ids": [
+              "search.bfs",
+              "ds.queue"
+            ],
+            "time_complexity": "整体 O(max(n,m))；n>m 时可 O(1) 直接得 n-m，n<m 时 BFS 状态上界为 2m+2",
+            "space_complexity": "O(max(n,m))，用于距离数组和 BFS 队列"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "search.bfs"
+        ],
+        "secondary_knowledge_ids": [
+          "ds.queue"
+        ],
+        "evidence": {
+          "search.bfs": "将整数状态和乘2、减1操作视为无权有向图，最少操作次数即最短路径，BFS 首次到达目标即为最优。",
+          "ds.queue": "BFS 需要队列按层保存并扩展待访问状态，以保证搜索距离单调递增。"
+        },
+        "knowledge_confidence": {
+          "search.bfs": 0.98,
+          "ds.queue": 0.95
+        },
+        "confidence": 0.96
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要掌握广度优先搜索和队列，以及无权图中“最少操作次数等于最短路径长度”的基本观点。",
+          "modelling": "把正整数当前值看作状态，乘 2 和减 1 看作有向边，整体较直接；但需要处理 n>m 时的直接结论，并说明 BFS 只需搜索到约 2m 的范围，存在一定边界建模门槛。",
+          "proof": "正确性主要依赖 BFS 首次到达即最短，以及 n>m 时乘法不会优于连续减、n<m 时不必在上界之外继续扩展的论证；论证不长但不可完全省略。",
+          "implementation": "实现为队列加距离/访问数组，状态规模 O(m)，操作常数小；需注意正数限制、搜索上界和 n>m 的边界分支。"
+        },
+        "consistency_issues": [],
+        "difficulty": 1100,
+        "difficulty_reason": "题目状态转移直接，核心是把整数和两种操作转化为无权状态图并用 BFS 求最短路，属于常规基础算法选用；主要门槛在于设定可证明的搜索上界及处理 n>m 的直接情形，但证明和实现负担都不深，未达到需要复杂动态维护或较长构造链的档位，因此定在 1100。",
+        "confidence": 0.9
+      },
+      "elapsed_seconds": 68.68,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "d662a79678d447398c42e2264abfeec95271ae5d725a32960dae476c668dc13c",
+      "response_model": "deepseek-flash",
+      "response_id": "67c7a57a-8c8b-484d-a0a0-a130bb76a0c6",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 25938,
+      "reasoning_content_sha256": "4b86c4a68275bcf3e36415d6a38dbe792491400ce477b8c6c9c0ec3a19a3b946",
+      "usage": {
+        "completion_tokens": 8309,
+        "prompt_tokens": 5427,
+        "total_tokens": 13736,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 7809,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 5248,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 5248,
+        "prompt_cache_miss_tokens": 179
+      },
+      "elapsed_seconds": 41.075
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "3e2a107394bb27293d60492d36edb91cf3649cb34f03881afe3b7707b5a394f9",
+      "response_model": "deepseek-flash",
+      "response_id": "e7cf55ce-680b-43df-981a-671a7620f3e4",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 17152,
+      "reasoning_content_sha256": "d897a8546a05c7a3911bc88c36c8c663cf47c519f6babab75196ecf446a06b2f",
+      "usage": {
+        "completion_tokens": 5197,
+        "prompt_tokens": 1909,
+        "total_tokens": 7106,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 4916,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1024,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 1024,
+        "prompt_cache_miss_tokens": 885
+      },
+      "elapsed_seconds": 27.604
+    }
+  ]
+}

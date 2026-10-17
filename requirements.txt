@@ -1,6 +1,10 @@
 fastapi
 uvicorn[standard]
 openai
+# 本机若通过 SOCKS 代理访问模型服务，httpx 需要 socksio，否则客户端初始化直接失败。
+httpx[socks]
 pydantic-settings
 python-dotenv
 jsonschema>=4.23,<5
+# 仅用于读取用户提交的难度盲评表，不用于模型调用或正式题库写入。
+openpyxl>=3.1,<4

@@ -11,16 +11,20 @@ def problem_summary(problem: dict, analysis: dict | None) -> dict:
     return {
         'id': problem['id'],
         'title': problem['title'],
-        'source': problem.get('source', ''),
+        'source_url': problem.get('source_url', ''),
         'created_at': problem.get('created_at', ''),
         'analysis_status': analysis['review_status'] if analysis else None,
         'knowledge_ids': tags_of(analysis) if analysis else [],
         'difficulty': analysis.get('difficulty') if analysis else None,
+        'revision': problem.get('revision', 1),
+        'analysis_stale': bool(analysis and analysis.get('is_stale')),
     }
 
 
 def problem_detail(problem: dict, analysis: dict | None) -> dict:
-    return {**problem_summary(problem, analysis), 'description': problem['description'], 'analysis': analysis}
+    return {**problem_summary(problem, analysis), 'description': problem['description'], 'analysis': analysis,
+            'reference_solution': problem.get('reference_solution', ''),
+            'reference_code': problem.get('reference_code', '')}
 
 
 def problems_with_analysis(container: Container) -> list[dict]:

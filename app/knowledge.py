@@ -1,7 +1,7 @@
 """Versioned L1/L2/L3 knowledge tree: the vocabulary used to tag problems.
 
-节点只保存 id、名称与层级；这里不做学习顺序、难度或讲解内容，那些属于题目分析
-与教学环节，不影响“一道题考什么”这件事本身。
+节点保存稳定ID、名称、层级与知识点简介。语法标签另含100–700的入门门槛，
+用于校验低分题；这不是对所有题目的固定评分或学习顺序。
 """
 import json
 import re
@@ -51,6 +51,11 @@ class Taxonomy:
             raise TaxonomyError('Taxonomy needs at least one L1 domain')
         for node in raw:
             parent_id = node['parent_id']
+            is_syntax = node['id'].startswith('syntax.')
+            if is_syntax and node['level'] > 1 and node.get('intro_rating') not in range(100, 701, 100):
+                raise TaxonomyError(f'Syntax node needs an introductory rating: {node["id"]}')
+            if not is_syntax and 'intro_rating' in node:
+                raise TaxonomyError(f'Introductory rating only belongs to syntax tags: {node["id"]}')
             if node['level'] == 1:
                 if parent_id is not None:
                     raise TaxonomyError(f'L1 node must not have a parent: {node["id"]}')
@@ -58,6 +63,10 @@ class Taxonomy:
             parent = self.nodes.get(parent_id)
             if parent is None or parent['level'] != node['level'] - 1:
                 raise TaxonomyError(f'Invalid parent or skipped level: {node["id"]}')
+            if is_syntax and not (parent_id == 'syntax' or parent_id.startswith('syntax.')):
+                raise TaxonomyError('Syntax tags must remain under syntax')
+            if is_syntax and parent.get('intro_rating', 0) > node['intro_rating']:
+                raise TaxonomyError('Child syntax threshold cannot be lower than parent')
         # 叶子知识点要有一段介绍；分支节点只需要名称。
         parents = {node['parent_id'] for node in raw if node['parent_id']}
         for node in raw:
@@ -112,7 +121,9 @@ class Taxonomy:
         return node_id if node['level'] == 2 else node['parent_id']
 
     def describe(self):
-        return '\n'.join(f'{node["id"]}: {node["name"]}' for node in self.nodes.values()
+        return '\n'.join(f'{node["id"]}: {node["name"]}'
+                         + (f' [语法门槛 {node["intro_rating"]}]' if node.get('intro_rating') else '')
+                         for node in self.nodes.values()
                          if node['level'] > 1)
 
     def validate_assignment(self, primary, secondary, evidence, knowledge_confidence=None):
@@ -128,9 +139,8 @@ class Taxonomy:
         for node_id in selected:
             if any(ancestor['id'] in selected_set for ancestor in self.ancestors(node_id)):
                 raise TaxonomyError('Do not select both ancestor and descendant')
-        branches = [self.branch(node_id) for node_id in primary]
-        if len(set(branches)) != len(branches):
-            raise TaxonomyError('Only one primary ID per L2 branch')
+        # 同一 L2 分支允许有多个主标签：一道题可能同时用到“素数”和“筛法”，
+        # 或者既可以用树状数组也可以用线段树，这些都应该如实标出。
         if knowledge_confidence is not None:
             if not isinstance(knowledge_confidence, dict) or set(knowledge_confidence) != selected_set or any(
                     type(value) not in (float, int) or not 0 <= value <= 1 for value in knowledge_confidence.values()):

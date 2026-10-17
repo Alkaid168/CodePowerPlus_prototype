@@ -1,0 +1,325 @@
+{
+  "backup_path": "C:\\Users\\51044\\AppData\\Local\\CodePowerPlus\\backups\\before-public40-20261005T123319679542Z.sqlite3",
+  "items": [
+    {
+      "source_id": "P1001",
+      "source_url": "https://www.luogu.com.cn/problem/P1001",
+      "problem_id": 1001,
+      "analysis_id": 2,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P1047",
+      "source_url": "https://www.luogu.com.cn/problem/P1047",
+      "problem_id": 1002,
+      "analysis_id": 3,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P1055",
+      "source_url": "https://www.luogu.com.cn/problem/P1055",
+      "problem_id": 1003,
+      "analysis_id": 4,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P1219",
+      "source_url": "https://www.luogu.com.cn/problem/P1219",
+      "problem_id": 1004,
+      "analysis_id": 5,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P1002",
+      "source_url": "https://www.luogu.com.cn/problem/P1002",
+      "problem_id": 1005,
+      "analysis_id": 6,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P1048",
+      "source_url": "https://www.luogu.com.cn/problem/P1048",
+      "problem_id": 1006,
+      "analysis_id": 7,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P1064",
+      "source_url": "https://www.luogu.com.cn/problem/P1064",
+      "problem_id": 1007,
+      "analysis_id": 8,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P1091",
+      "source_url": "https://www.luogu.com.cn/problem/P1091",
+      "problem_id": 1008,
+      "analysis_id": 9,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P1020",
+      "source_url": "https://www.luogu.com.cn/problem/P1020",
+      "problem_id": 1009,
+      "analysis_id": 10,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P3371",
+      "source_url": "https://www.luogu.com.cn/problem/P3371",
+      "problem_id": 1010,
+      "analysis_id": 11,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P3366",
+      "source_url": "https://www.luogu.com.cn/problem/P3366",
+      "problem_id": 1011,
+      "analysis_id": 12,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P3367",
+      "source_url": "https://www.luogu.com.cn/problem/P3367",
+      "problem_id": 1012,
+      "analysis_id": 13,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P3368",
+      "source_url": "https://www.luogu.com.cn/problem/P3368",
+      "problem_id": 1013,
+      "analysis_id": 14,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P3383",
+      "source_url": "https://www.luogu.com.cn/problem/P3383",
+      "problem_id": 1014,
+      "analysis_id": 15,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P3385",
+      "source_url": "https://www.luogu.com.cn/problem/P3385",
+      "problem_id": 1015,
+      "analysis_id": 16,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P3375",
+      "source_url": "https://www.luogu.com.cn/problem/P3375",
+      "problem_id": 1016,
+      "analysis_id": 17,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P3808",
+      "source_url": "https://www.luogu.com.cn/problem/P3808",
+      "problem_id": 1017,
+      "analysis_id": 18,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P4779",
+      "source_url": "https://www.luogu.com.cn/problem/P4779",
+      "problem_id": 1018,
+      "analysis_id": 19,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P1075",
+      "source_url": "https://www.luogu.com.cn/problem/P1075",
+      "problem_id": 1019,
+      "analysis_id": 20,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "P1115",
+      "source_url": "https://www.luogu.com.cn/problem/P1115",
+      "problem_id": 1020,
+      "analysis_id": 21,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "4A",
+      "source_url": "https://codeforces.com/problemset/problem/4/A",
+      "problem_id": 1021,
+      "analysis_id": 22,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "71A",
+      "source_url": "https://codeforces.com/problemset/problem/71/A",
+      "problem_id": 1022,
+      "analysis_id": 23,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "231A",
+      "source_url": "https://codeforces.com/problemset/problem/231/A",
+      "problem_id": 1023,
+      "analysis_id": 24,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "158A",
+      "source_url": "https://codeforces.com/problemset/problem/158/A",
+      "problem_id": 1024,
+      "analysis_id": 25,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "50A",
+      "source_url": "https://codeforces.com/problemset/problem/50/A",
+      "problem_id": 1025,
+      "analysis_id": 26,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "282A",
+      "source_url": "https://codeforces.com/problemset/problem/282/A",
+      "problem_id": 1026,
+      "analysis_id": 27,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "112A",
+      "source_url": "https://codeforces.com/problemset/problem/112/A",
+      "problem_id": 1027,
+      "analysis_id": 28,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "339A",
+      "source_url": "https://codeforces.com/problemset/problem/339/A",
+      "problem_id": 1028,
+      "analysis_id": 29,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "1A",
+      "source_url": "https://codeforces.com/problemset/problem/1/A",
+      "problem_id": 1029,
+      "analysis_id": 30,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "230B",
+      "source_url": "https://codeforces.com/problemset/problem/230/B",
+      "problem_id": 1030,
+      "analysis_id": 31,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "580A",
+      "source_url": "https://codeforces.com/problemset/problem/580/A",
+      "problem_id": 1031,
+      "analysis_id": 32,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "455A",
+      "source_url": "https://codeforces.com/problemset/problem/455/A",
+      "problem_id": 1032,
+      "analysis_id": 33,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "474B",
+      "source_url": "https://codeforces.com/problemset/problem/474/B",
+      "problem_id": 1033,
+      "analysis_id": 34,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "706B",
+      "source_url": "https://codeforces.com/problemset/problem/706/B",
+      "problem_id": 1034,
+      "analysis_id": 35,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "279B",
+      "source_url": "https://codeforces.com/problemset/problem/279/B",
+      "problem_id": 1035,
+      "analysis_id": 36,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "363B",
+      "source_url": "https://codeforces.com/problemset/problem/363/B",
+      "problem_id": 1036,
+      "analysis_id": 37,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "520B",
+      "source_url": "https://codeforces.com/problemset/problem/520/B",
+      "problem_id": 1037,
+      "analysis_id": 38,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "545C",
+      "source_url": "https://codeforces.com/problemset/problem/545/C",
+      "problem_id": 1038,
+      "analysis_id": 39,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "25D",
+      "source_url": "https://codeforces.com/problemset/problem/25/D",
+      "problem_id": 1039,
+      "analysis_id": 40,
+      "created": true,
+      "review_status": "pending"
+    },
+    {
+      "source_id": "20C",
+      "source_url": "https://codeforces.com/problemset/problem/20/C",
+      "problem_id": 1040,
+      "analysis_id": 41,
+      "created": true,
+      "review_status": "pending"
+    }
+  ]
+}

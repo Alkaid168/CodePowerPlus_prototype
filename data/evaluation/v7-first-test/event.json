@@ -1,0 +1,62 @@
+{
+  "event_name": "v7首测",
+  "module_version": "v7",
+  "module_status": "非成品",
+  "decision_date": "2026-10-17",
+  "outcome": "结果不理想，继续研究v8",
+  "primary_cohort": "data/evaluation/reassess-2026-10-17-v7/applied.json",
+  "metrics": {
+    "whole_library": {
+      "problems": 41,
+      "approved": 32,
+      "rejected": 9,
+      "pending": 0,
+      "rejection_rate": 0.21951219512195122
+    },
+    "v7_frozen35_final": {
+      "problems": 35,
+      "approved": 26,
+      "rejected": 9,
+      "pending": 0,
+      "rejection_rate": 0.2571428571428571
+    },
+    "v7_frozen35_first_click": {
+      "problems": 35,
+      "approved": 27,
+      "rejected": 8,
+      "pending": 0,
+      "rejection_rate": 0.22857142857142856
+    },
+    "v7_syntax": {
+      "problems": 11,
+      "approved": 11,
+      "rejected": 0,
+      "pending": 0,
+      "rejection_rate": 0.0
+    },
+    "v7_algorithm": {
+      "problems": 24,
+      "approved": 15,
+      "rejected": 9,
+      "pending": 0,
+      "rejection_rate": 0.375
+    },
+    "v7_confidence_at_least_095": {
+      "problems": 24,
+      "approved": 20,
+      "rejected": 4,
+      "pending": 0,
+      "rejection_rate": 0.16666666666666666
+    }
+  },
+  "review_report": "docs/review-round1-2026-10-17.md",
+  "historical_model_request_name": "deepseek-chat",
+  "prompt_version": "problem-analysis-v7",
+  "artifacts_sha256": {
+    "data/evaluation/v7-first-test/analysis-v7.py.txt": "64da396c61ccab9ee606d70fcf1166ca04c56cc0db24218e242ee59db7bfcd9a",
+    "app/prompts/problem-analysis-v7.txt": "e8b54965418fa61101f767b2206c6783b1710b4aee596db00fc0b78ae3a53526",
+    "docs/review-round1-2026-10-17.json": "6274a9d93df66941b9ed71c83340eb540edffb6213773db736c79559f6242025",
+    "data/evaluation/reassess-2026-10-17-v7/manifest.json": "21bd3c022f74896b7f47b954df4445e097a649b68f3c9fcb5ec604fc6cb7055d",
+    "data/evaluation/reassess-2026-10-17-v7/predictions.json": "33a432b70898f390eb3bd6e21c29382c59643755e5ddd83b6bacb4060356c1f8"
+  }
+}

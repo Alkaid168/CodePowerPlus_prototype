@@ -1,0 +1,18 @@
+{
+  "backup_file": "before-reassess-v6-20261016T164015734172Z.sqlite3",
+  "backup_sha256": "c22c6cf5e1d1bb4d6d7b6eb8945ca60171ac19474a817a25078e9aac60800b49",
+  "unchanged_tables": {
+    "problems": 41,
+    "analysis_reviews": 2,
+    "submissions": 0
+  },
+  "old_analyses_unchanged": true,
+  "original_analyses": 41,
+  "total_analyses": 82,
+  "latest_pending": 41,
+  "intro_problems": 13,
+  "algorithm_problems": 28,
+  "a_plus_b_rating": 300,
+  "quick_check": "ok",
+  "foreign_key_errors": 0
+}

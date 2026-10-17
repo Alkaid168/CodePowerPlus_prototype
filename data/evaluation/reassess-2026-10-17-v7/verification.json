@@ -1,0 +1,29 @@
+{
+  "unreviewed_reassessed": 35,
+  "original_analyses_unchanged": 82,
+  "original_reviews_unchanged": 8,
+  "reviewed_1000_through_1004_untouched": true,
+  "syntax_rating_exclusivity": "all 35 passed",
+  "problem_1005": {
+    "problem_id": 1005,
+    "previous_analysis_id": 47,
+    "corrected_analysis_id": 83,
+    "difficulty": 1200,
+    "status": "rejected",
+    "backup_file": "before-reassess-problem-analysis-v7-20261016T171134719604Z.sqlite3",
+    "review_ids": [
+      10,
+      9,
+      8
+    ],
+    "provenance": "explicit_project_owner_instruction_executed_by_assistant"
+  },
+  "counts": {
+    "problems": 41,
+    "problem_analyses": 118,
+    "analysis_reviews": 10,
+    "submissions": 0
+  },
+  "quick_check": "ok",
+  "foreign_key_errors": 0
+}

@@ -26,7 +26,7 @@ def main() -> int:
         for title, description in SAMPLES:
             if title in existing:
                 continue
-            container.problems.create(title, description, source='演示数据')
+            container.problems.create(title, description)
             created += 1
         print(f'新增 {created} 道演示题目，数据库当前共 {container.problems.count()} 道。')
     finally:

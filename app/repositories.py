@@ -6,8 +6,10 @@
 from __future__ import annotations
 
 import json
+from contextlib import nullcontext
 
-from app.db import Database, utcnow
+from app.db import FIRST_PROBLEM_ID, Database, utcnow
+from app.errors import Conflict, NotFound
 
 ANALYSIS_COLUMNS = ('id', 'problem_id', 'payload', 'origin', 'initial_status', 'taxonomy_version', 'created_at')
 SUBMISSION_COLUMNS = ('id', 'user_id', 'problem_id', 'verdict', 'language', 'code', 'knowledge_ids',
@@ -18,21 +20,82 @@ class ProblemRepository:
     def __init__(self, db: Database):
         self.db = db
 
-    def create(self, title: str, description: str, source: str = '') -> dict:
-        cursor = self.db.execute('INSERT INTO problems(title, description, source, created_at) VALUES (?, ?, ?, ?)',
-                                 (title, description, source, utcnow()))
+    def create(self, title: str, description: str, source_url: str = '',
+               reference_solution: str = '', reference_code: str = '') -> dict:
+        """插入一道题并分配 OJ 编号。
+
+        编号在 SQL 里用 MAX(id)+1 计算，所以空库第一道题是 1000，
+        而且不依赖 AUTOINCREMENT——旧原型建的库没有 sqlite_sequence 表。
+        写入语句本身是原子的，编号不会因为并发插入而重复。
+        """
+        cursor = self.db.execute(
+            'INSERT INTO problems(id, title, description, source_url, reference_solution, reference_code, created_at) '
+            'VALUES ((SELECT COALESCE(MAX(id), ? - 1) + 1 FROM problems), ?, ?, ?, ?, ?, ?)',
+            (FIRST_PROBLEM_ID, title, description, source_url, reference_solution, reference_code, utcnow()))
         return self.get(cursor.lastrowid)
+
+    def update(self, problem_id: int, fields: dict, expected_revision: int) -> dict:
+        with self.db.transaction():
+            current = self.get(problem_id)
+            if current is None:
+                raise NotFound('题目不存在')
+            if current['revision'] != expected_revision:
+                raise Conflict('题目已被其他操作修改，请保留当前输入并刷新核对')
+            keys = ('title', 'description', 'source_url', 'reference_solution', 'reference_code')
+            if any(current[key] != fields[key] for key in keys):
+                self.db.execute('UPDATE problems SET title=?, description=?, source_url=?, '
+                                'reference_solution=?, reference_code=?, revision=revision+1 WHERE id=?',
+                                tuple(fields[key] for key in keys) + (problem_id,))
+            return self.get(problem_id)
 
     def get(self, problem_id: int) -> dict | None:
         row = self.db.query_one('SELECT * FROM problems WHERE id = ?', (problem_id,))
         return dict(row) if row else None
 
-    def list(self, q: str = '', limit: int = 100, offset: int = 0) -> tuple[list[dict], int]:
-        pattern = f'%{q}%'
-        total = self.db.query_one('SELECT COUNT(*) AS n FROM problems WHERE title LIKE ? OR description LIKE ?',
-                                  (pattern, pattern))['n']
-        rows = self.db.query('SELECT * FROM problems WHERE title LIKE ? OR description LIKE ? ORDER BY id DESC LIMIT ? OFFSET ?',
-                             (pattern, pattern, limit, offset))
+    def list(self, q: str = '', limit: int = 100, offset: int = 0, *,
+             search_ids: list[str] | None = None, knowledge_ids: list[str] | None = None,
+             knowledge_groups: list[list[str]] | None = None,
+             difficulty_min: int | None = None, difficulty_max: int | None = None) -> tuple[list[dict], int]:
+        # 最新分析唯一关联：历史标签/评分不能误命中；筛选在 LIMIT 前执行。
+        source = ('FROM problems p LEFT JOIN problem_analyses a ON a.id = '
+                  '(SELECT MAX(id) FROM problem_analyses WHERE problem_id=p.id)')
+        conditions, params = [], []
+
+        def tagged(ids):
+            params.extend([json.dumps(ids)] * 2)
+            return ("EXISTS (SELECT 1 FROM json_each(a.payload, '$.primary_knowledge_ids') t "
+                    "WHERE t.value IN (SELECT value FROM json_each(?))) OR "
+                    "EXISTS (SELECT 1 FROM json_each(a.payload, '$.secondary_knowledge_ids') t "
+                    "WHERE t.value IN (SELECT value FROM json_each(?)))")
+
+        query = q.strip().lower()
+        if query:
+            params.extend([query, query])
+            text_match = 'instr(lower(p.title), ?) > 0 OR instr(lower(p.description), ?) > 0'
+            if search_ids:
+                tag_match = tagged(search_ids)
+                text_match += f' OR {tag_match}'
+            conditions.append(f'({text_match})')
+        if knowledge_ids is not None:
+            tag_match = tagged(knowledge_ids)
+            conditions.append(f'({tag_match})')
+        # 每个已选大类可命中自身或下级；不同选择之间必须同时满足。
+        for group in knowledge_groups or []:
+            conditions.append(f'({tagged(group)})')
+        if difficulty_min is not None:
+            conditions.append("json_extract(a.payload, '$.difficulty') >= ?")
+            params.append(difficulty_min)
+        if difficulty_max is not None:
+            conditions.append("json_extract(a.payload, '$.difficulty') <= ?")
+            params.append(difficulty_max)
+        where = ' WHERE ' + ' AND '.join(conditions) if conditions else ''
+        total = self.db.query_one(f'SELECT COUNT(*) AS n {source}{where}', tuple(params))['n']
+        order = 'p.id DESC'
+        if query:
+            order = 'CASE WHEN lower(p.title)=? THEN 0 WHEN instr(lower(p.title),?)>0 THEN 1 ELSE 2 END, p.id DESC'
+            params.extend([query, query])
+        rows = self.db.query(f'SELECT p.* {source}{where} ORDER BY {order} LIMIT ? OFFSET ?',
+                             tuple(params) + (limit, offset))
         return [dict(row) for row in rows], total
 
     def all(self) -> list[dict]:
@@ -47,12 +110,23 @@ class AnalysisRepository:
         self.db = db
 
     def add(self, problem_id: int, payload: dict, *, origin: str, status: str = 'pending',
-            taxonomy_version: str = '') -> dict:
-        cursor = self.db.execute(
-            'INSERT INTO problem_analyses(problem_id, payload, origin, initial_status, taxonomy_version, created_at) '
-            'VALUES (?, ?, ?, ?, ?, ?)',
-            (problem_id, json.dumps(payload, ensure_ascii=False), origin, status, taxonomy_version, utcnow()))
-        return self.get(cursor.lastrowid)
+            taxonomy_version: str = '', expected_revision: int | None = None) -> dict:
+        with self.db.lock:
+            # 审核纠正复用外层事务；独立保存则锁住读版本和写快照，覆盖多连接情形。
+            with (nullcontext() if self.db.conn.in_transaction else self.db.transaction()):
+                problem = self.db.query_one('SELECT * FROM problems WHERE id=?', (problem_id,))
+                if problem is None:
+                    raise NotFound('题目不存在')
+                if expected_revision is not None and problem['revision'] != expected_revision:
+                    raise Conflict('分析期间题目发生修改，请根据最新题目重新分析')
+                snapshot = {key: problem[key] for key in
+                            ('title', 'description', 'source_url', 'reference_solution', 'reference_code')}
+                cursor = self.db.execute(
+                    'INSERT INTO problem_analyses(problem_id, payload, origin, initial_status, taxonomy_version, '
+                    'created_at, problem_revision, input_snapshot) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                    (problem_id, json.dumps(payload, ensure_ascii=False), origin, status, taxonomy_version, utcnow(),
+                     problem['revision'], json.dumps(snapshot, ensure_ascii=False)))
+                return self.get(cursor.lastrowid)
 
     def get(self, analysis_id: int) -> dict | None:
         row = self.db.query_one('SELECT * FROM problem_analyses WHERE id = ?', (analysis_id,))
@@ -89,7 +163,7 @@ class AnalysisRepository:
 
     def approved_count(self) -> int:
         return sum(1 for analysis in self.latest_by_problem(self._problem_ids()).values()
-                   if analysis['review_status'] == 'approved')
+                   if analysis['review_status'] == 'approved' and not analysis['is_stale'])
 
     def _problem_ids(self) -> list[int]:
         return [row['id'] for row in self.db.query('SELECT id FROM problems')]
@@ -104,9 +178,12 @@ class AnalysisRepository:
             tuple(analysis_ids) + tuple(analysis_ids))
         return {row['analysis_id']: ('approved' if row['action'] == 'approve' else 'rejected') for row in rows}
 
-    @staticmethod
-    def _to_dict(row, review_status: str) -> dict:
+    def _to_dict(self, row, review_status: str) -> dict:
+        problem = self.db.query_one('SELECT revision FROM problems WHERE id=?', (row['problem_id'],))
         return {**json.loads(row['payload']), 'analysis_id': row['id'], 'problem_id': row['problem_id'],
+                'problem_revision': row['problem_revision'],
+                'is_stale': bool(problem and problem['revision'] != row['problem_revision']),
+                'input_snapshot': json.loads(row['input_snapshot']),
                 'review_status': review_status, 'origin': row['origin'], 'created_at': row['created_at']}
 
 

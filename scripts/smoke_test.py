@@ -28,7 +28,7 @@ def main() -> int:
             problem = client.post('/api/problems', json={'title': '示例题', 'description': '给一个数组求和。'}).json()
             print(f'problem       ok    id={problem["id"]}')
             analysis = client.post(f'/api/problems/{problem["id"]}/analyses', json={
-                'title': '示例题', 'difficulty': 1, 'confidence': 0.8,
+                'title': '示例题', 'difficulty': 800, 'confidence': 0.8,
                 'primary_knowledge_ids': ['basic.prefix-sum'], 'secondary_knowledge_ids': [],
                 'evidence': {'basic.prefix-sum': '需要快速回答区间和'},
                 'knowledge_confidence': {'basic.prefix-sum': 0.8},

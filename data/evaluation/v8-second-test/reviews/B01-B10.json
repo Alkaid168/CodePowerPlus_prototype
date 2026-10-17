@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "reviewer": "v8_review_first10",
+  "rubric_sha256": "0d0e3528523bd484e1874a30da2abdfbd8aee4beb1cdfd7781b4feb530c84d26",
+  "packet_hashes": {
+    "first": "6542c6337fcada168bcbb1b457ff857d8ca872b46188f2501aacbc3ebca9c129",
+    "second_1": "9005bd326959f464dba1a9199f91fc5eb0f2e15a1a12d1823ee9185d654739fa",
+    "second_2": "84b24a17281af4025ae6342ccfb76973d0d799d167f9b2e95860a9763da4963b",
+    "second_3": "681d8d56f4731118321467f105a6a7e45c1341dc6a6de7840a26a0f3dd49ca28"
+  },
+  "status": "reviewed",
+  "items": [
+    {
+      "public_id": "B01",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "差分两端点修改与前缀和还原一致，Fenwick维护动态修改，单次O(log N)满足规模；明确y=N不写N+1，并采用64位避免差分及中间累加溢出。basic.difference与ds.fenwick恰好覆盖实际主线。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/0 (B01; 原定位 v8-first-test/private-sealed/B01)",
+      "issues": []
+    },
+    {
+      "public_id": "B02",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "pre[0]=0，pre[j+k-1]-pre[j-1]枚举全部n-k+1个非环形定长窗口，最小和及起点正确，k=1、k=n均覆盖。前缀和主线O(n)时间空间可行；滚动求和在已保存输入数组后可用O(1)辅助空间。前缀和和枚举标签覆盖实际方法，不强制双指针标签。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/1 (B02; 原定位 v8-first-test/private-sealed/B02)",
+      "issues": [
+        "minor：边读入边维护窗口和O(1)额外空间措辞不严谨；真单遍流式需保存移出元素，O(1)辅助空间基于已存输入数组，本轮依此解释接受。"
+      ]
+    },
+    {
+      "public_id": "B03",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "单位阵初始化、按位乘入及底数平方组成标准矩阵二进制幂，只依赖结合律。乘法每步取模及long long能承受单次余数乘积，负值归一化和k=0均明确。O(n^3 log k)、O(n^2)在抽象算法口径可接受；矩阵与快速幂标签完整。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/2 (B03; 原定位 v8-first-test/private-sealed/B03)",
+      "issues": []
+    },
+    {
+      "public_id": "B04",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "异值四邻关系为无向可达关系，搜索对每个格子恰归入一个连通块，块编号与块大小使重复询问O(1)，总O(n^2+m)。起点计入及单点网格正确。BFS或显式栈DFS均可实现，无代码证实递归栈错误；搜索及图建模标签符合明确的备选方法。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/3 (B04; 原定位 v8-first-test/private-sealed/B04)",
+      "issues": []
+    },
+    {
+      "public_id": "B05",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "选u时子结点只能不选，不选u时每个子树独立取两状态最大；叶子初始化允许空集，故负权及仅禁直接父子均正确。由根的两个状态取最大即目标，根可由父子关系确定，无须再展开模板细节。O(n)可行，树DP和树结构标签准确。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/4 (B05; 原定位 v8-first-test/private-sealed/B05)",
+      "issues": []
+    },
+    {
+      "public_id": "B06",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "排序保持价格多重集合，最后一个不超过m的位置加一恰为可负担商店数；预算小于最小值与大于最大值分别返回0、n，重复价格也按元素计数。排序加逐查询二分可行，两标签对应所述方法。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/5 (B06; 原定位 v8-first-test/private-sealed/B06)",
+      "issues": []
+    },
+    {
+      "public_id": "B07",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": false,
+      "joint_correct": false,
+      "evidence": "AC加fail树上传标记的主线、复杂度与AC/Trie/DFS标签均合理，完整编号集合也能保留重复模式。但原文另声称“或只记录一个代表编号”，未附终点编号数量或重复编号映射。模式a,a、文本a时只标一个代表只能得到1，要求为2；后续要求重复编号分别计未说明如何恢复已丢信息。全部声称备选都须成立，故solution=false。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/6 (B07; 原定位 v8-first-test/private-sealed/B07)",
+      "issues": [
+        "只记录一个代表编号的备选未说明重复数量或反向映射，a,a配a不能保证输出2；编号集合主线本身可行。"
+      ]
+    },
+    {
+      "public_id": "B08",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "明确使用逐左点DFS增广路、match[v]保存右点匹配及本轮vis[v]；增广沿已有匹配重排并使数量加一，Berge定理支撑最大性。算法级说明无需展开代码。重边不增加容量，左右部另行编号，O(n e)可行；匹配与DFS标签准确。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/7 (B08; 原定位 v8-first-test/private-sealed/B08)",
+      "issues": []
+    },
+    {
+      "public_id": "B09",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "倍长后枚举全部N个切口，区间长度由小到大、单点代价0，最后合并划分枚举k同时求最小最大，加上整段和的转移正确。N=1和零石子边界明确，O(N^3)对N不超过100可行；区间DP与前缀和标签完整。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/8 (B09; 原定位 v8-first-test/private-sealed/B09)",
+      "issues": []
+    },
+    {
+      "public_id": "B10",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": false,
+      "joint_correct": false,
+      "evidence": "BFS和状态图标签与声称方法相符，但未分n>=m就将状态域固定为[1,2m]。题面样例n=10,m=1时域为[1,2]，起点10不在域中，无法运行其定义的起点到终点BFS；真实最优为连续减一9步。文本既无直接相减分支也无含起点的界，故solution=false。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/9 (B10; 原定位 v8-first-test/private-sealed/B10)",
+      "issues": [
+        "缺少n>=m分支；固定[1,2m]排除合法起点，反例10到1。"
+      ]
+    },
+    {
+      "public_id": "B01",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "差分定义、闭区间两端更新及动态前缀和还原完整；y=N不改越界点，64位处理可能达2^31的差分。另列区间加懒标记、沿路径累计的线段树点查也成立。线性建树可实现O(N+M log N)，四标签为两种方法并集。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/0 (B01; 原定位 v8-second-test/runs/B01-R1.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B02",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "前缀和差枚举全部起点，或首窗求和后减旧加新，均覆盖全部n-k+1个定长非环形窗口。k=n及并列任意明确，总和至多15000000。两法O(n)，滑窗O(1)按已存输入后的辅助空间解释；前缀和、枚举和双指针均实际使用。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/1 (B02; 原定位 v8-second-test/runs/B02-R1.json)",
+      "issues": [
+        "minor：滑动窗口O(1)是输入之外辅助空间，完整存储仍含输入或移出元素。"
+      ]
+    },
+    {
+      "public_id": "B03",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "按k二进制分解为A^(2^i)，结合律与单位阵处理k=0，负元素归一化明确。抽象矩阵模乘可逐项取模，没有指定类型或代码证实先累加溢出。O(n^3 log k)、O(n^2)可接受，矩阵和快速幂标签覆盖核心。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/2 (B03; 原定位 v8-second-test/runs/B03-R1.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B04",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "异值四邻无向图预处理全部连通分量，编号及大小查询O(1)，不同格只计一次且单格大小1。明确BFS或显式栈DFS，避免深递归；总时间O(n^2+m)、空间O(n^2)可行，图建模及两个搜索标签一致。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/3 (B04; 原定位 v8-second-test/runs/B04-R1.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B05",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "两状态转移只禁直接父子同时选，子树条件独立；叶子不选0、选自身权重，根取最大允许空集并明确找无上司根及n=1。O(n)可行，树DP与树结构标签准确。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/4 (B05; 原定位 v8-second-test/runs/B05-R1.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B06",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "排序后找首个大于预算位置即含等号计数，保留重复价格并处理0/n答案。频数前缀和备选利用V=10^5，预算越界直接n；两种复杂度可行，排序、二分、前缀和并集恰当。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/5 (B06; 原定位 v8-second-test/runs/B06-R1.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B07",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "终点数量保留重复模式，扫描仅标到达状态，BFS逆序向fail父传播后每个标记终点只累加一次数量。a,a配a得2；a,aa,aaa配aaaa得3；he,she配she得2。无需每位置扫全fail链，固定26字母因子线性可行；AC标签覆盖主线。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/6 (B07; 原定位 v8-second-test/runs/B07-R1.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B08",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "说明交错增广路径及翻转匹配，每次增加1，增广路定理保证最大值，左右部及重边处理正确。DFS匈牙利O(nE)与BFS分层/DFS批量增广Hopcroft-Karp O(E sqrt(V))均可行；匹配、DFS、BFS对应方法并集。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/7 (B08; 原定位 v8-second-test/runs/B08-R1.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B09",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "倍长后枚举所有长度N区间覆盖全部切口，最后合并分裂为相邻两段，最小最大分别转移并加整段和。单堆无需操作为0，零石子不破坏转移；前缀和常数求和，O(N^3)可行，两标签准确。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/8 (B09; 原定位 v8-second-test/runs/B09-R1.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B10",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "逆操作为偶数除2和加1；x>n奇数须加1，偶数用交换论证立即除2不劣，x<=n后补差值。n>m因而直接n-m，修复首测缺口。每至多两步下降约一半，O(log m)成立且保持正值，贪心标签准确。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/9 (B10; 原定位 v8-second-test/runs/B10-R1.json)",
+      "issues": [
+        "minor：每次循环减半若奇数加1单独算一轮不字面成立，应为每至多两轮减半，不影响算法与复杂度。"
+      ]
+    },
+    {
+      "public_id": "B01",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "保留初始a[p]，d维护历史增量，两端点修改对p的前缀和恰在x<=p<=y时贡献k。Fenwick在线维护与懒标记线段树均O(log N)每操作；N+1哨兵或忽略不影响查询，64位边界合理。四标签与两法并集一致。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/0 (B01; 原定位 v8-second-test/runs/B01-R2.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B02",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "首窗作为初始最优，滑动从j到j+1减h_j加h_(j+k)，逐窗不漏合法起点；k=1、k=n及并列任意处理。明确存数组O(n)或长度k缓冲O(k)，没有流式O(1)缺口。前缀和备选可行，两标签覆盖两法。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/1 (B02; 原定位 v8-second-test/runs/B02-R2.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B03",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "ans=I，最低位1则乘base，每轮平方和右移，正是结合律下矩阵二进制幂；k=0、n=1与负数规范明确。模乘逐项取模可安全实现，O(n^3 log k)、O(n^2)可接受，矩阵和快速幂标签准确。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/2 (B03; 原定位 v8-second-test/runs/B03-R2.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B04",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "异值四邻关系对称，可达集合等于连通分量，预处理每格编号及大小后常数回答正确。正式方法为BFS洪泛与并查集合并异色邻边，均可行且单格答案1。graph.bfs、graph.connectivity和ds.union-find覆盖正式两法，正文顺带等价DFS不强制重复标签。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/3 (B04; 原定位 v8-second-test/runs/B04-R2.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B05",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "选不选状态、初始0/权值、两种对子转移及后序合并完整，只禁相邻父子，负权允许空集；根由无上司关系确定，不假设根1。根两态取最大与目标一致，O(n)可行，dp.tree与树基础标签准确。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/4 (B05; 原定位 v8-second-test/runs/B05-R2.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B06",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "频数cnt保存相同价格的所有商店，pref[m]对应<=m且超过10^5返回n，预算不足自然0。排序二分上界备选含等号且独立询问正确，两种复杂度可行。basic.use-of-sort为排序应用，配binary/prefix-sum与方法一致。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/5 (B06; 原定位 v8-second-test/runs/B06-R2.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B07",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "Trie终点存编号数量保留重复，文本到达状态标记后按逆BFS向fail父传播，终点标记当且仅当其fail子树曾被到达。每终点权重只累加一次，重复a,a配a为2，he与she后缀均覆盖。固定26转移规模可行，AC及Trie标签准确。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/6 (B07; 原定位 v8-second-test/runs/B07-R2.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B08",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "右侧match记录配对，逐左点找增广路并翻转，明确遇已占右点让原左点改配；增广定理保证无路时最大。访问标记在空间说明出现，未展开代码不臆测跨轮不清空。重边孤点合理，O(n e)可行，匹配与DFS对应。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/7 (B08; 原定位 v8-second-test/runs/B08-R2.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B09",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "两倍数组各长度N区间覆盖环切口，最后分界两子区间独立最优，分别min/max并加整段和正确。N=1无操作为0、零石子不影响；前缀和保持O(N^3)时间与O(N^2)空间，区间DP和前缀和标签相符。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/8 (B09; 原定位 v8-second-test/runs/B09-R2.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B10",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "n>m直接减差值；n<m从m逆推，偶数立即除2、奇数加1后除2，用加偶数次再除可交换为先除再加一半证明不劣。x<=n补差最优，正逆路径对应并保持正值，O(log max(n,m))、O(1)正确，贪心标签准确。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/9 (B10; 原定位 v8-second-test/runs/B10-R2.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B01",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "差分含初始数组，区间两端单点修改与前缀和还原严格一致；Fenwick保证历史修改叠加，y=N忽略后端，负k和64位边界明确。O((N+M)log N)、O(N)可行；差分与Fenwick标签覆盖主线。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/0 (B01; 原定位 v8-second-test/runs/B01-R3.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B02",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "首窗求和，逐次减离开元素加新元素，枚举全部n-k+1窗口记录最优起点；k=1/k=n与1-based正确，15000000最大和32位安全。前缀和备选正确；滑窗O(1)额外空间按已存输入解释，两标签对应方法。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/1 (B02; 原定位 v8-second-test/runs/B02-R3.json)",
+      "issues": [
+        "minor：methods的O(1)指输入数组外辅助空间，完整存储仍含输入；solution已用额外空间限定。"
+      ]
+    },
+    {
+      "public_id": "B03",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "R单位阵、B初始底数并按指数二进制乘入平方，依据结合律与同底数幂相加，不假设任意矩阵可交换。k=0、负余数和中途溢出已说明，模乘可逐项约简。O(n^3 log k)、O(n^2)可接受，两标签准确。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/2 (B03; 原定位 v8-second-test/runs/B03-R3.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B04",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "迭代BFS沿异值四邻无向边完整划分连通块，各格一次入队，编号大小缓存后常数回答；全同值各1、棋盘格全连通、重复问及单格自然覆盖。O(n^2+m)可行，graph.bfs覆盖该图搜索方法，不强制重复连通性标签。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/3 (B04; 原定位 v8-second-test/runs/B04-R3.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B05",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "选u时子不选，不选u时各子取两态最大，叶子0/权值后序合并，根两态取max。根由无父节点确定、全负允许空集0；O(n)可行，树DP、树基础及明确后序DFS标签均实际使用。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/4 (B05; 原定位 v8-second-test/runs/B05-R3.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B06",
+      "run_id": "second_3",
+      "tags_correct": false,
+      "solution_correct": true,
+      "joint_correct": false,
+      "evidence": "频数前缀和保留重复商店、预算超过V直接n，排序二分上界备选也正确，时间空间可行，故solution=true。但basic.counting-sort多标：当前data/knowledge_taxonomy.json:321-325定义为统计次数后按值从小到大输出，用于整数排序；本输出只做累计计数，没有重建或输出有序序列。prefix-sum/use-of-sort/binary正确不能消除这一多标，故tags及joint=false。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/5 (B06; 原定位 v8-second-test/runs/B06-R3.json)",
+      "issues": [
+        "多标basic.counting-sort：仅频数前缀统计，没有排序输出或重建有序序列。初评倾向将值域计数阶段视作可接受，经root终审及词表原定义核对改判标签false；其余三份B06没有此误贴。"
+      ]
+    },
+    {
+      "public_id": "B07",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "AC记录每编号终点，文本到达状态做逆BFS fail上传，逐编号查终点故重复串不丢计数，每编号仅一次，固定26转移可行。SAM备选建于文本，从初态完整走通模式当且仅当为子串，逐编号累计且总匹配长度S，O(|t|+S)可行。AC、Trie、fail构建队列及SAM标签对应两法。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/6 (B07; 原定位 v8-second-test/runs/B07-R3.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B08",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "空匹配逐左点增广，明确每轮清右访问标记，未匹配右点成功否则递归使原左点改配，成功翻转增加1。增广定理保证最大，重边不增容量，左右编号及孤点正确。O(n(n+m+e))可行，二分图、匹配及DFS标签恰当。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/7 (B08; 原定位 v8-second-test/runs/B08-R3.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B09",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "断环倍长后取全部长度N区间，枚举最后合并点并加整段和，同时min/max，单堆初始0明确。N=1及全零均0，最后合并连续子区间覆盖合法合并树。O(N^3)/O(N^2)可行，区间DP与前缀和标签准确。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/8 (B09; 原定位 v8-second-test/runs/B09-R3.json)",
+      "issues": []
+    },
+    {
+      "public_id": "B10",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "n>m直接减n-m；n<m只有x<m的乘法有用，峰值2x<2m，故[1,2m+2]含最优路径及起点。正值限制用x>1才能减，BFS按层首达最短。O(max(n,m))时间空间可行，修复首测界错误，BFS及队列实际使用。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/9 (B10; 原定位 v8-second-test/runs/B10-R3.json)",
+      "issues": []
+    }
+  ]
+}

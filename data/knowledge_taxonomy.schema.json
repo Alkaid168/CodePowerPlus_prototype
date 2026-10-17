@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "CodePowerPlus knowledge tree",
-  "description": "题目标签词表：只有名称与层级，没有描述性字段。",
+  "description": "题目标签词表：稳定ID、名称、层级、介绍，以及语法标签可选的入门评分门槛。",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -58,6 +58,10 @@
                 "type": "null"
               }
             ]
+          },
+          "intro_rating": {
+            "type": "integer",
+            "enum": [100, 200, 300, 400, 500, 600, 700]
           },
           "summary": {
             "type": "string",

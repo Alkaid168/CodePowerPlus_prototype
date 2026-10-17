@@ -2,9 +2,14 @@
 const STORAGE_KEY = 'codepowerplus:user';
 const listeners = new Set();
 
+function initialUser() {
+  try { return localStorage.getItem(STORAGE_KEY) || 'demo-user'; }
+  catch { return 'demo-user'; }
+}
+
 export const store = {
   state: {
-    userId: localStorage.getItem(STORAGE_KEY) || 'demo-user',
+    userId: initialUser(),
     health: null,
     knowledge: [],
     knowledgeTree: [],
@@ -23,7 +28,7 @@ export const store = {
 
   setUser(userId) {
     const value = (userId || '').trim() || 'demo-user';
-    localStorage.setItem(STORAGE_KEY, value);
+    try { localStorage.setItem(STORAGE_KEY, value); } catch { /* 存储禁用时仍保留当前页面内的学习者。 */ }
     this.set({ userId: value });
   },
 

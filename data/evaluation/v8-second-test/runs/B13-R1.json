@@ -1,0 +1,265 @@
+{
+  "event": "v8二测",
+  "key": "B13-R1",
+  "public_id": "B13",
+  "repetition": 1,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "e06db4f73c971b4c0292e8bd049fc850ed1e55dd77609436251e636d8e5d21fc",
+  "completed_at": "2026-10-17T03:41:20.843106+00:00",
+  "analysis": {
+    "title": "统计不同字符串个数",
+    "difficulty": 800,
+    "difficulty_reason": "本题核心是统计不同字符串个数，解法可直接使用排序后相邻去重或哈希表/集合去重。虽然字符串长度可达 1500、N 可达 10000，需要按完整字符串比较并考虑总字符量，但思路由题意直接给出，不涉及复杂建模或非平凡证明；实现上主要是常规字符串读入、排序与去重。符合 800 档“思路几乎直接给出、直接执行即可”的算法入门题特征。",
+    "solution_idea": "把每个字符串看作一个不可拆分的键，问题就是求这些键构成的集合大小。自然主线是：先全部读入并保存所有字符串，按字典序排序；排序后相同的字符串一定连续，扫描时若当前字符串与前一个不同，则不同字符串数加一。正确性依据是排序把等价字符串聚成连续块，每个不同字符串块恰好贡献一次。边界上需注意 N 可能为 0 或 1；比较必须区分大小写并按完整字符串逐字符判断；若允许空串，应把空串当作正常键处理，不能跳过。排序比较最坏每次 O(Mmax)，总复杂度 O(ΣM_i + N log N · Mmax)，空间 O(ΣM_i + N)。哈希表在线去重也可行：对每个字符串计算哈希并查表，若冲突则逐字符确认是否真正出现过，未出现则插入并计数，期望 O(ΣM_i + N)，最坏冲突很多时退化。",
+    "confidence": 0.9,
+    "primary_knowledge_ids": [
+      "basic.use-of-sort",
+      "string.basic"
+    ],
+    "secondary_knowledge_ids": [
+      "string.hash",
+      "ds.hash"
+    ],
+    "evidence": {
+      "basic.use-of-sort": "自然主线先排序再扫描相邻项，利用相同字符串排序后连续的性质去重，属于排序应用。",
+      "string.basic": "排序需要按字典序比较字符串，扫描和哈希冲突处理需要判断完整字符串是否相等，均依赖字符串基础。",
+      "string.hash": "哈希表在线去重需要把长度可达 1500 的字符串映射为哈希值以定位桶。",
+      "ds.hash": "另一可行方案使用哈希表维护已出现字符串，并进行插入、查找和冲突处理。"
+    },
+    "knowledge_confidence": {
+      "basic.use-of-sort": 0.95,
+      "string.basic": 0.9,
+      "string.hash": 0.9,
+      "ds.hash": 0.95
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "排序应用",
+      "字符串基础",
+      "字符串哈希",
+      "哈希表"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "3439b469-6b94-4e4a-bc29-097badeb4c3f",
+          "usage": {
+            "completion_tokens": 9770,
+            "prompt_tokens": 5502,
+            "total_tokens": 15272,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 9127,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 4992,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 4992,
+            "prompt_cache_miss_tokens": 510
+          },
+          "elapsed_seconds": 47.503,
+          "valid": true,
+          "response_text": "{\n  \"title\": \"统计不同字符串个数\",\n  \"kind\": \"algorithm\",\n  \"solution_idea\": \"把每个字符串看作一个不可拆分的键，问题就是求这些键构成的集合大小。自然主线是：先全部读入并保存所有字符串，按字典序排序；排序后相同的字符串一定连续，扫描时若当前字符串与前一个不同，则不同字符串数加一。正确性依据是排序把等价字符串聚成连续块，每个不同字符串块恰好贡献一次。边界上需注意 N 可能为 0 或 1；比较必须区分大小写并按完整字符串逐字符判断；若允许空串，应把空串当作正常键处理，不能跳过。排序比较最坏每次 O(Mmax)，总复杂度 O(ΣM_i + N log N · Mmax)，空间 O(ΣM_i + N)。哈希表在线去重也可行：对每个字符串计算哈希并查表，若冲突则逐字符确认是否真正出现过，未出现则插入并计数，期望 O(ΣM_i + N)，最坏冲突很多时退化。\",\n  \"methods\": [\n    {\n      \"name\": \"排序后相邻去重\",\n      \"knowledge_ids\": [\"basic.use-of-sort\", \"string.basic\"],\n      \"time_complexity\": \"O(ΣM_i + N log N · Mmax)，其中 Mmax≤1500；最坏情况下每次比较需逐字符\",\n      \"space_complexity\": \"O(ΣM_i + N)\"\n    },\n    {\n      \"name\": \"哈希表在线去重\",\n      \"knowledge_ids\": [\"string.hash\", \"ds.hash\", \"string.basic\"],\n      \"time_complexity\": \"期望 O(ΣM_i + N)；哈希冲突很多时最坏 O(N^2 · Mmax)，冲突后逐字符比较保证正确\",\n      \"space_complexity\": \"O(ΣM_i + N)\"\n    }\n  ],\n  \"primary_knowledge_ids\": [\"basic.use-of-sort\", \"string.basic\"],\n  \"secondary_knowledge_ids\": [\"string.hash\", \"ds.hash\"],\n  \"evidence\": {\n    \"basic.use-of-sort\": \"自然主线先排序再扫描相邻项，利用相同字符串排序后连续的性质去重，属于排序应用。\",\n    \"string.basic\": \"排序需要按字典序比较字符串，扫描和哈希冲突处理需要判断完整字符串是否相等，均依赖字符串基础。\",\n    \"string.hash\": \"哈希表在线去重需要把长度可达 1500 的字符串映射为哈希值以定位桶。\",\n    \"ds.hash\": \"另一可行方案使用哈希表维护已出现字符串，并进行插入、查找和冲突处理。\"\n  },\n  \"knowledge_confidence\": {\n    \"basic.use-of-sort\": 0.95,\n    \"string.basic\": 0.9,\n    \"string.hash\": 0.9,\n    \"ds.hash\": 0.95\n  },\n  \"confidence\": 0.92\n}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "6351d305-cb4b-47d5-a8ce-e30820b0768a",
+          "usage": {
+            "completion_tokens": 1483,
+            "prompt_tokens": 2252,
+            "total_tokens": 3735,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1160,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 768,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 1484
+          },
+          "elapsed_seconds": 8.575,
+          "valid": true,
+          "response_text": "{\n  \"rubric\": {\n    \"knowledge\": \"需要掌握字符串的读入与大小写敏感比较，以及使用排序（或集合/哈希表）处理去重。对新生而言，知道 std::sort、std::set 或字符串相等判断即可，算法知识门槛较低。\",\n    \"modelling\": \"题意几乎直接转化为“统计字符串集合大小”：读入所有字符串后排序去重或直接放入集合，不需要复杂建模或状态设计。\",\n    \"proof\": \"正确性论证简单但需说明：排序后相同字符串必然相邻，因此每个相同字符串块只贡献一次；空串或 N=0/1 的边界也需处理。\",\n    \"implementation\": \"实现负担很低：读入、保存全部字符串、排序并扫描，或用哈希表在线去重；主要注意大小写、完整字符串相等及输入边界。\"\n  },\n  \"consistency_issues\": [],\n  \"difficulty\": 800,\n  \"difficulty_reason\": \"本题核心是统计不同字符串个数，解法可直接使用排序后相邻去重或哈希表/集合去重。虽然字符串长度可达 1500、N 可达 10000，需要按完整字符串比较并考虑总字符量，但思路由题意直接给出，不涉及复杂建模或非平凡证明；实现上主要是常规字符串读入、排序与去重。符合 800 档“思路几乎直接给出、直接执行即可”的算法入门题特征。\",\n  \"confidence\": 0.9\n}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "统计不同字符串个数",
+        "kind": "algorithm",
+        "solution_idea": "把每个字符串看作一个不可拆分的键，问题就是求这些键构成的集合大小。自然主线是：先全部读入并保存所有字符串，按字典序排序；排序后相同的字符串一定连续，扫描时若当前字符串与前一个不同，则不同字符串数加一。正确性依据是排序把等价字符串聚成连续块，每个不同字符串块恰好贡献一次。边界上需注意 N 可能为 0 或 1；比较必须区分大小写并按完整字符串逐字符判断；若允许空串，应把空串当作正常键处理，不能跳过。排序比较最坏每次 O(Mmax)，总复杂度 O(ΣM_i + N log N · Mmax)，空间 O(ΣM_i + N)。哈希表在线去重也可行：对每个字符串计算哈希并查表，若冲突则逐字符确认是否真正出现过，未出现则插入并计数，期望 O(ΣM_i + N)，最坏冲突很多时退化。",
+        "methods": [
+          {
+            "name": "排序后相邻去重",
+            "knowledge_ids": [
+              "basic.use-of-sort",
+              "string.basic"
+            ],
+            "time_complexity": "O(ΣM_i + N log N · Mmax)，其中 Mmax≤1500；最坏情况下每次比较需逐字符",
+            "space_complexity": "O(ΣM_i + N)"
+          },
+          {
+            "name": "哈希表在线去重",
+            "knowledge_ids": [
+              "string.hash",
+              "ds.hash",
+              "string.basic"
+            ],
+            "time_complexity": "期望 O(ΣM_i + N)；哈希冲突很多时最坏 O(N^2 · Mmax)，冲突后逐字符比较保证正确",
+            "space_complexity": "O(ΣM_i + N)"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "basic.use-of-sort",
+          "string.basic"
+        ],
+        "secondary_knowledge_ids": [
+          "string.hash",
+          "ds.hash"
+        ],
+        "evidence": {
+          "basic.use-of-sort": "自然主线先排序再扫描相邻项，利用相同字符串排序后连续的性质去重，属于排序应用。",
+          "string.basic": "排序需要按字典序比较字符串，扫描和哈希冲突处理需要判断完整字符串是否相等，均依赖字符串基础。",
+          "string.hash": "哈希表在线去重需要把长度可达 1500 的字符串映射为哈希值以定位桶。",
+          "ds.hash": "另一可行方案使用哈希表维护已出现字符串，并进行插入、查找和冲突处理。"
+        },
+        "knowledge_confidence": {
+          "basic.use-of-sort": 0.95,
+          "string.basic": 0.9,
+          "string.hash": 0.9,
+          "ds.hash": 0.95
+        },
+        "confidence": 0.92
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要掌握字符串的读入与大小写敏感比较，以及使用排序（或集合/哈希表）处理去重。对新生而言，知道 std::sort、std::set 或字符串相等判断即可，算法知识门槛较低。",
+          "modelling": "题意几乎直接转化为“统计字符串集合大小”：读入所有字符串后排序去重或直接放入集合，不需要复杂建模或状态设计。",
+          "proof": "正确性论证简单但需说明：排序后相同字符串必然相邻，因此每个相同字符串块只贡献一次；空串或 N=0/1 的边界也需处理。",
+          "implementation": "实现负担很低：读入、保存全部字符串、排序并扫描，或用哈希表在线去重；主要注意大小写、完整字符串相等及输入边界。"
+        },
+        "consistency_issues": [],
+        "difficulty": 800,
+        "difficulty_reason": "本题核心是统计不同字符串个数，解法可直接使用排序后相邻去重或哈希表/集合去重。虽然字符串长度可达 1500、N 可达 10000，需要按完整字符串比较并考虑总字符量，但思路由题意直接给出，不涉及复杂建模或非平凡证明；实现上主要是常规字符串读入、排序与去重。符合 800 档“思路几乎直接给出、直接执行即可”的算法入门题特征。",
+        "confidence": 0.9
+      },
+      "elapsed_seconds": 56.079,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "bec7c6fad3adc63a7eafb807877983e1eede17b9db1da19eff80399fb0f10584",
+      "response_model": "deepseek-flash",
+      "response_id": "3439b469-6b94-4e4a-bc29-097badeb4c3f",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 35254,
+      "reasoning_content_sha256": "b63f42979cfb2854db499138f437ae8d4bb8a367201ed4c6970e5bf52d976a34",
+      "usage": {
+        "completion_tokens": 9770,
+        "prompt_tokens": 5502,
+        "total_tokens": 15272,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 9127,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 4992,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 4992,
+        "prompt_cache_miss_tokens": 510
+      },
+      "elapsed_seconds": 47.503
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "916b27c9b2e5399d7e634639ffe54f661bfc1b02fa4459d07c7e7cff167c4cfd",
+      "response_model": "deepseek-flash",
+      "response_id": "6351d305-cb4b-47d5-a8ce-e30820b0768a",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 4711,
+      "reasoning_content_sha256": "e732e9dac6519c7b6d79d2b2c8910fc6f93593c01eb94fe77a97ba36ce35059e",
+      "usage": {
+        "completion_tokens": 1483,
+        "prompt_tokens": 2252,
+        "total_tokens": 3735,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 1160,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 768,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 1484
+      },
+      "elapsed_seconds": 8.575
+    }
+  ]
+}

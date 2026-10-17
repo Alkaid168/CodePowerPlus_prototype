@@ -43,7 +43,7 @@ def version(container):
 @pytest.fixture()
 def make_problem(client, version):
     """建一道题并写一条手工分析，默认仍处于待审核状态。"""
-    def factory(title='测试题', primary=('basic.prefix-sum',), secondary=(), difficulty=2,
+    def factory(title='测试题', primary=('basic.prefix-sum',), secondary=(), difficulty=1600,
                 description='给定数组，多次询问区间和。'):
         problem = client.post('/api/problems', json={'title': title, 'description': description}).json()
         ids = list(primary) + list(secondary)

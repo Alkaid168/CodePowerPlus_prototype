@@ -67,9 +67,10 @@ button, input, textarea, select { font-family: inherit; }
 .stack { display: flex; flex-direction: column; gap: 16px; }
 .stack.tight { gap: 8px; }
 .grid { display: grid; gap: 14px; }
-.grid.two { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-.grid.three { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-.grid.four { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.grid.two { grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
+.grid.three { grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); }
+.grid > * { min-width: 0; }
 
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; overflow: hidden;

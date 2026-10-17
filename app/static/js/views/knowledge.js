@@ -3,17 +3,9 @@ import { api } from '../api.js';
 import { h, mount } from '../dom.js';
 import { icon } from '../icons.js';
 import { knowledgeIllustration } from '../knowledgeIllustrations.js';
+import { matchesSearch, normalizeSearch } from '../search.js';
 import { store } from '../store.js';
 import { button, emptyState, errorBox, loading } from '../components.js';
-
-function normalizeSearch(value) {
-  return String(value || '').toLowerCase().replace(/[\s._\-/()（）]+/g, ' ').trim();
-}
-
-function matchesSearch(node, keyword) {
-  const query = normalizeSearch(keyword);
-  return !query || normalizeSearch(`${node.name} ${node.id}`).includes(query);
-}
 
 function nodePath(node, byId) {
   const path = [];
@@ -37,6 +29,7 @@ export default {
     const expanded = new Set();
     let selectedRootId = roots[0]?.id || '';
     let activeId = selectedRootId;
+    let detailRequest = 0;
 
     const tabsHost = h('nav', { class: 'knowledge-l1-tabs', role: 'tablist', 'aria-label': '知识领域' });
     const treeHost = h('div', { class: 'knowledge-tree-scroll', 'aria-label': '当前领域的知识节点' });
@@ -66,13 +59,30 @@ export default {
     }
 
     function paintTabs() {
-      mount(tabsHost, roots.map((root) => h('button', {
+      mount(tabsHost, roots.map((root, index) => h('button', {
         type: 'button',
         class: `knowledge-l1-tab${root.id === selectedRootId ? ' active' : ''}`,
         role: 'tab',
         'aria-selected': String(root.id === selectedRootId),
+        tabIndex: root.id === selectedRootId ? 0 : -1,
         onClick: () => selectRoot(root.id),
+        onKeydown: (event) => {
+          let target;
+          if (event.key === 'ArrowRight') target = (index + 1) % roots.length;
+          else if (event.key === 'ArrowLeft') target = (index - 1 + roots.length) % roots.length;
+          else if (event.key === 'Home') target = 0;
+          else if (event.key === 'End') target = roots.length - 1;
+          else return;
+          event.preventDefault();
+          selectRoot(roots[target].id);
+          tabsHost.children[target]?.focus({ preventScroll: true });
+        },
       }, root.name)));
+      // 领域数量增加时只移动导航自身；触摸、键盘和 URL 定位都能看到当前项。
+      requestAnimationFrame(() => {
+        const index = roots.findIndex(root => root.id === selectedRootId);
+        tabsHost.children[index]?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+      });
     }
 
     function rowFor(node, { result = false } = {}) {
@@ -164,6 +174,7 @@ export default {
     }
 
     async function show(id) {
+      const request = ++detailRequest;
       const node = byId.get(id);
       if (!node) {
         showEmpty();
@@ -174,8 +185,10 @@ export default {
       mount(detailHost, loading('读取知识点…'));
       try {
         const detail = await api.knowledgeDetail(id);
+        if (request !== detailRequest) return;
         renderDetail(normalizeDetail(detail));
       } catch (error) {
+        if (request !== detailRequest) return;
         mount(detailHost, errorBox(error, () => show(id)));
       }
     }

@@ -1,0 +1,1190 @@
+[
+  {
+    "source_id": "4A",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/4/A",
+    "title": "Watermelon",
+    "description": "## 题目定义\n\n给定整数 w，判断它能否写成两个正偶数之和；两项允许不同。\n\n## 输入格式\n\n一行一个整数 w。\n\n## 输出格式\n\n可行输出 YES，否则输出 NO。\n\n## 数据范围\n\n1 ≤ w ≤ 100。\n\n## 样例 1\n\n输入：\n\n```text\n8\n```\n\n输出：\n\n```text\nYES\n```\n",
+    "official_difficulty": {
+      "rating": 800,
+      "tags": [
+        "brute force",
+        "math"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "math.number-theory",
+        "basic.enumerate"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 800,
+      "difficulty_reason": "只需奇偶判断并单独排除 2；也可枚举第一部分，边界条件比算法本身更重要。",
+      "solution_idea": "两个正偶数之和必为偶数且至少为 4；反过来 w 为偶数且 w>2 时可取 2 和 w−2。也可枚举 1≤a<w，检查 a 与 w−a 都是偶数，O(w)。",
+      "evidence": {
+        "math.number-theory": "正偶数分拆利用奇偶性质，最小两项之和为 4。",
+        "basic.enumerate": "w≤100，枚举分拆点并逐一检验也是完整且满足限制的核心解法。"
+      },
+      "knowledge_confidence": {
+        "math.number-theory": 0.96,
+        "basic.enumerate": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "8",
+        "output": "YES",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 1,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "71A",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/71/A",
+    "title": "Way Too Long Words",
+    "description": "## 题目定义\n\n对每个只含小写英文字母的单词，长度大于 10 时，把它改写为首字母、内部字符数量的十进制表示、末字母；长度不超过 10 时原样保留。数字不带前导零。\n\n## 输入格式\n\n第一行 n，随后 n 行各一个单词。\n\n## 输出格式\n\n逐行输出处理后的单词。\n\n## 数据范围\n\n1 ≤ n ≤ 100；每个单词长度为 1 到 100。\n\n## 样例 1\n\n输入：\n\n```text\n4\nword\nlocalization\ninternationalization\npneumonoultramicroscopicsilicovolcanoconiosis\n```\n\n输出：\n\n```text\nword\nl10n\ni18n\np43s\n```\n",
+    "official_difficulty": {
+      "rating": 800,
+      "tags": [
+        "strings"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "string.basic"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 800,
+      "difficulty_reason": "条件分支与首尾字符读取即可，无复杂数据结构。",
+      "solution_idea": "逐词取长度 L。若 L>10，输出 s[0]+十进制(L−2)+s[L−1]；否则输出原串。总时间 O(输入字符数)。",
+      "evidence": {
+        "string.basic": "核心操作是字符串长度、首尾字符提取及字符串拼接。"
+      },
+      "knowledge_confidence": {
+        "string.basic": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "4\nword\nlocalization\ninternationalization\npneumonoultramicroscopicsilicovolcanoconiosis",
+        "output": "word\nl10n\ni18n\np43s",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 1,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "231A",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/231/A",
+    "title": "Team",
+    "description": "## 题目定义\n\n有 n 个事项，每个事项有三个人的二进制意见。只有至少两人的意见为 1 时该事项才被选中。统计被选中的事项数。\n\n## 输入格式\n\n第一行 n；随后 n 行各有三个 0 或 1。\n\n## 输出格式\n\n输出符合条件的行数。\n\n## 数据范围\n\n1 ≤ n ≤ 1000。\n\n## 样例 1\n\n输入：\n\n```text\n3\n1 1 0\n1 1 1\n1 0 0\n```\n\n输出：\n\n```text\n2\n```\n\n## 样例 2\n\n输入：\n\n```text\n2\n1 0 0\n0 1 1\n```\n\n输出：\n\n```text\n1\n```\n",
+    "official_difficulty": {
+      "rating": 800,
+      "tags": [
+        "brute force",
+        "greedy"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "basic.simulate"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 800,
+      "difficulty_reason": "逐行求和并计数，无需要优化的搜索。",
+      "solution_idea": "依次读取每行三数；和≥2则答案加一。O(n) 时间、O(1) 额外空间。",
+      "evidence": {
+        "basic.simulate": "直接按每事项至少两个 1 的规则处理和计数。"
+      },
+      "knowledge_confidence": {
+        "basic.simulate": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "3\n1 1 0\n1 1 1\n1 0 0",
+        "output": "2",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "2\n1 0 0\n0 1 1",
+        "output": "1",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 2,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "158A",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/158/A",
+    "title": "Next Round",
+    "description": "## 题目定义\n\nn 个分数已按非递增顺序给出。一个分数必须为正且不低于第 k 个分数，才算符合资格。求符合资格的数量。\n\n## 输入格式\n\n第一行 n,k；第二行 n 个分数 a_i。\n\n## 输出格式\n\n输出符合资格的分数个数。\n\n## 数据范围\n\n1 ≤ k ≤ n ≤ 50；0 ≤ a_i ≤ 100；a_i ≥ a_(i+1)。\n\n## 样例 1\n\n输入：\n\n```text\n8 5\n10 9 8 7 7 7 5 5\n```\n\n输出：\n\n```text\n6\n```\n\n## 样例 2\n\n输入：\n\n```text\n4 2\n0 0 0 0\n```\n\n输出：\n\n```text\n0\n```\n",
+    "official_difficulty": {
+      "rating": 800,
+      "tags": [
+        "*special",
+        "implementation"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "basic.simulate"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 800,
+      "difficulty_reason": "直接套用两个判定条件；关键是 0 分不能晋级。",
+      "solution_idea": "保存阈值 a_k，统计 a_i>0 且 a_i≥a_k 的元素，O(n)。输入已排序，无需再排序。",
+      "evidence": {
+        "basic.simulate": "逐项执行正分且不低于阈值的资格规则。"
+      },
+      "knowledge_confidence": {
+        "basic.simulate": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "8 5\n10 9 8 7 7 7 5 5",
+        "output": "6",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "4 2\n0 0 0 0",
+        "output": "0",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 2,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "50A",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/50/A",
+    "title": "Domino piling",
+    "description": "## 题目定义\n\n在 M×N 个单位方格的矩形内放置若干 2×1 骨牌。可旋转，不能重叠，不能超出矩形，允许接触边界。求最多能放多少块。\n\n## 输入格式\n\n一行 M,N。\n\n## 输出格式\n\n输出最大骨牌数量。\n\n## 数据范围\n\n1 ≤ M ≤ N ≤ 16。\n\n## 样例 1\n\n输入：\n\n```text\n2 4\n```\n\n输出：\n\n```text\n4\n```\n\n## 样例 2\n\n输入：\n\n```text\n3 3\n```\n\n输出：\n\n```text\n4\n```\n",
+    "official_difficulty": {
+      "rating": 800,
+      "tags": [
+        "greedy",
+        "math"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "basic.greedy",
+        "basic.construction"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 800,
+      "difficulty_reason": "面积上界配合逐行或逐列配对可达到，处理奇数边长即可。",
+      "solution_idea": "每块占两格，因此数量至多 floor(MN/2)。若某边为偶数，沿该方向成对铺满；两边均奇数时先铺前 M−1 行，再在最后一行放 floor(N/2) 块。达到上界。计算 O(1)。",
+      "evidence": {
+        "basic.greedy": "将相邻方格成对铺设，无需搜索；局部配对达到面积给出的全局上界。",
+        "basic.construction": "必须说明上界能被构造达到；两边均奇数时只留下一个格子。"
+      },
+      "knowledge_confidence": {
+        "basic.greedy": 0.96,
+        "basic.construction": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "2 4",
+        "output": "4",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "3 3",
+        "output": "4",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 2,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "282A",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/282/A",
+    "title": "Bit++",
+    "description": "## 题目定义\n\n变量 x 初值为 0。每条语句由 X 与 ++ 或 -- 组成，操作可以放在 X 前或后；++ 使 x 加一，-- 使 x 减一。执行全部语句后求 x。\n\n## 输入格式\n\n第一行 n；随后 n 行各为 ++X、X++、--X、X-- 之一。\n\n## 输出格式\n\n输出 x 的最终整数值。\n\n## 数据范围\n\n1 ≤ n ≤ 150。\n\n## 样例 1\n\n输入：\n\n```text\n1\n++X\n```\n\n输出：\n\n```text\n1\n```\n\n## 样例 2\n\n输入：\n\n```text\n2\nX++\n--X\n```\n\n输出：\n\n```text\n0\n```\n",
+    "official_difficulty": {
+      "rating": 800,
+      "tags": [
+        "implementation"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "basic.simulate"
+      ],
+      "secondary_knowledge_ids": [
+        "string.basic"
+      ],
+      "difficulty": 800,
+      "difficulty_reason": "按输入执行增减操作，语句只有四种形式。",
+      "solution_idea": "依次读取语句，含 + 则加一，否则减一；第 2 个字符也总能判断操作。O(n) 时间。",
+      "evidence": {
+        "basic.simulate": "按照每条指令更新单一变量。",
+        "string.basic": "使用字符检查解析操作；只是实现辅助手段。"
+      },
+      "knowledge_confidence": {
+        "basic.simulate": 0.96,
+        "string.basic": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "1\n++X",
+        "output": "1",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "2\nX++\n--X",
+        "output": "0",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 2,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "112A",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/112/A",
+    "title": "Petya and Strings",
+    "description": "## 题目定义\n\n比较两个等长、由大小写英文字母组成的字符串的字典序，比较时对应的大小写字母视为同一字符。\n\n## 输入格式\n\n前两行分别给出一个字符串。\n\n## 输出格式\n\n第一串较小输出 −1，较大输出 1，相等输出 0。\n\n## 数据范围\n\n两串长度相同，均为 1 到 100。\n\n## 样例 1\n\n输入：\n\n```text\naaaa\naaaA\n```\n\n输出：\n\n```text\n0\n```\n\n## 样例 2\n\n输入：\n\n```text\nabs\nAbz\n```\n\n输出：\n\n```text\n-1\n```\n\n## 样例 3\n\n输入：\n\n```text\nabcdefg\nAbCdEfF\n```\n\n输出：\n\n```text\n1\n```\n",
+    "official_difficulty": {
+      "rating": 800,
+      "tags": [
+        "implementation",
+        "strings"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "string.basic"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 800,
+      "difficulty_reason": "统一大小写后按首个不同字符比较即可。",
+      "solution_idea": "把两串转换为同一大小写，从左往右寻找首次不同的位置并比较字母；全部相同则输出 0。O(L)。",
+      "evidence": {
+        "string.basic": "大小写归一化与字典序比较构成完整解法。"
+      },
+      "knowledge_confidence": {
+        "string.basic": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "aaaa\naaaA",
+        "output": "0",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "abs\nAbz",
+        "output": "-1",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "abcdefg\nAbCdEfF",
+        "output": "1",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 3,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "339A",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/339/A",
+    "title": "Helpful Maths",
+    "description": "## 题目定义\n\n输入一个由数字 1、2、3 和加号组成的合法加法式。保留各数字出现的次数，将数字按非递减次序重新排列，并仍用加号分隔。\n\n## 输入格式\n\n一行无空格的非空合法表达式 s。\n\n## 输出格式\n\n输出重排后的表达式。\n\n## 数据范围\n\n1 ≤ |s| ≤ 100；运算数只能是单个数字 1、2 或 3。\n\n## 样例 1\n\n输入：\n\n```text\n3+2+1\n```\n\n输出：\n\n```text\n1+2+3\n```\n\n## 样例 2\n\n输入：\n\n```text\n1+1+3+1+3\n```\n\n输出：\n\n```text\n1+1+1+3+3\n```\n\n## 样例 3\n\n输入：\n\n```text\n2\n```\n\n输出：\n\n```text\n2\n```\n",
+    "official_difficulty": {
+      "rating": 800,
+      "tags": [
+        "greedy",
+        "implementation",
+        "sortings",
+        "strings"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "basic.counting-sort",
+        "basic.use-of-sort"
+      ],
+      "secondary_knowledge_ids": [
+        "string.basic"
+      ],
+      "difficulty": 800,
+      "difficulty_reason": "取出数字排序或按三个计数输出，输入规模很小。",
+      "solution_idea": "可统计 1、2、3 的次数并依次输出，O(|s|)；也可抽取数字后使用通用排序，O(|s|log|s|)。数字间输出 +，不在末尾追加。",
+      "evidence": {
+        "basic.counting-sort": "值域只有三个值，按频次从小到大还原是直接的计数排序。",
+        "basic.use-of-sort": "取出数字并按大小排序同样完整有效，是另一种核心解法。",
+        "string.basic": "识别表达式中的数字并用加号重新拼接是辅助操作。"
+      },
+      "knowledge_confidence": {
+        "basic.counting-sort": 0.96,
+        "basic.use-of-sort": 0.96,
+        "string.basic": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "3+2+1",
+        "output": "1+2+3",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "1+1+3+1+3",
+        "output": "1+1+1+3+3",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "2",
+        "output": "2",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 3,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "1A",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/1/A",
+    "title": "Theatre Square",
+    "description": "## 题目定义\n\n用边长为 a 的完整正方形板覆盖 n×m 的矩形。板边必须平行于矩形边，不可切割；覆盖范围可以超出矩形。求所需板数的最小值。\n\n## 输入格式\n\n一行 n,m,a。\n\n## 输出格式\n\n输出最少板数。\n\n## 数据范围\n\n1 ≤ n,m,a ≤ 10^9；答案可能超出 32 位整数范围。\n\n## 样例 1\n\n输入：\n\n```text\n6 6 4\n```\n\n输出：\n\n```text\n4\n```\n",
+    "official_difficulty": {
+      "rating": 1000,
+      "tags": [
+        "math"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "math.number-theory",
+        "basic.construction"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 900,
+      "difficulty_reason": "需要整数向上取整，两个方向相乘并使用 64 位整数，推导很短。",
+      "solution_idea": "每个方向分别至少需要 ceil(n/a)、ceil(m/a) 个覆盖层，规则网格构造达到乘积。用 (n+a−1)/a 和 (m+a−1)/a 的整数商相乘，O(1)。",
+      "evidence": {
+        "math.number-theory": "整数除法与余数用于精确计算向上取整，避免浮点误差。",
+        "basic.construction": "按两个方向的最少块数排列成网格即可实现最小覆盖。"
+      },
+      "knowledge_confidence": {
+        "math.number-theory": 0.8,
+        "basic.construction": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "6 6 4",
+        "output": "4",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 1,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "230B",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/230/B",
+    "title": "T-primes",
+    "description": "## 题目定义\n\n一个正整数若恰好有三个不同的正因数，则称为 T-prime。对 n 个正整数分别判断这一性质。\n\n## 输入格式\n\n第一行 n；第二行 n 个 x_i。\n\n## 输出格式\n\n每个数输出一行 YES 或 NO。\n\n## 数据范围\n\n1 ≤ n ≤ 10^5；1 ≤ x_i ≤ 10^12。\n\n## 样例 1\n\n输入：\n\n```text\n3\n4 5 6\n```\n\n输出：\n\n```text\nYES\nNO\nNO\n```\n",
+    "official_difficulty": {
+      "rating": 1300,
+      "tags": [
+        "binary search",
+        "implementation",
+        "math",
+        "number theory"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "math.number-theory.prime",
+        "math.number-theory.sieve"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 1400,
+      "difficulty_reason": "先证明三因数等价于素数平方，再把大量大整数询问化为平方根及筛表查询。",
+      "solution_idea": "T-prime 恰好为 p^2，其中 p 是素数。筛出 10^6 内的素数；对每个 x 求整数平方根 r，确认 r*r=x 且 r 是素数。注意 1 不是素数、根的舍入校正及 64 位乘法。O(10^6loglog10^6+n)。",
+      "evidence": {
+        "math.number-theory.prime": "因数分解指数给出恰有三个因数当且仅当为素数平方。",
+        "math.number-theory.sieve": "10^5 次询问不应逐一试除大整数；平方根上界 10^6，可以预筛素数。"
+      },
+      "knowledge_confidence": {
+        "math.number-theory.prime": 0.96,
+        "math.number-theory.sieve": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "3\n4 5 6",
+        "output": "YES\nNO\nNO",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 1,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "580A",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/580/A",
+    "title": "Kefa and First Steps",
+    "description": "## 题目定义\n\n给定整数序列，求最长连续非递减片段的长度。连续片段不能跳过中间元素，相邻值允许相等。\n\n## 输入格式\n\n第一行 n；第二行 n 个 a_i。\n\n## 输出格式\n\n输出最大长度。\n\n## 数据范围\n\n1 ≤ n ≤ 10^5；1 ≤ a_i ≤ 10^9。\n\n## 样例 1\n\n输入：\n\n```text\n6\n2 2 1 3 4 1\n```\n\n输出：\n\n```text\n3\n```\n\n## 样例 2\n\n输入：\n\n```text\n3\n2 2 9\n```\n\n输出：\n\n```text\n3\n```\n",
+    "official_difficulty": {
+      "rating": 900,
+      "tags": [
+        "brute force",
+        "dp",
+        "implementation"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "basic.simulate",
+        "dp.misc"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 900,
+      "difficulty_reason": "维护当前连续段的长度即可；是最基础的一维递推。",
+      "solution_idea": "扫描相邻元素，若 a_i≥a_(i−1) 则当前长度加一，否则重置为 1，持续更新最大值。等价 DP：f_i 为以 i 结尾的最长非递减连续段，递推为 f_(i−1)+1 或 1。O(n) 时间、O(1) 空间。",
+      "evidence": {
+        "basic.simulate": "按相邻是否下降直接维护连续段长度，一次扫描即为完整方法。",
+        "dp.misc": "f_i 仅依赖 f_(i−1)，是连续段的一维动态规划；词表没有线性 DP 专项。"
+      },
+      "knowledge_confidence": {
+        "basic.simulate": 0.96,
+        "dp.misc": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "6\n2 2 1 3 4 1",
+        "output": "3",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "3\n2 2 9",
+        "output": "3",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 2,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "455A",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/455/A",
+    "title": "Boredom",
+    "description": "## 题目定义\n\n从一个整数多重集合中反复选择一个现存元素 v：删除该元素并获得 v 分，同时删除所有值为 v−1 或 v+1 的元素。可以随时结束。求最大总分。\n\n## 输入格式\n\n第一行 n；第二行 n 个 a_i。\n\n## 输出格式\n\n输出可以获得的最大总分。\n\n## 数据范围\n\n1 ≤ n ≤ 10^5；1 ≤ a_i ≤ 10^5；总分使用 64 位整数。\n\n## 样例 1\n\n输入：\n\n```text\n2\n1 2\n```\n\n输出：\n\n```text\n2\n```\n\n## 样例 2\n\n输入：\n\n```text\n3\n1 2 3\n```\n\n输出：\n\n```text\n4\n```\n\n## 样例 3\n\n输入：\n\n```text\n9\n1 2 1 3 2 2 2 2 3\n```\n\n输出：\n\n```text\n10\n```\n",
+    "official_difficulty": {
+      "rating": 1500,
+      "tags": [
+        "dp"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "dp.misc"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 1400,
+      "difficulty_reason": "需从序列位置转为值域计数，再识别相邻值不能同时取的选择关系。",
+      "solution_idea": "统计 cnt[v]。同值互不排斥，决定选 v 时可拿完全部 v，总收益 v*cnt[v]。令 f[v] 为只考虑值≤v 的最优收益，则 f[v]=max(f[v−1],f[v−2]+v*cnt[v])。时间 O(n+V)，空间 O(V) 或滚动。",
+      "evidence": {
+        "dp.misc": "按数值进行取或不取 DP；选择 v 排斥 v−1，因此取分支接 f[v−2]。"
+      },
+      "knowledge_confidence": {
+        "dp.misc": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "2\n1 2",
+        "output": "2",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "3\n1 2 3",
+        "output": "4",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "9\n1 2 1 3 2 2 2 2 3",
+        "output": "10",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 3,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "474B",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/474/B",
+    "title": "Worms",
+    "description": "## 题目定义\n\nn 个有序组的大小为 a_i。把所有对象按组的顺序连续编号，从 1 开始。对 m 个对象编号，回答其所在组的编号（组编号也从 1 开始）。\n\n## 输入格式\n\n第一行 n；第二行 a_i；第三行 m；第四行 m 个查询 q_i。\n\n## 输出格式\n\n每个查询输出一行所在组的编号。\n\n## 数据范围\n\n1 ≤ n,m ≤ 10^5；1 ≤ a_i ≤ 10^3；Σa_i ≤ 10^6；1 ≤ q_i ≤ Σa_i。\n\n## 样例 1\n\n输入：\n\n```text\n5\n2 7 3 4 9\n3\n1 25 11\n```\n\n输出：\n\n```text\n1\n5\n3\n```\n",
+    "official_difficulty": {
+      "rating": 1200,
+      "tags": [
+        "binary search",
+        "implementation"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "basic.prefix-sum",
+        "basic.binary"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 1100,
+      "difficulty_reason": "将组末编号前缀化后做下界二分，属于入门静态查询。",
+      "solution_idea": "求严格递增前缀和 S_i。q 所属组是最小的 S_i≥q 的 i，可 lower_bound 查询；O(n+m log n)。总对象数≤10^6 时也可以直接预填每个编号对应的组，O(Σa_i+m)。",
+      "evidence": {
+        "basic.prefix-sum": "每组结束编号正是组大小的前缀和。",
+        "basic.binary": "在有序组末编号中找到第一个不小于查询值的元素。"
+      },
+      "knowledge_confidence": {
+        "basic.prefix-sum": 0.96,
+        "basic.binary": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "5\n2 7 3 4 9\n3\n1 25 11",
+        "output": "1\n5\n3",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 1,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "706B",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/706/B",
+    "title": "Interesting drink",
+    "description": "## 题目定义\n\nn 个商店的同一商品价格为 x_i。每个查询给出预算 m，求价格不超过该预算的商店数；各查询互不影响。\n\n## 输入格式\n\n第一行 n；第二行 n 个价格；第三行 q；随后 q 行各一个预算 m_i。\n\n## 输出格式\n\n每个查询输出符合预算的商店个数。\n\n## 数据范围\n\n1 ≤ n,q ≤ 10^5；1 ≤ x_i ≤ 10^5；1 ≤ m_i ≤ 10^9。\n\n## 样例 1\n\n输入：\n\n```text\n5\n3 10 8 6 11\n4\n1\n10\n3\n11\n```\n\n输出：\n\n```text\n0\n4\n1\n5\n```\n",
+    "official_difficulty": {
+      "rating": 1100,
+      "tags": [
+        "binary search",
+        "dp",
+        "implementation"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "basic.binary",
+        "basic.prefix-sum"
+      ],
+      "secondary_knowledge_ids": [
+        "basic.use-of-sort"
+      ],
+      "difficulty": 1100,
+      "difficulty_reason": "大量独立计数查询，需要一次排序或值域统计预处理。",
+      "solution_idea": "方法一：价格排序，对预算做 upper_bound，所得位置即数量，O(n log n+q log n)。方法二：价格值域≤10^5，统计频次并做值域前缀和，每次读取 S[min(m,10^5)]，O(n+10^5+q)。",
+      "evidence": {
+        "basic.binary": "排序后用 upper_bound 得到价格≤预算的数量，是完整有效方法。",
+        "basic.prefix-sum": "有界价格频数的前缀和也可独立解决全部查询。",
+        "basic.use-of-sort": "排序为二分方案提供单调序列，是该方案的辅助预处理。"
+      },
+      "knowledge_confidence": {
+        "basic.binary": 0.96,
+        "basic.prefix-sum": 0.96,
+        "basic.use-of-sort": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "5\n3 10 8 6 11\n4\n1\n10\n3\n11",
+        "output": "0\n4\n1\n5",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 1,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "279B",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/279/B",
+    "title": "Books",
+    "description": "## 题目定义\n\n有 n 个按顺序排列的阅读任务，第 i 个耗时 a_i。可以任选起点，但之后必须按顺序连续完成，不能跳过任务，总时间不得超过 t。求最多能完整完成多少个任务。\n\n## 输入格式\n\n第一行 n,t；第二行 n 个 a_i。\n\n## 输出格式\n\n输出可完成的最大数量；如果一个也无法完成则输出 0。\n\n## 数据范围\n\n1 ≤ n ≤ 10^5；1 ≤ t ≤ 10^9；1 ≤ a_i ≤ 10^4。\n\n## 样例 1\n\n输入：\n\n```text\n4 5\n3 1 2 1\n```\n\n输出：\n\n```text\n3\n```\n\n## 样例 2\n\n输入：\n\n```text\n3 3\n2 2 3\n```\n\n输出：\n\n```text\n1\n```\n",
+    "official_difficulty": {
+      "rating": 1400,
+      "tags": [
+        "binary search",
+        "brute force",
+        "implementation",
+        "two pointers"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "misc.two-pointer",
+        "basic.binary"
+      ],
+      "secondary_knowledge_ids": [
+        "basic.prefix-sum"
+      ],
+      "difficulty": 1300,
+      "difficulty_reason": "正耗时带来区间单调性，需消除逐个起点向后扫描的二次复杂度。",
+      "solution_idea": "同向双指针维护窗口和，右端逐次扩展，超过 t 时左端右移，取最长合法长度，O(n)。另解：前缀和后对每个起点二分最远可达右端，O(n log n)。",
+      "evidence": {
+        "misc.two-pointer": "所有耗时均正，右移左端只会减小区间和，因此两指针各移动至多 n 次。",
+        "basic.binary": "前缀和严格递增，可以对每个起点二分满足区间和≤t 的最远终点。",
+        "basic.prefix-sum": "前缀和用于二分方案的 O(1) 区间和计算。"
+      },
+      "knowledge_confidence": {
+        "misc.two-pointer": 0.96,
+        "basic.binary": 0.96,
+        "basic.prefix-sum": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "4 5\n3 1 2 1",
+        "output": "3",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "3 3\n2 2 3",
+        "output": "1",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 2,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "363B",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/363/B",
+    "title": "Fence",
+    "description": "## 题目定义\n\n给定一条非环形序列，选择恰好 k 个连续元素，使其总和最小。输出这一片段的起始下标；有多个最优片段时任意一个均可。\n\n## 输入格式\n\n第一行 n,k；第二行 n 个高度 h_i。\n\n## 输出格式\n\n输出一个最优起点 j（1 ≤ j ≤ n−k+1）。\n\n## 数据范围\n\n1 ≤ n ≤ 150000；1 ≤ k ≤ n；1 ≤ h_i ≤ 100。\n\n## 样例 1\n\n输入：\n\n```text\n7 3\n1 2 6 1 1 7 1\n```\n\n输出：\n\n```text\n3\n```\n",
+    "official_difficulty": {
+      "rating": 1100,
+      "tags": [
+        "brute force",
+        "dp"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "basic.prefix-sum",
+        "misc.two-pointer"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 1000,
+      "difficulty_reason": "枚举所有固定长度窗口，用前缀和或滚动和做到线性时间。",
+      "solution_idea": "方法一：前缀和查询每个长度 k 的窗口，取最小。方法二：初始化首个窗口和，每次移出左端并移入右端，维护最佳起点。两者均 O(n)；同值可保留最先出现者。",
+      "evidence": {
+        "basic.prefix-sum": "S[j+k−1]−S[j−1] 可在 O(1) 求各候选窗口总和。",
+        "misc.two-pointer": "固定间距的左右端同步滑动，减去移出项并加入移入项即可维护窗口和。"
+      },
+      "knowledge_confidence": {
+        "basic.prefix-sum": 0.96,
+        "misc.two-pointer": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "7 3\n1 2 6 1 1 7 1",
+        "output": "3",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 1,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "520B",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/520/B",
+    "title": "Two Buttons",
+    "description": "## 题目定义\n\n从正整数 n 出发，一次操作可以把当前值乘 2，或减 1；整个过程必须保持值为正。求变为 m 所需的最少操作次数。中间值允许超过输入范围。\n\n## 输入格式\n\n一行不同的两个整数 n,m。\n\n## 输出格式\n\n输出最少操作数。\n\n## 数据范围\n\n1 ≤ n,m ≤ 10^4；n≠m。\n\n## 样例 1\n\n输入：\n\n```text\n4 6\n```\n\n输出：\n\n```text\n2\n```\n\n## 样例 2\n\n输入：\n\n```text\n10 1\n```\n\n输出：\n\n```text\n9\n```\n",
+    "official_difficulty": {
+      "rating": 1400,
+      "tags": [
+        "dfs and similar",
+        "graphs",
+        "greedy",
+        "implementation",
+        "math",
+        "shortest paths"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "search.bfs",
+        "basic.greedy"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 1300,
+      "difficulty_reason": "可建无权状态图求最短步数；反向思考还可得到更简短的贪心，需要解释奇偶规则。",
+      "solution_idea": "BFS：状态是正整数，边为 x→2x 与 x→x−1，限制到 2*max(n,m) 足够，O(max(n,m))。另解反向从 m 开始：m>n 时若 m 为奇数先加 1，否则除以 2；到 m≤n 后再加 n−m 次。正向目标≤起点时直接减即可。",
+      "evidence": {
+        "search.bfs": "每次操作代价为 1，状态图的 BFS 首次到达目标就是最少次数。",
+        "basic.greedy": "反向超过起点时，奇数必须加到偶数，偶数优先减半；到不超过起点后直接补差，形成另一核心解法。"
+      },
+      "knowledge_confidence": {
+        "search.bfs": 0.96,
+        "basic.greedy": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "4 6",
+        "output": "2",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "10 1",
+        "output": "9",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 2,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "545C",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/545/C",
+    "title": "Woodcutters",
+    "description": "## 题目定义\n\nn 棵树位于数轴上，坐标 x_i 严格递增，高度为 h_i。未砍的树占点 x_i，向左或右砍后分别占闭区间 [x_i−h_i,x_i] 或 [x_i,x_i+h_i]。不同树占用的位置不能相交，包括端点。求最多可砍树数。\n\n## 输入格式\n\n第一行 n；随后 n 行各为 x_i,h_i，按 x_i 递增给出。\n\n## 输出格式\n\n输出可砍倒的最大树数。\n\n## 数据范围\n\n1 ≤ n ≤ 10^5；1 ≤ x_i,h_i ≤ 10^9；坐标各不相同。\n\n## 样例 1\n\n输入：\n\n```text\n5\n1 2\n2 1\n5 10\n10 9\n19 1\n```\n\n输出：\n\n```text\n3\n```\n\n## 样例 2\n\n输入：\n\n```text\n5\n1 2\n2 1\n5 10\n10 9\n20 1\n```\n\n输出：\n\n```text\n4\n```\n",
+    "official_difficulty": {
+      "rating": 1500,
+      "tags": [
+        "dp",
+        "greedy"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "basic.greedy",
+        "dp.misc"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 1500,
+      "difficulty_reason": "顺序处理时优先向左，需证明不影响后续；亦可以树的三种状态做 DP。",
+      "solution_idea": "从左向右记录已有占用的最右端。能向左砍就向左；否则只有当 x_i+h_i<x_(i+1) 时向右，若也不行则保留。首树可向左、末树可向右；n=1 输出 1。O(n)。另解 f[i][左/站立/右]，根据相邻占用区间不相交从上一棵状态转移，O(n)。",
+      "evidence": {
+        "basic.greedy": "向左砍占用的最右端不变，优先选择不会压缩后续空间；否则安全右砍也不会影响下一棵。",
+        "dp.misc": "每棵树三种占用状态，通过相邻区间兼容性转移可以完整求最优值。"
+      },
+      "knowledge_confidence": {
+        "basic.greedy": 0.96,
+        "dp.misc": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "5\n1 2\n2 1\n5 10\n10 9\n19 1",
+        "output": "3",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "5\n1 2\n2 1\n5 10\n10 9\n20 1",
+        "output": "4",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 2,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "25D",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/25/D",
+    "title": "Roads not only in Berland",
+    "description": "## 题目定义\n\n有 n 个顶点和恰好 n−1 条无向边，可能不连通。一次操作删除一条现有边，并立即添加一条新边。求使整个图连通所需的最少操作次数，并输出一组具体替换方案。\n\n## 输入格式\n\n第一行 n；随后 n−1 行每行两个端点 a_i,b_i。\n\n## 输出格式\n\n先输出最少次数 t；随后 t 行 i j u v，表示删除边 (i,j) 并添加边 (u,v)。有多解可输出任意方案。\n\n## 数据范围\n\n2 ≤ n ≤ 1000；端点在 1..n；无自环、无重边。\n\n## 样例 1\n\n输入：\n\n```text\n2\n1 2\n```\n\n输出：\n\n```text\n0\n```\n\n## 样例 2\n\n输入：\n\n```text\n7\n1 2\n2 3\n3 1\n4 5\n5 6\n6 7\n```\n\n输出：\n\n```text\n1\n3 1 3 7\n```\n",
+    "official_difficulty": {
+      "rating": 1900,
+      "tags": [
+        "dsu",
+        "graphs",
+        "trees"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "ds.union-find",
+        "basic.construction"
+      ],
+      "secondary_knowledge_ids": [],
+      "difficulty": 1700,
+      "difficulty_reason": "既要识别冗余边及连通块，又要证明替换次数最优并输出可执行方案。",
+      "solution_idea": "扫描边并用并查集合并，遇到已同属一块的边记录为冗余边。若最后有 c 个连通块，冗余边恰好 c−1 条；每次删一条冗余边，将一个块代表连到固定代表。至少需要 c−1 次，因为一次最多减少一个连通块；该方案达到下界。O(n α(n))。",
+      "evidence": {
+        "ds.union-find": "合并维护连通块，合并失败的边是可以删除而不拆散生成森林的冗余边。",
+        "basic.construction": "按冗余边与不同块配对生成 c−1 条替换操作，并达到连通块数下界。"
+      },
+      "knowledge_confidence": {
+        "ds.union-find": 0.96,
+        "basic.construction": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "2\n1 2",
+        "output": "0",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "7\n1 2\n2 3\n3 1\n4 5\n5 6\n6 7",
+        "output": "1\n3 1 3 7",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 2,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  },
+  {
+    "source_id": "20C",
+    "source_platform": "codeforces",
+    "source_url": "https://codeforces.com/problemset/problem/20/C",
+    "title": "Dijkstra?",
+    "description": "## 题目定义\n\n给定一个带正权的无向图，顶点编号为 1..n。输出从 1 到 n 的一条最短路径；不存在路径时输出 −1。图允许自环与重边。\n\n## 输入格式\n\n第一行 n,m；随后 m 行 a_i,b_i,w_i，表示一条无向边及其长度。\n\n## 输出格式\n\n不可达输出 −1，否则按顺序输出一条最短路径的顶点编号；有多条最短路径时任意一条均可。\n\n## 数据范围\n\n2 ≤ n ≤ 10^5；0 ≤ m ≤ 10^5；1 ≤ a_i,b_i ≤ n；1 ≤ w_i ≤ 10^6。\n\n## 样例 1\n\n输入：\n\n```text\n5 6\n1 2 2\n2 5 5\n2 3 4\n1 4 1\n4 3 3\n3 5 1\n```\n\n输出：\n\n```text\n1 4 3 5\n```\n\n## 样例 2\n\n输入：\n\n```text\n5 6\n1 2 2\n2 5 5\n2 3 4\n1 4 1\n4 3 3\n3 5 1\n```\n\n输出：\n\n```text\n1 4 3 5\n```\n",
+    "official_difficulty": {
+      "rating": 1900,
+      "tags": [
+        "graphs",
+        "shortest paths"
+      ],
+      "provenance": "official_codeforces_api",
+      "source_url": "https://codeforces.com/api/problemset.problems"
+    },
+    "reference": {
+      "provenance": "agent_reference_not_human",
+      "primary_knowledge_ids": [
+        "graph.shortest-path"
+      ],
+      "secondary_knowledge_ids": [
+        "ds.binary-heap"
+      ],
+      "difficulty": 1700,
+      "difficulty_reason": "标准正权最短路，但需应对十万规模、维护路径前驱、不可达情况及 64 位距离。",
+      "solution_idea": "邻接表保存无向边，用优先队列优化 Dijkstra，从 1 松弛距离，每次改进时记下前驱。结束后从 n 沿前驱回溯并反转；距离为无穷输出 −1。忽略过期堆元素，距离用 64 位整数。O((n+m)log n)。",
+      "evidence": {
+        "graph.shortest-path": "要求正权无向图中从 1 到 n 的最小总边权路径，Dijkstra 及前驱恢复直接匹配。",
+        "ds.binary-heap": "优先队列用于快速取出当前距离最小的顶点，使算法能处理十万规模；为最短路方案的辅助结构。"
+      },
+      "knowledge_confidence": {
+        "graph.shortest-path": 0.96,
+        "ds.binary-heap": 0.96
+      },
+      "confidence": 0.93,
+      "difficulty_basis": "statement_based_agent_estimate_not_official_rating"
+    },
+    "samples": [
+      {
+        "input": "5 6\n1 2 2\n2 5 5\n2 3 4\n1 4 1\n4 3 3\n3 5 1",
+        "output": "1 4 3 5",
+        "provenance": "official_sample"
+      },
+      {
+        "input": "5 6\n1 2 2\n2 5 5\n2 3 4\n1 4 1\n4 3 3\n3 5 1",
+        "output": "1 4 3 5",
+        "provenance": "official_sample"
+      }
+    ],
+    "source_checks": {
+      "statement_verified": true,
+      "samples_verified": true,
+      "notes": "官方题面由网页工具和公开请求核对；题面是自行中文改写，样例保留官方数据；参考标注为代理判断，未使用被评模型输出。全部官方样例已由独立计算核对；允许多解的输出按合法性和最优性检查。",
+      "sample_verification": {
+        "sample_count": 2,
+        "method": "independent_algorithm_or_validity_checker",
+        "passed": true
+      }
+    },
+    "retrieved_at": "2026-10-05T11:53:40.321030+00:00"
+  }
+]

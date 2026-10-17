@@ -1,0 +1,598 @@
+{
+  "items": [
+    {
+      "public_id": "B01",
+      "run_id": "first",
+      "description": "## 任务\n维护整数序列，支持闭区间整体增加一个整数，以及查询某一位置的当前值。\n\n## 输入\n首行 $N$、$M$；第二行 $N$ 个初始值；之后 $M$ 行操作：$1\\ x\\ y\\ k$ 将 $[x,y]$ 加 $k$，$2\\ x$ 查询位置 $x$。\n\n## 输出\n每个查询输出一行当前值。\n\n## 约束\n$1 \\le N,M \\le 5\\times 10^5$；下标在 $1$ 到 $N$ 内，区间 $x\\le y$；$\\text{任意时刻元素绝对值}\\le 2^{30}$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4 4\n1 2 3 4\n2 2\n1 2 4 5\n2 3\n2 1\n```\n\n输出：\n```text\n2\n8\n1\n```",
+      "title": "区间加与单点查询",
+      "solution_idea": "维护一个差分数组 d，其中 d[1]=a[1]，d[i]=a[i]-a[i-1]（i>1）。对区间 [x,y] 整体加 k，只需令 d[x]+=k，若 y+1<=N 则 d[y+1]-=k；查询位置 x 的当前值即 d[1]+d[2]+...+d[x]。因此问题转化为：支持单点修改差分数组、查询差分数组前缀和。由于 N,M 可达 5×10^5，每次查询若线性累加前缀和会超时，需用树状数组维护差分数组，单点修改 O(log N)，前缀和查询 O(log N)。正确性依据：差分定义保证任意位置的前缀和等于原序列当前值，区间加操作恰好只改变差分数组的两个端点。边界：x=1 时 d[1] 直接加 k；y=N 时不执行 d[N+1]-=k；查询位置始终在 1..N 内；元素绝对值不超过 2^30，使用 64 位整数避免中间累加溢出。总复杂度 O((N+M) log N)，空间 O(N)。",
+      "primary_knowledge_ids": [
+        "basic.difference",
+        "ds.fenwick"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "basic.difference": "区间整体加 k 转化为差分数组两个端点的单点修改，查询位置值转化为差分数组前缀和。",
+        "ds.fenwick": "需要动态维护差分数组的单点修改和前缀和查询，N,M 达 5×10^5，树状数组提供 O(log N) 操作。"
+      },
+      "methods": [
+        {
+          "name": "差分数组 + 树状数组",
+          "knowledge_ids": [
+            "basic.difference",
+            "ds.fenwick"
+          ],
+          "time_complexity": "O((N+M) log N)",
+          "space_complexity": "O(N)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B01"
+    },
+    {
+      "public_id": "B02",
+      "run_id": "first",
+      "description": "## 题目定义\n\n给定一条非环形序列，选择恰好 $k$ 个连续元素，使其总和最小。输出这一片段的起始下标；有多个最优片段时任意一个均可。\n\n## 输入格式\n\n第一行 $n,k$；第二行 $n$ 个高度 $h_i$。\n\n## 输出格式\n\n输出一个最优起点 $j$（$1 \\le j \\le n-k+1$）。\n\n## 数据范围\n\n$1 \\le n \\le 150000$；$1 \\le k \\le n$；$1 \\le h_i \\le 100$。\n\n## 样例 1\n\n输入：\n\n```text\n7 3\n1 2 6 1 1 7 1\n```\n\n输出：\n\n```text\n3\n```\n",
+      "title": "长度固定为 k 的最小区间和起点",
+      "solution_idea": "题目要求在长度为 n 的非环形序列中，找出恰好 k 个连续元素构成的区间，使其元素和最小，并输出该区间起点（1-based）。由于所有区间长度固定为 k，可以先用前缀和预处理：令 pre[0]=0，pre[i]=pre[i-1]+h[i]。则起点为 j 的区间和为 pre[j+k-1]-pre[j-1]。枚举所有合法起点 j=1..n-k+1，维护当前最小和及其起点即可。正确性依据是：每个合法区间都被枚举一次，且区间和由前缀和精确计算，因此最小值一定被找到。边界包括 k=1（每个单元素区间）和 k=n（只有起点 1）；h_i 均为正数，但算法不依赖正数条件。时间复杂度 O(n)，空间复杂度 O(n)（若边读入边维护窗口和可做到 O(1) 额外空间，但前缀和写法更直观）。",
+      "primary_knowledge_ids": [
+        "basic.prefix-sum",
+        "basic.enumerate"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "basic.prefix-sum": "用前缀和 pre[j+k-1]-pre[j-1] 在 O(1) 时间内得到任意起点 j 的长度 k 区间和，是自然主线。",
+        "basic.enumerate": "需要枚举所有合法起点 j=1..n-k+1 并比较区间和，才能确定最小值及对应起点。"
+      },
+      "methods": [
+        {
+          "name": "前缀和枚举固定长度区间",
+          "knowledge_ids": [
+            "basic.prefix-sum",
+            "basic.enumerate"
+          ],
+          "time_complexity": "O(n)",
+          "space_complexity": "O(n)"
+        },
+        {
+          "name": "滑动窗口维护区间和",
+          "knowledge_ids": [
+            "basic.enumerate"
+          ],
+          "time_complexity": "O(n)",
+          "space_complexity": "O(1)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B02"
+    },
+    {
+      "public_id": "B03",
+      "run_id": "first",
+      "description": "## 题目描述\n\n给定一个 $n\\times n$ 的整数矩阵 $A$ 和非负整数 $k$，求矩阵幂 $A^k$，并将结果矩阵的每个元素对 $10^9+7$ 取模后输出。\n\n这里使用普通矩阵乘法：若 $C=AB$，则 $C_{i,j}=\\sum_{t=1}^{n}A_{i,t}B_{t,j}$。对于正整数 $k$，$A^k$ 表示 $k$ 个 $A$ 相乘；当 $k=0$ 时，$A^0$ 为单位矩阵，其主对角线元素为 $1$，其余为 $0$。\n\n## 输入格式\n\n第一行给出 $n,k$。\n\n接下来 $n$ 行，每行 $n$ 个整数，第 $i$ 行第 $j$ 个数是 $A_{i,j}$。\n\n## 输出格式\n\n输出 $n$ 行，每行 $n$ 个整数，依次表示 $A^k$ 对应位置的元素模 $10^9+7$ 的结果。\n\n## 数据范围\n\n$1\\le n\\le100$，$0\\le k\\le10^{12}$，$|A_{i,j}|\\le1000$。矩阵元素可以为负数。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：262144 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n2 1\n1 1\n1 1\n```\n\n### 输出\n\n```text\n1 1\n1 1\n```\n\n## 样例 2\n\n### 输入\n\n```text\n3 5\n1 2 3\n4 5 6\n7 8 9\n```\n\n### 输出\n\n```text\n121824 149688 177552\n275886 338985 402084\n429948 528282 626616\n```",
+      "title": "矩阵快速幂取模",
+      "solution_idea": "题目要求计算 n×n 整数矩阵 A 的 k 次幂，k 可达 10^12，直接连乘不可行。关键观察是矩阵乘法满足结合律，因此可以用快速幂（二进制幂）把幂次降到 O(log k) 次矩阵乘法。具体地，维护结果矩阵 R 初始为单位矩阵（处理 k=0 的情况），底数矩阵 B 初始为 A；当 k 的当前二进制位为 1 时令 R = R × B，然后令 B = B × B，并右移 k。每次矩阵乘法为 O(n^3)，共 O(log k) 次，总时间 O(n^3 log k)。矩阵元素可能为负，乘法过程中需及时取模，C++ 中可用 long long 累加并每步取模避免溢出；最终输出每个元素对 10^9+7 取模的非负结果。边界包括 k=0 时输出单位矩阵，n=1 时退化为标量快速幂，以及负元素取模后需保证结果在 [0, MOD) 内。",
+      "primary_knowledge_ids": [
+        "math.linear-algebra.matrix",
+        "math.binary-exponentiation"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "math.linear-algebra.matrix": "题目核心是 n×n 矩阵的乘法与幂运算，需要实现矩阵乘法并维护结果矩阵和底数矩阵。",
+        "math.binary-exponentiation": "k 可达 10^12，必须用二进制快速幂将幂次从 O(k) 降为 O(log k) 次矩阵乘法。"
+      },
+      "methods": [
+        {
+          "name": "矩阵快速幂",
+          "knowledge_ids": [
+            "math.linear-algebra.matrix",
+            "math.binary-exponentiation"
+          ],
+          "time_complexity": "O(n^3 log k)",
+          "space_complexity": "O(n^2)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B03"
+    },
+    {
+      "public_id": "B04",
+      "run_id": "first",
+      "description": "## 题目描述\n\n给定一个由字符 `0` 和 `1` 构成的 $n\\times n$ 网格。每一步只能走到上下左右相邻且数字与当前位置不同的格子，不能走出网格。对于每个指定的起点，求从该点出发能够到达的不同格子的数量，起点本身也计入答案。各次询问都针对同一个网格。\n\n## 输入格式\n\n第一行给出 $n,m$，分别为网格边长和询问数。\n\n接下来 $n$ 行，每行是一个长度为 $n$ 的 `01` 字符串，字符间没有空格。\n\n随后 $m$ 行，每行给出一对行列编号 $i,j$，表示询问的起点。行、列均从 $1$ 开始编号。\n\n## 输出格式\n\n按输入顺序输出 $m$ 行，每行一个整数，表示对应起点能够到达的格子数。\n\n## 数据范围\n\n$1\\le n\\le1000$，$1\\le m\\le100000$，$1\\le i,j\\le n$。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：131072 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n2 2\n01\n10\n1 1\n2 2\n```\n\n### 输出\n\n```text\n4\n4\n```",
+      "title": "01网格连通块查询",
+      "solution_idea": "把每个格子看作图的顶点，相邻且字符不同的格子之间连边。一次询问要求的是该起点所在连通分量的大小。由于网格和边都不随询问改变，可以先用 BFS/DFS 对整个网格做一次连通块划分：对每个未访问格子启动搜索，只向上下左右且字符不同的格子扩展，同时统计当前连通块大小；把同一连通块内所有格子标记为同一个编号，并记录该编号的大小。之后每个询问 O(1) 查表输出。正确性依据是：搜索恰好沿允许移动的边遍历，因此同一连通块内任意两点互相可达，不同连通块之间不可达；起点自身在搜索时被计入。边界包括 n=1 时只有单格，连通块大小为 1；询问坐标保证在 1..n 内。总复杂度为 O(n^2+m)，空间 O(n^2)。",
+      "primary_knowledge_ids": [
+        "graph.bfs",
+        "graph.dfs",
+        "graph.basic"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "graph.bfs": "用队列从每个未访问格子出发，向上下左右字符不同的相邻格子扩展，统计连通块大小。",
+        "graph.dfs": "也可用递归或栈式深度优先搜索完成同一连通块遍历，效果与 BFS 等价。",
+        "graph.basic": "把网格建模为图，相邻且字符不同的格子之间有边，询问即求所在连通分量大小。"
+      },
+      "methods": [
+        {
+          "name": "BFS/DFS 预处理连通块 + O(1) 查询",
+          "knowledge_ids": [
+            "graph.bfs",
+            "graph.dfs",
+            "graph.basic"
+          ],
+          "time_complexity": "O(n^2+m)",
+          "space_complexity": "O(n^2)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B04"
+    },
+    {
+      "public_id": "B05",
+      "run_id": "first",
+      "description": "## 题目描述\n\n有 $n$ 名职员，编号为 $1$ 至 $n$。他们的上下级关系构成一棵以校长为根的树：每个非根职员的父结点就是其直接上司。邀请职员 $i$ 参加宴会可增加快乐指数 $r_i$，该值可能为负数。\n\n如果某名职员和他的直接上司都受到邀请，该邀请方案就不合法；间接上下级关系没有这一直接限制。在所有合法邀请方案中，求被邀请职员快乐指数之和的最大值。\n\n## 输入格式\n\n第一行给出 $n$。\n\n接下来 $n$ 行，每行一个整数，第 $i$ 个数为职员 $i$ 的快乐指数 $r_i$。\n\n随后 $n-1$ 行，每行给出 $l,k$，表示 $k$ 是 $l$ 的直接上司。关系保证构成一棵树。\n\n## 输出格式\n\n输出一个整数，表示能够得到的最大快乐指数总和。\n\n## 数据范围\n\n$1\\le n\\le6\\times10^3$，$-128\\le r_i\\le127$，$1\\le l,k\\le n$。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：131072 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n7\n1\n1\n1\n1\n1\n1\n1\n1 3\n2 3\n6 4\n7 4\n4 5\n3 5\n```\n\n### 输出\n\n```text\n5\n```",
+      "title": "职员宴会最大快乐指数",
+      "solution_idea": "题目给出一棵以校长为根的上下级树，每个职员有权值 r_i，要求选择若干职员，使得不存在直接父子同时被选，并最大化所选权值和。这是树上的最大权独立集问题。\n\n关键观察：对任意结点 u，其选择状态只影响其直接子结点是否可选，因此可以自底向上做树形 DP。设 dp[u][0] 表示不选 u 时，以 u 为根的子树能获得的最大快乐值；dp[u][1] 表示选 u 时，以 u 为根的子树能获得的最大快乐值。\n\n转移：\n- 若选 u，则所有直接子结点 v 都不能选，故 dp[u][1] = r_u + Σ dp[v][0]。\n- 若不选 u，则每个直接子结点 v 可选可不选，故 dp[u][0] = Σ max(dp[v][0], dp[v][1])。\n\n正确性依据：子树之间只通过 u 的状态相互制约，且约束只存在于直接父子之间；上述转移完整枚举了 u 的两种状态，并对每个子结点取合法最优，因此归纳可得 dp 为对应子树的最优值。\n\n边界：叶子结点 dp[u][1] = r_u，dp[u][0] = 0；r_i 可为负数，因此不选某些结点可能更优，dp[u][0] 初始为 0 能自然处理。n 最大 6000，递归深度可能达到 6000，需注意栈空间；也可用显式栈或按拓扑序自底向上计算。\n\n复杂度：每个结点和每条边只处理一次，时间 O(n)，空间 O(n)。",
+      "primary_knowledge_ids": [
+        "dp.tree"
+      ],
+      "secondary_knowledge_ids": [
+        "graph.tree-basic"
+      ],
+      "evidence": {
+        "dp.tree": "题目要求在树上选择不相邻父子结点的最大权值和，状态按结点选/不选定义，转移由子结点合并到父结点，是典型树形 DP。",
+        "graph.tree-basic": "输入给出 n-1 条父子关系且保证构成一棵树，需要建立并遍历这棵树以自底向上计算 DP。"
+      },
+      "methods": [
+        {
+          "name": "树形动态规划（最大权独立集）",
+          "knowledge_ids": [
+            "dp.tree",
+            "graph.tree-basic"
+          ],
+          "time_complexity": "O(n)",
+          "space_complexity": "O(n)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B05"
+    },
+    {
+      "public_id": "B06",
+      "run_id": "first",
+      "description": "## 题目定义\n\n$n$ 个商店的同一商品价格为 $x_i$。每个查询给出预算 $m$，求价格不超过该预算的商店数；各查询互不影响。\n\n## 输入格式\n\n第一行 $n$；第二行 $n$ 个价格；第三行 $q$；随后 $q$ 行各一个预算 $m_i$。\n\n## 输出格式\n\n每个查询输出符合预算的商店个数。\n\n## 数据范围\n\n$1 \\le n,q \\le 10^5$；$1 \\le x_i \\le 10^5$；$1 \\le m_i \\le 10^9$。\n\n## 样例 1\n\n输入：\n\n```text\n5\n3 10 8 6 11\n4\n1\n10\n3\n11\n```\n\n输出：\n\n```text\n0\n4\n1\n5\n```\n",
+      "title": "商店价格预算计数",
+      "solution_idea": "题意是给定 n 个价格，q 次独立询问预算 m，求价格不超过 m 的商店数量。关键观察：若先把价格排序，则所有不超过 m 的价格在有序数组中形成前缀，答案就是最后一个 <= m 的位置下标加一。正确性依据是排序不改变多重集合，且有序数组中 <= m 的元素恰好是前缀。边界：m 可能小于所有价格，此时答案为 0；m 可能大于等于所有价格，此时答案为 n。复杂度：排序 O(n log n)，每次二分 O(log n)，总 O(n log n + q log n)，空间 O(n)。",
+      "primary_knowledge_ids": [
+        "basic.sort",
+        "basic.binary"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "basic.sort": "需要先对价格数组排序，使不超过预算的价格构成前缀，从而支持二分计数。",
+        "basic.binary": "每次查询在有序价格数组中二分查找最后一个不超过 m 的位置，得到答案。"
+      },
+      "methods": [
+        {
+          "name": "排序后二分查找",
+          "knowledge_ids": [
+            "basic.sort",
+            "basic.binary"
+          ],
+          "time_complexity": "O(n log n + q log n)",
+          "space_complexity": "O(n)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B06"
+    },
+    {
+      "public_id": "B07",
+      "run_id": "first",
+      "description": "## 任务\n给定 $n$ 个有编号的模式串和文本 $t$，统计至少在 $t$ 中出现一次的模式编号数。内容相同而编号不同的模式分别计数，同一编号出现多次只计一次。\n\n## 输入\n首行 $n$；之后 $n$ 行模式串；最后一行文本 $t$。\n\n## 输出\n至少出现一次的模式编号总数。\n\n## 约束\n$1 \\le n \\le 10^6$，$1 \\le |t| \\le 10^6$，$1 \\le \\text{所有模式串长度之和} \\le 10^6$；均为小写字母。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4\na\na\nb\nab\nabab\n```\n\n输出：\n```text\n4\n```",
+      "title": "统计在文本中出现过的模式串编号数",
+      "solution_idea": "把 n 个模式串插入 AC 自动机，每个结点记录该结点对应的模式编号集合（或只记录一个代表编号，但同一编号只计一次，不同编号即使内容相同也要分别计）。用文本 t 在自动机上跑匹配，每到一个状态就沿 fail 链向上标记所有能匹配到的模式编号，最后统计被标记的编号个数。关键观察是：若某个模式是当前状态对应串的后缀，则它一定出现在文本中；fail 链恰好枚举所有后缀模式。为避免每个位置都暴力跳 fail 导致 O(|t| * 模式总长) 退化，需要把 fail 树建出后做一次自底向上的传递标记，或使用拓扑序/DFS 将匹配信息沿 fail 树上传。正确性依据：AC 自动机保证文本的每个前缀在自动机上的状态对应其最长后缀，fail 链覆盖该前缀的所有模式后缀；因此所有出现过的模式都会被标记。边界：n 可达 1e6，模式总长和 |t| 均可达 1e6，需使用 O(总长) 的数组与线性/近线性处理；模式可能重复，编号不同要分别计数；文本长度至少 1。复杂度：建 Trie O(总模式长)，建 fail O(总模式长 * 字母表大小) 若用数组存转移，或 O(总模式长) 若用其他方式；匹配 O(|t|)，fail 树上传 O(结点数)。空间 O(总模式长 * 字母表大小) 若用完整转移数组，或 O(总模式长) 若用邻接表/哈希。",
+      "primary_knowledge_ids": [
+        "string.ac-automaton",
+        "string.trie"
+      ],
+      "secondary_knowledge_ids": [
+        "graph.dfs"
+      ],
+      "evidence": {
+        "string.ac-automaton": "需要在文本中同时匹配大量模式串，AC 自动机是处理多模式匹配的标准结构，fail 链保证枚举所有后缀模式。",
+        "string.trie": "AC 自动机建立在 Trie 上，模式串插入 Trie 是必要步骤。",
+        "graph.dfs": "建 fail 树后需要沿 fail 链传递匹配标记，可用 DFS 或拓扑序自底向上完成。"
+      },
+      "methods": [
+        {
+          "name": "AC 自动机 + fail 树标记",
+          "knowledge_ids": [
+            "string.ac-automaton",
+            "string.trie",
+            "graph.dfs"
+          ],
+          "time_complexity": "O(总模式长 * 26 + |t| + 结点数)，若转移用数组；若用邻接表则建 fail 为 O(总模式长 * 26) 或 O(总模式长) 取决于实现",
+          "space_complexity": "O(总模式长 * 26) 或 O(总模式长)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B07"
+    },
+    {
+      "public_id": "B08",
+      "run_id": "first",
+      "description": "## 题目描述\n\n给定一个二分图，左侧有 $n$ 个顶点，编号为 $1$ 至 $n$；右侧有 $m$ 个顶点，另行编号为 $1$ 至 $m$。每条边都连接一个左侧顶点和一个右侧顶点。\n\n从这些边中选出若干条，使任意一个顶点至多属于其中一条边。求最多能选出多少条边。输入可能重复给出同一对顶点之间的边。\n\n## 输入格式\n\n第一行给出三个整数 $n,m,e$，其中 $e$ 为给出的边数。\n\n接下来 $e$ 行，每行给出 $u,v$，表示左侧顶点 $u$ 和右侧顶点 $v$ 之间有一条边。\n\n## 输出格式\n\n输出一个整数，表示满足条件的最多边数。\n\n## 数据范围\n\n$1\\le n,m\\le500$，$1\\le e\\le5\\times10^4$，$1\\le u\\le n$，$1\\le v\\le m$。允许重边。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：524288 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n1 1 1\n1 1\n```\n\n### 输出\n\n```text\n1\n```\n\n## 样例 2\n\n### 输入\n\n```text\n4 2 7\n3 1\n1 2\n3 2\n1 1\n4 2\n4 1\n1 1\n```\n\n### 输出\n\n```text\n2\n```",
+      "title": "二分图最大匹配",
+      "solution_idea": "题目要求在二分图中选出若干条边，使任意顶点至多属于一条边，即求二分图的最大匹配。左侧 n 个点、右侧 m 个点，边可重复，重边不影响匹配结果。自然主线是使用匈牙利算法（增广路算法）：对每个左侧顶点尝试寻找一条增广路，若找到则匹配数加一。正确性依据是 Berge 定理：匹配是最大匹配当且仅当不存在增广路。实现时用邻接表存图，对每个左侧点 DFS 尝试匹配右侧点，用 match[v] 记录右侧点当前匹配的左侧点，vis[v] 标记本轮 DFS 中右侧点是否被访问以避免重复搜索。边界：n,m 可达 500，e 可达 5e4，重边可保留或去重；空图或无边时答案为 0；DFS 递归深度不超过 n+m，安全。时间复杂度 O(n*e)，空间 O(n+m+e)。",
+      "primary_knowledge_ids": [
+        "graph.graph-matching.bigraph-match"
+      ],
+      "secondary_knowledge_ids": [
+        "graph.dfs"
+      ],
+      "evidence": {
+        "graph.graph-matching.bigraph-match": "题目要求二分图中任意顶点至多属于一条边的最大边集，即二分图最大匹配。",
+        "graph.dfs": "匈牙利算法通过 DFS 寻找增广路，是算法的核心搜索过程。"
+      },
+      "methods": [
+        {
+          "name": "匈牙利算法（DFS 增广路）",
+          "knowledge_ids": [
+            "graph.graph-matching.bigraph-match",
+            "graph.dfs"
+          ],
+          "time_complexity": "O(n * e)",
+          "space_complexity": "O(n + m + e)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B08"
+    },
+    {
+      "public_id": "B09",
+      "run_id": "first",
+      "description": "## 题目描述\n\n有 $N$ 堆石子按输入顺序围成一个圆环，每堆有 $a_i$ 颗石子。圆环上第一堆与最后一堆也相邻。每次只能选择当前相邻的两堆合并为一堆，新堆的石子数是两堆之和，同时把新堆的石子数记作这次操作的得分。\n\n不断操作直到只剩一堆。一次完整合并方案的总得分为所有合并操作得分之和。请分别求可能的最小总得分和最大总得分。\n\n## 输入格式\n\n第一行给出堆数 $N$。\n\n第二行给出 $N$ 个整数 $a_1,a_2,\\ldots,a_N$，表示沿圆环顺序的各堆石子数量。\n\n## 输出格式\n\n输出两行：第一行是最小总得分，第二行是最大总得分。\n\n## 数据范围\n\n$1\\le N\\le100$，$0\\le a_i\\le20$。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：128000 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n4\n4 5 9 4\n```\n\n### 输出\n\n```text\n43\n54\n```",
+      "title": "环形石子合并的最小与最大得分",
+      "solution_idea": "把圆环在某个位置断开，枚举断点并复制数组为长度 2N 的链，则任意环上连续区间 [l,r] 对应链上长度不超过 N 的区间。设 f[l][r] 为把区间 [l,r] 合并成一堆的最小得分，g[l][r] 为最大得分。合并最后一步必然把区间分成 [l,k] 与 [k+1,r] 两堆，得分加上区间石子总数 S(l,r)，因此 f[l][r]=min_{k}(f[l][k]+f[k+1][r])+S(l,r)，g 同理取 max。按区间长度从小到大递推，长度 1 时得分为 0。最终答案是在所有长度为 N 的区间 [i,i+N-1] 中取 f 的最小值和 g 的最大值。正确性依据是任意合并方案的最后一次合并对应一个划分，且子区间独立最优；边界包括 N=1 时无需合并，最小和最大总得分均为 0，a_i=0 不影响递推。预处理前缀和可在 O(1) 求区间和，总复杂度 O(N^3)，空间 O(N^2)。",
+      "primary_knowledge_ids": [
+        "dp.interval"
+      ],
+      "secondary_knowledge_ids": [
+        "basic.prefix-sum"
+      ],
+      "evidence": {
+        "dp.interval": "合并相邻两堆形成区间合并问题，状态 f[l][r]/g[l][r] 按区间长度递推，枚举最后合并点 k。",
+        "basic.prefix-sum": "用前缀和快速计算任意区间 [l,r] 的石子总数，作为每次合并的得分增量。"
+      },
+      "methods": [
+        {
+          "name": "断环成链 + 区间动态规划",
+          "knowledge_ids": [
+            "dp.interval",
+            "basic.prefix-sum"
+          ],
+          "time_complexity": "O(N^3)",
+          "space_complexity": "O(N^2)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B09"
+    },
+    {
+      "public_id": "B10",
+      "run_id": "first",
+      "description": "## 题目定义\n\n从正整数 $n$ 出发，一次操作可以把当前值乘 $2$，或减 $1$；整个过程必须保持值为正。求变为 $m$ 所需的最少操作次数。中间值允许超过输入范围。\n\n## 输入格式\n\n一行不同的两个整数 $n,m$。\n\n## 输出格式\n\n输出最少操作数。\n\n## 数据范围\n\n$1 \\le n,m \\le 10^4$；$n\\ne m$。\n\n## 样例 1\n\n输入：\n\n```text\n4 6\n```\n\n输出：\n\n```text\n2\n```\n\n## 样例 2\n\n输入：\n\n```text\n10 1\n```\n\n输出：\n\n```text\n9\n```\n",
+      "title": "乘二减一最少操作",
+      "solution_idea": "把当前值看作状态，操作是 x→2x 或 x→x-1（要求 x>1 才能减到正数）。由于 n,m≤10^4，且中间值允许超过输入范围，但最优解不会无意义地超过 2m：若当前值已经大于 m，继续乘 2 只会离目标更远，之后只能靠减 1 回来，因此超过 2m 的状态不可能出现在最优路径中。于是可在 [1, 2m] 的状态图上做 BFS，每条边代价为 1，首次到达 m 的步数即最少操作数。正确性依据是 BFS 在无权图上按层扩展，保证首次访问某状态时距离最短；边界上减 1 操作要求当前值大于 1，乘 2 操作在不超过 2m 时加入队列。复杂度 O(m)，空间 O(m)。",
+      "primary_knowledge_ids": [
+        "search.bfs"
+      ],
+      "secondary_knowledge_ids": [
+        "graph.basic"
+      ],
+      "evidence": {
+        "search.bfs": "把每个整数值作为状态，乘 2 和减 1 作为无权边，求从 n 到 m 的最少操作数，自然主线是 BFS 逐层扩展。",
+        "graph.basic": "需要把操作关系建模为状态图，并处理节点扩展与访问标记。"
+      },
+      "methods": [
+        {
+          "name": "状态图广度优先搜索",
+          "knowledge_ids": [
+            "search.bfs",
+            "graph.basic"
+          ],
+          "time_complexity": "O(m)",
+          "space_complexity": "O(m)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B10"
+    },
+    {
+      "public_id": "B11",
+      "run_id": "first",
+      "description": "## 题目描述\n\n初始输入序列依次为 $1,2,\\ldots,n$，另有一个空栈和一个空的输出序列。栈的容量大于 $n$。\n\n允许反复执行以下操作：取输入序列中尚未取走的第一个数压入栈顶；或者在栈非空时弹出栈顶元素，把它接到输出序列末尾。输入的相对次序不能改变，每个数最终都要进入输出序列。\n\n给定 $n$，求通过这些操作能够产生多少种不同的完整输出序列。\n\n## 输入格式\n\n输入一个整数 $n$。\n\n## 输出格式\n\n输出一个整数，表示不同输出序列的总数。\n\n## 数据范围\n\n$1\\le n\\le18$。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：128000 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n3\n```\n\n### 输出\n\n```text\n5\n```",
+      "title": "栈输出序列计数",
+      "solution_idea": "问题等价于：输入序列固定为 1..n，依次入栈，任意时刻可选择出栈，求所有可能的出栈序列个数。这是经典的“栈排列/卡特兰数”模型。\n\n关键观察：任意一个合法输出序列，其第一个输出元素必然是某个 k（1≤k≤n），表示先把 1..k 依次压栈，再弹出 k。弹出 k 后，问题分裂为两个独立子问题：\n- 栈内剩余元素 1..k-1 必须在后续输出中保持相对顺序，且它们位于栈中，相当于一个规模 k-1 的子问题；\n- 尚未入栈的元素 k+1..n 也构成一个规模 n-k 的子问题。\n\n因此设 f[m] 为规模 m 的合法输出序列数，则 f[0]=1，且\nf[m] = Σ_{k=1}^{m} f[k-1] * f[m-k]。\n这正是卡特兰数递推式，f[n] = Catalan(n) = C(2n,n)/(n+1)。\n\n正确性依据：每个合法序列按第一个输出元素 k 唯一分解，且分解后的两段互相独立、可任意交错组合，恰好对应两个子问题的笛卡尔积；反之任意子问题的合法序列拼接后也合法。\n\n边界：n=0 时只有空序列，f[0]=1；n=1 时 f[1]=1。n≤18 时 Catalan(18)=477638700，在 32 位有符号整数范围内，但中间乘法建议用 64 位。\n\n复杂度：递推 O(n^2) 时间，O(n) 空间；也可用组合公式 O(n) 时间。",
+      "primary_knowledge_ids": [
+        "math.combinatorics.catalan"
+      ],
+      "secondary_knowledge_ids": [
+        "dp.interval",
+        "math.combinatorics.combination"
+      ],
+      "evidence": {
+        "math.combinatorics.catalan": "合法出栈序列数正是第 n 个卡特兰数，样例 n=3 输出 5 与 Catalan(3)=5 一致。",
+        "dp.interval": "按第一个输出元素 k 将问题划分为规模 k-1 与 n-k 的两个独立子区间，使用区间划分递推求解。",
+        "math.combinatorics.combination": "组合公式 Catalan(n)=C(2n,n)/(n+1) 直接使用组合数计算。"
+      },
+      "methods": [
+        {
+          "name": "卡特兰数递推（区间划分 DP）",
+          "knowledge_ids": [
+            "math.combinatorics.catalan",
+            "dp.interval"
+          ],
+          "time_complexity": "O(n^2)",
+          "space_complexity": "O(n)"
+        },
+        {
+          "name": "卡特兰数组合公式",
+          "knowledge_ids": [
+            "math.combinatorics.catalan",
+            "math.combinatorics.combination"
+          ],
+          "time_complexity": "O(n)",
+          "space_complexity": "O(1)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B11"
+    },
+    {
+      "public_id": "B12",
+      "run_id": "first",
+      "description": "## 题目定义\n\n$n$ 个有序组的大小为 $a_i$。把所有对象按组的顺序连续编号，从 1 开始。对 $m$ 个对象编号，回答其所在组的编号（组编号也从 1 开始）。\n\n## 输入格式\n\n第一行 $n$；第二行 $a_i$；第三行 $m$；第四行 $m$ 个查询 $q_i$。\n\n## 输出格式\n\n每个查询输出一行所在组的编号。\n\n## 数据范围\n\n$1 \\le n,m \\le 10^5$；$1 \\le a_i \\le 10^3$；$\\sum a_i \\le 10^6$；$1 \\le q_i \\le \\sum a_i$。\n\n## 样例 1\n\n输入：\n\n```text\n5\n2 7 3 4 9\n3\n1 25 11\n```\n\n输出：\n\n```text\n1\n5\n3\n```\n",
+      "title": "连续编号分组查询",
+      "solution_idea": "把每组大小 a_i 看作前缀长度，组 i 覆盖的编号区间为 (S_{i-1}, S_i]，其中 S_i = a_1+...+a_i。对每个查询 q，需要找到最小的 i 使 S_i >= q，即在前缀和数组上二分。由于所有 a_i 为正，前缀和严格递增，二分正确。边界：q=1 落在第 1 组；q=sum a_i 落在第 n 组。预处理前缀和 O(n)，每个查询 O(log n)，总时间 O(n + m log n)，空间 O(n)。",
+      "primary_knowledge_ids": [
+        "basic.prefix-sum",
+        "basic.binary"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "basic.prefix-sum": "需要计算每组结束位置的前缀和 S_i，从而确定每个编号所属区间。",
+        "basic.binary": "查询 q 时在前缀和数组上二分第一个 S_i >= q 的位置，得到组编号。"
+      },
+      "methods": [
+        {
+          "name": "前缀和 + 二分查找",
+          "knowledge_ids": [
+            "basic.prefix-sum",
+            "basic.binary"
+          ],
+          "time_complexity": "O(n + m log n)",
+          "space_complexity": "O(n)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B12"
+    },
+    {
+      "public_id": "B13",
+      "run_id": "first",
+      "description": "## 题目描述\n\n给出 $N$ 个字符串。字符串只含数字、大写英文字母和小写英文字母，比较时区分大小写。只有长度相等且每个位置的字符都相等，两个字符串才相同。请统计输入中不同字符串的个数。\n\n## 输入格式\n\n第一行给出字符串个数 $N$。\n\n接下来 $N$ 行，每行给出一个字符串，记第 $i$ 个字符串的长度为 $M_i$。\n\n## 输出格式\n\n输出一个整数，表示不同字符串的数量。\n\n## 数据范围\n\n对全部数据，$N\\le10000$，每个字符串长度不超过 $1500$。官方同时以 $M_i\\approx1000$ 描述全部数据的字符串长度规模；这一近似说明不是每条字符串长度的精确等式。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：131072 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n5\nabc\naaaa\nabc\nabcc\n12345\n```\n\n### 输出\n\n```text\n4\n```",
+      "title": "统计不同字符串个数",
+      "solution_idea": "题目要求统计 N 个区分大小写的字符串中有多少个互不相同的字符串。关键观察是：两个字符串相同当且仅当长度相等且每个位置字符相同，因此可以把每个字符串整体作为键进行去重。自然主线是读入所有字符串后排序，排序后相同字符串必然相邻，再线性扫描统计相邻不同的段数；也可用哈希表在插入时判断是否已出现。排序法需要 O(N log N) 次字符串比较，每次比较最坏 O(L)，总时间 O(N log N · L)，空间 O(N · L)；哈希表法期望 O(N · L) 时间、O(N · L) 空间。边界包括 N 可能为 0 或 1、字符串可能只含数字或大小写字母、长度可达 1500，需按完整字符串比较，不能只比较前缀或忽略大小写。",
+      "primary_knowledge_ids": [
+        "basic.sort",
+        "string.basic"
+      ],
+      "secondary_knowledge_ids": [
+        "ds.hash"
+      ],
+      "evidence": {
+        "basic.sort": "将全部字符串排序，使相同字符串相邻，是统计不同个数的自然主线。",
+        "string.basic": "题目核心对象是区分大小写的字符串，需要按完整字符串内容比较和存储。",
+        "ds.hash": "哈希表可作为在线去重的替代方法，插入时判断字符串是否已出现。"
+      },
+      "methods": [
+        {
+          "name": "排序后统计相邻不同字符串",
+          "knowledge_ids": [
+            "basic.sort",
+            "string.basic"
+          ],
+          "time_complexity": "O(N log N · L)，其中 L 为字符串长度上界，排序比较代价为 O(L)",
+          "space_complexity": "O(N · L)，存储所有字符串"
+        },
+        {
+          "name": "哈希表在线去重",
+          "knowledge_ids": [
+            "ds.hash",
+            "string.basic"
+          ],
+          "time_complexity": "期望 O(N · L)，最坏 O(N · L) 哈希计算加冲突处理",
+          "space_complexity": "O(N · L)，存储不同字符串"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B13"
+    },
+    {
+      "public_id": "B14",
+      "run_id": "first",
+      "description": "## 题目定义\n\n有 $n$ 个按顺序排列的阅读任务，第 $i$ 个耗时 $a_i$。可以任选起点，但之后必须按顺序连续完成，不能跳过任务，总时间不得超过 $t$。求最多能完整完成多少个任务。\n\n## 输入格式\n\n第一行 $n,t$；第二行 $n$ 个 $a_i$。\n\n## 输出格式\n\n输出可完成的最大数量；如果一个也无法完成则输出 $0$。\n\n## 数据范围\n\n$1 \\le n \\le 10^5$；$1 \\le t \\le 10^9$；$1 \\le a_i \\le 10^4$。\n\n## 样例 1\n\n输入：\n\n```text\n4 5\n3 1 2 1\n```\n\n输出：\n\n```text\n3\n```\n\n## 样例 2\n\n输入：\n\n```text\n3 3\n2 2 3\n```\n\n输出：\n\n```text\n1\n```\n",
+      "title": "连续阅读任务的最大完成数",
+      "solution_idea": "题目要求在一个长度为 n 的正整数序列 a 中，选择一个连续子段，使其元素和不超过 t，并最大化该子段的长度。由于所有 a_i 均为正数，固定右端点 r 时，随着左端点 l 向右移动，区间和单调不增，因此可以用双指针（滑动窗口）在线性时间内维护满足 sum <= t 的最长窗口。具体地，右指针 r 从 0 到 n-1 扩展，将 a[r] 加入当前和；当当前和超过 t 时，不断右移左指针 l 并减去 a[l]，直到和重新不超过 t。此时窗口 [l, r] 是一个合法连续子段，用其长度 r-l+1 更新答案。正确性依据：对于每个右端点 r，算法找到的是以 r 结尾的最长合法子段（因为左指针只会向右移动，且正数保证和随左指针右移而减小），全局最大值必然在某个右端点处取得。边界情况：若所有 a_i > t，则窗口长度始终为 0，输出 0；n=1 时同样处理。时间复杂度 O(n)，空间复杂度 O(1)（除输入数组外）。",
+      "primary_knowledge_ids": [
+        "misc.two-pointer"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "misc.two-pointer": "题目要求连续子段和不超过 t 的最大长度，由于元素均为正数，区间和具有单调性，适合用双指针维护滑动窗口，右指针扩展、左指针收缩，线性扫描一次得到答案。"
+      },
+      "methods": [
+        {
+          "name": "双指针滑动窗口",
+          "knowledge_ids": [
+            "misc.two-pointer"
+          ],
+          "time_complexity": "O(n)",
+          "space_complexity": "O(1) 额外空间（输入数组 O(n)）"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B14"
+    },
+    {
+      "public_id": "B15",
+      "run_id": "first",
+      "description": "## 题目描述\n\n有 $n$ 场比赛，第 $i$ 场从时刻 $a_i$ 开始，到时刻 $b_i$ 结束。选择参加一场比赛时，必须参加完整场比赛，并且不能同时参加两场比赛。一场比赛结束的时刻可以作为另一场比赛的开始时刻。求最多能够参加多少场比赛。\n\n## 输入格式\n\n第一行给出比赛数 $n$。\n\n接下来 $n$ 行，每行两个整数 $a_i,b_i$，表示一场比赛的起止时刻。\n\n## 输出格式\n\n输出一个整数，表示可参加比赛数量的最大值。\n\n## 数据范围\n\n$1\\le n\\le10^6$，$0\\le a_i<b_i\\le10^6$。\n\n## 运行限制\n\n时间限制：3000 毫秒；内存限制：524288 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n3\n0 2\n2 4\n1 3\n```\n\n### 输出\n\n```text\n2\n```",
+      "title": "最多参加的完整比赛数",
+      "solution_idea": "这是经典的区间调度问题。每场比赛是一个闭开区间 $[a_i,b_i)$，因为结束时刻可以立即开始下一场。要最大化可参加的比赛数量，贪心策略是：按结束时刻 $b_i$ 从小到大排序，依次扫描，若当前比赛的开始时刻 $a_i$ 不小于上一场已选比赛的结束时刻，则选择它并更新结束时刻。正确性依据：在所有剩余可选区间中，结束最早的那个区间一定可以替换任意最优解中的第一个区间而不使后续选择变差，因此贪心选择是安全的。边界：$n=1$ 时直接选 1；所有区间可能重叠严重，贪心仍正确；$a_i,b_i$ 非负且 $a_i<b_i$，无需处理空区间。复杂度：排序 $O(n\\log n)$，扫描 $O(n)$，总时间 $O(n\\log n)$，空间 $O(n)$。",
+      "primary_knowledge_ids": [
+        "basic.greedy",
+        "basic.sort"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "basic.greedy": "核心策略：每次选择结束时刻最早且与已选区间不冲突的比赛，是区间调度问题的标准贪心。",
+        "basic.sort": "需要按结束时刻对区间排序，才能实现贪心扫描。"
+      },
+      "methods": [
+        {
+          "name": "按结束时刻排序后贪心选择",
+          "knowledge_ids": [
+            "basic.greedy",
+            "basic.sort"
+          ],
+          "time_complexity": "O(n log n)",
+          "space_complexity": "O(n)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B15"
+    },
+    {
+      "public_id": "B16",
+      "run_id": "first",
+      "description": "## 题目描述\n\n给定长度为 $n$ 的正整数序列 $a_1,a_2,\\ldots,a_n$ 和整数 $m$。对于每一个位置 $i$，求该位置之前至多 $m$ 项的最小值，当前位置 $a_i$ 不参与计算。即在 $i>1$ 时，计算下标区间 $[\\max(1,i-m),i-1]$ 中的最小值；若该位置之前没有元素，则输出 $0$。\n\n## 输入格式\n\n第一行给出 $n,m$。\n\n第二行给出 $n$ 个正整数，依次为序列各项。\n\n## 输出格式\n\n输出 $n$ 行。第 $i$ 行是位置 $i$ 所要求的最小值；第一行应为 $0$。\n\n## 数据范围\n\n$1\\le m\\le n\\le2\\times10^6$，$1\\le a_i\\le3\\times10^7$。\n\n## 运行限制\n\n时间限制：1500 毫秒；内存限制：524288 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n6 2\n7 8 1 4 3 2\n```\n\n### 输出\n\n```text\n0\n7\n7\n1\n1\n3 \n```",
+      "title": "滑动窗口前缀最小值",
+      "solution_idea": "对每个位置 i，需要查询区间 [max(1,i-m), i-1] 的最小值，且查询区间随 i 单调右移。这是典型的滑动窗口最小值问题：维护一个单调递增的双端队列，队列中存下标，对应值单调递增。处理到 i 时，先弹出队首所有下标小于 i-m 的元素，保证窗口左端合法；此时队首即为 [max(1,i-m), i-1] 的最小值（i=1 时队列为空，输出 0）。输出答案后，再把 a_i 加入队尾：不断弹出队尾对应值大于等于 a_i 的下标，再压入 i，从而保持队列值单调递增。正确性依据：被弹出队尾的元素值不小于 a_i 且下标更小，在后续任何包含它的窗口中 a_i 都更优，因此可安全删除；队首始终是当前窗口内最小值的下标。边界：i=1 输出 0；窗口长度不足 m 时左端为 1；m=n 时窗口可覆盖全部前缀。总时间复杂度 O(n)，空间复杂度 O(n)。",
+      "primary_knowledge_ids": [
+        "ds.monotonic-queue"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "ds.monotonic-queue": "每个位置查询长度至多 m 的滑动窗口最小值，使用双端队列维护下标并保持对应值单调递增，队首即答案。"
+      },
+      "methods": [
+        {
+          "name": "单调队列维护滑动窗口最小值",
+          "knowledge_ids": [
+            "ds.monotonic-queue"
+          ],
+          "time_complexity": "O(n)",
+          "space_complexity": "O(n)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B16"
+    },
+    {
+      "public_id": "B17",
+      "run_id": "first",
+      "description": "## 题目定义\n\n有 $n$ 个顶点和恰好 $n-1$ 条无向边，可能不连通。一次操作删除一条现有边，并立即添加一条新边。求使整个图连通所需的最少操作次数，并输出一组具体替换方案。\n\n## 输入格式\n\n第一行 $n$；随后 $n-1$ 行每行两个端点 $a_i,b_i$。\n\n## 输出格式\n\n先输出最少次数 $t$；随后 $t$ 行 $i\\ j\\ u\\ v$，表示删除边 $(i,j)$ 并添加边 $(u,v)$。有多解可输出任意方案。\n\n## 数据范围\n\n$2 \\le n \\le 1000$；端点在 $1\\ldots n$；无自环、无重边。\n\n## 样例 1\n\n输入：\n\n```text\n2\n1 2\n```\n\n输出：\n\n```text\n0\n```\n\n## 样例 2\n\n输入：\n\n```text\n7\n1 2\n2 3\n3 1\n4 5\n5 6\n6 7\n```\n\n输出：\n\n```text\n1\n3 1 3 7\n```\n",
+      "title": "森林连通化最少换边",
+      "solution_idea": "图有 n 个点、n-1 条边，因此每个连通块都是一棵树，整体是森林。设连通块数为 c，则最少操作次数为 c-1：每次操作最多使连通块数减少 1，而每次删掉某棵树的一条边会把它分成两个连通块，再连到另一棵树可使总连通块数减少 1，因此 c-1 可达。\n\n具体构造：先 DFS/BFS 求出所有连通块，并记录每个连通块的一个代表点。对每个连通块求出一棵生成树（原图每个连通块本身就是树，所以直接 DFS 得到树边）。保留每个连通块的一条“主干”边，其余边都是可删除的候选边。设连通块代表点为 r1,r2,...,rc。取第一个连通块作为基准，依次把第 k 个连通块（k>=2）通过删除其一条非主干边 (i,j) 并添加边 (r1, rk) 接入基准连通块。这样每次操作后连通块数减少 1，共 c-1 次。\n\n正确性：每次删除的是第 k 个连通块内部的一条非主干边，删除后该连通块分裂为两部分，其中一部分仍含 rk；添加 (r1, rk) 后，含 rk 的部分与基准连通块合并，另一部分仍为独立连通块，但后续可继续处理。更简单的等价做法是：对每个非基准连通块，删除其任意一条边，然后添加该连通块代表点与基准代表点的边；由于原连通块是树，删任意一条边后仍有一个含代表点的连通部分，添加后该部分并入基准，剩余部分成为新的连通块，但总连通块数仍减少 1。最终所有点连通。\n\n边界：n=2 时只有一个连通块，t=0；图可能已经连通，t=0；无重边无自环，但算法不依赖这些。复杂度：DFS 求连通块 O(n)，构造 O(n)，总时间 O(n)，空间 O(n)。",
+      "primary_knowledge_ids": [
+        "graph.dfs",
+        "graph.tree-basic",
+        "basic.construction"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "graph.dfs": "需要用 DFS 遍历每个连通块，求出连通块数量、代表点以及可删除的树边。",
+        "graph.tree-basic": "每个连通块有 k 个点、k-1 条边且无环，因此是树；删除树边会分裂，保留主干边可构造方案。",
+        "basic.construction": "题目要求输出具体替换方案，需要构造 c-1 次删边加边操作使森林连通。"
+      },
+      "methods": [
+        {
+          "name": "DFS 求连通块并换边连接",
+          "knowledge_ids": [
+            "graph.dfs",
+            "graph.tree-basic",
+            "basic.construction"
+          ],
+          "time_complexity": "O(n)",
+          "space_complexity": "O(n)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B17"
+    },
+    {
+      "public_id": "B18",
+      "run_id": "first",
+      "description": "## 题目描述\n\n维护一个长度为 $n$ 的整数序列，初值为 $a_1,a_2,\\ldots,a_n$。按给定顺序执行 $m$ 次操作：可以把某个闭区间内的每个元素都加上同一个整数，也可以询问某个闭区间内全部元素的和。每次询问都以此前所有修改生效后的序列为准。\n\n## 输入格式\n\n第一行给出 $n,m$。\n\n第二行给出 $n$ 个整数，依次表示序列初值。\n\n接下来 $m$ 行，每行为下列两种格式之一：\n\n- `1 x y k`：将下标在 $[x,y]$ 内的每个元素增加 $k$。\n- `2 x y`：查询并输出下标在 $[x,y]$ 内的元素总和。\n\n序列下标从 $1$ 开始，操作指定序列内的合法闭区间。\n\n## 输出格式\n\n每遇到一次第二类操作，输出一行整数作为该次查询结果。\n\n## 数据范围\n\n$1\\le n,m\\le10^5$。初值 $a_i$ 与增量 $k$ 均为正数；在任意时刻，整个序列的总和不超过 $2\\times10^{18}$。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：524288 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n5 5\n1 5 4 2 3\n2 2 4\n1 2 3 2\n2 3 4\n1 1 5 1\n2 1 4\n```\n\n### 输出\n\n```text\n11\n8\n20\n```",
+      "title": "区间加与区间和",
+      "solution_idea": "题目要求在线维护序列，支持区间整体加一个整数、查询区间元素和。关键观察是：区间加对区间和的影响等于增量乘以区间长度，因此可以用懒标记线段树维护每个区间的和与待下传的加法标记。建树时递归或迭代求出每个节点对应区间的和；修改时若当前节点区间完全被目标区间覆盖，则直接给该节点和加上 k*len，并累加懒标记；否则下传标记后递归处理相交子节点，再用左右子节点和更新当前节点。查询同理，完全覆盖直接返回节点和，否则下传后合并子区间答案。正确性依据是线段树节点和始终等于其区间内所有元素当前值之和，懒标记表示该节点所有后代尚未应用但已计入本节点和的增量。边界包括 x=y 的单点区间、查询或修改覆盖整个序列、以及总和不超过 2e18 但中间节点和可能接近该值，需使用 64 位整数。时间复杂度：建树 O(n)，每次操作 O(log n)，总 O(n + m log n)；空间 O(n)。",
+      "primary_knowledge_ids": [
+        "ds.segment-tree.basic"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "ds.segment-tree.basic": "解法使用线段树基础结构：建树、区间修改、区间查询以及懒标记下传。"
+      },
+      "methods": [
+        {
+          "name": "懒标记线段树",
+          "knowledge_ids": [
+            "ds.segment-tree.basic"
+          ],
+          "time_complexity": "O(n + m log n)",
+          "space_complexity": "O(n)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B18"
+    },
+    {
+      "public_id": "B19",
+      "run_id": "first",
+      "description": "## 题目描述\n\n给定整数 $a,b,p$，计算 $a^b$ 除以 $p$ 的余数 $s$。\n\n## 输入格式\n\n一行给出三个整数，依次为 $a,b,p$。\n\n## 输出格式\n\n输出一行，格式必须为 `a^b mod p=s`，其中用输入的三个整数替换 `a`、`b`、`p`，用计算出的余数替换 `s`。`mod` 两侧各有一个空格，等号两侧没有空格。\n\n## 数据范围\n\n$0\\le a,b<2^{31}$，$a+b>0$，$2\\le p<2^{31}$。因此底数或指数可以为 $0$，但二者不能同时为 $0$。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：131072 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n2 10 9\n```\n\n### 输出\n\n```text\n2^10 mod 9=7\n```",
+      "title": "快速幂取模",
+      "solution_idea": "题目要求计算 a^b mod p，其中 a,b 可达 2^31-1，直接循环乘 b 次会超时。关键观察是幂运算满足 a^b = (a^{b/2})^2（b 为偶数）或 a * a^{b-1}（b 为奇数），因此可以用二进制快速幂在 O(log b) 次乘法内完成。每次乘法后对 p 取模，保证中间结果不超过 p^2 < 2^62，在 64 位整数范围内。边界情况：b=0 时任何非零 a 的结果为 1 mod p（注意 p≥2，1 mod p=1）；a=0 且 b>0 时结果为 0；题目保证 a+b>0，所以不会出现 0^0。输出格式需严格按 `a^b mod p=s` 拼接，注意空格位置。",
+      "primary_knowledge_ids": [
+        "math.binary-exponentiation"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "math.binary-exponentiation": "核心算法：利用幂的二进制分解将 O(b) 次乘法降为 O(log b) 次，是本题唯一可行的高效解法。"
+      },
+      "methods": [
+        {
+          "name": "二进制快速幂（迭代）",
+          "knowledge_ids": [
+            "math.binary-exponentiation"
+          ],
+          "time_complexity": "O(log b)",
+          "space_complexity": "O(1)"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B19"
+    },
+    {
+      "public_id": "B20",
+      "run_id": "first",
+      "description": "## 任务\n列出不超过 $n$ 的素数并按升序编号。每次询问给出 $k$，输出第 $k$ 个素数。\n\n## 输入\n首行 $n$、$q$；之后 $q$ 行每行一个正整数 $k$。\n\n## 输出\n每个询问输出一行素数。\n\n## 约束\n全量数据 $n=10^8$，$1 \\le q \\le 10^6$；保证$\\text{被查询的素数}\\le n$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n100000000 3\n1\n2\n5\n```\n\n输出：\n```text\n2\n3\n11\n```",
+      "title": "第 k 个素数查询",
+      "solution_idea": "题意是先用不超过 n 的素数建立升序素数表，再对每个询问 k 直接输出表中第 k 个素数。关键观察是 n 最大为 10^8，q 最大为 10^6，若每次询问都重新试除判断素数会超时，因此需要一次性筛出所有不超过 n 的素数并顺序存储。正确性依据是埃拉托斯特尼筛法会标记所有合数，未被标记的整数恰为素数；按从小到大扫描并加入数组后，数组下标 k-1 就是第 k 个素数。边界包括 n<2 时素数表为空，但题面保证被查询的素数不超过 n，因此合法询问不会越界；k 从 1 开始编号。时间复杂度为 O(n log log n + q)，空间复杂度为 O(n) 的标记数组和 O(pi(n)) 的素数表。",
+      "primary_knowledge_ids": [
+        "math.number-theory.sieve",
+        "math.number-theory.prime"
+      ],
+      "secondary_knowledge_ids": [],
+      "evidence": {
+        "math.number-theory.sieve": "n 达到 10^8 且需要列出所有不超过 n 的素数，必须使用筛法批量标记合数。",
+        "math.number-theory.prime": "题目要求列出素数并回答第 k 个素数，核心对象是素数判定与素数序列。"
+      },
+      "methods": [
+        {
+          "name": "埃拉托斯特尼筛法预处理 + 顺序查表",
+          "knowledge_ids": [
+            "math.number-theory.sieve",
+            "math.number-theory.prime"
+          ],
+          "time_complexity": "O(n log log n + q)",
+          "space_complexity": "O(n + pi(n))"
+        }
+      ],
+      "source_ref": "v8-first-test/private-sealed/B20"
+    }
+  ]
+}

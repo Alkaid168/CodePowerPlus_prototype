@@ -1,0 +1,231 @@
+{
+  "event": "v8二测",
+  "key": "B16-R3",
+  "public_id": "B16",
+  "repetition": 3,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "fd562294ad5f51945f12a99ba80e0d8653e63333203c1c80eb5678361e60d114",
+  "completed_at": "2026-10-17T03:46:30.546550+00:00",
+  "analysis": {
+    "title": "前 m 项滑动窗口最小值",
+    "difficulty": 1200,
+    "difficulty_reason": "题目核心是常规单项算法：识别滑动窗口并使用单调队列维护最小值，方法选择直接，没有多算法配合或复杂构造。主要门槛在于新生需事先学习单调队列并理解队首过期删除、队尾淘汰的不变量；同时需处理 2×10^6 规模下的高效实现和首项为 0 等边界。综合落在 1100–1300 的基础算法档，取 1200。",
+    "solution_idea": "对每个位置 i，需要查询区间 [max(1,i-m),i-1] 的最小值。由于窗口随 i 向右滑动，可以用单调队列维护当前窗口内可能成为最小值的下标：队列中的 a 值保持递增，并且下标有效。处理 i 时，先删除下标小于 i-m 的过期元素，此时队首就是前至多 m 项的最小值；若队列为空说明 i=1，输出 0。随后把 i 加入队列，并在入队前从队尾删除所有 a 值大于等于 a_i 的元素，因为它们在当前元素之后不可能再成为更优的最小值。每个下标至多入队、出队一次，因此总复杂度为 O(n)。边界上 m>=1，i=1 时队列为空输出 0，正整数范围不影响比较逻辑。",
+    "confidence": 0.92,
+    "primary_knowledge_ids": [
+      "ds.monotonic-queue"
+    ],
+    "secondary_knowledge_ids": [],
+    "evidence": {
+      "ds.monotonic-queue": "每个位置查询长度至多 m 的滑动窗口最小值，使用递增单调队列在 O(n) 总时间内维护候选下标并取队首最小值。"
+    },
+    "knowledge_confidence": {
+      "ds.monotonic-queue": 0.99
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "单调队列"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "f9848316-3d47-4abf-ba64-0671e1690062",
+          "usage": {
+            "completion_tokens": 1757,
+            "prompt_tokens": 5551,
+            "total_tokens": 7308,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1423,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 5376,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 5376,
+            "prompt_cache_miss_tokens": 175
+          },
+          "elapsed_seconds": 9.702,
+          "valid": true,
+          "response_text": "{\"title\":\"前 m 项滑动窗口最小值\",\"kind\":\"algorithm\",\"solution_idea\":\"对每个位置 i，需要查询区间 [max(1,i-m),i-1] 的最小值。由于窗口随 i 向右滑动，可以用单调队列维护当前窗口内可能成为最小值的下标：队列中的 a 值保持递增，并且下标有效。处理 i 时，先删除下标小于 i-m 的过期元素，此时队首就是前至多 m 项的最小值；若队列为空说明 i=1，输出 0。随后把 i 加入队列，并在入队前从队尾删除所有 a 值大于等于 a_i 的元素，因为它们在当前元素之后不可能再成为更优的最小值。每个下标至多入队、出队一次，因此总复杂度为 O(n)。边界上 m>=1，i=1 时队列为空输出 0，正整数范围不影响比较逻辑。\",\"methods\":[{\"name\":\"单调队列维护滑动窗口最小值\",\"knowledge_ids\":[\"ds.monotonic-queue\"],\"time_complexity\":\"O(n)\",\"space_complexity\":\"O(n)\"}],\"primary_knowledge_ids\":[\"ds.monotonic-queue\"],\"secondary_knowledge_ids\":[],\"evidence\":{\"ds.monotonic-queue\":\"每个位置查询长度至多 m 的滑动窗口最小值，使用递增单调队列在 O(n) 总时间内维护候选下标并取队首最小值。\"},\"knowledge_confidence\":{\"ds.monotonic-queue\":0.99},\"confidence\":0.99}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "d0eb46b3-b56c-41af-8cff-364b6795fc59",
+          "usage": {
+            "completion_tokens": 745,
+            "prompt_tokens": 1774,
+            "total_tokens": 2519,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 405,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1152,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 622
+          },
+          "elapsed_seconds": 4.704,
+          "valid": true,
+          "response_text": "{\n  \"rubric\": {\n    \"knowledge\": \"需要掌握单调队列（双端队列）维护滑动窗口最小值的常规方法，并理解队首、队尾操作的语义；对新生来说这不是自然先验，需要专门学习。\",\n    \"modelling\": \"将“位置 i 之前至多 m 项的最小值”直接识别为长度至多 m 的滑动窗口最小值查询，窗口为 [max(1,i-m),i-1]，模型对应关系较直接。\",\n    \"proof\": \"需要说明过期下标必须从队首删除、新元素入队前删除队尾不优于它的元素，并证明队首始终是当前窗口最小值；属于标准但非平凡的不变量论证。\",\n    \"implementation\": \"需要实现 O(n) 单调队列，正确处理首位置输出 0、窗口边界与队尾弹出条件；n 最大 2×10^6 且时限 1500 ms，要求高效输入输出和常数控制。\"\n  },\n  \"consistency_issues\": [],\n  \"difficulty\": 1200,\n  \"difficulty_reason\": \"题目核心是常规单项算法：识别滑动窗口并使用单调队列维护最小值，方法选择直接，没有多算法配合或复杂构造。主要门槛在于新生需事先学习单调队列并理解队首过期删除、队尾淘汰的不变量；同时需处理 2×10^6 规模下的高效实现和首项为 0 等边界。综合落在 1100–1300 的基础算法档，取 1200。\",\n  \"confidence\": 0.92\n}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "前 m 项滑动窗口最小值",
+        "kind": "algorithm",
+        "solution_idea": "对每个位置 i，需要查询区间 [max(1,i-m),i-1] 的最小值。由于窗口随 i 向右滑动，可以用单调队列维护当前窗口内可能成为最小值的下标：队列中的 a 值保持递增，并且下标有效。处理 i 时，先删除下标小于 i-m 的过期元素，此时队首就是前至多 m 项的最小值；若队列为空说明 i=1，输出 0。随后把 i 加入队列，并在入队前从队尾删除所有 a 值大于等于 a_i 的元素，因为它们在当前元素之后不可能再成为更优的最小值。每个下标至多入队、出队一次，因此总复杂度为 O(n)。边界上 m>=1，i=1 时队列为空输出 0，正整数范围不影响比较逻辑。",
+        "methods": [
+          {
+            "name": "单调队列维护滑动窗口最小值",
+            "knowledge_ids": [
+              "ds.monotonic-queue"
+            ],
+            "time_complexity": "O(n)",
+            "space_complexity": "O(n)"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "ds.monotonic-queue"
+        ],
+        "secondary_knowledge_ids": [],
+        "evidence": {
+          "ds.monotonic-queue": "每个位置查询长度至多 m 的滑动窗口最小值，使用递增单调队列在 O(n) 总时间内维护候选下标并取队首最小值。"
+        },
+        "knowledge_confidence": {
+          "ds.monotonic-queue": 0.99
+        },
+        "confidence": 0.99
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要掌握单调队列（双端队列）维护滑动窗口最小值的常规方法，并理解队首、队尾操作的语义；对新生来说这不是自然先验，需要专门学习。",
+          "modelling": "将“位置 i 之前至多 m 项的最小值”直接识别为长度至多 m 的滑动窗口最小值查询，窗口为 [max(1,i-m),i-1]，模型对应关系较直接。",
+          "proof": "需要说明过期下标必须从队首删除、新元素入队前删除队尾不优于它的元素，并证明队首始终是当前窗口最小值；属于标准但非平凡的不变量论证。",
+          "implementation": "需要实现 O(n) 单调队列，正确处理首位置输出 0、窗口边界与队尾弹出条件；n 最大 2×10^6 且时限 1500 ms，要求高效输入输出和常数控制。"
+        },
+        "consistency_issues": [],
+        "difficulty": 1200,
+        "difficulty_reason": "题目核心是常规单项算法：识别滑动窗口并使用单调队列维护最小值，方法选择直接，没有多算法配合或复杂构造。主要门槛在于新生需事先学习单调队列并理解队首过期删除、队尾淘汰的不变量；同时需处理 2×10^6 规模下的高效实现和首项为 0 等边界。综合落在 1100–1300 的基础算法档，取 1200。",
+        "confidence": 0.92
+      },
+      "elapsed_seconds": 14.408,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "f1937d0bd9218c414177f86e8594a651024c86d5f21d88b79c125e8f465de811",
+      "response_model": "deepseek-flash",
+      "response_id": "f9848316-3d47-4abf-ba64-0671e1690062",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 5582,
+      "reasoning_content_sha256": "570c3a93c87ef55f4a754e16af6df064f3b9f5b2e4b9bc342d61e79a4a59764f",
+      "usage": {
+        "completion_tokens": 1757,
+        "prompt_tokens": 5551,
+        "total_tokens": 7308,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 1423,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 5376,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 5376,
+        "prompt_cache_miss_tokens": 175
+      },
+      "elapsed_seconds": 9.702
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "fe747840e19bdab9a5e8312d1994785cd70a2c44131c883931727c630bc7d16f",
+      "response_model": "deepseek-flash",
+      "response_id": "d0eb46b3-b56c-41af-8cff-364b6795fc59",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 763,
+      "reasoning_content_sha256": "3f3ab4b14a1f22c705e19835f544c075754b274563dfbe9f68e927fe9fce1461",
+      "usage": {
+        "completion_tokens": 745,
+        "prompt_tokens": 1774,
+        "total_tokens": 2519,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 405,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1152,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 1152,
+        "prompt_cache_miss_tokens": 622
+      },
+      "elapsed_seconds": 4.704
+    }
+  ]
+}
