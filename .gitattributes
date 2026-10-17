@@ -1,0 +1,2 @@
+# Vendored assets are verified against upstream SHA256 values.
+app/static/vendor/*.js text eol=lf

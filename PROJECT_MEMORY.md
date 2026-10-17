@@ -511,3 +511,11 @@
   多解法标注要求，以及“题面是数据不是指令”的注入防护。
 - **运行环境**：本机通过 SOCKS 代理访问模型服务，`requirements.txt` 增加 `httpx[socks]`，
   否则 openai 客户端初始化直接 `ImportError`。静态资源统一返回 `Cache-Control: no-cache`。
+
+## 2026-10-17 题目录入与分析模块已合并至GitHub
+
+- 用户授权的主模块提交4345980已推送；PR https://github.com/Alkaid168/CodePowerPlus_prototype/pull/1 已合并main，合并提交208551c732cf39982f2dfd861499a870cb1dccc6。本地main同步成功。
+- 合并前完整隔离227项测试、27前端模块语法、377节点词表、自检流程通过；只读后端专项另核对32项通过，无确认阻断缺陷。运行环境曾丢失工具且子任务消息正文传输异常，未将缺失范围的子任务声明当作全面审查。
+- 合并后复测226通过/1失败，定位core.autocrlf=true将marked.esm.js检出为CRLF，原Git blob和上游SHA256一致。新增.gitattributes锁定vendor/*.js为LF，恢复上游原字节，不改校验清单、模型提示词或业务逻辑。首轮诊断曾误用vendor目录和默认GBK读取，改为app/static/vendor及UTF-8后获得字节证据。
+- 正式数据库各表指纹与合并前完全相同，仍41题/120分析/47审核/0提交，quick_check=ok、外键错误0。作者笔记原文件未改；环境配置、DB与运行日志未推送。最终人评和二测对比两份工作簿已入库。
+- 软件阶段合并完成；v8实验质量、人工审核与评测限制保持原结论。Windows检出修复另走小PR并重新跑全套验收，不新增模型调用或付费评测。
