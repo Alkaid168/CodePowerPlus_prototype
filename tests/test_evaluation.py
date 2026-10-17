@@ -19,7 +19,7 @@ def test_classification_metrics_hand_checked():
 
 
 def test_difficulty_mae_hand_checked_and_rejects_missing_predictions():
-    # 评分是 Codeforces 风格的 800–3500，误差直接用分数差表示。
+    # 项目评分为 100–3500，误差直接用分数差表示。
     assert difficulty_mae([800, 1600], [1200, 1200]) == 400.0
     assert difficulty_mae([1200], [1200]) == 0.0
     with pytest.raises(ValueError):

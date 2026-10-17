@@ -1,10 +1,264 @@
 {
-  "version": "2026.09.9",
-  "provenance": "结构参考 OI Wiki（oi-wiki.org），按题目标签原则持续清理目录，并为叶子知识点保留 50–200 字介绍。",
+  "version": "2026.10.1",
+  "provenance": "算法结构参考 OI Wiki（oi-wiki.org）；C 语言入门层级参考 CS50 官方 Lecture 1/2 与 Microsoft C 运行库文档，标签边界和 100–700 门槛为本项目教学约定，中文介绍独立撰写。来源与限制见 docs/c-syntax-taxonomy-2026-10-16.md。",
   "nodes": [
     {
+      "id": "syntax",
+      "name": "语法基础",
+      "level": 1,
+      "parent_id": null
+    },
+    {
+      "id": "syntax.output",
+      "name": "输出",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 100,
+      "summary": "输出章节用于没有输入和计算要求的第一批程序练习。题目关注按指定顺序打印固定文字、空格、换行或简单图案；掌握输出函数与转义字符即可完成，不需要把程序编译过程当作题目知识标签。"
+    },
+    {
+      "id": "syntax.output.literal-output",
+      "name": "固定文本输出",
+      "level": 3,
+      "parent_id": "syntax.output",
+      "intro_rating": 100,
+      "summary": "固定文本输出要求把题目给定的文字原样显示，例如输出 Hello World 或几行说明。重点是引号内的内容、大小写、标点和行末换行；不涉及读取变量、算术计算或依据输入改变答案。"
+    },
+    {
+      "id": "syntax.output.escape-output",
+      "name": "转义字符与排版输出",
+      "level": 3,
+      "parent_id": "syntax.output",
+      "intro_rating": 100,
+      "summary": "转义字符与排版输出处理换行、制表符、反斜杠和引号等不能直接照抄的内容。适用于固定多行文字和字符画；要逐行核对空格与换行，避免多输出提示文字导致答案格式不符。"
+    },
+    {
+      "id": "syntax.variables-io",
+      "name": "变量与输入输出",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 200,
+      "summary": "变量与输入输出章节覆盖读取并保存简单数值，再按题目格式输出的入门任务。标签用于考查变量赋值、基本类型与格式控制的题目；即使出现数字，也不因此默认需要算术公式、循环或算法知识。"
+    },
+    {
+      "id": "syntax.variables-io.variables",
+      "name": "变量赋值与基本类型",
+      "level": 3,
+      "parent_id": "syntax.variables-io",
+      "intro_rating": 200,
+      "summary": "变量赋值与基本类型用于保存一个数、更新它的值或交换少量数据的入门题。要区分整数与浮点数，先初始化再使用，并理解赋值会覆盖原来的内容；此标签不包含指针、结构体或动态内存管理。"
+    },
+    {
+      "id": "syntax.variables-io.numeric-input",
+      "name": "基本数值输入输出",
+      "level": 3,
+      "parent_id": "syntax.variables-io",
+      "intro_rating": 200,
+      "summary": "基本数值输入输出用于读入若干整数或小数并原样输出、调整顺序等任务。以标准 C 的 scanf 和 printf 为典型方式，注意格式说明与变量类型匹配，以及输入时普通变量需要提供地址。"
+    },
+    {
+      "id": "syntax.variables-io.formatted-output",
+      "name": "数值格式控制",
+      "level": 3,
+      "parent_id": "syntax.variables-io",
+      "intro_rating": 200,
+      "summary": "数值格式控制处理小数位数、字段宽度、前导零和数据之间的分隔符。适用于核心要求是按指定样式显示已有数值的题目；输出保留几位小数与改变变量本身的值不同，应按题面逐项核对。"
+    },
+    {
+      "id": "syntax.expressions",
+      "name": "表达式运算",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 300,
+      "summary": "表达式运算章节覆盖读入少量数据后直接计算答案的题目，例如 A+B、周长面积和单位换算。重点是四则运算、整除取余、类型转换与表达式顺序；不要求循环搜索或依赖额外数学定理。"
+    },
+    {
+      "id": "syntax.expressions.arithmetic",
+      "name": "四则运算与简单公式",
+      "level": 3,
+      "parent_id": "syntax.expressions",
+      "intro_rating": 300,
+      "summary": "四则运算与简单公式将题目给出的关系直接写成表达式，例如两个数求和、长方形面积或简单单位换算。要检查运算优先级与括号，区分题面给定的直接公式和需要另行推导证明的数学结论。"
+    },
+    {
+      "id": "syntax.expressions.division-remainder",
+      "name": "整数除法与取余",
+      "level": 3,
+      "parent_id": "syntax.expressions",
+      "intro_rating": 300,
+      "summary": "整数除法与取余用于计算商、余数以及直接的整量拆分，例如把秒数换算成时分秒。要注意整数相除不会自动保留小数，除数不能为零；多次循环拆分数位属于后续的数位循环综合标签。"
+    },
+    {
+      "id": "syntax.expressions.conversion",
+      "name": "数值类型转换",
+      "level": 3,
+      "parent_id": "syntax.expressions",
+      "intro_rating": 300,
+      "summary": "数值类型转换处理整数与浮点数混合计算、平均值和显式转换等任务。应在需要保留小数的除法发生前转换类型，并选取足够大的数值范围；不能等整数除法截断后再转换来补回已经丢失的小数。"
+    },
+    {
+      "id": "syntax.conditions",
+      "name": "条件分支",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 400,
+      "summary": "条件分支章节用于依据输入的大小、范围或多个布尔条件选择输出结果的题目。能够用少量比较和分支直接完成是本章边界；把判断语句用于贪心、二分等算法时，不应仅凭代码出现 if 就归为语法题。"
+    },
+    {
+      "id": "syntax.conditions.comparison",
+      "name": "关系比较与单分支",
+      "level": 3,
+      "parent_id": "syntax.conditions",
+      "intro_rating": 400,
+      "summary": "关系比较与单分支用于比较两个数、判断正负或检查是否达到阈值等任务。要区分相等比较与赋值，核对小于和小于等于的边界；问题的核心是一次条件判断，而不是搜索某个最优方案。"
+    },
+    {
+      "id": "syntax.conditions.logical-condition",
+      "name": "逻辑条件组合",
+      "level": 3,
+      "parent_id": "syntax.conditions",
+      "intro_rating": 400,
+      "summary": "逻辑条件组合用于把多个简单判断用且、或、非连接起来，例如判定区间、闰年或合法输入。要根据文字条件正确加括号，并分别检查端点和互斥情况；掌握短路求值有助于避免无效表达式被执行。"
+    },
+    {
+      "id": "syntax.conditions.multi-branch",
+      "name": "多分支分类讨论",
+      "level": 3,
+      "parent_id": "syntax.conditions",
+      "intro_rating": 400,
+      "summary": "多分支分类讨论按若干互斥范围或类别选择不同计算规则，例如分段收费、成绩等级和简单菜单。重点是分支顺序、条件覆盖以及边界归属；可以使用 if、else if 或 switch 表达对应规则。"
+    },
+    {
+      "id": "syntax.loops-arrays",
+      "name": "循环与数组",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 500,
+      "summary": "循环与数组章节覆盖重复执行、逐项统计和保存一组同类型数据的入门任务。可用于固定图案、序列求和、数组读写和直接遍历；数组只是存储手段，使用数组实现排序、前缀和等算法时仍须标注对应算法知识。"
+    },
+    {
+      "id": "syntax.loops-arrays.for-while",
+      "name": "循环控制与终止",
+      "level": 3,
+      "parent_id": "syntax.loops-arrays",
+      "intro_rating": 500,
+      "summary": "循环控制与终止用于重复输出、按次数处理输入或读到约定结束标志等任务。要明确初值、继续条件和每次更新，区分先判断与后判断的循环；核对零次执行、最后一次执行以及避免死循环。"
+    },
+    {
+      "id": "syntax.loops-arrays.loop-accumulation",
+      "name": "循环累加与统计",
+      "level": 3,
+      "parent_id": "syntax.loops-arrays",
+      "intro_rating": 500,
+      "summary": "循环累加与统计逐个处理输入或简单数列，维护总和、数量、最大值或最小值等少量结果。重点是累加变量初始化和每轮更新规则；不保存所有前缀答案，也不包含动态规划或复杂状态转移。"
+    },
+    {
+      "id": "syntax.loops-arrays.array-traversal",
+      "name": "数组读写与遍历",
+      "level": 3,
+      "parent_id": "syntax.loops-arrays",
+      "intro_rating": 500,
+      "summary": "数组读写与遍历将一组同类型数据保存后按下标逐项访问，例如顺序输出、逆序输出或查找指定值。重点是有效下标范围、数组容量和初始化；它不等同于排序、二分查找或数据结构算法。"
+    },
+    {
+      "id": "syntax.loops-arrays.array-basic-update",
+      "name": "数组元素修改与搬移",
+      "level": 3,
+      "parent_id": "syntax.loops-arrays",
+      "intro_rating": 500,
+      "summary": "数组元素修改与搬移处理指定位置替换、删除后顺次前移或插入前顺次后移等直接操作。要分清逻辑长度与实际容量，搬移时选择不会覆盖未处理数据的方向；不涉及链表或维护复杂查询结构。"
+    },
+    {
+      "id": "syntax.loops-arrays.nested-loop",
+      "name": "嵌套循环与简单图案",
+      "level": 3,
+      "parent_id": "syntax.loops-arrays",
+      "intro_rating": 500,
+      "summary": "嵌套循环与简单图案用外层控制行、内层控制列，输出矩形、三角形或直接访问二维表格。需要区分各层变量和边界，并估计执行次数；依靠多重循环搜索条件组合的综合题可使用更高阶段标签。"
+    },
+    {
+      "id": "syntax.characters-strings",
+      "name": "字符与字符串",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 600,
+      "summary": "字符与字符串章节面向单个字符的判断转换，以及以字符数组保存、读取和逐项处理文本的入门题。应理解字符串结束标记与容量边界；不把 CS50 的 string 别名视为标准 C 类型，也不包含 KMP 等匹配算法。"
+    },
+    {
+      "id": "syntax.characters-strings.char-classification",
+      "name": "字符判断与大小写转换",
+      "level": 3,
+      "parent_id": "syntax.characters-strings",
+      "intro_rating": 600,
+      "summary": "字符判断与大小写转换用于识别数字、英文字母、空白字符，或按题意转换英文字母大小写。要区分单字符与字符串，以及字符值和数字值；可以按给定字符范围判断，也可以使用适当的字符分类函数。"
+    },
+    {
+      "id": "syntax.characters-strings.string-input",
+      "name": "字符数组与字符串输入输出",
+      "level": 3,
+      "parent_id": "syntax.characters-strings",
+      "intro_rating": 600,
+      "summary": "字符数组与字符串输入输出使用足够容量的字符数组保存文本，并保留字符串末尾的结束标记。要区分读取一个单词与读取整行，设置输入长度限制；读取带空格的文本时需采用符合题意的方式。"
+    },
+    {
+      "id": "syntax.characters-strings.string-traversal",
+      "name": "字符串遍历与字符统计",
+      "level": 3,
+      "parent_id": "syntax.characters-strings",
+      "intro_rating": 600,
+      "summary": "字符串遍历与字符统计按顺序访问文本中的字符，完成长度统计、某类字符计数或直接替换等任务。遍历应在结束标记或已知长度处停止，不能越过有效范围；这里不包含哈希、自动机或高级模式匹配。"
+    },
+    {
+      "id": "syntax.characters-strings.string-comparison",
+      "name": "字符串比较与基础变换",
+      "level": 3,
+      "parent_id": "syntax.characters-strings",
+      "intro_rating": 600,
+      "summary": "字符串比较与基础变换用于判断两段文本是否相同、按字典序比较，以及复制、反转或拼接等直接操作。注意字符串内容不能用数组地址是否相等来比较，并检查目标数组容量及结束标记是否完整保留。"
+    },
+    {
+      "id": "syntax.basic-integration",
+      "name": "基础综合与数学",
+      "level": 2,
+      "parent_id": "syntax",
+      "intro_rating": 700,
+      "summary": "基础综合与数学章节把循环、分支和小学整数知识组合起来，覆盖数位拆分、小规模因数试除、单数质数判断与有限条件组合。题目仍靠直接步骤即可解决；筛法、数论定理、复杂剪枝等归入原算法领域。"
+    },
+    {
+      "id": "syntax.basic-integration.digit-loop",
+      "name": "数位拆分与循环综合",
+      "level": 3,
+      "parent_id": "syntax.basic-integration",
+      "intro_rating": 700,
+      "summary": "数位拆分与循环综合通过反复取余和整除逐位处理十进制整数，例如数位和、数字个数、逆序数与回文判断。要单独考虑零以及题目允许的负数范围，构造新数时注意溢出；不包含数位动态规划。"
+    },
+    {
+      "id": "syntax.basic-integration.divisor-trial",
+      "name": "基础因数试除",
+      "level": 3,
+      "parent_id": "syntax.basic-integration",
+      "intro_rating": 700,
+      "summary": "基础因数试除用循环逐一检查小规模正整数能否被候选数整除，完成列举因数、求因数个数或因数和。可成对处理约数并避免平方根重复计数；不涉及筛法、乘法函数或依赖素因数结构的高级数论推导。"
+    },
+    {
+      "id": "syntax.basic-integration.prime-trial",
+      "name": "基础质数试除",
+      "level": 3,
+      "parent_id": "syntax.basic-integration",
+      "intro_rating": 700,
+      "summary": "基础质数试除用于小规模单个整数的质数判断：先排除小于二的数，再检查可能的非平凡因数。可以只试除到平方根，并注意循环条件的溢出；批量筛法、快速素性测试与其他高级数论标签仍留在数学领域。"
+    },
+    {
+      "id": "syntax.basic-integration.loop-integration",
+      "name": "多重循环条件综合",
+      "level": 3,
+      "parent_id": "syntax.basic-integration",
+      "intro_rating": 700,
+      "summary": "多重循环条件综合用于小范围内直接列出组合并检查题目给定条件，例如鸡兔同笼变式或简单整数配比。核心是把关系翻译成循环和判断，并估计总次数；需要复杂剪枝、状态搜索或贪心证明时应使用算法标签。"
+    },
+    {
       "id": "basic",
-      "name": "基础",
+      "name": "算法基础",
       "level": 1,
       "parent_id": null
     },

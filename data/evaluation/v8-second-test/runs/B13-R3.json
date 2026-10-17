@@ -1,0 +1,333 @@
+{
+  "event": "v8二测",
+  "key": "B13-R3",
+  "public_id": "B13",
+  "repetition": 3,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "e06db4f73c971b4c0292e8bd049fc850ed1e55dd77609436251e636d8e5d21fc",
+  "completed_at": "2026-10-17T03:46:59.654835+00:00",
+  "analysis": {
+    "title": "统计不同字符串个数",
+    "difficulty": 800,
+    "difficulty_reason": "该题核心只是统计不同字符串个数，思路几乎由题意直接给出。知识上需要会使用字符串集合/哈希表或排序去重；转化直接；证明仅需集合不变量或排序相邻性质；实现为常规读入与库函数调用，边界也不复杂。总长度虽可达千万级，但只需线性或 N log N 次字符串处理，符合入门算法题的 800 档。",
+    "solution_idea": "自然主线是用哈希表保存已经出现过的完整字符串：读入一个字符串后查询哈希表，若不存在则计数并插入，否则跳过。哈希表在哈希值相同时仍需比较完整字符串，因此区分大小写且长度不同的字符串不会被误判。排序方案将所有字符串按字典序排序，相同字符串必然相邻，随后扫描统计相邻不同项即可。边界包括 N=0 时输出 0、字符串长度差异、大小写敏感以及空字符串若允许需按行保留；N≤10000、单串长度≤1500，总输入规模 S=∑Mi≤15000000，存储所有字符串应满足内存限制。哈希表主线期望 O(S) 时间、O(S) 空间；排序方案最坏 O(N log N·Lmax) 时间、O(S) 空间。",
+    "confidence": 0.88,
+    "primary_knowledge_ids": [
+      "ds.hash",
+      "string.basic"
+    ],
+    "secondary_knowledge_ids": [
+      "basic.use-of-sort"
+    ],
+    "evidence": {
+      "ds.hash": "主线使用哈希表保存已出现的完整字符串，实现去重和计数。",
+      "string.basic": "需要把字符串作为整体存储和比较，并按题目要求区分大小写逐位判等。",
+      "basic.use-of-sort": "排序去重方案需要按字典序排序，并利用相同字符串排序后相邻的性质进行统计。"
+    },
+    "knowledge_confidence": {
+      "ds.hash": 0.95,
+      "string.basic": 0.9,
+      "basic.use-of-sort": 0.9
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "哈希表",
+      "字符串基础",
+      "排序应用"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "6cccb85c-eca7-4cf1-8954-aa4b70476c4d",
+          "usage": {
+            "completion_tokens": 9389,
+            "prompt_tokens": 5502,
+            "total_tokens": 14891,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 8789,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 5248,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 5248,
+            "prompt_cache_miss_tokens": 254
+          },
+          "elapsed_seconds": 46.352,
+          "valid": false,
+          "response_text": "{\"title\":\"统计不同字符串个数\",\"kind\":\"algorithm\",\"solution_idea\":\"把每个输入字符串视为一个整体键进行去重。若两两比较，最坏为 O(N²·Lmax)，不能接受；自然主线是用哈希表保存已出现的完整字符串，读入一个字符串后查询集合，未出现则计数并插入。哈希表在哈希值相同时仍用完整字符串判等，因此结果是精确的。另一个确定性方案是把所有字符串按字典序排序，排序后相同字符串必相邻，扫描相邻项即可统计不同项。若采用字符串哈希值排序去重，则需使用双哈希或 64 位哈希来降低碰撞风险。题目区分大小写，字符串不含空格，可按 token 读入。总量 S=∑Mi≤10000×1500=15,000,000，存储所有字符串的空间和 128 MiB 限制相符。哈希表期望 O(S)，排序为 O(N log N·Lmax) 最坏，字符串哈希值排序为 O(S+N log N)。\",\"methods\":[{\"name\":\"完整字符串哈希表去重\",\"knowledge_ids\":[\"ds.hash\",\"string.basic\"],\"time_complexity\":\"期望 O(S)，其中 S=∑Mi；哈希冲突时需比较完整字符串\",\"space_complexity\":\"O(S)，存储所有不同字符串及哈希表开销\"},{\"name\":\"字符串排序后统计相邻不同项\",\"knowledge_ids\":[\"basic.sort\",\"basic.use-of-sort\",\"string.basic\"],\"time_complexity\":\"O(N log N·Lmax + S) 最坏，Lmax≤1500；可写为 O(S log N) 量级\",\"space_complexity\":\"O(S)\"},{\"name\":\"字符串哈希值排序去重\",\"knowledge_ids\":[\"string.hash\",\"basic.sort\",\"basic.use-of-sort\"],\"time_complexity\":\"O(S + N log N)\",\"space_complexity\":\"O(N + Lmax)\"}],\"primary_knowledge_ids\":[\"ds.hash\",\"string.basic\"],\"secondary_knowledge_ids\":[\"basic.sort\",\"basic.use-of-sort\",\"string.hash\"],\"evidence\":{\"ds.hash\":\"主线用哈希表保存已出现的完整字符串，实现去重和计数。\",\"string.basic\":\"需要把字符串作为整体存储、比较，并按题目要求区分大小写逐位判等。\",\"basic.sort\":\"字符串排序方案需要按字典序对字符串排序。\",\"basic.use-of-sort\":\"排序后相同字符串相邻，扫描相邻元素即可统计不同字符串个数。\",\"string.hash\":\"字符串哈希值排序去重方案需要为每个输入字符串计算哈希值。\"},\"knowledge_confidence\":{\"ds.hash\":0.95,\"string.basic\":0.9,\"basic.sort\":0.9,\"basic.use-of-sort\":0.9,\"string.hash\":0.85},\"confidence\":0.88}",
+          "validation_error": "Do not select both ancestor and descendant"
+        },
+        {
+          "stage": "solve",
+          "attempt": 2,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "4ed8f225-916d-43c5-9ee9-dde8f436366b",
+          "usage": {
+            "completion_tokens": 2714,
+            "prompt_tokens": 6127,
+            "total_tokens": 8841,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 2246,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 5376,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 5376,
+            "prompt_cache_miss_tokens": 751
+          },
+          "elapsed_seconds": 14.751,
+          "valid": true,
+          "response_text": "{\"title\":\"统计不同字符串个数\",\"kind\":\"algorithm\",\"solution_idea\":\"自然主线是用哈希表保存已经出现过的完整字符串：读入一个字符串后查询哈希表，若不存在则计数并插入，否则跳过。哈希表在哈希值相同时仍需比较完整字符串，因此区分大小写且长度不同的字符串不会被误判。排序方案将所有字符串按字典序排序，相同字符串必然相邻，随后扫描统计相邻不同项即可。边界包括 N=0 时输出 0、字符串长度差异、大小写敏感以及空字符串若允许需按行保留；N≤10000、单串长度≤1500，总输入规模 S=∑Mi≤15000000，存储所有字符串应满足内存限制。哈希表主线期望 O(S) 时间、O(S) 空间；排序方案最坏 O(N log N·Lmax) 时间、O(S) 空间。\",\"methods\":[{\"name\":\"完整字符串哈希表去重\",\"knowledge_ids\":[\"ds.hash\",\"string.basic\"],\"time_complexity\":\"期望 O(S)，其中 S=∑Mi；哈希冲突时需比较完整字符串\",\"space_complexity\":\"O(S)，存储所有不同字符串及哈希表开销\"},{\"name\":\"字符串排序后统计相邻不同项\",\"knowledge_ids\":[\"basic.use-of-sort\",\"string.basic\"],\"time_complexity\":\"O(N log N·Lmax + S) 最坏，其中 Lmax≤1500；可视为 O(S log N) 量级\",\"space_complexity\":\"O(S)\"}],\"primary_knowledge_ids\":[\"ds.hash\",\"string.basic\"],\"secondary_knowledge_ids\":[\"basic.use-of-sort\"],\"evidence\":{\"ds.hash\":\"主线使用哈希表保存已出现的完整字符串，实现去重和计数。\",\"string.basic\":\"需要把字符串作为整体存储和比较，并按题目要求区分大小写逐位判等。\",\"basic.use-of-sort\":\"排序去重方案需要按字典序排序，并利用相同字符串排序后相邻的性质进行统计。\"},\"knowledge_confidence\":{\"ds.hash\":0.95,\"string.basic\":0.9,\"basic.use-of-sort\":0.9},\"confidence\":0.88}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "a2aa3ad2-935f-4b78-9667-86e51771b48b",
+          "usage": {
+            "completion_tokens": 1304,
+            "prompt_tokens": 2065,
+            "total_tokens": 3369,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1013,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1152,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 913
+          },
+          "elapsed_seconds": 7.778,
+          "valid": true,
+          "response_text": "{\"rubric\":{\"knowledge\":\"需要知道字符串可作为整体按内容比较，并掌握标准库集合/哈希表或排序去重的基本用法；这些属于入门算法工具，不需要复杂数据结构设计。\",\"modelling\":\"题意直接就是“统计不同元素个数”，可立即转化为读入后放入集合，或排序后数相邻不同项，建模门槛很低。\",\"proof\":\"哈希表方案依赖集合中已保存且仅保存已出现字符串这一不变量；排序方案依赖相同字符串排序后相邻这一基本性质。正确性说明较短，不需要复杂论证。\",\"implementation\":\"实现简单：读入 N 个字符串，插入集合并输出大小，或排序后扫描统计；主要注意区分大小写、长度不同不相等，以及总输入长度约 10^7~1.5×10^7 时的存储与常数开销。\"},\"consistency_issues\":[],\"difficulty\":800,\"difficulty_reason\":\"该题核心只是统计不同字符串个数，思路几乎由题意直接给出。知识上需要会使用字符串集合/哈希表或排序去重；转化直接；证明仅需集合不变量或排序相邻性质；实现为常规读入与库函数调用，边界也不复杂。总长度虽可达千万级，但只需线性或 N log N 次字符串处理，符合入门算法题的 800 档。\",\"confidence\":0.92}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "统计不同字符串个数",
+        "kind": "algorithm",
+        "solution_idea": "自然主线是用哈希表保存已经出现过的完整字符串：读入一个字符串后查询哈希表，若不存在则计数并插入，否则跳过。哈希表在哈希值相同时仍需比较完整字符串，因此区分大小写且长度不同的字符串不会被误判。排序方案将所有字符串按字典序排序，相同字符串必然相邻，随后扫描统计相邻不同项即可。边界包括 N=0 时输出 0、字符串长度差异、大小写敏感以及空字符串若允许需按行保留；N≤10000、单串长度≤1500，总输入规模 S=∑Mi≤15000000，存储所有字符串应满足内存限制。哈希表主线期望 O(S) 时间、O(S) 空间；排序方案最坏 O(N log N·Lmax) 时间、O(S) 空间。",
+        "methods": [
+          {
+            "name": "完整字符串哈希表去重",
+            "knowledge_ids": [
+              "ds.hash",
+              "string.basic"
+            ],
+            "time_complexity": "期望 O(S)，其中 S=∑Mi；哈希冲突时需比较完整字符串",
+            "space_complexity": "O(S)，存储所有不同字符串及哈希表开销"
+          },
+          {
+            "name": "字符串排序后统计相邻不同项",
+            "knowledge_ids": [
+              "basic.use-of-sort",
+              "string.basic"
+            ],
+            "time_complexity": "O(N log N·Lmax + S) 最坏，其中 Lmax≤1500；可视为 O(S log N) 量级",
+            "space_complexity": "O(S)"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "ds.hash",
+          "string.basic"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.use-of-sort"
+        ],
+        "evidence": {
+          "ds.hash": "主线使用哈希表保存已出现的完整字符串，实现去重和计数。",
+          "string.basic": "需要把字符串作为整体存储和比较，并按题目要求区分大小写逐位判等。",
+          "basic.use-of-sort": "排序去重方案需要按字典序排序，并利用相同字符串排序后相邻的性质进行统计。"
+        },
+        "knowledge_confidence": {
+          "ds.hash": 0.95,
+          "string.basic": 0.9,
+          "basic.use-of-sort": 0.9
+        },
+        "confidence": 0.88
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要知道字符串可作为整体按内容比较，并掌握标准库集合/哈希表或排序去重的基本用法；这些属于入门算法工具，不需要复杂数据结构设计。",
+          "modelling": "题意直接就是“统计不同元素个数”，可立即转化为读入后放入集合，或排序后数相邻不同项，建模门槛很低。",
+          "proof": "哈希表方案依赖集合中已保存且仅保存已出现字符串这一不变量；排序方案依赖相同字符串排序后相邻这一基本性质。正确性说明较短，不需要复杂论证。",
+          "implementation": "实现简单：读入 N 个字符串，插入集合并输出大小，或排序后扫描统计；主要注意区分大小写、长度不同不相等，以及总输入长度约 10^7~1.5×10^7 时的存储与常数开销。"
+        },
+        "consistency_issues": [],
+        "difficulty": 800,
+        "difficulty_reason": "该题核心只是统计不同字符串个数，思路几乎由题意直接给出。知识上需要会使用字符串集合/哈希表或排序去重；转化直接；证明仅需集合不变量或排序相邻性质；实现为常规读入与库函数调用，边界也不复杂。总长度虽可达千万级，但只需线性或 N log N 次字符串处理，符合入门算法题的 800 档。",
+        "confidence": 0.92
+      },
+      "elapsed_seconds": 68.882,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "bec7c6fad3adc63a7eafb807877983e1eede17b9db1da19eff80399fb0f10584",
+      "response_model": "deepseek-flash",
+      "response_id": "6cccb85c-eca7-4cf1-8954-aa4b70476c4d",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 34011,
+      "reasoning_content_sha256": "2b8aca6e45006e2196040759f89b95b5e3ae9928cead5933fea5b17c8ccbea03",
+      "usage": {
+        "completion_tokens": 9389,
+        "prompt_tokens": 5502,
+        "total_tokens": 14891,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 8789,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 5248,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 5248,
+        "prompt_cache_miss_tokens": 254
+      },
+      "elapsed_seconds": 46.351
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "3702df96c5a79a40db1b3c163dcc337b0fdce1095c5b402d6a47f2fa0ca84d5b",
+      "response_model": "deepseek-flash",
+      "response_id": "4ed8f225-916d-43c5-9ee9-dde8f436366b",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 5254,
+      "reasoning_content_sha256": "3898b34d8fc1b7b4ff9f02a3c878672af7e16fb051dfac7dd6d253d69919670d",
+      "usage": {
+        "completion_tokens": 2714,
+        "prompt_tokens": 6127,
+        "total_tokens": 8841,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 2246,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 5376,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 5376,
+        "prompt_cache_miss_tokens": 751
+      },
+      "elapsed_seconds": 14.75
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "638f145d48aee8cd4f2634b3d5f828325eacee8408caef81497b241f2d5fab33",
+      "response_model": "deepseek-flash",
+      "response_id": "a2aa3ad2-935f-4b78-9667-86e51771b48b",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 4140,
+      "reasoning_content_sha256": "f2a35438a569b2b5451690876a53520316cf7b6f0180320453cb74a1a61ee107",
+      "usage": {
+        "completion_tokens": 1304,
+        "prompt_tokens": 2065,
+        "total_tokens": 3369,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 1013,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1152,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 1152,
+        "prompt_cache_miss_tokens": 913
+      },
+      "elapsed_seconds": 7.778
+    }
+  ]
+}

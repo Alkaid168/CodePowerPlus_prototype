@@ -1,0 +1,249 @@
+{
+  "event": "v8二测",
+  "key": "B08-R3",
+  "public_id": "B08",
+  "repetition": 3,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "7dce77429c947cae9200032773cde6124d5a0253e412d09203563f3c76f86318",
+  "completed_at": "2026-10-17T03:45:29.399259+00:00",
+  "analysis": {
+    "title": "二分图最大匹配",
+    "difficulty": 1400,
+    "difficulty_reason": "题目本质是标准二分图最大匹配，建模路径直接，但新生需额外掌握增广路与匈牙利算法，并理解正确性依据；实现涉及递归搜索和匹配改配，属于进阶图论模板题。综合知识门槛、证明不变量和实现负担，定为1400较合适。",
+    "solution_idea": "题目要求从二分图的边中选出尽量多，且任意顶点至多属于一条被选边，这正是二分图的最大匹配问题。将左侧点与右侧点视为匹配两侧，用匈牙利算法从空匹配开始，依次为每个左侧点尝试寻找一条增广路；每次 DFS 前清空右侧访问标记，递归地从当前左点走向未访问的右点，若该右点未匹配则成功，否则尝试让与它匹配的左点改配到其他右点。若找到增广路，则匹配数加一。正确性依据是 Berge 定理：二分图中不存在增广路时当前匹配即为最大匹配；也可看作依次处理左点后，当前匹配是已处理左点子图上的最大匹配。允许重边不影响答案，重边不能同时选，因为两端点相同会冲突；保留重边只增加重复尝试，不改变正确性。边界包括孤立点、无可用匹配边以及左右编号范围；n,m<=500、e<=5e4，最坏每次 DFS 扫描 O(n+m+e)，共 n 次尝试，复杂度可接受。",
+    "confidence": 0.86,
+    "primary_knowledge_ids": [
+      "graph.bi-graph",
+      "graph.graph-matching.bigraph-match"
+    ],
+    "secondary_knowledge_ids": [
+      "graph.dfs"
+    ],
+    "evidence": {
+      "graph.bi-graph": "题面明确给出一个二分图，边只连接左侧顶点和右侧顶点，要求选取互不共享端点的边。",
+      "graph.graph-matching.bigraph-match": "题目本质是求二分图最大匹配，即最多能选出多少条任意顶点至多属于其中一条边的边。",
+      "graph.dfs": "匈牙利算法通过 DFS 沿未访问右点和已匹配左点递归搜索增广路，找到则扩大匹配。"
+    },
+    "knowledge_confidence": {
+      "graph.bi-graph": 0.99,
+      "graph.graph-matching.bigraph-match": 0.99,
+      "graph.dfs": 0.9
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "二分图",
+      "二分图最大匹配",
+      "图上深度优先搜索（DFS）"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "11c5e475-00e4-469d-9c08-6b500356c581",
+          "usage": {
+            "completion_tokens": 3571,
+            "prompt_tokens": 5616,
+            "total_tokens": 9187,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 3046,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 5376,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 5376,
+            "prompt_cache_miss_tokens": 240
+          },
+          "elapsed_seconds": 18.544,
+          "valid": true,
+          "response_text": "{\"title\":\"二分图最大匹配\",\"kind\":\"algorithm\",\"solution_idea\":\"题目要求从二分图的边中选出尽量多，且任意顶点至多属于一条被选边，这正是二分图的最大匹配问题。将左侧点与右侧点视为匹配两侧，用匈牙利算法从空匹配开始，依次为每个左侧点尝试寻找一条增广路；每次 DFS 前清空右侧访问标记，递归地从当前左点走向未访问的右点，若该右点未匹配则成功，否则尝试让与它匹配的左点改配到其他右点。若找到增广路，则匹配数加一。正确性依据是 Berge 定理：二分图中不存在增广路时当前匹配即为最大匹配；也可看作依次处理左点后，当前匹配是已处理左点子图上的最大匹配。允许重边不影响答案，重边不能同时选，因为两端点相同会冲突；保留重边只增加重复尝试，不改变正确性。边界包括孤立点、无可用匹配边以及左右编号范围；n,m<=500、e<=5e4，最坏每次 DFS 扫描 O(n+m+e)，共 n 次尝试，复杂度可接受。\",\"methods\":[{\"name\":\"匈牙利算法（DFS 找增广路）\",\"knowledge_ids\":[\"graph.bi-graph\",\"graph.graph-matching.bigraph-match\",\"graph.dfs\"],\"time_complexity\":\"O(n(n+m+e))，最坏为 n 次增广尝试，每次 DFS 最多扫描相关顶点和边\",\"space_complexity\":\"O(n+m+e)，用于邻接表、左右匹配数组和右侧访问标记\"}],\"primary_knowledge_ids\":[\"graph.bi-graph\",\"graph.graph-matching.bigraph-match\"],\"secondary_knowledge_ids\":[\"graph.dfs\"],\"evidence\":{\"graph.bi-graph\":\"题面明确给出一个二分图，边只连接左侧顶点和右侧顶点，要求选取互不共享端点的边。\",\"graph.graph-matching.bigraph-match\":\"题目本质是求二分图最大匹配，即最多能选出多少条任意顶点至多属于其中一条边的边。\",\"graph.dfs\":\"匈牙利算法通过 DFS 沿未访问右点和已匹配左点递归搜索增广路，找到则扩大匹配。\"},\"knowledge_confidence\":{\"graph.bi-graph\":0.99,\"graph.graph-matching.bigraph-match\":0.99,\"graph.dfs\":0.9},\"confidence\":0.97}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "199bcaad-4347-48b1-91b7-051706330cd3",
+          "usage": {
+            "completion_tokens": 1648,
+            "prompt_tokens": 2264,
+            "total_tokens": 3912,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1384,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1280,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 1280,
+            "prompt_cache_miss_tokens": 984
+          },
+          "elapsed_seconds": 10.624,
+          "valid": true,
+          "response_text": "{\"rubric\":{\"knowledge\":\"需要掌握二分图、匹配、增广路等图论概念，并知道用匈牙利算法求最大匹配；这些不是新生默认具备的先验知识。\",\"modelling\":\"题意直接描述了“任意顶点至多属于一条边”的选边约束，实质就是二分图最大匹配，识别难度不高；难点在于把定义转化为匹配模型。\",\"proof\":\"需要依据增广路和 Berge 定理说明找不到增广路时当前匹配最大，或论证按左点依次扩张匹配的不变量，属于非平凡但经典的证明。\",\"implementation\":\"需要实现邻接表、左右匹配数组和访问标记，在 DFS 中递归调整匹配；注意每轮清空右侧访问标记、重边不影响答案以及复杂度控制。整体代码不长但动态改配容易写错。\"},\"consistency_issues\":[],\"difficulty\":1400,\"difficulty_reason\":\"题目本质是标准二分图最大匹配，建模路径直接，但新生需额外掌握增广路与匈牙利算法，并理解正确性依据；实现涉及递归搜索和匹配改配，属于进阶图论模板题。综合知识门槛、证明不变量和实现负担，定为1400较合适。\",\"confidence\":0.86}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "二分图最大匹配",
+        "kind": "algorithm",
+        "solution_idea": "题目要求从二分图的边中选出尽量多，且任意顶点至多属于一条被选边，这正是二分图的最大匹配问题。将左侧点与右侧点视为匹配两侧，用匈牙利算法从空匹配开始，依次为每个左侧点尝试寻找一条增广路；每次 DFS 前清空右侧访问标记，递归地从当前左点走向未访问的右点，若该右点未匹配则成功，否则尝试让与它匹配的左点改配到其他右点。若找到增广路，则匹配数加一。正确性依据是 Berge 定理：二分图中不存在增广路时当前匹配即为最大匹配；也可看作依次处理左点后，当前匹配是已处理左点子图上的最大匹配。允许重边不影响答案，重边不能同时选，因为两端点相同会冲突；保留重边只增加重复尝试，不改变正确性。边界包括孤立点、无可用匹配边以及左右编号范围；n,m<=500、e<=5e4，最坏每次 DFS 扫描 O(n+m+e)，共 n 次尝试，复杂度可接受。",
+        "methods": [
+          {
+            "name": "匈牙利算法（DFS 找增广路）",
+            "knowledge_ids": [
+              "graph.bi-graph",
+              "graph.graph-matching.bigraph-match",
+              "graph.dfs"
+            ],
+            "time_complexity": "O(n(n+m+e))，最坏为 n 次增广尝试，每次 DFS 最多扫描相关顶点和边",
+            "space_complexity": "O(n+m+e)，用于邻接表、左右匹配数组和右侧访问标记"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "graph.bi-graph",
+          "graph.graph-matching.bigraph-match"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.dfs"
+        ],
+        "evidence": {
+          "graph.bi-graph": "题面明确给出一个二分图，边只连接左侧顶点和右侧顶点，要求选取互不共享端点的边。",
+          "graph.graph-matching.bigraph-match": "题目本质是求二分图最大匹配，即最多能选出多少条任意顶点至多属于其中一条边的边。",
+          "graph.dfs": "匈牙利算法通过 DFS 沿未访问右点和已匹配左点递归搜索增广路，找到则扩大匹配。"
+        },
+        "knowledge_confidence": {
+          "graph.bi-graph": 0.99,
+          "graph.graph-matching.bigraph-match": 0.99,
+          "graph.dfs": 0.9
+        },
+        "confidence": 0.97
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要掌握二分图、匹配、增广路等图论概念，并知道用匈牙利算法求最大匹配；这些不是新生默认具备的先验知识。",
+          "modelling": "题意直接描述了“任意顶点至多属于一条边”的选边约束，实质就是二分图最大匹配，识别难度不高；难点在于把定义转化为匹配模型。",
+          "proof": "需要依据增广路和 Berge 定理说明找不到增广路时当前匹配最大，或论证按左点依次扩张匹配的不变量，属于非平凡但经典的证明。",
+          "implementation": "需要实现邻接表、左右匹配数组和访问标记，在 DFS 中递归调整匹配；注意每轮清空右侧访问标记、重边不影响答案以及复杂度控制。整体代码不长但动态改配容易写错。"
+        },
+        "consistency_issues": [],
+        "difficulty": 1400,
+        "difficulty_reason": "题目本质是标准二分图最大匹配，建模路径直接，但新生需额外掌握增广路与匈牙利算法，并理解正确性依据；实现涉及递归搜索和匹配改配，属于进阶图论模板题。综合知识门槛、证明不变量和实现负担，定为1400较合适。",
+        "confidence": 0.86
+      },
+      "elapsed_seconds": 29.169,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "2f0bdb5b1b13dc158f81d139b20a379be4c85db341a732caed7c198f62760c81",
+      "response_model": "deepseek-flash",
+      "response_id": "11c5e475-00e4-469d-9c08-6b500356c581",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 12425,
+      "reasoning_content_sha256": "7332c778f107cb681a5a27dad724facda1ebb139418b2a91cc32a4783c64b1b2",
+      "usage": {
+        "completion_tokens": 3571,
+        "prompt_tokens": 5616,
+        "total_tokens": 9187,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 3046,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 5376,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 5376,
+        "prompt_cache_miss_tokens": 240
+      },
+      "elapsed_seconds": 18.544
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "23dc7a2adc33b9be322355965879eb5a4c29c05813c80627fb47eea043a2559f",
+      "response_model": "deepseek-flash",
+      "response_id": "199bcaad-4347-48b1-91b7-051706330cd3",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 2459,
+      "reasoning_content_sha256": "e03a8731831e70ff011295c28d45a4e05d28c017c1c519b81216b90d93415e94",
+      "usage": {
+        "completion_tokens": 1648,
+        "prompt_tokens": 2264,
+        "total_tokens": 3912,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 1384,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1280,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 1280,
+        "prompt_cache_miss_tokens": 984
+      },
+      "elapsed_seconds": 10.624
+    }
+  ]
+}

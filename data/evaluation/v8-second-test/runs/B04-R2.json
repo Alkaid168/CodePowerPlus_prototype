@@ -1,0 +1,257 @@
+{
+  "event": "v8二测",
+  "key": "B04-R2",
+  "public_id": "B04",
+  "repetition": 2,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "e0c00dd148ce6505c3c5a5fef3555df2c570e8a54f18d1c90314bf25a434b0cd",
+  "completed_at": "2026-10-17T03:42:20.468012+00:00",
+  "analysis": {
+    "title": "01 网格连通块查询",
+    "difficulty": 1200,
+    "difficulty_reason": "本题核心是常规的连通分量预处理与查询，图建模直接，正确性论证简单；但需要从多询问中意识到预处理，并实现网格 BFS/DFS 或并查集，属于需要独立选用一个基础算法并定义简单状态的档位。n=10^6 的规模要求实现不能低效，但其算法结构仍属基础，因此定在 1200。",
+    "solution_idea": "把每个格子看作图的一个顶点：若上下左右相邻且两个字符不同，则在这两个格子之间连一条无向边。可走的相邻关系是对称的，因此从某个起点能到达的格子集合，正是该格子所在的连通分量。由于询问数可达 $10^5$，不能对每个询问单独搜索；应先预处理整个网格，为每个格子记录其连通分量编号与分量大小，之后每个询问直接输出对应分量大小。BFS/DFS 洪泛或并查集都能正确求出这些连通分量。边界上 $n=1$ 时没有可走边，任何起点的答案都是 $1$；查询坐标从 $1$ 开始，需转化为数组下标。",
+    "confidence": 0.93,
+    "primary_knowledge_ids": [
+      "graph.bfs",
+      "graph.connectivity"
+    ],
+    "secondary_knowledge_ids": [
+      "ds.union-find"
+    ],
+    "evidence": {
+      "graph.bfs": "用 BFS 从每个未访问格子出发，经上下左右异色边扩展，标记同一连通分量。",
+      "graph.connectivity": "题意所求为同一网格图中起点所在连通分量的格子数，必须先预处理连通性。",
+      "ds.union-find": "可枚举所有异色相邻格并用并查集合并，再按根节点统计分量大小，是可行的替代预处理方法。"
+    },
+    "knowledge_confidence": {
+      "graph.bfs": 0.93,
+      "graph.connectivity": 0.9,
+      "ds.union-find": 0.92
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "图上广度优先搜索（BFS）",
+      "连通性相关",
+      "并查集"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "d61be449-7c36-4f1c-9153-50b782bac7ca",
+          "usage": {
+            "completion_tokens": 3410,
+            "prompt_tokens": 5562,
+            "total_tokens": 8972,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 2969,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 5376,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 5376,
+            "prompt_cache_miss_tokens": 186
+          },
+          "elapsed_seconds": 16.343,
+          "valid": true,
+          "response_text": "{\"title\":\"01 网格连通块查询\",\"kind\":\"algorithm\",\"solution_idea\":\"把每个格子看作图的一个顶点：若上下左右相邻且两个字符不同，则在这两个格子之间连一条无向边。可走的相邻关系是对称的，因此从某个起点能到达的格子集合，正是该格子所在的连通分量。由于询问数可达 $10^5$，不能对每个询问单独搜索；应先预处理整个网格，为每个格子记录其连通分量编号与分量大小，之后每个询问直接输出对应分量大小。BFS/DFS 洪泛或并查集都能正确求出这些连通分量。边界上 $n=1$ 时没有可走边，任何起点的答案都是 $1$；查询坐标从 $1$ 开始，需转化为数组下标。\",\"methods\":[{\"name\":\"隐式网格图上 BFS 标记连通块\",\"knowledge_ids\":[\"graph.bfs\",\"graph.connectivity\"],\"time_complexity\":\"O(n^2 + m)\",\"space_complexity\":\"O(n^2)\"},{\"name\":\"并查集合并异色相邻格\",\"knowledge_ids\":[\"ds.union-find\",\"graph.connectivity\"],\"time_complexity\":\"O(n^2 α(n^2) + m)\",\"space_complexity\":\"O(n^2)\"}],\"primary_knowledge_ids\":[\"graph.bfs\",\"graph.connectivity\"],\"secondary_knowledge_ids\":[\"ds.union-find\"],\"evidence\":{\"graph.bfs\":\"用 BFS 从每个未访问格子出发，经上下左右异色边扩展，标记同一连通分量。\",\"graph.connectivity\":\"题意所求为同一网格图中起点所在连通分量的格子数，必须先预处理连通性。\",\"ds.union-find\":\"可枚举所有异色相邻格并用并查集合并，再按根节点统计分量大小，是可行的替代预处理方法。\"},\"knowledge_confidence\":{\"graph.bfs\":0.93,\"graph.connectivity\":0.9,\"ds.union-find\":0.92},\"confidence\":0.94}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "ed3f54f8-5707-46cc-95ad-a15dc2379d69",
+          "usage": {
+            "completion_tokens": 855,
+            "prompt_tokens": 2011,
+            "total_tokens": 2866,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 556,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1152,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 859
+          },
+          "elapsed_seconds": 5.725,
+          "valid": true,
+          "response_text": "{\"rubric\":{\"knowledge\":\"需要掌握无向图连通分量的基本概念，以及 BFS/DFS 洪泛或并查集等基础连通性预处理方法；还要会处理二维网格到一维数组或坐标的映射。\",\"modelling\":\"把异色相邻关系看成无向边，将询问转化为起点所在连通分量的大小，转化非常直接；主要门槛是意识到不能对每个询问单独搜索，而应先预处理所有格子。\",\"proof\":\"正确性依赖于可走关系对称，因此互相可达构成等价类；同一连通分量内所有格子答案相同。该不变量直观，不需要复杂证明。\",\"implementation\":\"需要在 n≤1000、m≤100000 下高效实现，遍历全网格并标记访问状态，查询时 O(1) 输出；边界包括 n=1、坐标从 1 开始、避免递归爆栈和大规模输入输出。\"},\"consistency_issues\":[],\"difficulty\":1200,\"difficulty_reason\":\"本题核心是常规的连通分量预处理与查询，图建模直接，正确性论证简单；但需要从多询问中意识到预处理，并实现网格 BFS/DFS 或并查集，属于需要独立选用一个基础算法并定义简单状态的档位。n=10^6 的规模要求实现不能低效，但其算法结构仍属基础，因此定在 1200。\",\"confidence\":0.93}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "01 网格连通块查询",
+        "kind": "algorithm",
+        "solution_idea": "把每个格子看作图的一个顶点：若上下左右相邻且两个字符不同，则在这两个格子之间连一条无向边。可走的相邻关系是对称的，因此从某个起点能到达的格子集合，正是该格子所在的连通分量。由于询问数可达 $10^5$，不能对每个询问单独搜索；应先预处理整个网格，为每个格子记录其连通分量编号与分量大小，之后每个询问直接输出对应分量大小。BFS/DFS 洪泛或并查集都能正确求出这些连通分量。边界上 $n=1$ 时没有可走边，任何起点的答案都是 $1$；查询坐标从 $1$ 开始，需转化为数组下标。",
+        "methods": [
+          {
+            "name": "隐式网格图上 BFS 标记连通块",
+            "knowledge_ids": [
+              "graph.bfs",
+              "graph.connectivity"
+            ],
+            "time_complexity": "O(n^2 + m)",
+            "space_complexity": "O(n^2)"
+          },
+          {
+            "name": "并查集合并异色相邻格",
+            "knowledge_ids": [
+              "ds.union-find",
+              "graph.connectivity"
+            ],
+            "time_complexity": "O(n^2 α(n^2) + m)",
+            "space_complexity": "O(n^2)"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "graph.bfs",
+          "graph.connectivity"
+        ],
+        "secondary_knowledge_ids": [
+          "ds.union-find"
+        ],
+        "evidence": {
+          "graph.bfs": "用 BFS 从每个未访问格子出发，经上下左右异色边扩展，标记同一连通分量。",
+          "graph.connectivity": "题意所求为同一网格图中起点所在连通分量的格子数，必须先预处理连通性。",
+          "ds.union-find": "可枚举所有异色相邻格并用并查集合并，再按根节点统计分量大小，是可行的替代预处理方法。"
+        },
+        "knowledge_confidence": {
+          "graph.bfs": 0.93,
+          "graph.connectivity": 0.9,
+          "ds.union-find": 0.92
+        },
+        "confidence": 0.94
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要掌握无向图连通分量的基本概念，以及 BFS/DFS 洪泛或并查集等基础连通性预处理方法；还要会处理二维网格到一维数组或坐标的映射。",
+          "modelling": "把异色相邻关系看成无向边，将询问转化为起点所在连通分量的大小，转化非常直接；主要门槛是意识到不能对每个询问单独搜索，而应先预处理所有格子。",
+          "proof": "正确性依赖于可走关系对称，因此互相可达构成等价类；同一连通分量内所有格子答案相同。该不变量直观，不需要复杂证明。",
+          "implementation": "需要在 n≤1000、m≤100000 下高效实现，遍历全网格并标记访问状态，查询时 O(1) 输出；边界包括 n=1、坐标从 1 开始、避免递归爆栈和大规模输入输出。"
+        },
+        "consistency_issues": [],
+        "difficulty": 1200,
+        "difficulty_reason": "本题核心是常规的连通分量预处理与查询，图建模直接，正确性论证简单；但需要从多询问中意识到预处理，并实现网格 BFS/DFS 或并查集，属于需要独立选用一个基础算法并定义简单状态的档位。n=10^6 的规模要求实现不能低效，但其算法结构仍属基础，因此定在 1200。",
+        "confidence": 0.93
+      },
+      "elapsed_seconds": 22.07,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "bfd41ca5b722fb4f03d2be8a91387487137e2860b68b7260677b3f6ce993b101",
+      "response_model": "deepseek-flash",
+      "response_id": "d61be449-7c36-4f1c-9153-50b782bac7ca",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 11568,
+      "reasoning_content_sha256": "82485a9d14b0d5f6e2c05328ec37a436ee1a0d4a8defc987386c37e3988a28ac",
+      "usage": {
+        "completion_tokens": 3410,
+        "prompt_tokens": 5562,
+        "total_tokens": 8972,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 2969,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 5376,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 5376,
+        "prompt_cache_miss_tokens": 186
+      },
+      "elapsed_seconds": 16.343
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "77496c79835ee577666d18f8b221e1bde93d2d97dab2e64eacbf61a4fc633d18",
+      "response_model": "deepseek-flash",
+      "response_id": "ed3f54f8-5707-46cc-95ad-a15dc2379d69",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 965,
+      "reasoning_content_sha256": "ee7282e8ea1c3c19d9d21645f102f5af01aa71ec616fe5d66ffee560b81ccda9",
+      "usage": {
+        "completion_tokens": 855,
+        "prompt_tokens": 2011,
+        "total_tokens": 2866,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 556,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1152,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 1152,
+        "prompt_cache_miss_tokens": 859
+      },
+      "elapsed_seconds": 5.725
+    }
+  ]
+}

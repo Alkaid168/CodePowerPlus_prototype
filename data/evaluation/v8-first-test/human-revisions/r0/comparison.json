@@ -1,0 +1,222 @@
+{
+  "event": "v8首测",
+  "state": "human_compared",
+  "human_results_sha256": "3034f3f3403fa987facf52b74a4de2a7e62aa626a0b09a22f07dc3b58f3eacaf",
+  "metrics": {
+    "all20": {
+      "n": 20,
+      "mae": 190,
+      "median_absolute_difference": 200.0,
+      "bias": -80,
+      "max_absolute_difference": 500,
+      "within_100": 0.45,
+      "within_200": 0.7,
+      "within_300": 0.85
+    },
+    "regression9": {
+      "n": 9,
+      "mae": 200,
+      "median_absolute_difference": 200,
+      "bias": -133.33333333333334,
+      "max_absolute_difference": 500,
+      "within_100": 0.3333333333333333,
+      "within_200": 0.6666666666666666,
+      "within_300": 0.8888888888888888
+    },
+    "new11": {
+      "n": 11,
+      "mae": 181.8181818181818,
+      "median_absolute_difference": 100,
+      "bias": -36.36363636363637,
+      "max_absolute_difference": 400,
+      "within_100": 0.5454545454545454,
+      "within_200": 0.7272727272727273,
+      "within_300": 0.8181818181818182
+    }
+  },
+  "items": [
+    {
+      "public_id": "B01",
+      "source_url": "https://www.luogu.com.cn/problem/P3368",
+      "group": "regression9",
+      "model_difficulty": 1400,
+      "human_difficulty": 1100,
+      "difference": 300,
+      "absolute_difference": 300
+    },
+    {
+      "public_id": "B02",
+      "source_url": "https://codeforces.com/problemset/problem/363/B",
+      "group": "regression9",
+      "model_difficulty": 800,
+      "human_difficulty": 1100,
+      "difference": -300,
+      "absolute_difference": 300
+    },
+    {
+      "public_id": "B03",
+      "source_url": "https://www.luogu.com.cn/problem/P3390",
+      "group": "new11",
+      "model_difficulty": 1300,
+      "human_difficulty": 1500,
+      "difference": -200,
+      "absolute_difference": 200
+    },
+    {
+      "public_id": "B04",
+      "source_url": "https://www.luogu.com.cn/problem/P1141",
+      "group": "new11",
+      "model_difficulty": 1100,
+      "human_difficulty": 1000,
+      "difference": 100,
+      "absolute_difference": 100
+    },
+    {
+      "public_id": "B05",
+      "source_url": "https://www.luogu.com.cn/problem/P1352",
+      "group": "new11",
+      "model_difficulty": 1400,
+      "human_difficulty": 1300,
+      "difference": 100,
+      "absolute_difference": 100
+    },
+    {
+      "public_id": "B06",
+      "source_url": "https://codeforces.com/problemset/problem/706/B",
+      "group": "regression9",
+      "model_difficulty": 1100,
+      "human_difficulty": 1100,
+      "difference": 0,
+      "absolute_difference": 0
+    },
+    {
+      "public_id": "B07",
+      "source_url": "https://www.luogu.com.cn/problem/P3808",
+      "group": "regression9",
+      "model_difficulty": 1700,
+      "human_difficulty": 1700,
+      "difference": 0,
+      "absolute_difference": 0
+    },
+    {
+      "public_id": "B08",
+      "source_url": "https://www.luogu.com.cn/problem/P3386",
+      "group": "new11",
+      "model_difficulty": 1400,
+      "human_difficulty": 1500,
+      "difference": -100,
+      "absolute_difference": 100
+    },
+    {
+      "public_id": "B09",
+      "source_url": "https://www.luogu.com.cn/problem/P1880",
+      "group": "new11",
+      "model_difficulty": 1500,
+      "human_difficulty": 1400,
+      "difference": 100,
+      "absolute_difference": 100
+    },
+    {
+      "public_id": "B10",
+      "source_url": "https://codeforces.com/problemset/problem/520/B",
+      "group": "regression9",
+      "model_difficulty": 1200,
+      "human_difficulty": 1400,
+      "difference": -200,
+      "absolute_difference": 200
+    },
+    {
+      "public_id": "B11",
+      "source_url": "https://www.luogu.com.cn/problem/P1044",
+      "group": "new11",
+      "model_difficulty": 1100,
+      "human_difficulty": 1500,
+      "difference": -400,
+      "absolute_difference": 400
+    },
+    {
+      "public_id": "B12",
+      "source_url": "https://codeforces.com/problemset/problem/474/B",
+      "group": "regression9",
+      "model_difficulty": 1100,
+      "human_difficulty": 1200,
+      "difference": -100,
+      "absolute_difference": 100
+    },
+    {
+      "public_id": "B13",
+      "source_url": "https://www.luogu.com.cn/problem/P3370",
+      "group": "new11",
+      "model_difficulty": 800,
+      "human_difficulty": 1100,
+      "difference": -300,
+      "absolute_difference": 300
+    },
+    {
+      "public_id": "B14",
+      "source_url": "https://codeforces.com/problemset/problem/279/B",
+      "group": "regression9",
+      "model_difficulty": 1100,
+      "human_difficulty": 1300,
+      "difference": -200,
+      "absolute_difference": 200
+    },
+    {
+      "public_id": "B15",
+      "source_url": "https://www.luogu.com.cn/problem/P1803",
+      "group": "new11",
+      "model_difficulty": 1400,
+      "human_difficulty": 1000,
+      "difference": 400,
+      "absolute_difference": 400
+    },
+    {
+      "public_id": "B16",
+      "source_url": "https://www.luogu.com.cn/problem/P1440",
+      "group": "new11",
+      "model_difficulty": 1400,
+      "human_difficulty": 1300,
+      "difference": 100,
+      "absolute_difference": 100
+    },
+    {
+      "public_id": "B17",
+      "source_url": "https://codeforces.com/problemset/problem/25/D",
+      "group": "regression9",
+      "model_difficulty": 1400,
+      "human_difficulty": 1900,
+      "difference": -500,
+      "absolute_difference": 500
+    },
+    {
+      "public_id": "B18",
+      "source_url": "https://www.luogu.com.cn/problem/P3372",
+      "group": "new11",
+      "model_difficulty": 1500,
+      "human_difficulty": 1700,
+      "difference": -200,
+      "absolute_difference": 200
+    },
+    {
+      "public_id": "B19",
+      "source_url": "https://www.luogu.com.cn/problem/P1226",
+      "group": "new11",
+      "model_difficulty": 1100,
+      "human_difficulty": 1100,
+      "difference": 0,
+      "absolute_difference": 0
+    },
+    {
+      "public_id": "B20",
+      "source_url": "https://www.luogu.com.cn/problem/P3383",
+      "group": "regression9",
+      "model_difficulty": 1100,
+      "human_difficulty": 1300,
+      "difference": -200,
+      "absolute_difference": 200
+    }
+  ],
+  "limitations": "单人教学标尺；9题反馈回归与11题新增分别报告；不自动认定生产通过。",
+  "human_file_sha256": "7798ce322723ff3d2bb2f80f0428f986ae3c88c6824c05b91f44badd614d7800",
+  "prediction_commitment": "2d06cae771d9aad8c5dcac06198da7e4081b7a5d0845f9d486895c75268c4432"
+}

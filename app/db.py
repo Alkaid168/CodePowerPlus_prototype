@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from threading import RLock
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 
 # 题目的 OJ 编号从 1000 开始；`problems.id` 本身就是对外编号，不再另设一套。
 # 编号由 ProblemRepository 在插入时用 MAX(id)+1 计算，不依赖 AUTOINCREMENT——
@@ -75,8 +75,13 @@ LEGACY_COLUMNS: dict[str, dict[str, str]] = {
     'problems': {
         'source_url': "TEXT NOT NULL DEFAULT ''",
         'created_at': "TEXT NOT NULL DEFAULT ''",
+        'reference_solution': "TEXT NOT NULL DEFAULT ''",
+        'reference_code': "TEXT NOT NULL DEFAULT ''",
+        'revision': 'INTEGER NOT NULL DEFAULT 1',
     },
     'problem_analyses': {
+        'problem_revision': 'INTEGER NOT NULL DEFAULT 1',
+        'input_snapshot': "TEXT NOT NULL DEFAULT '{}'",
         'origin': "TEXT NOT NULL DEFAULT 'legacy'",
         'initial_status': "TEXT NOT NULL DEFAULT 'legacy'",
         'taxonomy_version': "TEXT NOT NULL DEFAULT ''",
@@ -150,8 +155,12 @@ class Database:
             return self.conn.execute(sql, params).fetchone()
 
     def execute(self, sql: str, params: tuple = ()) -> sqlite3.Cursor:
-        with self.lock, self.conn:
-            return self.conn.execute(sql, params)
+        with self.lock:
+            # 已有事务归调用方提交；不能让审核中的一次插入提前提交整个事务。
+            if self.conn.in_transaction:
+                return self.conn.execute(sql, params)
+            with self.conn:
+                return self.conn.execute(sql, params)
 
     @contextmanager
     def transaction(self):

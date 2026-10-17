@@ -1,0 +1,534 @@
+{
+  "event": "v8首测",
+  "state": "analyzed",
+  "human_revision": 1,
+  "analyzed_at": "2026-10-16T19:07:32.761166+00:00",
+  "version_status": "实验版本，暂不支持免审生产",
+  "metrics": {
+    "all20": {
+      "n": 20,
+      "mae": 170,
+      "median_absolute_difference": 150.0,
+      "bias": -60,
+      "max_absolute_difference": 400,
+      "within_100": 0.5,
+      "within_200": 0.75,
+      "within_300": 0.9
+    },
+    "regression9": {
+      "n": 9,
+      "mae": 155.55555555555554,
+      "median_absolute_difference": 200,
+      "bias": -88.88888888888889,
+      "max_absolute_difference": 300,
+      "within_100": 0.4444444444444444,
+      "within_200": 0.7777777777777778,
+      "within_300": 1.0
+    },
+    "new11": {
+      "n": 11,
+      "mae": 181.8181818181818,
+      "median_absolute_difference": 100,
+      "bias": -36.36363636363637,
+      "max_absolute_difference": 400,
+      "within_100": 0.5454545454545454,
+      "within_200": 0.7272727272727273,
+      "within_300": 0.8181818181818182
+    }
+  },
+  "extra_metrics": {
+    "exact_matches": 3,
+    "underestimated": 11,
+    "overestimated": 6,
+    "absolute_difference_gt_200": 5,
+    "absolute_difference_ge_400": 2,
+    "self_confidence_ge_095": {
+      "n": 15,
+      "difference_gt_200": 3
+    }
+  },
+  "paired_v7_v8_same_current_human": {
+    "n": 9,
+    "v7_mae_against_current_human": 322.22222222222223,
+    "v8_mae_against_current_human": 155.55555555555554,
+    "relative_mae_reduction": 0.5172413793103449,
+    "better": 6,
+    "equal": 3,
+    "worse": 0,
+    "v7_within_200": 3,
+    "v8_within_200": 7
+  },
+  "counterexamples": {
+    "B17": {
+      "finding": "错误推出n-1边必为森林，删树边再跨分量加边不能减少分量数",
+      "triangle_plus_isolated": {
+        "n": 4,
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "components": 2
+      },
+      "official_sample_components_before": 2,
+      "delete_bridge_add_cross_components_after": 2,
+      "delete_cycle_edge_add_cross_components_after": 1,
+      "v7_solution_has_valid_spare_cycle_edge_method": true
+    },
+    "B10": {
+      "finding": "遗漏n>=m分支；[1,2m]状态界不覆盖所有合法起点",
+      "official_sample": {
+        "n": 10,
+        "m": 1,
+        "claimed_max_state": 2,
+        "correct_answer": 9
+      }
+    },
+    "B11": {
+      "finding": "卡特兰公式与总答案对，但按首个弹出k的独立分解证明不成立",
+      "n": 3,
+      "outputs": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          3,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ],
+        [
+          2,
+          3,
+          1
+        ],
+        [
+          3,
+          2,
+          1
+        ]
+      ],
+      "actual_first_output_counts": {
+        "1": 2,
+        "2": 2,
+        "3": 1
+      },
+      "claimed_first_output_counts": {
+        "1": 2,
+        "2": 1,
+        "3": 2
+      },
+      "actual_total": 5,
+      "claimed_total": 5
+    },
+    "scope": "代理确定性反例复核，不是新增教师评审或模型代码执行通过率"
+  },
+  "usage": {
+    "prompt_tokens": 178648,
+    "completion_tokens": 18817,
+    "total_tokens": 197465
+  },
+  "logical_calls": 45,
+  "response_models": {
+    "deepseek-flash": 45
+  },
+  "wall_seconds": 67.079496,
+  "median_problem_seconds": 6.3260000000000005,
+  "private_predictions_sha256": "2d06cae771d9aad8c5dcac06198da7e4081b7a5d0845f9d486895c75268c4432",
+  "human_file_sha256": "188f4b7af283ceef5d70d129578cf74f6c9b227f806d73636ce815c2680eb5ae",
+  "database_unchanged": true,
+  "model_code_and_prompt_unchanged": true,
+  "items": [
+    {
+      "public_id": "B01",
+      "source_url": "https://www.luogu.com.cn/problem/P3368",
+      "group": "regression9",
+      "model_difficulty": 1400,
+      "human_difficulty": 1100,
+      "difference": 300,
+      "absolute_difference": 300,
+      "title": "区间加与单点查询",
+      "primary": [
+        "basic.difference",
+        "ds.fenwick"
+      ],
+      "secondary": [],
+      "confidence": 0.95,
+      "v7_difficulty": 800,
+      "v7_absolute_difference": 300,
+      "v7_signed_difference": -300,
+      "audit_note": "v7漏树状数组标签的问题已修复；800→1400，但本轮人评1100，两版绝对差同为300。标签改好不等于难度校准完成。"
+    },
+    {
+      "public_id": "B02",
+      "source_url": "https://codeforces.com/problemset/problem/363/B",
+      "group": "regression9",
+      "model_difficulty": 800,
+      "human_difficulty": 1100,
+      "difference": -300,
+      "absolute_difference": 300,
+      "title": "长度固定为 k 的最小区间和起点",
+      "primary": [
+        "basic.prefix-sum",
+        "basic.enumerate"
+      ],
+      "secondary": [],
+      "confidence": 0.95,
+      "v7_difficulty": 800,
+      "v7_absolute_difference": 300,
+      "v7_signed_difference": -300,
+      "audit_note": "前缀和主线正确，评分仍800，与v7相同、人评1100。非环形题不需要倍扩；低分分歧与算法发现门槛有关。滑动窗口O(1)应区分已存输入后的辅助空间与流式读入空间。"
+    },
+    {
+      "public_id": "B03",
+      "source_url": "https://www.luogu.com.cn/problem/P3390",
+      "group": "new11",
+      "model_difficulty": 1300,
+      "human_difficulty": 1500,
+      "difference": -200,
+      "absolute_difference": 200,
+      "title": "矩阵快速幂取模",
+      "primary": [
+        "math.linear-algebra.matrix",
+        "math.binary-exponentiation"
+      ],
+      "secondary": [],
+      "confidence": 0.95,
+      "audit_note": "矩阵快速幂主线、单位矩阵及负数取模边界基本完整；1300比人评低200。“矩阵乘法是新生先验”未经约定。"
+    },
+    {
+      "public_id": "B04",
+      "source_url": "https://www.luogu.com.cn/problem/P1141",
+      "group": "new11",
+      "model_difficulty": 1100,
+      "human_difficulty": 1000,
+      "difference": 100,
+      "absolute_difference": 100,
+      "title": "01网格连通块查询",
+      "primary": [
+        "graph.bfs",
+        "graph.dfs",
+        "graph.basic"
+      ],
+      "secondary": [],
+      "confidence": 0.95,
+      "audit_note": "一次连通块预处理+多次查表正确，1100比人评高100。"
+    },
+    {
+      "public_id": "B05",
+      "source_url": "https://www.luogu.com.cn/problem/P1352",
+      "group": "new11",
+      "model_difficulty": 1400,
+      "human_difficulty": 1300,
+      "difference": 100,
+      "absolute_difference": 100,
+      "title": "职员宴会最大快乐指数",
+      "primary": [
+        "dp.tree"
+      ],
+      "secondary": [
+        "graph.tree-basic"
+      ],
+      "confidence": 0.95,
+      "audit_note": "选/不选树形DP转移正确，负权和深链边界有考虑；1400比人评高100。"
+    },
+    {
+      "public_id": "B06",
+      "source_url": "https://codeforces.com/problemset/problem/706/B",
+      "group": "regression9",
+      "model_difficulty": 1100,
+      "human_difficulty": 1100,
+      "difference": 0,
+      "absolute_difference": 0,
+      "title": "商店价格预算计数",
+      "primary": [
+        "basic.sort",
+        "basic.binary"
+      ],
+      "secondary": [],
+      "confidence": 0.95,
+      "v7_difficulty": 900,
+      "v7_absolute_difference": 200,
+      "v7_signed_difference": -200,
+      "audit_note": "排序后二分计数主线正确；900→1100，本轮与人评一致。"
+    },
+    {
+      "public_id": "B07",
+      "source_url": "https://www.luogu.com.cn/problem/P3808",
+      "group": "regression9",
+      "model_difficulty": 1700,
+      "human_difficulty": 1700,
+      "difference": 0,
+      "absolute_difference": 0,
+      "title": "统计在文本中出现过的模式串编号数",
+      "primary": [
+        "string.ac-automaton",
+        "string.trie"
+      ],
+      "secondary": [
+        "graph.dfs"
+      ],
+      "confidence": 0.9,
+      "v7_difficulty": 1400,
+      "v7_absolute_difference": 300,
+      "v7_signed_difference": -300,
+      "audit_note": "AC+fail信息传播主线可行，1400→1700与本轮人评一致；重复串必须保留终点出现次数，不能只存一个代表编号而丢失重复计数。大规模迭代与内存仍需具体实现验证。"
+    },
+    {
+      "public_id": "B08",
+      "source_url": "https://www.luogu.com.cn/problem/P3386",
+      "group": "new11",
+      "model_difficulty": 1400,
+      "human_difficulty": 1500,
+      "difference": -100,
+      "absolute_difference": 100,
+      "title": "二分图最大匹配",
+      "primary": [
+        "graph.graph-matching.bigraph-match"
+      ],
+      "secondary": [
+        "graph.dfs"
+      ],
+      "confidence": 0.95,
+      "audit_note": "DFS增广匹配主线正确；1400比人评低100。理由把1400解释成偏基础算法档，档位语义仍不稳定。"
+    },
+    {
+      "public_id": "B09",
+      "source_url": "https://www.luogu.com.cn/problem/P1880",
+      "group": "new11",
+      "model_difficulty": 1500,
+      "human_difficulty": 1400,
+      "difference": 100,
+      "absolute_difference": 100,
+      "title": "环形石子合并的最小与最大得分",
+      "primary": [
+        "dp.interval"
+      ],
+      "secondary": [
+        "basic.prefix-sum"
+      ],
+      "confidence": 0.95,
+      "audit_note": "断环成链、最小/最大区间DP主线正确；1500比人评高100。"
+    },
+    {
+      "public_id": "B10",
+      "source_url": "https://codeforces.com/problemset/problem/520/B",
+      "group": "regression9",
+      "model_difficulty": 1200,
+      "human_difficulty": 1400,
+      "difference": -200,
+      "absolute_difference": 200,
+      "title": "乘二减一最少操作",
+      "primary": [
+        "search.bfs"
+      ],
+      "secondary": [
+        "graph.basic"
+      ],
+      "confidence": 0.9,
+      "v7_difficulty": 1200,
+      "v7_absolute_difference": 200,
+      "v7_signed_difference": -200,
+      "audit_note": "实质边界缺漏：官方10→1样例的起点已大于2m；必须先处理n>=m，或采用覆盖起点的状态上界。第二阶段误判无问题。1200比人评低200。"
+    },
+    {
+      "public_id": "B11",
+      "source_url": "https://www.luogu.com.cn/problem/P1044",
+      "group": "new11",
+      "model_difficulty": 1100,
+      "human_difficulty": 1500,
+      "difference": -400,
+      "absolute_difference": 400,
+      "title": "栈输出序列计数",
+      "primary": [
+        "math.combinatorics.catalan"
+      ],
+      "secondary": [
+        "dp.interval",
+        "math.combinatorics.combination"
+      ],
+      "confidence": 0.9,
+      "audit_note": "公式/总数正确而证明错误：n=3首输出2有213/231两种，模型按k分项仅计1。把低实现量当低门槛，1100比人评低400；第二阶段复述错误独立分解。"
+    },
+    {
+      "public_id": "B12",
+      "source_url": "https://codeforces.com/problemset/problem/474/B",
+      "group": "regression9",
+      "model_difficulty": 1100,
+      "human_difficulty": 1200,
+      "difference": -100,
+      "absolute_difference": 100,
+      "title": "连续编号分组查询",
+      "primary": [
+        "basic.prefix-sum",
+        "basic.binary"
+      ],
+      "secondary": [],
+      "confidence": 0.95,
+      "v7_difficulty": 800,
+      "v7_absolute_difference": 400,
+      "v7_signed_difference": -400,
+      "audit_note": "前缀和+二分主线正确；800→1100，比人评低100。"
+    },
+    {
+      "public_id": "B13",
+      "source_url": "https://www.luogu.com.cn/problem/P3370",
+      "group": "new11",
+      "model_difficulty": 800,
+      "human_difficulty": 1100,
+      "difference": -300,
+      "absolute_difference": 300,
+      "title": "统计不同字符串个数",
+      "primary": [
+        "basic.sort",
+        "string.basic"
+      ],
+      "secondary": [
+        "ds.hash"
+      ],
+      "confidence": 0.9,
+      "audit_note": "排序去重是合法替代，不应因原题名哈希而强制单一算法。800比人评低300；“新生已掌握排序/集合”先验未统一。方法表把哈希最坏时间近似写成线性不严谨，冲突可能使其退化。"
+    },
+    {
+      "public_id": "B14",
+      "source_url": "https://codeforces.com/problemset/problem/279/B",
+      "group": "regression9",
+      "model_difficulty": 1100,
+      "human_difficulty": 1300,
+      "difference": -200,
+      "absolute_difference": 200,
+      "title": "连续阅读任务的最大完成数",
+      "primary": [
+        "misc.two-pointer"
+      ],
+      "secondary": [],
+      "confidence": 0.95,
+      "v7_difficulty": 800,
+      "v7_absolute_difference": 500,
+      "v7_signed_difference": -500,
+      "audit_note": "正数滑动窗口及单调性解释正确；800→1100，仍比本轮人评低200。"
+    },
+    {
+      "public_id": "B15",
+      "source_url": "https://www.luogu.com.cn/problem/P1803",
+      "group": "new11",
+      "model_difficulty": 1400,
+      "human_difficulty": 1000,
+      "difference": 400,
+      "absolute_difference": 400,
+      "title": "最多参加的完整比赛数",
+      "primary": [
+        "basic.greedy",
+        "basic.sort"
+      ],
+      "secondary": [],
+      "confidence": 0.95,
+      "audit_note": "最早结束贪心及交换论证正确；1400比人评高400。评分对“非平凡证明”门槛赋予过高权重，不能对所有算法统一加分。"
+    },
+    {
+      "public_id": "B16",
+      "source_url": "https://www.luogu.com.cn/problem/P1440",
+      "group": "new11",
+      "model_difficulty": 1400,
+      "human_difficulty": 1300,
+      "difference": 100,
+      "absolute_difference": 100,
+      "title": "滑动窗口前缀最小值",
+      "primary": [
+        "ds.monotonic-queue"
+      ],
+      "secondary": [],
+      "confidence": 0.95,
+      "audit_note": "查询后入队的窗口维护顺序正确；1400比人评高100。"
+    },
+    {
+      "public_id": "B17",
+      "source_url": "https://codeforces.com/problemset/problem/25/D",
+      "group": "regression9",
+      "model_difficulty": 1400,
+      "human_difficulty": 1500,
+      "difference": -100,
+      "absolute_difference": 100,
+      "title": "森林连通化最少换边",
+      "primary": [
+        "graph.dfs",
+        "graph.tree-basic",
+        "basic.construction"
+      ],
+      "secondary": [],
+      "confidence": 0.9,
+      "v7_difficulty": 1300,
+      "v7_absolute_difference": 200,
+      "v7_signed_difference": -200,
+      "audit_note": "严重错误：n-1边不推出森林；每次删除树边再跨块加边不会净减少分量。原样例含环，仍被两阶段接受；v7并查集记录冗余边方案反而正确。具体分差以当前人评版本的数值字段为准。"
+    },
+    {
+      "public_id": "B18",
+      "source_url": "https://www.luogu.com.cn/problem/P3372",
+      "group": "new11",
+      "model_difficulty": 1500,
+      "human_difficulty": 1700,
+      "difference": -200,
+      "absolute_difference": 200,
+      "title": "区间加与区间和",
+      "primary": [
+        "ds.segment-tree.basic"
+      ],
+      "secondary": [],
+      "confidence": 0.95,
+      "audit_note": "懒标记线段树解法与64位范围基本正确；1500比人评低200。只输出线段树一种方法，不视为必须穷举所有正确替代解法。"
+    },
+    {
+      "public_id": "B19",
+      "source_url": "https://www.luogu.com.cn/problem/P1226",
+      "group": "new11",
+      "model_difficulty": 1100,
+      "human_difficulty": 1100,
+      "difference": 0,
+      "absolute_difference": 0,
+      "title": "快速幂取模",
+      "primary": [
+        "math.binary-exponentiation"
+      ],
+      "secondary": [],
+      "confidence": 0.95,
+      "audit_note": "二进制快速幂及64位乘积界正确；1100与人评一致。"
+    },
+    {
+      "public_id": "B20",
+      "source_url": "https://www.luogu.com.cn/problem/P3383",
+      "group": "regression9",
+      "model_difficulty": 1100,
+      "human_difficulty": 1300,
+      "difference": -200,
+      "absolute_difference": 200,
+      "title": "第 k 个素数查询",
+      "primary": [
+        "math.number-theory.sieve",
+        "math.number-theory.prime"
+      ],
+      "secondary": [],
+      "confidence": 0.95,
+      "v7_difficulty": 1800,
+      "v7_absolute_difference": 500,
+      "v7_signed_difference": 500,
+      "audit_note": "筛法预处理主线可行，1800→1100，比本轮人评低200。需把n=1e8的时空开销具体化；冻结旧输入未含运行限制，不能据文字断言具体实现必定通过。"
+    }
+  ],
+  "audit_origin": "模型/标签/证明复核为代理检查，不是用户新增的标签金标准或逐题驳回决定"
+}

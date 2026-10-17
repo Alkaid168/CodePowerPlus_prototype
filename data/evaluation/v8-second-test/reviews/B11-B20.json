@@ -1,0 +1,691 @@
+{
+  "schema_version": 1,
+  "scope": "B11-B20; first/second_1/second_2/second_3",
+  "reviewer": "v8_round2_rubric subagent",
+  "rubric": "docs/v8-second-test-review-rubric.md",
+  "rubric_sha256": "0d0e3528523bd484e1874a30da2abdfbd8aee4beb1cdfd7781b4feb530c84d26",
+  "status": "complete_40_reviews_root_adjudication_applied",
+  "packet_hashes": {
+    "first": "6542c6337fcada168bcbb1b457ff857d8ca872b46188f2501aacbc3ebca9c129",
+    "second_1": "9005bd326959f464dba1a9199f91fc5eb0f2e15a1a12d1823ee9185d654739fa",
+    "second_2": "84b24a17281af4025ae6342ccfb76973d0d799d167f9b2e95860a9763da4963b",
+    "second_3": "681d8d56f4731118321467f105a6a7e45c1341dc6a6de7840a26a0f3dd49ca28"
+  },
+  "limitations": [
+    "Agent-assisted technical review, not teacher gold.",
+    "Reference-standard creation required reading PROJECT_MEMORY.md which contained first-test historical diagnostic/rating summaries; this is not a fully blind historical review.",
+    "Review packets remove model/human difficulty and confidence; none are used in these decisions."
+  ],
+  "items": [
+    {
+      "public_id": "B11",
+      "run_id": "first",
+      "tags_correct": false,
+      "solution_correct": false,
+      "joint_correct": false,
+      "evidence": "卡特兰总递推及最终值C18=477638700正确，但其按“第一个输出k”划成独立子问题的证明不成立。独立枚举n=3全部输出为123、132、213、231、321，按首输出1/2/3的实际数量是2/2/1；所写f[k-1]f[n-k]对应2/1/2。首输出2时既有213又有231，表明栈内剩余与未入栈部分并非所称笛卡尔积。方法表的dp.interval只由这个无效区间分解支持，实际给出的f[m]是按规模的卡特兰计数递推，未建立有效区间状态；Catalan、组合数标签本身有依据。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/10; packet_source_ref=v8-first-test/private-sealed/B11",
+      "issues": [
+        {
+          "code": "invalid_first_pop_decomposition",
+          "field": "solution_idea",
+          "detail": "n=3首输出k=2的合法输出213、231共2种，声明的f1*f1只有1；公式总和正确不能修复分项独立性证明。",
+          "severity": "substantive",
+          "certainty": "deterministic_counterexample"
+        },
+        {
+          "code": "unsupported_interval_dp_tag",
+          "field": "secondary_knowledge_ids",
+          "detail": "dp.interval的证据依赖不成立的首弹k独立区间分解，实际只提供f[m]规模计数，没有有效原问题区间DP状态。",
+          "severity": "tag_extra",
+          "certainty": "semantic_review"
+        }
+      ],
+      "reviewed_packet_item_sha256": "1ae1f5777331fbeba33c43726d3acaeaf4a68ad3d4e00a641874c8ab3ca54411"
+    },
+    {
+      "public_id": "B12",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "用正数组前缀和S确定组i范围(S[i-1],S[i]]，二分第一个S[i]>=q；等号及首尾编号处理正确。basic.prefix-sum/basic.binary完整覆盖唯一方法。独立参考对300组随机组大小逐个对象与显式组号表比较通过，原样例1/25/11对应1/5/3；总和<=10^6，复杂度O(n+m log n)可行。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/11; packet_source_ref=v8-first-test/private-sealed/B12",
+      "issues": [],
+      "reviewed_packet_item_sha256": "18a2a82055708d0dbb6215b720eeb5f80e9530c1fdbd79ba6f9644dbdec58b7b"
+    },
+    {
+      "public_id": "B13",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": false,
+      "joint_correct": false,
+      "evidence": "排序后完整字符串相邻比较的主线正确；哈希表存储完整字符串、用精确等价比较也可以正确去重，basic.sort/string.basic/ds.hash各有实际方法依据。问题只在methods[1].time_complexity明确称“最坏O(N·L)哈希计算加冲突处理”：若N个不同键落同桶，逐次插入可累计1+...+(N-1)次精确判等，每次最坏O(L)，最坏可达O(N²L)，不能把正文的期望O(NL)当最坏。按冻结标准全部声称可行方法的技术结论都须正确，因此solution=false；不是禁止哈希表、不是要求官方字符串哈希，也不是仅存摘要导致结果碰撞错误。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/12; packet_source_ref=v8-first-test/private-sealed/B13",
+      "issues": [
+        {
+          "code": "incorrect_hash_table_worst_case_bound",
+          "field": "methods[1].time_complexity",
+          "detail": "正文期望O(NL)可接受；方法表明确声称包含冲突处理的最坏O(NL)错误，哈希表最坏插入N个完整字符串可有Theta(N²)次判等。排序主线结果正确，错误是替代方法的最坏复杂度声明。",
+          "severity": "substantive_complexity",
+          "certainty": "worst_case_analysis"
+        }
+      ],
+      "reviewed_packet_item_sha256": "e63b2c9310f05c570b83961db4791f61df7d70e67a8e938dc918e4491ad9c3db"
+    },
+    {
+      "public_id": "B14",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "正耗时保证窗口和的单调性；扩右后while超时缩左，记录最长合法窗口，覆盖空窗口及全项>t输出0。misc.two-pointer对应实际方法，未多贴背包或排序。独立参考500个随机数组与全部连续区间穷举一致，两个原样例为3和1；O(n)可行。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/13; packet_source_ref=v8-first-test/private-sealed/B14",
+      "issues": [],
+      "reviewed_packet_item_sha256": "b2ae2227a84f845fcadb32591a8b7d8cb0166aef39421457c7a05e20a7ccd988"
+    },
+    {
+      "public_id": "B15",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "按结束时间升序，开始>=上一已选结束即选择；可相接及0起点语义正确，交换论证说明最早结束可替换最优首场。basic.greedy/basic.sort均为实际关键知识。独立参考300组最多10区间与全部子集合法调度穷举一致，原相接样例答案2；O(n log n)符合约束。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/14; packet_source_ref=v8-first-test/private-sealed/B15",
+      "issues": [],
+      "reviewed_packet_item_sha256": "2f7514b8307d34ee241219d746ec68b10028a3629dc25addf83a13b591300dea"
+    },
+    {
+      "public_id": "B16",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "处理i先移除下标<i-m，查询队首，输出后才插入i，因此精确查询[max(1,i-m),i-1]，没有包含当前位置。值>=新值的队尾可淘汰且新下标更晚过期；单调队列标签准确。独立参考1000组数组与直接历史切片最小值一致，原样例0/7/7/1/1/3，m=1时输出前项；O(n)及O(n)空间可行。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/15; packet_source_ref=v8-first-test/private-sealed/B16",
+      "issues": [],
+      "reviewed_packet_item_sha256": "f5c91a5ea03d2c62e09bc164ddad856d587cda48029d4fa28874879184397de2"
+    },
+    {
+      "public_id": "B17",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": false,
+      "joint_correct": false,
+      "evidence": "所列DFS、树基础、构造是其声称方法实际使用的知识，标签本身独立判为覆盖；但解法核心命题及构造确定错误。合法n=4边(1,2),(2,3),(3,1)恰n-1边，分量为三角形与孤点4，反驳“每块都是树”；把含1的块作基准时孤点块没有可删除边。原7点样例若删桥(4,5)再加(1,4)，独立连通分量模拟由2仍为2，剩余{5,6,7}孤立，反驳“删树边再跨块加边净减1”。应删环上非森林边，但该输出没有给出这一可行构造。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/16; packet_source_ref=v8-first-test/private-sealed/B17",
+      "issues": [
+        {
+          "code": "n_minus_one_edges_does_not_imply_forest",
+          "field": "solution_idea",
+          "detail": "n=4三角形+孤点是无自环无重边的合法反例，恰3边且有环；整体若是森林且有n-1边反而必须已连通。",
+          "severity": "substantive",
+          "certainty": "deterministic_counterexample"
+        },
+        {
+          "code": "invalid_edge_replacement_construction",
+          "field": "solution_idea",
+          "detail": "孤点分量无边可删；删除桥使块数+1、加跨块边使块数-1，净变化0。独立模拟原样例删(4,5)加(1,4)后仍2块。",
+          "severity": "substantive",
+          "certainty": "step_simulation"
+        }
+      ],
+      "reviewed_packet_item_sha256": "80990aff0d4657b9fafff71d2d15932ad36d0e71d209a6ee19f93b0018f4a785"
+    },
+    {
+      "public_id": "B18",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "懒加线段树节点存真实区间和，整段sum+=k*len并累加lazy，部分访问前下传后合并，操作顺序完整，ds.segment-tree.basic准确覆盖。正初值/正增量且总和<=2e18保障节点和及实际加量处在signed64范围；此份没有双BIT加权中间项问题。独立参考300组各80步与直接数组一致，原样例11/8/20；总O(n+m log n)。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/17; packet_source_ref=v8-first-test/private-sealed/B18",
+      "issues": [],
+      "reviewed_packet_item_sha256": "88b5bd5e83e8872d140eef3fd3180f66e683c22d6e74685ae486590d7f2acdcb"
+    },
+    {
+      "public_id": "B19",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "二进制幂递推、每步模乘及b=0/a=0边界正确，p<2^31使模后余数乘积<2^62，可用64位。math.binary-exponentiation为实际核心，精确输出格式也写出。独立参考1000组完整32位输入与Python精确模幂一致，原输出2^10 mod 9=7。证据中“唯一可行”是对快速幂族的过度措辞，但不改变算法、可行性、执行结果，按任务要求不因此否决。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/18; packet_source_ref=v8-first-test/private-sealed/B19",
+      "issues": [],
+      "reviewed_packet_item_sha256": "10809c8787896abeb2aa99e672f9960dde8c7b34f5c7b6b5d55c3faf6098a7de"
+    },
+    {
+      "public_id": "B20",
+      "run_id": "first",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "埃氏筛一次标记合数、按升序收集素数，primes[k-1]查询；sieve/prime覆盖实际方法，O(n log log n+q)与O(n+pi(n))可行。其提及n<2只是题外冗余边界，不影响冻结n=10^8算法。独立参考实际筛满10^8，计5761455个素数、最后99999989，前1/2/5个为2/3/11；有限实测不冒充模型代码运行。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/19; packet_source_ref=v8-first-test/private-sealed/B20",
+      "issues": [],
+      "reviewed_packet_item_sha256": "eac55aca994be540fb89df6f79c2f45975599ad53fd4eab415e49e89f9888c85"
+    },
+    {
+      "public_id": "B11",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "二维已压i/已弹j计数DP的合法域j<=i、两种转移、初始与终点完整；输出序列唯一决定压弹操作的双射说明正确，不再使用首弹k伪分解。另一Catalan线性递推逐步精确整除。dp.count及Catalan分别覆盖两法。独立核验k=1..18线性式均等于组合公式，n18=477638700、最大乘法中间分子9075135300，64位安全；原参考另枚举n<=8完整输出支持DP计数。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/10; packet_source_ref=v8-second-test/runs/B11-R1.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "935a8b38218d645dbd5b7e89f7c1f2c998b14a1c7c8f2637429a40b694486815"
+    },
+    {
+      "public_id": "B12",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "前缀和严格递增，查最小p_i>=q，组末等号及首尾编号正确；第二法逐组铺位置→组号，总位置<=10^6所以O(sum a+m)可行。prefix-sum/binary覆盖主线、simulate覆盖直接铺号，均有实际方法依据。独立参考300组所有对象号同时对比二分与铺号结果一致；原样例1/5/3。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/11; packet_source_ref=v8-second-test/runs/B12-R1.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "befad92cd04a5a034c83d8b6cc907e0d742bcdd4ebc7cc99361f0672a478d98c"
+    },
+    {
+      "public_id": "B13",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "排序+完整字符串比较精确去重，基本排序应用/string.basic准确；替代法明确哈希冲突后逐字符核对，保留原串，不会把摘要相同当字符串必同。string.hash与ds.hash对应实际字符串映射及哈希表操作。正文/表均注明期望O(sum长度+N)，最坏O(N² Mmax)，已纠正首测错误最坏上界；排序O(N log N Mmax)可行。N=0或空串的条件性冗余说明不改变有效输入算法。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/12; packet_source_ref=v8-second-test/runs/B13-R1.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "cc794657a36fb2c53c4a186245605dd4df20a3d52872bbb04760b76c9a286437"
+    },
+    {
+      "public_id": "B14",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "双指针按正数单调性维护最长连续合法窗口、while超限收缩及空窗口答案0正确。另法对每个左端点在严格递增前缀和上二分最远满足差<=t的右端点，也不遗漏最优。two-pointer与prefix-sum/binary分别覆盖两法；原参考500组与穷举一致，两个样例3/1；两法O(n)及O(n log n)均可行。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/13; packet_source_ref=v8-second-test/runs/B14-R1.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "65e98e75f89f6b20d644e0cd6aa728d95c3fce368ec23e33147deb118f09531a"
+    },
+    {
+      "public_id": "B15",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "结束时间递增的贪心，a>=last_end接纳，初值-1涵盖0起点，交换论证安全；greedy/sort覆盖实际方法。虽然开头记作闭区间[a,b]，随后明确相接允许且判断>=，不导致执行或结果错误，不因记号差异否决。独立参考300组与所有子集穷举一致，原相接样例为2。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/14; packet_source_ref=v8-second-test/runs/B15-R1.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "11a600e7c73ac2063a726280456440224f1b3eecc2b334d727a7cb02c0f97987"
+    },
+    {
+      "public_id": "B16",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "不同于首测的等价顺序：当前先输出前次维护好的队首，再插入i并剔除<i+1-m，为下一次i+1预备[max(1,i+1-m),i]。初始空队输出0、m=1及m=n正确，未包含当前位置。独立按这一次具体顺序实现，1000随机数组与直接前项最小值逐项一致；monotonic-queue准确，摊还O(n)、队列O(m)。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/15; packet_source_ref=v8-second-test/runs/B16-R1.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "70a19496dcb5183e9390a38d6bb5cf5709bc4c59b038c402c33716b3bca52227"
+    },
+    {
+      "public_id": "B17",
+      "run_id": "second_1",
+      "tags_correct": false,
+      "solution_correct": true,
+      "joint_correct": false,
+      "evidence": "并查集提取生成森林，合并失败边恰c-1条可删除；保留森林保证删边不拆块，跨当前块加边并合并，方案最优且合法，solution=true。标签只有ds.union-find与graph.basic：当前词表前者说明集合合并/连通，后者说明度/路径/连通块/表示/DFS/BFS，均未语义覆盖必须输出具体删边加边方案这一独立构造核心，缺basic.construction或同等精确覆盖，tags=false。该漏标与解法本身正确分开。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/16; packet_source_ref=v8-second-test/runs/B17-R1.json",
+      "issues": [
+        {
+          "code": "missing_construction_knowledge",
+          "field": "primary_knowledge_ids/secondary_knowledge_ids",
+          "detail": "具体换边方案是独立核心：须选择可删除边并逐步给出跨分量新边；union-find仅描述集合/连通维护、graph.basic未覆盖构造。当前词表basic.construction准确覆盖但未贴，也无同等准确标签。",
+          "severity": "tag_missing",
+          "certainty": "current_taxonomy_semantic_check"
+        }
+      ],
+      "adjudication_history": [
+        {
+          "reviewer": "subagent_initial",
+          "tags_correct": true,
+          "reason": "初认为并查集与图基础可以宽泛覆盖所述构造。"
+        },
+        {
+          "reviewer": "root_final",
+          "tags_correct": false,
+          "reason": "查当前词表语义后，集合/连通知识未覆盖必须输出具体合法方案的构造知识，按独立核心漏标裁定。"
+        }
+      ],
+      "reviewed_packet_item_sha256": "c705fee4f3144a6ea9d402d0c380fd72096ae8ada470e7615617bf05fe97563e"
+    },
+    {
+      "public_id": "B18",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "懒标记线段树与双Fenwick差分两法均完整；公式S(x)=(x+1)Σd_j−Σj*d_j正确，r=n跳过n+1，区间和取前缀差。明确指出加权内部量可超signed64并要求128位/安全处理，未把真实总和界误当内部界。标签segment-tree/fenwick/difference/prefix-sum覆盖两法。独立双BIT实现300组×60步与直接数组一致，主线树在原参考300组×80步也通过。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/17; packet_source_ref=v8-second-test/runs/B18-R1.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "d7099984125fd817a80bf14909b2bb4a5f32bc4dbcaa16ade7843a6c5a41fbb3"
+    },
+    {
+      "public_id": "B19",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": false,
+      "joint_correct": false,
+      "evidence": "具体迭代方法base=a%p、res=1%p、奇位乘res、平方base、右移指数完整正确，边界与64位模乘也正确，binary-exponentiation标签准确；但开头明确写a^b=(a^floor(b/2))²，未限制偶数b。合法a=2,b=3,p=9时左边8、该等式右边4，构成确定性数学矛盾。按冻结“题解技术完整、无确定性矛盾”的严格文本口径solution=false；这不等同其后具体迭代程序必然WA。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/18; packet_source_ref=v8-second-test/runs/B19-R1.json",
+      "issues": [
+        {
+          "code": "false_power_identity_for_odd_exponent",
+          "field": "solution_idea paragraph1",
+          "detail": "a=2,b=3,p=9为合法输入，2^3=8而(2^floor(3/2))²=4。随后迭代步骤会正确返回8，但正确步骤不能抹去同一题解明确给出的错误数学等式。",
+          "severity": "substantive_text_contradiction",
+          "certainty": "deterministic_algebraic_counterexample"
+        }
+      ],
+      "adjudication_history": [
+        {
+          "reviewer": "subagent_initial",
+          "solution_correct": true,
+          "reason": "最初将开头漏偶数条件视为不影响明确迭代步骤的轻微表述问题。"
+        },
+        {
+          "reviewer": "root_final",
+          "solution_correct": false,
+          "reason": "冻结标准禁止确定性矛盾，明确错误恒等式不同于普通简写；按严格题解文本口径裁定。"
+        }
+      ],
+      "reviewed_packet_item_sha256": "d4f8d9fb537c1b4a3969a3757e2088aeaef40dcaca9a7ad84ec8354187ec93cb"
+    },
+    {
+      "public_id": "B20",
+      "run_id": "second_1",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "埃氏筛按升序发现素数并标记其合数倍数，primes[k-1]直接查；筛法/素数标签对应实际知识。明确n=10^8需紧凑标记与批量输出，O(n log log n+q)及紧凑O(n)空间可行。本轮“所有i的倍数”按标准埃氏筛中不含i本身的倍数解释，已加入素数表的i仍保持素数身份，不因概述未写2i/p²起点否决。原参考实筛n=10^8得到5761455及末素数99999989。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/19; packet_source_ref=v8-second-test/runs/B20-R1.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "6896c9ee970748f4ef7d1a5558a808b30506c99d0b1aa339a84bf9b766f42b95"
+    },
+    {
+      "public_id": "B11",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "压栈/弹栈对应合法括号前缀，栈顶决定下步是否弹/继续压的唯一性给出输出与操作串双射；按括号首次平衡点分解而非首个弹出值分解，得到正确Catalan递推f0=1、fi=sum fj*f(i-1-j)。Catalan与dp.count覆盖方法，O(n²)可行。独立参考n<=8枚举不同输出与计数一致，n18=477638700；每个非负递推分项不超总和，long long安全。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/10; packet_source_ref=v8-second-test/runs/B11-R2.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "ab6409a22bd839fd0df436087230b6eb747e256de2c7553549c282b6768a7b5f"
+    },
+    {
+      "public_id": "B12",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "pre[i]为组末，组i闭区间[pre[i-1]+1,pre[i]]，前缀严格递增，二分最小pre>=q覆盖组末等号与首尾。prefix-sum/binary准确，无多余标签；O(n+m log n)可行。独立参考300组全部对象号与铺号表一致，原样例1/5/3。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/11; packet_source_ref=v8-second-test/runs/B12-R2.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "68ffb249e1df2b88eaabd7f2cf30d99be77169de2937685f1b755d4251d1f113"
+    },
+    {
+      "public_id": "B13",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "主线unordered_set存完整字符串，哈希冲突时精确逐字符/长度判等，不存在摘要碰撞漏判；明确期望O(sum M)、最坏O(N² Lmax)，排序替代法也准确计入最坏比较字符数。ds.hash/string.basic/basic.sort分别覆盖两法，不要求贴官方“字符串哈希”。原参考300随机去重数据、大小写/前缀/长度1500边界均支持两条精确判等路线。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/12; packet_source_ref=v8-second-test/runs/B13-R2.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "bae86b5b74c4cabb264d4e9f600f78cf5f5d9a6d991f38121779e3c2abcd53de"
+    },
+    {
+      "public_id": "B14",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "正耗时使固定右端的最左合法起点单调；扩右后while超限右移左端，允许缩空，记录最长连续段。备选前缀和+二分最远合法终点也可行；two-pointer/prefix-sum/binary覆盖所声称两法。原参考500组全区间穷举一致，样例3/1；O(n)及O(n log n)均可行。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/13; packet_source_ref=v8-second-test/runs/B14-R2.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "1e5d1b228ea8c29080fd7d37b5c6d40ade4169e47e0e8a5588b68124cdc50318"
+    },
+    {
+      "public_id": "B15",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "按结束升序、a>=last_end选择，初始-1且相接合法，交换论证完整。greedy及use-of-sort准确覆盖排序后选择，不因闭区间记号而否决明确>=判断。原参考300组子集穷举与贪心一致，样例2；O(n log n)适用n<=10^6。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/14; packet_source_ref=v8-second-test/runs/B15-R2.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "ee00dec513084342a4ae841ec9a539b32838acf71cb2b2b9aa3541cc4060b3b6"
+    },
+    {
+      "public_id": "B16",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "先剔除<i-m过期下标、输出后才插入i并去尾>=值，精确排除当前位置；单调队列候选支配与过期逻辑成立，i1输出0、m1及mn自然覆盖。monotonic-queue准确，O(n)时间及O(n)/流式O(m)空间合理；原参考1000组与历史切片最小值一致。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/15; packet_source_ref=v8-second-test/runs/B16-R2.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "020fde208c7b45479b0efc880471455db5b5c3a74e89f0fde2d321eefd134c97"
+    },
+    {
+      "public_id": "B17",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "DSU合并成功边构成生成森林，失败边恰c-1条；代表按链r_i→r_(i+1)连接，并逐条删除非森林边，始终保留原森林。一次替换至多减块1，构造达到c-1，且新边不同初始分量故无自环/重边。union-find与construction覆盖两个独立核心，补齐R1漏标。独立按本次“链式”实现对n<=6所有3237个n-1边简单图逐步模拟：删边存在、新边不重复、最终连通且边数n-1全部通过。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/16; packet_source_ref=v8-second-test/runs/B17-R2.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "761ce6df26f86011638152b026432c62b92da1e58557a76e073f3a998cbcdb9b"
+    },
+    {
+      "public_id": "B18",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": false,
+      "joint_correct": false,
+      "evidence": "线段树与双BIT公式本身正确，标签segment-tree/fenwick/difference/prefix-sum覆盖两法；但两法合述只要求64位，未保障双BIT加权项i*d_i与(p+1)Σd_i的中间范围。合法n=100000、初值全1，末项加k=1999999999999900000后总和恰2e18，然而加权更新n*k=199999999999990000000000，远超signed64最大9223372036854775807。R1明确128位才覆盖此边界，R2未覆盖；按全部声称方法须完整处理范围，solution=false，不是线段树主线错误。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/17; packet_source_ref=v8-second-test/runs/B18-R2.json",
+      "issues": [
+        {
+          "code": "weighted_Fenwick_intermediate_integer_range_unhandled",
+          "field": "solution_idea 主线二及边界与范围",
+          "detail": "真实答案<=2e18不足以保障i*d_i及前缀公式乘法signed64安全；合法末项大增量使加权更新约2e23。仅说答案需64位而未说明更宽/安全内部运算，双BIT方法缺少必要范围保障。",
+          "severity": "substantive_integer_boundary",
+          "certainty": "exact_integer_witness"
+        }
+      ],
+      "reviewed_packet_item_sha256": "1440ab83526c4a0eb1941ed2258d33d2388c350a227572b13fbeea777614ac37"
+    },
+    {
+      "public_id": "B19",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "逐指数二进制位平方、奇位累乘并取模，边界b0=>1、a0且b>0=>0正确；说明需足够宽乘法并输出原始a/b/p，未出现R1错误幂等式。binary-exponentiation标签准确，O(log b)/O(1)可行；独立参考1000组与精确模幂一致，样例2^10 mod 9=7。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/18; packet_source_ref=v8-second-test/runs/B19-R2.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "52f02e05be4424059ca4316a6a58b7c049465fb149771e60cf2c84ce6c6c1de3"
+    },
+    {
+      "public_id": "B20",
+      "run_id": "second_2",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "筛出全部<=n素数再按primes[k-1]查，明确容量应覆盖pi(n)而非q，1-based及从2起正确；列埃氏和Euler两种标准筛法，复杂度分别O(n log log n+q)、O(n+q)，标签sieve/prime覆盖筛法族。冻结题面无额外时空限制，未凭空要求特定版本。原参考实筛n=10^8得到pi=5761455、末素数99999989、样例2/3/11。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/19; packet_source_ref=v8-second-test/runs/B20-R2.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "e16a3325358d7c69a26fc9c11fcce1365b32534beb3b47a5f5e1f0e000fdc326"
+    },
+    {
+      "public_id": "B11",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "合法P/O串与Dyck路径等价，并按目标输出重构唯一操作说明双射，未用首弹k错误分解。Catalan递推与binom(2n,n)/(n+1)均正确，Catalan已覆盖该特定计数递推核心，不强制再重复dp.count；组合数标签对应替代公式。独立按乘除递推计算binom(36,18)=9075135300，最大乘法中间量163352435400，64位安全，除19得477638700；不存在要求直接阶乘36!的说明。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/10; packet_source_ref=v8-second-test/runs/B11-R3.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "385f8379e611c2ea442e24cc95871afba7ffab922b66a2f961339f18542d98e6"
+    },
+    {
+      "public_id": "B12",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "组末前缀和严格递增，二分最小p>=q精确定位，首尾/n1边界正确；直接按组展开所有编号也因总数<=10^6可行。prefix-sum/binary/simulate分别对应两条实述方法，无多余知识。独立参考300组完整映射比较通过；复杂度O(n+m log n)与O(sum a+m)均正确。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/11; packet_source_ref=v8-second-test/runs/B12-R3.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "d39e94099f0fb623957f1a9b53acba353a25e22df36c712d6564af7568216577"
+    },
+    {
+      "public_id": "B13",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "完整字符串哈希表在摘要相同后仍比较完整原串，大小写和长度精确判等；仅声称期望O(S)，没有首测错误最坏线性上界。排序方法O(N log N Lmax+S)最坏与完整字符串去重正确，hash/string.basic/use-of-sort覆盖两法。表中“可视为O(S log N)量级”为总字节随比较排序层次重复处理的概括，可用归并排序做到，不否定前面明确上界。原参考300组、大小写/前缀/1500字符边界通过。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/12; packet_source_ref=v8-second-test/runs/B13-R3.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "fa8c0e3a6eddc3f8af0e17603570fa8c404fc82348bcb9469392f3f83de976af"
+    },
+    {
+      "public_id": "B14",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "正数滑窗扩右、超t时while缩左至合法并更新最长连续长度，空窗口输出0成立；“覆盖所有子段”理解为不遗漏最优而非实际枚举O(n²)个子段。备选方法在evidence明确前缀和+每起点二分最远合法右端，O(n log n)可行；two-pointer/prefix-sum/binary覆盖两法。原参考500组与全部连续区间穷举一致。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/13; packet_source_ref=v8-second-test/runs/B14-R3.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "fd55da86cad03838b2b68202c04148a2bcf87e379ea53664805cd429aa848cea"
+    },
+    {
+      "public_id": "B15",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "按b<=10^6做计数/桶排序后执行最早结束贪心，保留各场起点信息；同结束的正长度区间最多选1个，桶内顺序不影响最优，a>=last_end及初始-1正确。greedy/counting-sort准确覆盖具体方法，O(n+B)时间/空间可行。独立500组随机区间验证桶序贪心与比较排序贪心一致，基础贪心另有300组子集穷举参考。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/14; packet_source_ref=v8-second-test/runs/B15-R3.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "7618f4b0633080d180de953c39f8ad9a8e8d85b3a50e3f7087609cb3916c9520"
+    },
+    {
+      "public_id": "B16",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "先剔除<i-m的过期下标，取队首前项最小，输出后才入i且去尾>=值，窗口正是[max(1,i-m),i-1]。i1空队输出0、m1/全前缀有效；monotonic-queue覆盖核心。每下标至多进出一次O(n)，原1000组直接历史切片差分支持其具体逻辑，原样例0/7/7/1/1/3。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/15; packet_source_ref=v8-second-test/runs/B16-R3.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "ccb0def7ce4b21dc7d109da17d57fde60f3935e411191db7bd6eb5f2f74fcf19"
+    },
+    {
+      "public_id": "B17",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "DSU成功合并边组成各分量生成森林，失败边恰k-1条；保留森林使逐条删除非树边均不拆分原块，再从首代表星形连接其余初始代表，确实逐步合并且无重边/自环，k-1达到下界。union-find+construction+graph.basic完整覆盖集合识别、具体替换方案及图语义，已补R1缺失。与事前独立参考相同构造，n<=6所有3237个合法n-1边简单图逐步模拟通过，三角形+孤点亦可处理。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/16; packet_source_ref=v8-second-test/runs/B17-R3.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "a7838c60c471ea339f0e86bcbd95fe846eac873f99b21f1cce4cfebb515a08ed"
+    },
+    {
+      "public_id": "B18",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "懒加线段树sum+=k*len与lazy正确，下传/部分递归/合并完整；真实节点和<=2e18，signed64可存。双Fenwick差分及加权项路线说明明确要求128位中间量或选择线段树，因此覆盖R2缺失数值边界。segment-tree/fenwick/difference/prefix-sum覆盖两法。原参考树300组×80步、双BIT补查300组×60步均与直接数组一致；不要求说明书再给全量代码。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/17; packet_source_ref=v8-second-test/runs/B18-R3.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "16681ec3fe93cbf24903da6697d83b960258fe9ead15e5bfb095ceaa155c94c2"
+    },
+    {
+      "public_id": "B19",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "base=a%p、ans=1%p，奇位累乘、base平方、指数右移完整，解释每轮a^(2^k)与二进制分解正确，没有R1错误恒等式。a0/b0、64位乘积<2^62及精确输出格式均覆盖，binary-exponentiation准确。原参考1000组完整31位范围输入对精确modpow一致，复杂度O(log b)/O(1)。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/18; packet_source_ref=v8-second-test/runs/B19-R3.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "01d29668238e164148f06104fc32068b1cd91971227698519cb3d06d3f689bf5"
+    },
+    {
+      "public_id": "B20",
+      "run_id": "second_3",
+      "tags_correct": true,
+      "solution_correct": true,
+      "joint_correct": true,
+      "evidence": "只筛一次、排除1、升序收素数、primes[k-1]查询正确，位集/奇数压缩仅改变常数；sieve/prime覆盖实际算法。复杂度埃氏O(n log log n+q)，Euler可O(n+q)均为标准筛法。原参考实筛到10^8，表长5761455、末值99999989、样例2/3/11验证了容量与索引边界；文本说“题目保证编号及数值不超过n”可由保证查询素数存在推出，不构成新假设。",
+      "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/19; packet_source_ref=v8-second-test/runs/B20-R3.json",
+      "issues": [],
+      "reviewed_packet_item_sha256": "eee64c9b45ce0b5417f6821452c1f3f040d4e0b2b1b3cfec3b9e4c7079f332ee"
+    }
+  ],
+  "supplementary_checks": [
+    {
+      "run_id": "second_1",
+      "public_id": "B11",
+      "kind": "Catalan_linear_recurrence_vs_exact_combination",
+      "n_range": [
+        1,
+        18
+      ],
+      "max_multiplication_numerator": 9075135300,
+      "passed": true
+    },
+    {
+      "run_id": "second_1",
+      "public_id": "B16",
+      "kind": "output_then_insert_then_expire_order_vs_direct_history_minimum",
+      "seed": 2026101711,
+      "random_arrays": 1000,
+      "passed": true
+    },
+    {
+      "run_id": "second_1",
+      "public_id": "B18",
+      "kind": "weighted_double_Fenwick_formula_vs_direct_array",
+      "seed": 2026101711,
+      "random_sequences": 300,
+      "operations_each": 60,
+      "passed": true
+    },
+    {
+      "run_id": "second_2",
+      "public_id": "B17",
+      "kind": "chain_representative_construction_all_simple_n_minus_1_edge_graphs",
+      "vertices_range": [
+        2,
+        6
+      ],
+      "graph_count": 3237,
+      "passed": true
+    },
+    {
+      "run_id": "second_2",
+      "public_id": "B18",
+      "kind": "exact_integer_overflow_witness",
+      "n": 100000,
+      "all_initial_values": 1,
+      "update_only_last": 1999999999999900000,
+      "final_total": 2000000000000000000,
+      "weighted_n_times_k": 199999999999990000000000,
+      "signed64_max": 9223372036854775807,
+      "witness_verified": true
+    },
+    {
+      "run_id": "second_3",
+      "public_id": "B11",
+      "kind": "exact_iterative_binomial_bound",
+      "binomial_36_18": 9075135300,
+      "max_intermediate_product": 163352435400,
+      "answer_after_dividing_by_19": 477638700,
+      "all_within_signed64": true
+    },
+    {
+      "run_id": "second_3",
+      "public_id": "B15",
+      "kind": "end_bucket_order_greedy_vs_comparison_order_greedy",
+      "seed": 2026101713,
+      "random_arrays": 500,
+      "passed": true
+    }
+  ],
+  "root_adjudications": [
+    {
+      "public_id": "B13",
+      "run_id": "first",
+      "final": "tags=true, solution=false",
+      "reason": "Correct full-string exact deduplication does not repair an explicit wrong hash-table worst-case bound."
+    },
+    {
+      "public_id": "B17",
+      "run_id": "second_1",
+      "final": "tags=false, solution=true",
+      "reason": "Current union-find and graph.basic semantics do not cover the independently essential construction knowledge."
+    },
+    {
+      "public_id": "B19",
+      "run_id": "second_1",
+      "final": "tags=true, solution=false",
+      "reason": "Correct iteration does not repair the explicit false power identity for odd exponent in strict solution-text review."
+    },
+    {
+      "public_id": "B18",
+      "run_id": "second_2",
+      "final": "tags=true, solution=false",
+      "reason": "Correct formula plus only 64-bit advice omits necessary wide weighted-Fenwick intermediate handling."
+    }
+  ],
+  "audit": {
+    "reviewed": 40,
+    "unique_problem_run_pairs": 40,
+    "all_booleans_valid": true,
+    "all_joint_equal_and": true,
+    "all_source_packets_20_items": true,
+    "all_four_final_packet_hashes_match": true,
+    "per_run": {
+      "first": {
+        "reviewed": 10,
+        "tags_true": 9,
+        "solution_true": 7,
+        "joint_true": 7
+      },
+      "second_1": {
+        "reviewed": 10,
+        "tags_true": 9,
+        "solution_true": 9,
+        "joint_true": 8
+      },
+      "second_2": {
+        "reviewed": 10,
+        "tags_true": 10,
+        "solution_true": 9,
+        "joint_true": 9
+      },
+      "second_3": {
+        "reviewed": 10,
+        "tags_true": 10,
+        "solution_true": 10,
+        "joint_true": 10
+      }
+    },
+    "per_problem_joint_count": {
+      "B11": 3,
+      "B12": 4,
+      "B13": 3,
+      "B14": 4,
+      "B15": 4,
+      "B16": 4,
+      "B17": 2,
+      "B18": 3,
+      "B19": 3,
+      "B20": 4
+    },
+    "needs_verification_count": 0,
+    "scope": "Counts cover only B11-B20, not the full 20-question experiment."
+  }
+}

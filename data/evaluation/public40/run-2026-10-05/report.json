@@ -1,0 +1,1738 @@
+{
+  "version": "public-problem-evaluation-v1",
+  "requested": 40,
+  "completed": 40,
+  "missing": [],
+  "label_reference_provenance": "agent_reference_not_human",
+  "classification": {
+    "micro": {
+      "precision": 0.4811320754716981,
+      "recall": 0.7285714285714285,
+      "f1": 0.5795454545454546
+    },
+    "sample_macro": {
+      "precision": 0.5233333333333333,
+      "recall": 0.7708333333333333,
+      "f1": 0.59375
+    },
+    "true_positive": 51,
+    "false_positive": 55,
+    "false_negative": 19,
+    "samples": 40
+  },
+  "primary_classification": {
+    "micro": {
+      "precision": 0.639344262295082,
+      "recall": 0.6610169491525424,
+      "f1": 0.65
+    },
+    "sample_macro": {
+      "precision": 0.6875,
+      "recall": 0.7125,
+      "f1": 0.6683333333333333
+    },
+    "true_positive": 39,
+    "false_positive": 22,
+    "false_negative": 20,
+    "samples": 40
+  },
+  "exact_label_match": 0.15,
+  "official_rating": {
+    "samples": 20,
+    "mae": 140.0,
+    "within_200": 0.8,
+    "mean_signed_error": -60.0
+  },
+  "estimated_reference_rating": {
+    "samples": 40,
+    "mae": 132.5,
+    "within_200": 0.875,
+    "mean_signed_error": 7.5
+  },
+  "platforms": {
+    "codeforces": {
+      "completed": 20,
+      "classification": {
+        "micro": {
+          "precision": 0.5208333333333334,
+          "recall": 0.6578947368421053,
+          "f1": 0.5813953488372092
+        },
+        "sample_macro": {
+          "precision": 0.5416666666666667,
+          "recall": 0.7083333333333333,
+          "f1": 0.585
+        },
+        "true_positive": 25,
+        "false_positive": 23,
+        "false_negative": 13,
+        "samples": 20
+      },
+      "primary_classification": {
+        "micro": {
+          "precision": 0.6551724137931034,
+          "recall": 0.5757575757575758,
+          "f1": 0.6129032258064515
+        },
+        "sample_macro": {
+          "precision": 0.675,
+          "recall": 0.6,
+          "f1": 0.6083333333333333
+        },
+        "true_positive": 19,
+        "false_positive": 10,
+        "false_negative": 14,
+        "samples": 20
+      },
+      "exact_label_match": 0.15,
+      "official_rating": {
+        "samples": 20,
+        "mae": 140.0,
+        "within_200": 0.8,
+        "mean_signed_error": -60.0
+      },
+      "estimated_reference_rating": {
+        "samples": 20,
+        "mae": 115.0,
+        "within_200": 0.95,
+        "mean_signed_error": -15.0
+      }
+    },
+    "luogu": {
+      "completed": 20,
+      "classification": {
+        "micro": {
+          "precision": 0.4482758620689655,
+          "recall": 0.8125,
+          "f1": 0.5777777777777777
+        },
+        "sample_macro": {
+          "precision": 0.505,
+          "recall": 0.8333333333333334,
+          "f1": 0.6025
+        },
+        "true_positive": 26,
+        "false_positive": 32,
+        "false_negative": 6,
+        "samples": 20
+      },
+      "primary_classification": {
+        "micro": {
+          "precision": 0.625,
+          "recall": 0.7692307692307693,
+          "f1": 0.6896551724137931
+        },
+        "sample_macro": {
+          "precision": 0.7,
+          "recall": 0.825,
+          "f1": 0.7283333333333333
+        },
+        "true_positive": 20,
+        "false_positive": 12,
+        "false_negative": 6,
+        "samples": 20
+      },
+      "exact_label_match": 0.15,
+      "official_rating": {
+        "samples": 0,
+        "mae": null,
+        "within_200": null,
+        "mean_signed_error": null
+      },
+      "estimated_reference_rating": {
+        "samples": 20,
+        "mae": 150.0,
+        "within_200": 0.8,
+        "mean_signed_error": 30.0
+      }
+    }
+  },
+  "rows": [
+    {
+      "source_id": "P1001",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P1001",
+      "title": "A+B Problem",
+      "reference_labels": [
+        "basic.simulate"
+      ],
+      "predicted_labels": [
+        "basic.simulate"
+      ],
+      "reference_primary": [
+        "basic.simulate"
+      ],
+      "predicted_primary": [
+        "basic.simulate"
+      ],
+      "missing_labels": [],
+      "extra_labels": [],
+      "reference_rating": 800,
+      "predicted_rating": 800,
+      "official_rating": null,
+      "official_level": "入门"
+    },
+    {
+      "source_id": "P1047",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P1047",
+      "title": "[NOIP 2005 普及组] 校门外的树",
+      "reference_labels": [
+        "basic.difference",
+        "basic.simulate"
+      ],
+      "predicted_labels": [
+        "basic.enumerate",
+        "basic.simulate",
+        "basic.sort"
+      ],
+      "reference_primary": [
+        "basic.simulate",
+        "basic.difference"
+      ],
+      "predicted_primary": [
+        "basic.simulate"
+      ],
+      "missing_labels": [
+        "basic.difference"
+      ],
+      "extra_labels": [
+        "basic.enumerate",
+        "basic.sort"
+      ],
+      "reference_rating": 800,
+      "predicted_rating": 900,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P1055",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P1055",
+      "title": "[NOIP 2008 普及组] ISBN 号码",
+      "reference_labels": [
+        "basic.simulate",
+        "string.basic"
+      ],
+      "predicted_labels": [
+        "basic.simulate",
+        "math.bit"
+      ],
+      "reference_primary": [
+        "basic.simulate"
+      ],
+      "predicted_primary": [
+        "basic.simulate"
+      ],
+      "missing_labels": [
+        "string.basic"
+      ],
+      "extra_labels": [
+        "math.bit"
+      ],
+      "reference_rating": 800,
+      "predicted_rating": 800,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P1219",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P1219",
+      "title": "[USACO1.5] 八皇后 Checker Challenge",
+      "reference_labels": [
+        "search.dfs"
+      ],
+      "predicted_labels": [
+        "basic.enumerate",
+        "search.dfs"
+      ],
+      "reference_primary": [
+        "search.dfs"
+      ],
+      "predicted_primary": [
+        "search.dfs"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.enumerate"
+      ],
+      "reference_rating": 1400,
+      "predicted_rating": 1400,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P1002",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P1002",
+      "title": "[NOIP 2002 普及组] 过河卒",
+      "reference_labels": [
+        "dp.count"
+      ],
+      "predicted_labels": [
+        "basic.simulate",
+        "dp.misc"
+      ],
+      "reference_primary": [
+        "dp.count"
+      ],
+      "predicted_primary": [
+        "dp.misc"
+      ],
+      "missing_labels": [
+        "dp.count"
+      ],
+      "extra_labels": [
+        "basic.simulate",
+        "dp.misc"
+      ],
+      "reference_rating": 1100,
+      "predicted_rating": 1000,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P1048",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P1048",
+      "title": "[NOIP 2005 普及组] 采药",
+      "reference_labels": [
+        "dp.knapsack"
+      ],
+      "predicted_labels": [
+        "dp.knapsack"
+      ],
+      "reference_primary": [
+        "dp.knapsack"
+      ],
+      "predicted_primary": [
+        "dp.knapsack"
+      ],
+      "missing_labels": [],
+      "extra_labels": [],
+      "reference_rating": 1100,
+      "predicted_rating": 1200,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P1064",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P1064",
+      "title": "[NOIP 2006 提高组] 金明的预算方案",
+      "reference_labels": [
+        "dp.knapsack"
+      ],
+      "predicted_labels": [
+        "basic.enumerate",
+        "dp.knapsack"
+      ],
+      "reference_primary": [
+        "dp.knapsack"
+      ],
+      "predicted_primary": [
+        "dp.knapsack"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.enumerate"
+      ],
+      "reference_rating": 1600,
+      "predicted_rating": 1600,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P1091",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P1091",
+      "title": "[NOIP 2004 提高组] 合唱队形",
+      "reference_labels": [
+        "dp.misc"
+      ],
+      "predicted_labels": [
+        "basic.enumerate",
+        "dp.misc"
+      ],
+      "reference_primary": [
+        "dp.misc"
+      ],
+      "predicted_primary": [
+        "dp.misc"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.enumerate"
+      ],
+      "reference_rating": 1300,
+      "predicted_rating": 1400,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P1020",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P1020",
+      "title": "[NOIP 1999 提高组] 导弹拦截",
+      "reference_labels": [
+        "basic.binary",
+        "basic.greedy",
+        "dp.misc"
+      ],
+      "predicted_labels": [
+        "basic.binary",
+        "basic.greedy",
+        "dp.misc",
+        "ds.fenwick",
+        "math.order-theory"
+      ],
+      "reference_primary": [
+        "dp.misc",
+        "basic.greedy",
+        "basic.binary"
+      ],
+      "predicted_primary": [
+        "dp.misc",
+        "basic.binary",
+        "math.order-theory"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "ds.fenwick",
+        "math.order-theory"
+      ],
+      "reference_rating": 1700,
+      "predicted_rating": 1600,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P3371",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P3371",
+      "title": "【模板】单源最短路径（弱化版）",
+      "reference_labels": [
+        "ds.binary-heap",
+        "graph.shortest-path"
+      ],
+      "predicted_labels": [
+        "ds.heap",
+        "graph.basic",
+        "graph.shortest-path"
+      ],
+      "reference_primary": [
+        "graph.shortest-path"
+      ],
+      "predicted_primary": [
+        "graph.shortest-path",
+        "ds.heap"
+      ],
+      "missing_labels": [
+        "ds.binary-heap"
+      ],
+      "extra_labels": [
+        "ds.heap",
+        "graph.basic"
+      ],
+      "reference_rating": 1400,
+      "predicted_rating": 1400,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P3366",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P3366",
+      "title": "【模板】最小生成树",
+      "reference_labels": [
+        "ds.union-find",
+        "graph.mst"
+      ],
+      "predicted_labels": [
+        "basic.sort",
+        "ds.union-find",
+        "graph.basic",
+        "graph.mst"
+      ],
+      "reference_primary": [
+        "graph.mst"
+      ],
+      "predicted_primary": [
+        "graph.mst",
+        "ds.union-find"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.sort",
+        "graph.basic"
+      ],
+      "reference_rating": 1400,
+      "predicted_rating": 1300,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P3367",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P3367",
+      "title": "【模板】并查集",
+      "reference_labels": [
+        "ds.union-find"
+      ],
+      "predicted_labels": [
+        "ds.union-find"
+      ],
+      "reference_primary": [
+        "ds.union-find"
+      ],
+      "predicted_primary": [
+        "ds.union-find"
+      ],
+      "missing_labels": [],
+      "extra_labels": [],
+      "reference_rating": 1000,
+      "predicted_rating": 1200,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P3368",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P3368",
+      "title": "【模板】树状数组 2",
+      "reference_labels": [
+        "basic.difference",
+        "ds.fenwick",
+        "ds.segment-tree.basic"
+      ],
+      "predicted_labels": [
+        "basic.difference",
+        "basic.prefix-sum",
+        "ds.fenwick"
+      ],
+      "reference_primary": [
+        "basic.difference",
+        "ds.fenwick",
+        "ds.segment-tree.basic"
+      ],
+      "predicted_primary": [
+        "basic.difference",
+        "basic.prefix-sum"
+      ],
+      "missing_labels": [
+        "ds.segment-tree.basic"
+      ],
+      "extra_labels": [
+        "basic.prefix-sum"
+      ],
+      "reference_rating": 1500,
+      "predicted_rating": 1200,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P3383",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P3383",
+      "title": "【模板】线性筛素数",
+      "reference_labels": [
+        "math.number-theory.sieve"
+      ],
+      "predicted_labels": [
+        "basic.enumerate",
+        "basic.prefix-sum",
+        "math.number-theory.prime",
+        "math.number-theory.sieve"
+      ],
+      "reference_primary": [
+        "math.number-theory.sieve"
+      ],
+      "predicted_primary": [
+        "math.number-theory.sieve",
+        "math.number-theory.prime"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.enumerate",
+        "basic.prefix-sum",
+        "math.number-theory.prime"
+      ],
+      "reference_rating": 1400,
+      "predicted_rating": 2400,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P3385",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P3385",
+      "title": "【模板】负环",
+      "reference_labels": [
+        "graph.shortest-path"
+      ],
+      "predicted_labels": [
+        "graph.basic",
+        "graph.bfs",
+        "graph.dfs",
+        "graph.shortest-path"
+      ],
+      "reference_primary": [
+        "graph.shortest-path"
+      ],
+      "predicted_primary": [
+        "graph.shortest-path",
+        "graph.basic"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "graph.basic",
+        "graph.bfs",
+        "graph.dfs"
+      ],
+      "reference_rating": 1700,
+      "predicted_rating": 1600,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P3375",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P3375",
+      "title": "【模板】KMP",
+      "reference_labels": [
+        "string.kmp"
+      ],
+      "predicted_labels": [
+        "string.basic",
+        "string.kmp",
+        "string.match"
+      ],
+      "reference_primary": [
+        "string.kmp"
+      ],
+      "predicted_primary": [
+        "string.kmp"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "string.basic",
+        "string.match"
+      ],
+      "reference_rating": 1500,
+      "predicted_rating": 1400,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P3808",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P3808",
+      "title": "AC 自动机（简单版）",
+      "reference_labels": [
+        "string.ac-automaton",
+        "string.trie"
+      ],
+      "predicted_labels": [
+        "basic.sort",
+        "ds.fenwick",
+        "graph.tree",
+        "string.ac-automaton",
+        "string.kmp",
+        "string.trie"
+      ],
+      "reference_primary": [
+        "string.ac-automaton"
+      ],
+      "predicted_primary": [
+        "string.ac-automaton",
+        "graph.tree",
+        "ds.fenwick"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.sort",
+        "ds.fenwick",
+        "graph.tree",
+        "string.kmp"
+      ],
+      "reference_rating": 2000,
+      "predicted_rating": 1700,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P4779",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P4779",
+      "title": "【模板】单源最短路径（标准版）",
+      "reference_labels": [
+        "ds.binary-heap",
+        "graph.shortest-path"
+      ],
+      "predicted_labels": [
+        "ds.heap",
+        "graph.basic",
+        "graph.shortest-path"
+      ],
+      "reference_primary": [
+        "graph.shortest-path"
+      ],
+      "predicted_primary": [
+        "graph.shortest-path",
+        "ds.heap"
+      ],
+      "missing_labels": [
+        "ds.binary-heap"
+      ],
+      "extra_labels": [
+        "ds.heap",
+        "graph.basic"
+      ],
+      "reference_rating": 1600,
+      "predicted_rating": 1500,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P1075",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P1075",
+      "title": "[NOIP 2012 普及组] 质因数分解",
+      "reference_labels": [
+        "basic.enumerate",
+        "math.number-theory.basic"
+      ],
+      "predicted_labels": [
+        "basic.enumerate",
+        "math.number-theory.basic",
+        "math.number-theory.prime"
+      ],
+      "reference_primary": [
+        "math.number-theory.basic"
+      ],
+      "predicted_primary": [
+        "math.number-theory.prime",
+        "basic.enumerate"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "math.number-theory.prime"
+      ],
+      "reference_rating": 900,
+      "predicted_rating": 1200,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "P1115",
+      "source_platform": "luogu",
+      "source_url": "https://www.luogu.com.cn/problem/P1115",
+      "title": "最大子段和",
+      "reference_labels": [
+        "basic.prefix-sum",
+        "dp.misc"
+      ],
+      "predicted_labels": [
+        "basic.enumerate",
+        "basic.greedy",
+        "basic.prefix-sum",
+        "dp.misc"
+      ],
+      "reference_primary": [
+        "dp.misc",
+        "basic.prefix-sum"
+      ],
+      "predicted_primary": [
+        "dp.misc",
+        "basic.prefix-sum"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.enumerate",
+        "basic.greedy"
+      ],
+      "reference_rating": 1100,
+      "predicted_rating": 1100,
+      "official_rating": null,
+      "official_level": null
+    },
+    {
+      "source_id": "4A",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/4/A",
+      "title": "Watermelon",
+      "reference_labels": [
+        "basic.enumerate",
+        "math.number-theory"
+      ],
+      "predicted_labels": [
+        "basic.enumerate",
+        "math.number-theory.basic"
+      ],
+      "reference_primary": [
+        "math.number-theory",
+        "basic.enumerate"
+      ],
+      "predicted_primary": [
+        "basic.enumerate"
+      ],
+      "missing_labels": [
+        "math.number-theory"
+      ],
+      "extra_labels": [
+        "math.number-theory.basic"
+      ],
+      "reference_rating": 800,
+      "predicted_rating": 800,
+      "official_rating": 800,
+      "official_level": null
+    },
+    {
+      "source_id": "71A",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/71/A",
+      "title": "Way Too Long Words",
+      "reference_labels": [
+        "string.basic"
+      ],
+      "predicted_labels": [
+        "basic.simulate",
+        "string.basic"
+      ],
+      "reference_primary": [
+        "string.basic"
+      ],
+      "predicted_primary": [
+        "basic.simulate"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.simulate"
+      ],
+      "reference_rating": 800,
+      "predicted_rating": 800,
+      "official_rating": 800,
+      "official_level": null
+    },
+    {
+      "source_id": "231A",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/231/A",
+      "title": "Team",
+      "reference_labels": [
+        "basic.simulate"
+      ],
+      "predicted_labels": [
+        "basic.simulate"
+      ],
+      "reference_primary": [
+        "basic.simulate"
+      ],
+      "predicted_primary": [
+        "basic.simulate"
+      ],
+      "missing_labels": [],
+      "extra_labels": [],
+      "reference_rating": 800,
+      "predicted_rating": 800,
+      "official_rating": 800,
+      "official_level": null
+    },
+    {
+      "source_id": "158A",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/158/A",
+      "title": "Next Round",
+      "reference_labels": [
+        "basic.simulate"
+      ],
+      "predicted_labels": [
+        "basic.enumerate",
+        "basic.simulate"
+      ],
+      "reference_primary": [
+        "basic.simulate"
+      ],
+      "predicted_primary": [
+        "basic.simulate"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.enumerate"
+      ],
+      "reference_rating": 800,
+      "predicted_rating": 800,
+      "official_rating": 800,
+      "official_level": null
+    },
+    {
+      "source_id": "50A",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/50/A",
+      "title": "Domino piling",
+      "reference_labels": [
+        "basic.construction",
+        "basic.greedy"
+      ],
+      "predicted_labels": [
+        "basic.enumerate",
+        "dp.profile",
+        "dp.state"
+      ],
+      "reference_primary": [
+        "basic.greedy",
+        "basic.construction"
+      ],
+      "predicted_primary": [
+        "dp.state",
+        "dp.profile"
+      ],
+      "missing_labels": [
+        "basic.construction",
+        "basic.greedy"
+      ],
+      "extra_labels": [
+        "basic.enumerate",
+        "dp.profile",
+        "dp.state"
+      ],
+      "reference_rating": 800,
+      "predicted_rating": 1500,
+      "official_rating": 800,
+      "official_level": null
+    },
+    {
+      "source_id": "282A",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/282/A",
+      "title": "Bit++",
+      "reference_labels": [
+        "basic.simulate",
+        "string.basic"
+      ],
+      "predicted_labels": [
+        "basic.simulate",
+        "string.basic"
+      ],
+      "reference_primary": [
+        "basic.simulate"
+      ],
+      "predicted_primary": [
+        "basic.simulate"
+      ],
+      "missing_labels": [],
+      "extra_labels": [],
+      "reference_rating": 800,
+      "predicted_rating": 800,
+      "official_rating": 800,
+      "official_level": null
+    },
+    {
+      "source_id": "112A",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/112/A",
+      "title": "Petya and Strings",
+      "reference_labels": [
+        "string.basic"
+      ],
+      "predicted_labels": [
+        "basic.simulate",
+        "string.basic"
+      ],
+      "reference_primary": [
+        "string.basic"
+      ],
+      "predicted_primary": [
+        "basic.simulate"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.simulate"
+      ],
+      "reference_rating": 800,
+      "predicted_rating": 800,
+      "official_rating": 800,
+      "official_level": null
+    },
+    {
+      "source_id": "339A",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/339/A",
+      "title": "Helpful Maths",
+      "reference_labels": [
+        "basic.counting-sort",
+        "basic.use-of-sort",
+        "string.basic"
+      ],
+      "predicted_labels": [
+        "basic.counting-sort",
+        "basic.simulate"
+      ],
+      "reference_primary": [
+        "basic.counting-sort",
+        "basic.use-of-sort"
+      ],
+      "predicted_primary": [
+        "basic.counting-sort"
+      ],
+      "missing_labels": [
+        "basic.use-of-sort",
+        "string.basic"
+      ],
+      "extra_labels": [
+        "basic.simulate"
+      ],
+      "reference_rating": 800,
+      "predicted_rating": 800,
+      "official_rating": 800,
+      "official_level": null
+    },
+    {
+      "source_id": "1A",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/1/A",
+      "title": "Theatre Square",
+      "reference_labels": [
+        "basic.construction",
+        "math.number-theory"
+      ],
+      "predicted_labels": [
+        "basic.simulate"
+      ],
+      "reference_primary": [
+        "math.number-theory",
+        "basic.construction"
+      ],
+      "predicted_primary": [
+        "basic.simulate"
+      ],
+      "missing_labels": [
+        "basic.construction",
+        "math.number-theory"
+      ],
+      "extra_labels": [
+        "basic.simulate"
+      ],
+      "reference_rating": 900,
+      "predicted_rating": 800,
+      "official_rating": 1000,
+      "official_level": null
+    },
+    {
+      "source_id": "230B",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/230/B",
+      "title": "T-primes",
+      "reference_labels": [
+        "math.number-theory.prime",
+        "math.number-theory.sieve"
+      ],
+      "predicted_labels": [
+        "basic.binary",
+        "math.number-theory.basic",
+        "math.number-theory.prime",
+        "math.number-theory.sieve"
+      ],
+      "reference_primary": [
+        "math.number-theory.prime",
+        "math.number-theory.sieve"
+      ],
+      "predicted_primary": [
+        "math.number-theory.prime",
+        "math.number-theory.basic"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.binary",
+        "math.number-theory.basic"
+      ],
+      "reference_rating": 1400,
+      "predicted_rating": 1300,
+      "official_rating": 1300,
+      "official_level": null
+    },
+    {
+      "source_id": "580A",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/580/A",
+      "title": "Kefa and First Steps",
+      "reference_labels": [
+        "basic.simulate",
+        "dp.misc"
+      ],
+      "predicted_labels": [
+        "basic.enumerate",
+        "basic.simulate"
+      ],
+      "reference_primary": [
+        "basic.simulate",
+        "dp.misc"
+      ],
+      "predicted_primary": [
+        "basic.simulate"
+      ],
+      "missing_labels": [
+        "dp.misc"
+      ],
+      "extra_labels": [
+        "basic.enumerate"
+      ],
+      "reference_rating": 900,
+      "predicted_rating": 800,
+      "official_rating": 900,
+      "official_level": null
+    },
+    {
+      "source_id": "455A",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/455/A",
+      "title": "Boredom",
+      "reference_labels": [
+        "dp.misc"
+      ],
+      "predicted_labels": [
+        "basic.counting-sort",
+        "basic.prefix-sum",
+        "dp.misc"
+      ],
+      "reference_primary": [
+        "dp.misc"
+      ],
+      "predicted_primary": [
+        "dp.misc",
+        "basic.counting-sort"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.counting-sort",
+        "basic.prefix-sum"
+      ],
+      "reference_rating": 1400,
+      "predicted_rating": 1500,
+      "official_rating": 1500,
+      "official_level": null
+    },
+    {
+      "source_id": "474B",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/474/B",
+      "title": "Worms",
+      "reference_labels": [
+        "basic.binary",
+        "basic.prefix-sum"
+      ],
+      "predicted_labels": [
+        "basic.binary",
+        "basic.enumerate",
+        "basic.prefix-sum"
+      ],
+      "reference_primary": [
+        "basic.prefix-sum",
+        "basic.binary"
+      ],
+      "predicted_primary": [
+        "basic.prefix-sum",
+        "basic.binary"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.enumerate"
+      ],
+      "reference_rating": 1100,
+      "predicted_rating": 900,
+      "official_rating": 1200,
+      "official_level": null
+    },
+    {
+      "source_id": "706B",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/706/B",
+      "title": "Interesting drink",
+      "reference_labels": [
+        "basic.binary",
+        "basic.prefix-sum",
+        "basic.use-of-sort"
+      ],
+      "predicted_labels": [
+        "basic.binary",
+        "basic.sort"
+      ],
+      "reference_primary": [
+        "basic.binary",
+        "basic.prefix-sum"
+      ],
+      "predicted_primary": [
+        "basic.sort",
+        "basic.binary"
+      ],
+      "missing_labels": [
+        "basic.prefix-sum",
+        "basic.use-of-sort"
+      ],
+      "extra_labels": [
+        "basic.sort"
+      ],
+      "reference_rating": 1100,
+      "predicted_rating": 900,
+      "official_rating": 1100,
+      "official_level": null
+    },
+    {
+      "source_id": "279B",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/279/B",
+      "title": "Books",
+      "reference_labels": [
+        "basic.binary",
+        "basic.prefix-sum",
+        "misc.two-pointer"
+      ],
+      "predicted_labels": [
+        "basic.binary",
+        "basic.prefix-sum",
+        "misc.two-pointer"
+      ],
+      "reference_primary": [
+        "misc.two-pointer",
+        "basic.binary"
+      ],
+      "predicted_primary": [
+        "misc.two-pointer",
+        "basic.prefix-sum"
+      ],
+      "missing_labels": [],
+      "extra_labels": [],
+      "reference_rating": 1300,
+      "predicted_rating": 1200,
+      "official_rating": 1400,
+      "official_level": null
+    },
+    {
+      "source_id": "363B",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/363/B",
+      "title": "Fence",
+      "reference_labels": [
+        "basic.prefix-sum",
+        "misc.two-pointer"
+      ],
+      "predicted_labels": [
+        "basic.enumerate",
+        "basic.prefix-sum",
+        "basic.simulate"
+      ],
+      "reference_primary": [
+        "basic.prefix-sum",
+        "misc.two-pointer"
+      ],
+      "predicted_primary": [
+        "basic.prefix-sum"
+      ],
+      "missing_labels": [
+        "misc.two-pointer"
+      ],
+      "extra_labels": [
+        "basic.enumerate",
+        "basic.simulate"
+      ],
+      "reference_rating": 1000,
+      "predicted_rating": 900,
+      "official_rating": 1100,
+      "official_level": null
+    },
+    {
+      "source_id": "520B",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/520/B",
+      "title": "Two Buttons",
+      "reference_labels": [
+        "basic.greedy",
+        "search.bfs"
+      ],
+      "predicted_labels": [
+        "basic.binary",
+        "basic.greedy",
+        "search.bfs"
+      ],
+      "reference_primary": [
+        "search.bfs",
+        "basic.greedy"
+      ],
+      "predicted_primary": [
+        "basic.greedy",
+        "search.bfs"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "basic.binary"
+      ],
+      "reference_rating": 1300,
+      "predicted_rating": 1500,
+      "official_rating": 1400,
+      "official_level": null
+    },
+    {
+      "source_id": "545C",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/545/C",
+      "title": "Woodcutters",
+      "reference_labels": [
+        "basic.greedy",
+        "dp.misc"
+      ],
+      "predicted_labels": [
+        "basic.greedy"
+      ],
+      "reference_primary": [
+        "basic.greedy",
+        "dp.misc"
+      ],
+      "predicted_primary": [
+        "basic.greedy"
+      ],
+      "missing_labels": [
+        "dp.misc"
+      ],
+      "extra_labels": [],
+      "reference_rating": 1500,
+      "predicted_rating": 1500,
+      "official_rating": 1500,
+      "official_level": null
+    },
+    {
+      "source_id": "25D",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/25/D",
+      "title": "Roads not only in Berland",
+      "reference_labels": [
+        "basic.construction",
+        "ds.union-find"
+      ],
+      "predicted_labels": [
+        "basic.construction",
+        "ds.union-find",
+        "graph.connectivity",
+        "graph.tree-basic"
+      ],
+      "reference_primary": [
+        "ds.union-find",
+        "basic.construction"
+      ],
+      "predicted_primary": [
+        "ds.union-find",
+        "basic.construction"
+      ],
+      "missing_labels": [],
+      "extra_labels": [
+        "graph.connectivity",
+        "graph.tree-basic"
+      ],
+      "reference_rating": 1700,
+      "predicted_rating": 1500,
+      "official_rating": 1900,
+      "official_level": null
+    },
+    {
+      "source_id": "20C",
+      "source_platform": "codeforces",
+      "source_url": "https://codeforces.com/problemset/problem/20/C",
+      "title": "Dijkstra?",
+      "reference_labels": [
+        "ds.binary-heap",
+        "graph.shortest-path"
+      ],
+      "predicted_labels": [
+        "ds.heap",
+        "graph.basic",
+        "graph.shortest-path"
+      ],
+      "reference_primary": [
+        "graph.shortest-path"
+      ],
+      "predicted_primary": [
+        "graph.shortest-path",
+        "ds.heap"
+      ],
+      "missing_labels": [
+        "ds.binary-heap"
+      ],
+      "extra_labels": [
+        "ds.heap",
+        "graph.basic"
+      ],
+      "reference_rating": 1700,
+      "predicted_rating": 1500,
+      "official_rating": 1900,
+      "official_level": null
+    }
+  ],
+  "limitations": [
+    "标签参考由代理独立核对题意生成，未经教师／双人独立人工审核，不是人工金标准；F1 只表示与辅助参考的一致性。",
+    "CF 官方标签粒度与本项目词表不同，保留作来源参考，不直接等同本项目标签。",
+    "CF 官方评分可直接计算误差；洛谷等级不转换成官方 CF 评分，另列代理估计评分误差。",
+    "公开经典题可能被模型在训练中见过；隐藏来源和官方评分不构成严格盲测，不代表学校新题上的泛化表现。",
+    "题面按官方技术条件独立重述；原题故事与语言差异可能影响结果，样例来源见逐题采集记录。",
+    "这批题仅作为题库和初步诊断数据，不产生真实学生记录或教学效果结论。"
+  ],
+  "taxonomy_version": "2026.09.9",
+  "model_name": "deepseek-chat",
+  "prompt_version": "problem-analysis-v5",
+  "created_at": "2026-10-05T12:33:19.675791+00:00",
+  "knowledge_names": {
+    "basic": "基础",
+    "basic.enumerate": "枚举",
+    "basic.simulate": "模拟",
+    "basic.divide-and-conquer": "分治",
+    "basic.greedy": "贪心",
+    "basic.sort": "排序",
+    "basic.selection-sort": "选择排序",
+    "basic.bubble-sort": "冒泡排序",
+    "basic.insertion-sort": "插入排序",
+    "basic.counting-sort": "计数排序",
+    "basic.radix-sort": "基数排序",
+    "basic.quick-sort": "快速排序",
+    "basic.merge-sort": "归并排序",
+    "basic.heap-sort": "堆排序",
+    "basic.bucket-sort": "桶排序",
+    "basic.shell-sort": "希尔排序",
+    "basic.tournament-sort": "锦标赛排序",
+    "basic.tim-sort": "Tim 排序",
+    "basic.use-of-sort": "排序应用",
+    "basic.prefix-sum": "前缀和",
+    "basic.difference": "差分",
+    "basic.binary": "二分",
+    "basic.binary-lifting": "倍增",
+    "basic.construction": "构造",
+    "search": "搜索",
+    "search.dfs": "深度优先搜索（DFS）",
+    "search.bfs": "广度优先搜索（BFS）",
+    "search.bidirectional": "双向搜索",
+    "search.heuristic": "启发式搜索",
+    "search.astar": "A*",
+    "search.iterative": "迭代加深搜索",
+    "search.idastar": "IDA*",
+    "search.dlx": "Dancing Links",
+    "search.alpha-beta": "Alpha-Beta 剪枝",
+    "dp": "动态规划",
+    "dp.memo": "记忆化搜索",
+    "dp.knapsack": "背包 DP",
+    "dp.interval": "区间 DP",
+    "dp.dag": "DAG DP",
+    "dp.tree": "树形 DP",
+    "dp.state": "状压 DP",
+    "dp.profile": "轮廓线 DP",
+    "dp.number": "数位 DP",
+    "dp.plug": "插头 DP",
+    "dp.count": "计数 DP",
+    "dp.dynamic": "动态 DP",
+    "dp.probability": "概率 DP",
+    "dp.dp-of-dp": "DP 套 DP",
+    "dp.opt": "DP 优化",
+    "dp.opt.monotonic-queue-stack": "单调队列/单调栈优化",
+    "dp.opt.slope": "斜率优化",
+    "dp.opt.quadrangle": "四边形不等式优化",
+    "dp.opt.slope-trick": "Slope Trick 优化",
+    "dp.opt.wqs-binary-search": "WQS 二分",
+    "dp.misc": "其他 DP",
+    "string": "字符串",
+    "string.basic": "字符串基础",
+    "string.match": "字符串匹配",
+    "string.hash": "字符串哈希",
+    "string.trie": "字典树 (Trie)",
+    "string.kmp": "前缀函数与 KMP 算法",
+    "string.bm": "Boyer-Moore 算法",
+    "string.z-func": "Z 函数（扩展 KMP）",
+    "string.ac-automaton": "AC 自动机",
+    "string.sa": "后缀数组（SA）",
+    "string.sam": "后缀自动机 (SAM)",
+    "string.suffix-bst": "后缀平衡树",
+    "string.general-sam": "广义后缀自动机",
+    "string.suffix-tree": "后缀树",
+    "string.manacher": "Manacher",
+    "string.pam": "回文树",
+    "string.seq-automaton": "序列自动机",
+    "string.minimal-string": "最小表示法",
+    "string.lyndon": "Lyndon 分解",
+    "string.main-lorentz": "Main-Lorentz 算法",
+    "math": "数学",
+    "math.boolean-algebra": "布尔代数",
+    "math.numeral-system": "进位制",
+    "math.numeral-sys.base": "进制转换",
+    "math.numeral-sys.balanced-ternary": "平衡三进制",
+    "math.numeral-sys.gray-code": "格雷码",
+    "math.bit": "位操作",
+    "math.binary-set": "二进制集合操作",
+    "math.bignum": "高精度计算",
+    "math.binary-exponentiation": "快速幂",
+    "math.permutation": "置换和排列",
+    "math.complex": "复数",
+    "math.number-theory": "数论",
+    "math.number-theory.basic": "数论基础",
+    "math.number-theory.prime": "素数",
+    "math.number-theory.gcd": "最大公约数",
+    "math.number-theory.euler-totient": "欧拉函数",
+    "math.number-theory.sieve": "筛法",
+    "math.number-theory.pollard-rho": "分解质因数",
+    "math.number-theory.bezouts": "裴蜀定理与一次不定方程",
+    "math.number-theory.fermat": "费马小定理",
+    "math.number-theory.euler-theorem": "欧拉定理",
+    "math.number-theory.inverse": "逆元",
+    "math.number-theory.linear-equation": "线性同余方程",
+    "math.number-theory.crt": "中国剩余定理",
+    "math.number-theory.lift-the-exponent": "升幂引理",
+    "math.number-theory.factorial": "阶乘取模",
+    "math.number-theory.lucas": "卢卡斯定理",
+    "math.number-theory.congruence-equation": "同余方程",
+    "math.number-theory.quad-residue": "二次剩余",
+    "math.number-theory.primitive-root": "阶与原根",
+    "math.number-theory.discrete-logarithm": "离散对数",
+    "math.number-theory.residue": "高次剩余与单位根",
+    "math.number-theory.sqrt-decomposition": "数论分块",
+    "math.number-theory.dirichlet": "狄利克雷卷积",
+    "math.number-theory.mobius": "莫比乌斯反演",
+    "math.number-theory.hyperbola": "狄利克雷双曲线法与杜教筛",
+    "math.number-theory.prime-counting": "素数计数",
+    "math.number-theory.powerful-number": "Powerful Number 筛",
+    "math.number-theory.min-25": "Min_25 筛",
+    "math.number-theory.zhou": "洲阁筛",
+    "math.number-theory.euclidean": "类欧几里德算法",
+    "math.number-theory.continued-fraction": "连分数",
+    "math.number-theory.stern-brocot": "Stern-Brocot 树与 Farey 序列",
+    "math.number-theory.quadratic": "二次域",
+    "math.number-theory.pell-equation": "Pell 方程",
+    "math.poly": "多项式与生成函数",
+    "math.poly.fundamental": "代数基本定理",
+    "math.poly.fft": "快速傅里叶变换",
+    "math.poly.ntt": "快速数论变换",
+    "math.poly.fwt": "快速沃尔什变换",
+    "math.poly.czt": "Chirp Z 变换",
+    "math.poly.newton": "多项式牛顿迭代",
+    "math.poly.multipoint-eval-interpolation": "多项式多点求值与快速插值",
+    "math.poly.elementary-func": "多项式初等函数",
+    "math.poly.linear-recurrence": "常系数齐次线性递推",
+    "math.poly.shift": "多项式平移与连续点值平移",
+    "math.poly.symbolic-method": "符号化方法",
+    "math.poly.lagrange-inversion": "Lagrange 反演",
+    "math.poly.comp-rev": "形式幂级数复合与复合逆",
+    "math.poly.ogf": "普通生成函数",
+    "math.poly.egf": "指数生成函数",
+    "math.combinatorics": "组合数学",
+    "math.combinatorics.combination": "排列组合",
+    "math.combinatorics.drawer-principle": "抽屉原理",
+    "math.combinatorics.inclusion-exclusion-principle": "容斥原理",
+    "math.combinatorics.fibonacci": "斐波那契数列",
+    "math.combinatorics.derangement": "错位排列",
+    "math.combinatorics.catalan": "卡特兰数",
+    "math.combinatorics.stirling": "斯特林数",
+    "math.combinatorics.bell": "贝尔数",
+    "math.combinatorics.bernoulli": "伯努利数",
+    "math.combinatorics.entringer": "Entringer Number",
+    "math.combinatorics.eulerian": "Eulerian Number",
+    "math.combinatorics.partition": "分拆数",
+    "math.combinatorics.vandermonde-convolution": "范德蒙德卷积",
+    "math.combinatorics.polya": "Pólya 计数",
+    "math.combinatorics.graph-enumeration": "图论计数",
+    "math.linear-algebra": "线性代数",
+    "math.linear-algebra.vector": "向量",
+    "math.linear-algebra.product": "内积和外积",
+    "math.linear-algebra.matrix": "矩阵",
+    "math.linear-algebra.elementary-operations": "初等变换",
+    "math.linear-algebra.determinant": "行列式",
+    "math.linear-algebra.vector-space": "线性空间",
+    "math.linear-algebra.basis": "线性基",
+    "math.linear-algebra.linear-mapping": "线性映射",
+    "math.linear-algebra.char-poly": "特征多项式",
+    "math.linear-algebra.diagonalization": "对角化",
+    "math.linear-algebra.jordan": "Jordan标准型",
+    "math.simplex": "单纯形法",
+    "math.probability": "概率论",
+    "math.game-theory": "博弈论",
+    "math.numerical": "数值算法",
+    "math.numerical.interp": "插值",
+    "math.numerical.integral": "数值积分",
+    "math.numerical.gauss": "高斯消元",
+    "math.numerical.newton": "牛顿迭代法",
+    "math.order-theory": "序理论",
+    "math.young-tableau": "杨氏矩阵",
+    "math.matroid": "拟阵",
+    "math.berlekamp-massey": "Berlekamp-Massey 算法",
+    "ds": "数据结构",
+    "ds.stack": "栈",
+    "ds.queue": "队列",
+    "ds.linked-list": "链表",
+    "ds.hash": "哈希表",
+    "ds.union-find": "并查集",
+    "ds.union-find-extended": "扩展域并查集",
+    "ds.union-find-weighted": "带权并查集",
+    "ds.heap": "堆",
+    "ds.binary-heap": "二叉堆",
+    "ds.pairing-heap": "配对堆",
+    "ds.leftist-tree": "左偏树",
+    "ds.block": "分块",
+    "ds.decompose": "分块思想",
+    "ds.block-array": "块状数组",
+    "ds.block-list": "块状链表",
+    "ds.tree-decompose": "树分块",
+    "ds.sqrt-tree": "Sqrt Tree",
+    "ds.monotonic-stack": "单调栈",
+    "ds.monotonic-queue": "单调队列",
+    "ds.sparse-table": "ST 表",
+    "ds.fenwick": "树状数组",
+    "ds.segment-tree": "线段树",
+    "ds.segment-tree.basic": "线段树基础",
+    "ds.seg-merge-split": "线段树合并与分裂",
+    "ds.li-chao-tree": "李超线段树",
+    "ds.cat-tree": "猫树",
+    "ds.kinetic-tournament-tree": "Kinetic Tournament Tree",
+    "ds.dividing": "划分树",
+    "ds.balanced-tree": "平衡树",
+    "ds.bst": "二叉搜索树",
+    "ds.treap": "Treap",
+    "ds.splay": "Splay 树",
+    "ds.wblt": "WBLT",
+    "ds.sgt": "替罪羊树",
+    "ds.cartesian-tree": "笛卡尔树",
+    "ds.sbt": "Size Balanced Tree",
+    "ds.avl": "AVL 树",
+    "ds.rbtree": "红黑树",
+    "ds.llrbt": "左偏红黑树",
+    "ds.aa-tree": "AA 树",
+    "ds.skiplist": "跳表",
+    "ds.persistent": "可持久化数据结构",
+    "ds.persistent-seg": "可持久化线段树",
+    "ds.persistent-block-array": "可持久化块状数组",
+    "ds.persistent-balanced": "可持久化平衡树",
+    "ds.persistent-trie": "可持久化字典树",
+    "ds.persistent.other": "其他可持久化数据结构",
+    "ds.persistent-heap": "可持久化可并堆",
+    "ds.tree-in-tree": "树套树",
+    "ds.seg-in-seg": "线段树套线段树",
+    "ds.seg-in-balanced": "平衡树套线段树",
+    "ds.balanced-in-seg": "线段树套平衡树",
+    "ds.seg-in-bit": "树状数组套权值线段树",
+    "ds.bit-in-block-array": "分块套树状数组",
+    "ds.tree-in-tree.other": "其他树套树",
+    "ds.kdt": "K-D Tree",
+    "ds.dynamic-tree": "动态树",
+    "ds.lct": "Link Cut Tree",
+    "ds.global-bst": "全局平衡二叉树",
+    "ds.ett": "Euler Tour Tree",
+    "ds.top-tree": "Top Tree",
+    "ds.divide-combine": "析合树",
+    "ds.pq-tree": "PQ 树",
+    "ds.finger-tree": "手指树",
+    "ds.huffman-tree": "霍夫曼树",
+    "graph": "图论",
+    "graph.dfs": "图上深度优先搜索（DFS）",
+    "graph.basic": "图论基础",
+    "graph.bfs": "图上广度优先搜索（BFS）",
+    "graph.tree": "树上问题",
+    "graph.tree-basic": "树基础",
+    "graph.tree-diameter": "树的直径",
+    "graph.tree-center": "树的中心",
+    "graph.tree-centroid": "树的重心",
+    "graph.lca": "最近公共祖先",
+    "graph.hld": "树链剖分",
+    "graph.dsu-on-tree": "树上启发式合并",
+    "graph.virtual-tree": "虚树",
+    "graph.tree-divide": "树分治",
+    "graph.dynamic-tree-divide": "动态树分治",
+    "graph.tree-ahu": "AHU 算法",
+    "graph.tree-hash": "树哈希",
+    "graph.tree-random-walk": "树上随机游走",
+    "graph.dag": "有向无环图",
+    "graph.topo": "拓扑排序",
+    "graph.shortest-path": "最短路",
+    "graph.diff-constraints": "差分约束",
+    "graph.kth-path": "k 短路",
+    "graph.mod-shortest-path": "同余最短路",
+    "graph.spanning-tree": "生成树",
+    "graph.mst": "最小生成树",
+    "graph.dmst": "最小树形图",
+    "graph.mdst": "最小直径生成树",
+    "graph.steiner-tree": "斯坦纳树",
+    "graph.node": "拆点",
+    "graph.connectivity": "连通性相关",
+    "graph.scc": "强连通分量",
+    "graph.bcc": "双连通分量",
+    "graph.cut": "割点",
+    "graph.bridge": "桥",
+    "graph.block-forest": "圆方树",
+    "graph.connectivity-degree": "点连通度与边连通度",
+    "graph.rings-count": "环计数问题",
+    "graph.min-cycle": "最小环",
+    "graph.2-sat": "2-SAT",
+    "graph.euler": "欧拉图",
+    "graph.hamilton": "哈密顿图",
+    "graph.bi-graph": "二分图",
+    "graph.planar": "平面图",
+    "graph.chord": "弦图",
+    "graph.color": "图的着色",
+    "graph.flow": "网络流",
+    "graph.flow.max-flow": "最大流",
+    "graph.flow.min-cut": "最小割",
+    "graph.flow.max-flow-min-cut": "最大流最小割定理",
+    "graph.flow.min-cost": "费用流",
+    "graph.flow.bound": "上下界网络流",
+    "graph.stoer-wagner": "Stoer-Wagner 算法",
+    "graph.matching": "图的匹配",
+    "graph.graph-matching.graph-match": "图匹配",
+    "graph.graph-matching.bigraph-match": "二分图最大匹配",
+    "graph.graph-matching.bigraph-weight-match": "二分图最大权匹配",
+    "graph.graph-matching.general-match": "一般图最大匹配",
+    "graph.graph-matching.general-weight-match": "一般图最大权匹配",
+    "graph.graph-matching.stable-match": "稳定匹配",
+    "graph.prufer": "Prüfer 序列",
+    "graph.matrix-tree": "矩阵树定理",
+    "graph.lgv": "LGV 引理",
+    "graph.max-clique": "最大团搜索算法",
+    "graph.dominator-tree": "支配树",
+    "graph.graph-random-walk": "图上随机游走",
+    "geometry": "计算几何",
+    "geometry.2d": "二维计算几何基础",
+    "geometry.3d": "三维计算几何基础",
+    "geometry.pick": "Pick 定理",
+    "geometry.triangulation": "三角剖分",
+    "geometry.convex-hull": "凸包",
+    "geometry.scanning": "扫描线",
+    "geometry.rotating-calipers": "旋转卡壳",
+    "geometry.half-plane": "半平面交",
+    "geometry.nearest-points": "平面最近点对",
+    "geometry.random-incremental": "随机增量法",
+    "geometry.inverse": "反演变换",
+    "geometry.misc": "计算几何杂项",
+    "misc": "杂项",
+    "misc.discrete": "离散化",
+    "misc.cdq-divide": "CDQ 分治",
+    "misc.parallel-binsearch": "整体二分",
+    "misc.two-pointer": "双指针",
+    "misc.mo-algo": "莫队算法",
+    "misc.modifiable-mo-algo": "带修改莫队",
+    "misc.mo-algo-on-tree": "树上莫队",
+    "misc.rollback-mo-algo": "回滚莫队",
+    "misc.mo-algo-2dimen": "二维莫队",
+    "misc.mo-algo-secondary-offline": "莫队二次离线",
+    "misc.mo-algo-with-bitset": "莫队配合 bitset",
+    "misc.frac-programming": "分数规划",
+    "misc.randomize": "随机化",
+    "misc.rand-technique": "随机化技巧",
+    "misc.hill-climbing": "爬山算法",
+    "misc.simulated-annealing": "模拟退火",
+    "misc.hoverline": "悬线法",
+    "misc.main-element": "主元素问题",
+    "misc.garsia-wachs": "Garsia-Wachs 算法",
+    "misc.kahan-summation": "Kahan 求和",
+    "misc.odt": "珂朵莉树（颜色段均摊）",
+    "misc.rmq": "RMQ"
+  },
+  "validation_repair_notes": {
+    "source_id": "706B",
+    "protocol": "same-v5-prompt-with-rejected-response-in-repair-conversation",
+    "extra_attempts": 2,
+    "invalid_reasons": [
+      "Do not select both ancestor and descendant"
+    ],
+    "reference_used": false
+  }
+}

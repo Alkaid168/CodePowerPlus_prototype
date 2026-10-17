@@ -32,6 +32,7 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  flex-shrink: 0;
 }
 
 /* 表单 ------------------------------------------------------------- */
@@ -47,7 +48,7 @@
   display: flex;
   flex-direction: column;
   gap: 7px;
-  min-height: 0;
+  min-height: auto;
   flex: 1 1 auto;
 }
 
@@ -75,6 +76,39 @@
 }
 
 .analysis-status:empty { display: none; }
+
+/* 新建表单去掉重复的字段外边距，文本域分配剩余高度；反馈占用表单内的行，不能把卡片撑长。 */
+.analysis-entry-column > .card { flex: 1 1 auto; }
+.analysis-entry-form {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) auto auto;
+  gap: 10px;
+}
+.analysis-entry-form > .field { margin-bottom: 0; }
+.analysis-entry-form > .field:has(textarea),
+.analysis-entry-form > .analysis-statement-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 0;
+}
+.analysis-entry-form .field-label { flex-shrink: 0; }
+.analysis-entry-form textarea {
+  display: block;
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+}
+.analysis-entry-form .analysis-status {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-wrap: anywhere;
+}
+.analysis-entry-form .analysis-status:empty { display: none; }
+.analysis-entry-form .analysis-status .notice { padding: 6px 8px; }
+.analysis-entry-form .analysis-status .hint { line-height: 1.45; }
+.analysis-entry-form:has(.analysis-status:not(:empty)) textarea { padding: 5px 9px; }
 
 /* 元信息 ----------------------------------------------------------- */
 .analysis-meta {
@@ -221,8 +255,17 @@
   .analysis-column { overflow: visible; }
   .markdown-input { min-height: 180px; }
   .statement-source { max-height: none; }
+  .analysis-entry-column > .card { flex: 0 0 auto; }
+  .analysis-entry-form { display: flex; gap: 10px; }
+  .analysis-entry-form textarea { flex: 0 0 auto; height: auto; min-height: 88px; }
+  .analysis-entry-form .markdown-input { min-height: 180px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .analysis-tab { transition: color 160ms ease, background-color 160ms ease; }
 }
+.analysis-draft-indicator { display: flex; align-items: center; min-height: 28px; }
+.analysis-draft-indicator .btn { width: 28px; height: 28px; min-height: 28px; padding: 5px; color: var(--text-tertiary, #999999); }
+.analysis-draft-indicator[data-state="warning"] .btn,
+.analysis-draft-indicator[data-state="recovery"] .btn { color: #666666; }
+.analysis-draft-indicator[data-state="hidden"] { display: none; }

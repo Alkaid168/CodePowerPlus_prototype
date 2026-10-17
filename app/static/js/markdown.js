@@ -117,10 +117,14 @@ export function hasMath(source) {
  * 返回 { mathRendered }，方便界面提示“公式引擎加载失败”而不阻断阅读。
  */
 export async function mountMarkdown(host, source) {
+  window.MathJax?.typesetClear?.([host]);
   host.replaceChildren(renderMarkdown(source));
   if (!hasMath(source)) return { mathRendered: false };
   try {
     const MathJax = await loadMathJax();
+    // 路由会先创建题面再挂载；已缓存的 MathJax 不能提前测量离开文档的节点。
+    if (!host.isConnected) await new Promise((resolve) => requestAnimationFrame(resolve));
+    if (!host.isConnected) return { mathRendered: false };
     await MathJax.typesetPromise([host]);
     return { mathRendered: true };
   } catch {

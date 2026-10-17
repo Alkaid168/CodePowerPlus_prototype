@@ -19,9 +19,11 @@ def test_value_ranges_are_validated():
         SubmissionCreate(user_id='u1', problem_id=1, verdict='OK')
     with pytest.raises(ValidationError):
         SubmissionCreate(user_id='', problem_id=1, verdict='AC')
-    # 难度是 Codeforces 风格的 800–3500，必须是 100 的整数倍。
+    # 项目难度为 100–3500，必须是 100 的整数倍。
     with pytest.raises(ValidationError):
-        AnalysisPayload(difficulty=700, confidence=0.5)
+        AnalysisPayload(difficulty=0, confidence=0.5)
+    with pytest.raises(ValidationError):
+        AnalysisPayload(difficulty=50, confidence=0.5)
     with pytest.raises(ValidationError):
         AnalysisPayload(difficulty=3600, confidence=0.5)
     with pytest.raises(ValidationError):

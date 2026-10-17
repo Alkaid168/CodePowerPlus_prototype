@@ -1,0 +1,15 @@
+{
+  "event": "v8首测",
+  "human_revision": 1,
+  "at": "2026-10-16T19:06:31.544962+00:00",
+  "authorization": "用户明确纠正CF25D人工评级为1500，原评级打高",
+  "public_id": "B17",
+  "source_url": "https://codeforces.com/problemset/problem/25/D",
+  "previous_human_difficulty": 1900,
+  "corrected_human_difficulty": 1500,
+  "model_difficulty_unchanged": 1400,
+  "old_human_file_sha256": "7798ce322723ff3d2bb2f80f0428f986ae3c88c6824c05b91f44badd614d7800",
+  "new_human_file_sha256": "188f4b7af283ceef5d70d129578cf74f6c9b227f806d73636ce815c2680eb5ae",
+  "prediction_commitment_unchanged": "2d06cae771d9aad8c5dcac06198da7e4081b7a5d0845f9d486895c75268c4432",
+  "previous_comparison": "human-revisions/r0/comparison.json"
+}

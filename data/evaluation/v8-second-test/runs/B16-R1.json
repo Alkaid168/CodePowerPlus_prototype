@@ -1,0 +1,231 @@
+{
+  "event": "v8二测",
+  "key": "B16-R1",
+  "public_id": "B16",
+  "repetition": 1,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "fd562294ad5f51945f12a99ba80e0d8653e63333203c1c80eb5678361e60d114",
+  "completed_at": "2026-10-17T03:41:20.695607+00:00",
+  "analysis": {
+    "title": "滑动窗口前项最小值",
+    "difficulty": 1300,
+    "difficulty_reason": "解法与标签一致，使用单调队列在线性时间内维护前 m 项最小值，复杂度满足约束。建模上主要是标准滑动窗口最小值的直接转化，但需注意查询范围不包含当前元素以及首项输出 0；证明依赖单调队列不变量，属于常规但有学习门槛的内容；实现涉及大输入、下标过期和输出顺序等边界。综合属于“需要选用一个常规基础算法并作一次直接转化”的档位，定为 1300。",
+    "solution_idea": "把第 i 个位置的询问转化为查询前一个长度为 min(m,i-1) 的滑动窗口最小值；第 1 个位置窗口为空，输出 0。维护一个存储下标的单调队列：队列中下标递增，对应的 a 值也递增，只保留当前窗口内仍可能成为最小值的候选。处理位置 i 时，先输出队首（队列为空则输出 0）；再将 a_i 入队，从队尾删除值 >= a_i 的元素，因为它们被 a_i 支配且 a_i 更晚过期；然后删除下标 < i+1-m 的过期元素，为下一次查询准备窗口。正确性依据：被尾部删除的元素在剩余窗口中不可能优于 a_i，过期元素不会出现在后续查询窗口，队首始终是当前窗口最小值。边界包括 i=1、m=1、m=n。每个下标至多入队、出队一次，总时间为 O(n)，队列最坏占用 O(m) 即 O(n) 空间。",
+    "confidence": 0.92,
+    "primary_knowledge_ids": [
+      "ds.monotonic-queue"
+    ],
+    "secondary_knowledge_ids": [],
+    "evidence": {
+      "ds.monotonic-queue": "每个位置要求前 m 项的滑动窗口最小值；用下标单调队列维护窗口内候选最小值，队首即答案，每个元素至多入队出队一次"
+    },
+    "knowledge_confidence": {
+      "ds.monotonic-queue": 0.99
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "单调队列"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "8f6e715f-9a5a-4f6d-9506-89d6538b58b9",
+          "usage": {
+            "completion_tokens": 2242,
+            "prompt_tokens": 5551,
+            "total_tokens": 7793,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1866,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 4992,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 4992,
+            "prompt_cache_miss_tokens": 559
+          },
+          "elapsed_seconds": 11.153,
+          "valid": true,
+          "response_text": "{\"title\":\"滑动窗口前项最小值\",\"kind\":\"algorithm\",\"solution_idea\":\"把第 i 个位置的询问转化为查询前一个长度为 min(m,i-1) 的滑动窗口最小值；第 1 个位置窗口为空，输出 0。维护一个存储下标的单调队列：队列中下标递增，对应的 a 值也递增，只保留当前窗口内仍可能成为最小值的候选。处理位置 i 时，先输出队首（队列为空则输出 0）；再将 a_i 入队，从队尾删除值 >= a_i 的元素，因为它们被 a_i 支配且 a_i 更晚过期；然后删除下标 < i+1-m 的过期元素，为下一次查询准备窗口。正确性依据：被尾部删除的元素在剩余窗口中不可能优于 a_i，过期元素不会出现在后续查询窗口，队首始终是当前窗口最小值。边界包括 i=1、m=1、m=n。每个下标至多入队、出队一次，总时间为 O(n)，队列最坏占用 O(m) 即 O(n) 空间。\",\"methods\":[{\"name\":\"单调队列维护滑动窗口最小值\",\"knowledge_ids\":[\"ds.monotonic-queue\"],\"time_complexity\":\"O(n)\",\"space_complexity\":\"O(m)，最坏 O(n)\"}],\"primary_knowledge_ids\":[\"ds.monotonic-queue\"],\"secondary_knowledge_ids\":[],\"evidence\":{\"ds.monotonic-queue\":\"每个位置要求前 m 项的滑动窗口最小值；用下标单调队列维护窗口内候选最小值，队首即答案，每个元素至多入队出队一次\"},\"knowledge_confidence\":{\"ds.monotonic-queue\":0.99},\"confidence\":0.98}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "ccdbb80a-b010-431e-a19c-dad205e60678",
+          "usage": {
+            "completion_tokens": 2734,
+            "prompt_tokens": 1816,
+            "total_tokens": 4550,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 2391,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 768,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 1048
+          },
+          "elapsed_seconds": 14.833,
+          "valid": true,
+          "response_text": "{\"rubric\":{\"knowledge\":\"需要掌握单调队列/双端队列维护滑动窗口最值的基本思想，并熟悉用下标判断元素是否过期。对大学新生而言，这属于需要事先学习的常规数据结构，而不是由输入输出直接得到。\",\"modelling\":\"题意可直接转化为“查询前 m 项构成的滑动窗口最小值”，模型较直接；但要求当前元素不参与本次查询，且第一项固定输出 0，需把插入时机放在输出之后，存在一定边界转化。\",\"proof\":\"需要说明单调队列的队首为何始终是当前窗口最小值：被从队尾删除的元素不可能在后续窗口优于新元素，过期下标不会影响后续查询。论证是标准的，但并非完全无需说明。\",\"implementation\":\"需用数组模拟双端队列或使用 deque，正确处理队首过期、队尾淘汰、先输出后插入、i=1 与 m=1 等边界；n 达 2×10^6，必须保证 O(n) 时间和较低常数及快速 I/O。\"},\"consistency_issues\":[],\"difficulty\":1300,\"difficulty_reason\":\"解法与标签一致，使用单调队列在线性时间内维护前 m 项最小值，复杂度满足约束。建模上主要是标准滑动窗口最小值的直接转化，但需注意查询范围不包含当前元素以及首项输出 0；证明依赖单调队列不变量，属于常规但有学习门槛的内容；实现涉及大输入、下标过期和输出顺序等边界。综合属于“需要选用一个常规基础算法并作一次直接转化”的档位，定为 1300。\",\"confidence\":0.92}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "滑动窗口前项最小值",
+        "kind": "algorithm",
+        "solution_idea": "把第 i 个位置的询问转化为查询前一个长度为 min(m,i-1) 的滑动窗口最小值；第 1 个位置窗口为空，输出 0。维护一个存储下标的单调队列：队列中下标递增，对应的 a 值也递增，只保留当前窗口内仍可能成为最小值的候选。处理位置 i 时，先输出队首（队列为空则输出 0）；再将 a_i 入队，从队尾删除值 >= a_i 的元素，因为它们被 a_i 支配且 a_i 更晚过期；然后删除下标 < i+1-m 的过期元素，为下一次查询准备窗口。正确性依据：被尾部删除的元素在剩余窗口中不可能优于 a_i，过期元素不会出现在后续查询窗口，队首始终是当前窗口最小值。边界包括 i=1、m=1、m=n。每个下标至多入队、出队一次，总时间为 O(n)，队列最坏占用 O(m) 即 O(n) 空间。",
+        "methods": [
+          {
+            "name": "单调队列维护滑动窗口最小值",
+            "knowledge_ids": [
+              "ds.monotonic-queue"
+            ],
+            "time_complexity": "O(n)",
+            "space_complexity": "O(m)，最坏 O(n)"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "ds.monotonic-queue"
+        ],
+        "secondary_knowledge_ids": [],
+        "evidence": {
+          "ds.monotonic-queue": "每个位置要求前 m 项的滑动窗口最小值；用下标单调队列维护窗口内候选最小值，队首即答案，每个元素至多入队出队一次"
+        },
+        "knowledge_confidence": {
+          "ds.monotonic-queue": 0.99
+        },
+        "confidence": 0.98
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要掌握单调队列/双端队列维护滑动窗口最值的基本思想，并熟悉用下标判断元素是否过期。对大学新生而言，这属于需要事先学习的常规数据结构，而不是由输入输出直接得到。",
+          "modelling": "题意可直接转化为“查询前 m 项构成的滑动窗口最小值”，模型较直接；但要求当前元素不参与本次查询，且第一项固定输出 0，需把插入时机放在输出之后，存在一定边界转化。",
+          "proof": "需要说明单调队列的队首为何始终是当前窗口最小值：被从队尾删除的元素不可能在后续窗口优于新元素，过期下标不会影响后续查询。论证是标准的，但并非完全无需说明。",
+          "implementation": "需用数组模拟双端队列或使用 deque，正确处理队首过期、队尾淘汰、先输出后插入、i=1 与 m=1 等边界；n 达 2×10^6，必须保证 O(n) 时间和较低常数及快速 I/O。"
+        },
+        "consistency_issues": [],
+        "difficulty": 1300,
+        "difficulty_reason": "解法与标签一致，使用单调队列在线性时间内维护前 m 项最小值，复杂度满足约束。建模上主要是标准滑动窗口最小值的直接转化，但需注意查询范围不包含当前元素以及首项输出 0；证明依赖单调队列不变量，属于常规但有学习门槛的内容；实现涉及大输入、下标过期和输出顺序等边界。综合属于“需要选用一个常规基础算法并作一次直接转化”的档位，定为 1300。",
+        "confidence": 0.92
+      },
+      "elapsed_seconds": 25.986,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "f1937d0bd9218c414177f86e8594a651024c86d5f21d88b79c125e8f465de811",
+      "response_model": "deepseek-flash",
+      "response_id": "8f6e715f-9a5a-4f6d-9506-89d6538b58b9",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 6590,
+      "reasoning_content_sha256": "55877e33d8018e72b2aca92e78b720888e745507e6cb012f6f20f4edc5fd3519",
+      "usage": {
+        "completion_tokens": 2242,
+        "prompt_tokens": 5551,
+        "total_tokens": 7793,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 1866,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 4992,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 4992,
+        "prompt_cache_miss_tokens": 559
+      },
+      "elapsed_seconds": 11.153
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "41d4da39e092564e93c8fa1d2c8d2522928cf21367e36d0bb89e7f1d8428fcbe",
+      "response_model": "deepseek-flash",
+      "response_id": "ccdbb80a-b010-431e-a19c-dad205e60678",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 8681,
+      "reasoning_content_sha256": "b50625b15825a6cba76e71577a4d24c87d496e37e9b7dc362fe38e4036e76d4f",
+      "usage": {
+        "completion_tokens": 2734,
+        "prompt_tokens": 1816,
+        "total_tokens": 4550,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 2391,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 768,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 1048
+      },
+      "elapsed_seconds": 14.832
+    }
+  ]
+}

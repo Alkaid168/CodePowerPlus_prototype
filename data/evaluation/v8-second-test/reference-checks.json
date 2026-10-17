@@ -1,0 +1,694 @@
+{
+  "schema_version": 1,
+  "event": "v8-second-test",
+  "created_date": "2026-10-17",
+  "author": "independent reference subagent; agent-assisted, not teacher gold",
+  "source_manifest_path": "data/evaluation/v8-first-test/manifest.json",
+  "source_manifest_sha256": "ae7e9000361b1721069134fd080396f4d7d3c04d4a3eaa1a5f813c932e7e8857",
+  "rubric_path": "docs/v8-second-test-review-rubric.md",
+  "rubric_sha256": "0d0e3528523bd484e1874a30da2abdfbd8aee4beb1cdfd7781b4feb530c84d26",
+  "isolation": {
+    "prediction_files_read": false,
+    "diagnosis_or_rating_files_read": false,
+    "live_model_config_read": false,
+    "paid_model_calls": 0,
+    "formal_database_access": false,
+    "historical_summary_exposure": "Required long-lived PROJECT_MEMORY.md contained first-test diagnosis/rating summaries and was read before standard creation; not a fully blind historical review. Second-test predictions were not read."
+  },
+  "decision_rule": {
+    "solution_correct": "All claimed viable solution methods are technically correct, complete in necessary proof and boundaries, and feasible for frozen constraints; deterministic contradiction fails.",
+    "tags_correct": "Tags semantically cover key knowledge of actual claimed methods, with no clear omissions or extras; alternate viable methods allowed.",
+    "joint_correct": "solution_correct AND tags_correct; difficulty ignored",
+    "needs_verification": "Unresolved cases are not counted as proven correct; final exact 0..4 counts require evidence-based resolution and explicit disclosure if still unresolved.",
+    "hashing": "Digest-only string deduplication without collision resolution has no universal exactness guarantee; record probabilistic correctness separately and seek evidence, do not silently certify."
+  },
+  "verification": {
+    "random_seed": 2026101702,
+    "all_checks_passed": true,
+    "problem_count": 20,
+    "check_groups": 20,
+    "aggregate_case_count": 40082,
+    "case_count_note": "A case may contain multiple operations, queries, subset enumerations, or comparisons; aggregate count is not a model accuracy statistic.",
+    "elapsed_seconds": 1.301043,
+    "scope_limit": "Finite exhaustive/random checks verify these independent references, not model answers; mathematical correctness arguments are in the rubric."
+  },
+  "items": [
+    {
+      "public_id": "B01",
+      "source_url": "https://www.luogu.com.cn/problem/P3368",
+      "group": "regression9",
+      "frozen_input_sha256": "3f7f16ab2b7b09705a7f2251dbed0d13bd40ca9dacb2cdfc3b0e698d632db1f2",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B01 · P3368 区间加、单点查\n\n- 自然主线：维护差分 `d[i]=a[i]-a[i-1]`，区间加 k 等价于 `d[l]+=k,d[r+1]-=k`；Fenwick 做差分单点修改、前缀和查询。每次 O(log N)，空间 O(N)。另一等价写法是原数组保存初值，Fenwick 只维护增量。\n- 可接受：懒标记线段树区间加、单点查；其他有完整正确性和约束可行性说明的方法。不能要求所有方法都用差分。\n- 方法知识：Fenwick 主线需 `ds.fenwick` 和差分语义 `basic.difference`；线段树主线需 `ds.segment-tree.basic`，节点延迟加的含义应清楚。单纯差分数组每次查询 O(N) 不够。\n- 关键：查询必须累计全部历史修改；r=N 时不对越界 N+1 修改有效数组；负增量、单点区间、首尾位置。虽然元素绝对值不超过 2^30，两个差分值之差可到 2^31，不能据此保证有符号 32 位的所有中间数安全；64 位自然。\n- 不应无根据贴：静态前缀和代替动态结构、区间 DP、二分答案。",
+      "checks": [
+        {
+          "check": "Fenwick vs direct mutable array",
+          "cases": 201,
+          "status": "passed",
+          "evidence": {
+            "random_sequences": 200,
+            "operations_per_sequence": 50,
+            "sample": [
+              2,
+              8,
+              1
+            ],
+            "integer_boundary": {
+              "max_difference_between_legal_elements": 2147483648,
+              "signed32_max": 2147483647
+            }
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B02",
+      "source_url": "https://codeforces.com/problemset/problem/363/B",
+      "group": "regression9",
+      "frozen_input_sha256": "8adb95a59f7925e26d4edeae5b2e2fcbf1eb5db1f24500b11f7fc2ad5a291acc",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B02 · CF363B 非环形定长最小和\n\n- 主线：长度恰 k 的滑动窗口，移出旧项、移入新项；或前缀和枚举全部 n−k+1 个起点。O(n)。标签依实现为 `misc.two-pointer`（确实滑动窗口）或 `basic.prefix-sum`；纯滚动求和也可由相符的基础模拟语义覆盖，不能强制贴二者。\n- 证明：每个合法窗口恰好检查一次，记录最小值及起点；并列任意，不能要求最左。\n- 边界：k=1、k=n、相同高度；最大窗口和 15,000,000，32 位安全。\n- 不应贴：环形倍扩、DP、单调队列（只有求窗口和时不需要）、未使用的二分。",
+      "checks": [
+        {
+          "check": "Exhaustive fixed-window start validation",
+          "cases": 21325,
+          "status": "passed",
+          "evidence": {
+            "alphabet": [
+              1,
+              2,
+              3
+            ],
+            "lengths": [
+              1,
+              7
+            ],
+            "all_k": true,
+            "sample_start": 3
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B03",
+      "source_url": "https://www.luogu.com.cn/problem/P3390",
+      "group": "new11",
+      "frozen_input_sha256": "6906b233b93017c95ba6b557e05c42a700f9caa189a6ca99ca9404fefdbd3e59",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B03 · P3390 矩阵幂\n\n- 主线：普通矩阵乘法配二进制快速幂，初始结果单位阵，指数逐位处理。O(n^3 log k)，O(n^2)。关键标签 `math.linear-algebra.matrix`、`math.binary-exponentiation`；不能只贴泛化乘法或普通矩阵名称而漏掉指数算法。\n- 证明：`result * base^remaining = A^k` 不变量；矩阵乘法结合性足够，不假设不同矩阵可交换。每次乘法需独立缓冲，或明确避免原地覆盖。\n- 边界：k=0 输出 I、n=1、负元素先归一化为非负余数；64 位可承受一次约 10^18 的乘积，但 100 个乘积不取模地累加不安全。O(k n^3) 不可行。1000ms 对语言/常数敏感，抽象 O(n^3 log k) 可接受，有代码再核查常数，不能无证据断言一定超时。\n- 不应贴：高斯消元、行列式、DP，除非另有实质方法。",
+      "checks": [
+        {
+          "check": "Matrix binary power vs repeated product",
+          "cases": 204,
+          "status": "passed",
+          "evidence": {
+            "random": 200,
+            "sample2": [
+              [
+                121824,
+                149688,
+                177552
+              ],
+              [
+                275886,
+                338985,
+                402084
+              ],
+              [
+                429948,
+                528282,
+                626616
+              ]
+            ],
+            "zero_power": [
+              [
+                1
+              ]
+            ],
+            "negative_singleton": [
+              [
+                1000000006
+              ]
+            ],
+            "hundred_max_products_exceed_int64": true
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B04",
+      "source_url": "https://www.luogu.com.cn/problem/P1141",
+      "group": "new11",
+      "frozen_input_sha256": "e0c00dd148ce6505c3c5a5fef3555df2c570e8a54f18d1c90314bf25a434b0cd",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B04 · P1141 01 迷宫多询问\n\n- 主线：把异值四邻格视作无向边，预处理每个连通块的编号和大小，查询 O(1)。迭代 BFS/DFS 总 O(n^2+m)；并查集合并所有异值相邻格亦可。懒处理第一次到访块后缓存全块答案也可。\n- 方法知识：BFS/DFS 的相符搜索标签和连通块语义；并查集路线 `ds.union-find`。`graph.connectivity` 可覆盖核心图语义；搜索标签与图搜索标签可择准确者，不要求重复。\n- 证明：异值条件对称，因此同一块中任意起点可达集合完全相同；块大小是不同格子数，不是路径数。\n- 边界：全同值各为1、棋盘格全连通、重复问同块、n=1。逐询问重跑 O(m n^2) 不可行；n=1000 的递归深度若代码会栈溢出须核查，抽象 DFS 不自动判错。\n- 不应贴：最短路长度、DP 数路径、二分图匹配。",
+      "checks": [
+        {
+          "check": "Exhaustive grids, cached size vs fresh BFS per start",
+          "cases": 4675,
+          "status": "passed",
+          "evidence": {
+            "grid_side_max": 3,
+            "sample_all_queries": [
+              [
+                4,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "all_same_size": 1
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B05",
+      "source_url": "https://www.luogu.com.cn/problem/P1352",
+      "group": "new11",
+      "frozen_input_sha256": "0142e6c366f9c9fe0ad1ccd92eba0e7d46ffc1dd3a7fcb52658204c8f8ddd6e5",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B05 · P1352 没有上司的舞会\n\n- 主线树上最大权独立集：`f[u][1]=r[u]+sum f[v][0]`，`f[u][0]=sum max(f[v][0],f[v][1])`，答案根两状态最大。O(n)，关键 `dp.tree`；树遍历是执行依赖，非强制重复贴 DFS。\n- 证明：固定 u 是否选后，各子树约束独立；只禁直接上下级同时选。空集合法，负权可不选；不允许把所有后代都禁选。\n- 边界：根不一定1、单点负权答案0、链/星形、全负权；总绝对值至多 768000，32位安全。\n- 可接受：等价记忆化树 DP；其他精确方法需证明规模可行。不接受贪心挑正值/只比较两层总和。无容量维度不需要背包标签。",
+      "checks": [
+        {
+          "check": "Tree DP vs independent-set exhaustive subsets",
+          "cases": 302,
+          "status": "passed",
+          "evidence": {
+            "random_trees": 300,
+            "vertices_max": 10,
+            "sample": 5,
+            "negative_singleton": 0
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B06",
+      "source_url": "https://codeforces.com/problemset/problem/706/B",
+      "group": "regression9",
+      "frozen_input_sha256": "3e4bd89d796d5b7c27b28f891ef1c421b677e609a74687fcd22b55769b23721b",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B06 · CF706B 预算计数\n\n- 主线：排序后对每次预算求 `upper_bound`（第一个 >预算的位置），O(n log n+q log n)，标签 `basic.sort`、`basic.binary`。\n- 同等自然替代：价格仅 10^5，频次数组加前缀和 O(n+10^5+q)，预算截断；或排序商店与带原索引查询，双指针离线 O(n log n+q log q)。标签按实际方法，而非强制二分。\n- 关键：含等号、重复商店分别计数；预算小于最小价格为0，超出最大价格为n；查询互不影响，不花掉预算、不求购买商品总件数。\n- 不应贴：背包、在线树状数组（没有动态更新时不自然强制）、二分答案优化。",
+      "checks": [
+        {
+          "check": "Inclusive budget count vs linear count",
+          "cases": 501,
+          "status": "passed",
+          "evidence": {
+            "sample": [
+              0,
+              4,
+              1,
+              5
+            ],
+            "random_cases": 500,
+            "includes_duplicates_and_large_budgets": true
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B07",
+      "source_url": "https://www.luogu.com.cn/problem/P3808",
+      "group": "regression9",
+      "frozen_input_sha256": "d52e40d4e4591baa63c5667e23a2adad199c2bd7889ba76badd87f9f8cb97286",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B07 · P3808 模式编号至少出现一次\n\n- 主线：AC 自动机构建 Trie 和 fail，终点保存编号数（重复字符串累加），文本扫描后对访问状态做 fail 树逆 BFS 传播出现标记/次数，最后累加被触达终点的编号数。O(Σ长度+|t|)（固定26字符因子），内存需与 10^6 节点相容。核心 `string.ac-automaton`，Trie 可作为明确组成但不强制重复标签。\n- 可接受：扫描中沿 fail 链一次性消费终点计数且维护“已处理”节点，或 output links/并查集跳过，前提说明停跳规则和摊还复杂度；不能仅每次扫全 fail 链声称线性。后缀自动机等替代法需独立完整解释与复杂度证据。\n- 证明：当前状态的全部 fail 祖先恰对应此位置结尾的模式后缀；每个编号只计一次，相同终点权重保留多个编号。若已处理节点作为停止条件，应保证其全部 fail 祖先也已被处理，不能仅因该节点自身是非终点或计数0就停止。\n- 边界：重复 `a,a` 配 `a` 为2，`a,aa,aaa` 配 `aaaa` 为3，`he,she` 配 `she` 为2，模式不存在为0。不能混淆出现次数、不同字符串数和编号数；构造长串重复前缀检查总复杂度。\n- 不应贴：KMP 对每个模式各扫 10^6 文本、纯字典树代替失败转移；除非另有充分约束/复杂度证明。",
+      "checks": [
+        {
+          "check": "AC propagated terminal weights vs direct substring test",
+          "cases": 1005,
+          "status": "passed",
+          "evidence": {
+            "random": 1000,
+            "fixed": [
+              {
+                "patterns": [
+                  "a",
+                  "a",
+                  "b",
+                  "ab"
+                ],
+                "text": "abab",
+                "answer": 4
+              },
+              {
+                "patterns": [
+                  "a",
+                  "a"
+                ],
+                "text": "a",
+                "answer": 2
+              },
+              {
+                "patterns": [
+                  "a",
+                  "aa",
+                  "aaa"
+                ],
+                "text": "aaaa",
+                "answer": 3
+              },
+              {
+                "patterns": [
+                  "he",
+                  "she"
+                ],
+                "text": "she",
+                "answer": 2
+              },
+              {
+                "patterns": [
+                  "a",
+                  "b"
+                ],
+                "text": "c",
+                "answer": 0
+              }
+            ],
+            "stress_complexity": "The checker tests correctness on short inputs; O(total pattern length + text length) follows from failure construction and one reverse propagation, not measured full-scale."
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B08",
+      "source_url": "https://www.luogu.com.cn/problem/P3386",
+      "group": "new11",
+      "frozen_input_sha256": "7dce77429c947cae9200032773cde6124d5a0253e412d09203563f3c76f86318",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B08 · P3386 二分图最大匹配\n\n- 主线：Kuhn/匈牙利增广路，逐左点尝试，右点访问在每轮重置或用时间戳；沿旧匹配递归重匹配，成功时更新。O(n e)，n<=500、e<=50000，可行。核心 `graph.graph-matching.bigraph-match`（或准确覆盖的匹配上位标签）。\n- 可接受：Hopcroft–Karp O(e√V)、单位容量网络最大流；网络流方法应贴 `graph.flow.max-flow` 并写明源→左→右→汇容量1及流/匹配对应。不强制所有解都有流标签。\n- 证明：没有增广路当且仅当最大匹配；逐次成功增加1。贪心任取不够；如 L1→R1,R2、L2→R1，需能把L1挪到R2。\n- 边界：重边不增加匹配容量，孤点、n≠m、左右编号分别存在不能混成同一顶点，答案≤min(n,m)。无权问题不需要最大权匹配/费用流。",
+      "checks": [
+        {
+          "check": "All simple bipartite graphs up to 3x3 vs exhaustive matching",
+          "cases": 684,
+          "status": "passed",
+          "evidence": {
+            "sample1": 1,
+            "sample2_with_duplicate_edge": 2,
+            "augmenting_reroute_case": {
+              "edges": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              "answer": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B09",
+      "source_url": "https://www.luogu.com.cn/problem/P1880",
+      "group": "new11",
+      "frozen_input_sha256": "9a237ec4cbdb5854fb9d9cae5f5cda5bcd26deb8e26158e530fed796ecfd709c",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B09 · P1880 环形石子合并最小与最大\n\n- 主线：倍长数组，对长度≤N的区间，`mn[l][r]=min_k(mn[l][k]+mn[k+1][r]+sum(l,r))`，mx 同取 max，单点0；在 N 个长度N区间取全局最小/最大。O(N^3)，O(N^2)。核心 `dp.interval`，使用区间和时 `basic.prefix-sum` 语义应能覆盖。\n- 证明：最后一次合并把当前区间分成连续两半；任一圆环完整合并树可在最后两堆间选切口变成线性方案，枚举所有切口不漏。只固定第1个切口不够。最终两堆虽首尾相邻，计分仍只合并一次。\n- 边界：N=1两行0、N=2两者均a1+a2、零石子；max 初始化不可用错误的正无穷。总分≤(N−1)·sum a≤198000，32位安全。\n- 不应贴：Huffman 贪心不满足相邻限制，线性版 DP 不能遗漏环；仅对最小值优化的方法不能未经证明用于最大值。",
+      "checks": [
+        {
+          "check": "Ring interval DP vs enumeration of all adjacent merges",
+          "cases": 303,
+          "status": "passed",
+          "evidence": {
+            "random": 300,
+            "max_N": 6,
+            "sample": [
+              43,
+              54
+            ],
+            "singleton": [
+              0,
+              0
+            ],
+            "two_piles": [
+              20,
+              20
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B10",
+      "source_url": "https://codeforces.com/problemset/problem/520/B",
+      "group": "regression9",
+      "frozen_input_sha256": "a0cfac0d8a162c0d2623bc2e5595766aa3b224ffadc1a7410b6adff130824647",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B10 · CF520B Two Buttons\n\n- 自然主线一：若 n>=m，只减1，答案n−m。否则 BFS 在正整数状态上作 ×2/−1，安全状态界可取 2m（或通用 2max(n,m)），所有边权1，首达最短。关键 `search.bfs`/准确图BFS语义。\n- 主线二：从m逆推，m>n时，奇数先+1，偶数/2；m<=n后补n−m次+1。核心 `basic.greedy`，可有反向思考但不用硬贴 BFS。\n- 证明：正向 n>=m 时任何×2只增加需要减少的量，不优于直接减；逆向奇数不能除2，必须+1；偶数若先加到下一偶数再除，会比立即除再作相应增加更贵，可交换消去。需解释为何局部选择最优，不能只宣称“更接近目标”。BFS界理由：n<m时超出2m的路径无益，跨过m的最优峰值至多2m，之后减到m；n>m必须单独处理或界含起点。\n- 边界：10→1=9、1→2=1、1→3=3、4→6=2、9→10=5；只准正整数，不能靠0或负数过渡。中间值可超10^4。\n- 不应贴：普通 DFS 枚举并自称最短、DP 未说明有向状态依赖、只用[1,2m]却无n>m分支。",
+      "checks": [
+        {
+          "check": "Reverse greedy vs positive-state BFS for all n,m<=60",
+          "cases": 3607,
+          "status": "passed",
+          "evidence": {
+            "all_small_pairs_including_equal_robustness": 3600,
+            "fixed": [
+              {
+                "n": 10,
+                "m": 1,
+                "answer": 9
+              },
+              {
+                "n": 1,
+                "m": 2,
+                "answer": 1
+              },
+              {
+                "n": 1,
+                "m": 3,
+                "answer": 3
+              },
+              {
+                "n": 4,
+                "m": 6,
+                "answer": 2
+              },
+              {
+                "n": 9,
+                "m": 10,
+                "answer": 5
+              },
+              {
+                "n": 10000,
+                "m": 1,
+                "answer": 9999
+              },
+              {
+                "n": 1,
+                "m": 10000,
+                "answer": 20
+              }
+            ],
+            "warning": "Equal-input checks are robustness only; manifest requires n != m."
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B11",
+      "source_url": "https://www.luogu.com.cn/problem/P1044",
+      "group": "new11",
+      "frozen_input_sha256": "591fd18d3f0285aa1108111adc8d356459dbff70c8951b2b8950b0d0d947bd05",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B11 · P1044 栈输出序列计数\n\n- 主线：合法压/弹操作串对应 Dyck 路径，前缀弹出数≤压入数。每个输出排列唯一确定操作串：下一输出为x时先压至x再弹（已压入的x必须处在栈顶），故不会重复计数。答案 C_n。\n- 可接受精确方案：计数DP `F(p,s)` 表示尚有p个待压和栈中s个，`F(p,s)=[p>0]F(p−1,s+1)+[s>0]F(p,s−1)`，`F(0,0)=1`，O(n²)；或合法前缀(i压,j弹)DP；或 Catalan 递推 `C0=1,Cn=sum C_i C_(n−1−i)`，此处应按第一枚压入元素1的匹配弹出位置/第一个完整括号块分解，不能不证独立性就按“第一个弹出的值k”分解为 `C_(k−1) C_(n−k)`；或反射原理闭式 `binom(2n,n)/(n+1)`。\n- 方法标签：栈语义 `ds.stack` 可接受但仅叙述题意不必强贴；DP方法需 `dp.count`/恰当DP语义，Catalan方法需 `math.combinatorics.catalan`；仅DP计数不要求识别卡特兰。枚举全部4^n/卡特兰量级在n=18不自然可行，需证据。\n- 关键：n=1→1，n=2→2，n=3→5，n=18→477638700。n=3按首输出1/2/3分类为2/2/1，是检验错误分解的直接证据。总答案32位有符号可放，但阶乘36!及中间组合数不可据此用32/64位直接算；逐项精确约分/大整数均可，不能用模逆元求无模精确答案。",
+      "checks": [
+        {
+          "check": "Counting DP vs unique output permutations and Catalan closed form",
+          "cases": 10,
+          "status": "passed",
+          "evidence": {
+            "enumeration_n": [
+              1,
+              8
+            ],
+            "n3_first_output_counts": {
+              "1": 2,
+              "2": 2,
+              "3": 1
+            },
+            "n18": 477638700,
+            "binomial_36_18": 9075135300,
+            "binomial_exceeds_signed32": true,
+            "factorial36_exceeds_signed64": true
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B12",
+      "source_url": "https://codeforces.com/problemset/problem/474/B",
+      "group": "regression9",
+      "frozen_input_sha256": "0f2b15c5e440122ccd9303fc8533568c6653511c42c915db81fa9efedd1000ce",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B12 · CF474B Worms\n\n- 主线：正组大小累成严格递增前缀和 S，对编号q求第一个S_i≥q；O(n+m log n)。标签 `basic.prefix-sum`、`basic.binary`。\n- 可接受：总对象≤10^6，直接铺每个对象的组号 O(sum a+m)；或排序带原索引查询后双指针 O(n+m log m)，保持原输出顺序。对应方法可不贴二分。\n- 关键：组内范围 `(S_(i−1),S_i]`，q等于组末仍属该组，q=S_(i−1)+1属新组；q=1、q=总数、同一查询重复。32位总和安全。\n- 不应贴：把所有a排序、upper_bound(S,q)而非等价下界、背包、并查集。",
+      "checks": [
+        {
+          "check": "Prefix lower_bound vs explicit complete object map",
+          "cases": 301,
+          "status": "passed",
+          "evidence": {
+            "random_group_arrays": 300,
+            "all_object_numbers_checked": true,
+            "sample": [
+              1,
+              5,
+              3
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B13",
+      "source_url": "https://www.luogu.com.cn/problem/P3370",
+      "group": "new11",
+      "frozen_input_sha256": "e06db4f73c971b4c0292e8bd049fc850ed1e55dd77609436251e636d8e5d21fc",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B13 · P3370 区分大小写的字符串去重\n\n- 自然且确定性路线：保存原字符串，用字符串排序后相邻去重，O(总读取量+N log N次字典序比较)，最坏比较字符数 O(N Lmax log N)；精确字符串集合也可（哈希表碰撞时比较原文，平均线性字节量）。关键语义为字符串判等，依方法贴 `basic.sort`、`string.basic`、`ds.hash`；不因实现中有字符串就强制贴“字符串哈希”。\n- 可接受：Trie精确去重，需论证总字符≤15,000,000及62字符字母表下内存；稠密62儿子整表可能超过128MiB，不能只说O(总长)就忽略常数。真正滚动哈希方法贴 `string.hash`，应保留原文冲突比较以作精确正确保证。\n- 概率边界：单/双固定模或64位摘要相等直接当原串相等，存在碰撞；如未消除碰撞，标 `needs_verification` 并明确概率/确定性缺口，不能写“绝不会碰撞”。允许报告概率正确但不能在本次严格精确联合正确口径中无证据算 true。双哈希没有自动获得数学无碰撞保证。并非因为题目被称“哈希模板”就必须使用哈希。\n- 边界：相同多次只计1，`a`、`A`、`a0`、`a00`各不同，前缀串、长度1500，混合数字字母。N的正文未给下界，不人为要求空字符串或N=0必测，若方法自然覆盖可记录。",
+      "checks": [
+        {
+          "check": "Exact sorted-string equality vs collision-resolving built-in string set",
+          "cases": 303,
+          "status": "passed",
+          "evidence": {
+            "random": 300,
+            "sample": 4,
+            "case_sensitive_prefix_case": 4,
+            "length1500_case": 2,
+            "digest_only_methods": "not certified by this test; a fixed-width digest has fewer states than the allowed string domain, hence cannot establish universal exact equality without collision handling"
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B14",
+      "source_url": "https://codeforces.com/problemset/problem/279/B",
+      "group": "regression9",
+      "frozen_input_sha256": "4fdd393006011e5be758f43f5c04ab28c6ab017eaac9472695b89b48f2b1694c",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B14 · CF279B Books\n\n- 主线：双指针维护连续窗口总耗时，扩右端后while总和>t缩左端，记录最长。正耗时保证左端单调，O(n)，关键 `misc.two-pointer`。\n- 可接受：前缀和+二分最远合法右端 O(n log n)；二分答案长度+枚举定长窗口 O(n log n)，或其他已证可行方案。按实际贴 `basic.prefix-sum`、`basic.binary`等。\n- 边界：全项>t答案0、所有可读答案n、总和恰t可取、某一项>t时窗口可为空；不能只缩一次或允许跳着读。总和至多10^9，32位有符号安全，64位亦可。\n- 不应贴：0/1背包、贪心按耗时排序、负数滑窗的无根据推广。",
+      "checks": [
+        {
+          "check": "Positive sliding window vs exhaustive contiguous intervals",
+          "cases": 503,
+          "status": "passed",
+          "evidence": {
+            "random": 500,
+            "samples": [
+              3,
+              1
+            ],
+            "none_fits": 0
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B15",
+      "source_url": "https://www.luogu.com.cn/problem/P1803",
+      "group": "new11",
+      "frozen_input_sha256": "01d80c4a9a8cb9c59e6f04bcd39f4be0507ec3b2985e2cb2954f81ca67709e1d",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B15 · P1803 比赛安排\n\n- 主线：按结束时间递增排序，若开始≥上个已选结束则选。O(n log n)；`basic.greedy`、`basic.sort`。结束时刻界10^6也可桶化，或按时间做可行的计数/DP，不强制排序贪心。\n- 证明：最早结束的比赛可替换任一最优方案第一场而不减少后续可行空间，归纳。并列结束顺序任意；比赛都是正时长。\n- 边界：0起点、相接允许、完全重叠、嵌套、同一场重复输入分别可用但不能同时选、n=1。初始结束≤0或特殊标记；使用 `>` 会漏掉相接。\n- 不应贴：按开始最早/时长最短的无证明贪心、区间DP（若未实际使用）、二分答案。",
+      "checks": [
+        {
+          "check": "Earliest finish greedy vs all subsets",
+          "cases": 301,
+          "status": "passed",
+          "evidence": {
+            "random": 300,
+            "max_intervals": 10,
+            "sample_with_touching_endpoints": 2
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B16",
+      "source_url": "https://www.luogu.com.cn/problem/P1440",
+      "group": "new11",
+      "frozen_input_sha256": "fd562294ad5f51945f12a99ba80e0d8653e63333203c1c80eb5678361e60d114",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B16 · P1440 之前至多m项最小值\n\n- 主线：下标单调队列，对i先移除 `<i−m` 的下标，再输出队首（空为0），之后按值弹队尾并加入i；或等价先加入i−1。O(n)，O(m)或O(n)数组。关键 `ds.monotonic-queue`。\n- 证明：较早且值≥较新候选的元素可永久淘汰，因新候选更小且过期更晚；每个下标最多入/出各一次。相等时保留任一个方向都可以，只要过期逻辑一致。\n- 可接受：ST/RMQ静态查询 O(n log n)预处理/O(1)查询，或线段树/平衡结构 O(n log n)，但 n=2×10^6、1500ms需核查实际代码时间与空间；不能仅凭理论复杂度保证1.5s。抽象O(n)主线无此争点。\n- 边界：输出排除a_i，i=1恒0，m=1输出前一项，m=n为历史前缀最小、重复值/严格升降。常见错为包含当前、窗口少/多一个、用值判断过期。\n- 不应贴：DP单调队列优化（本题没有DP）、滑动窗口求和、单调栈代替队首过期。",
+      "checks": [
+        {
+          "check": "Deque history minima vs exact preceding slices",
+          "cases": 1002,
+          "status": "passed",
+          "evidence": {
+            "random": 1000,
+            "sample": [
+              0,
+              7,
+              7,
+              1,
+              1,
+              3
+            ],
+            "m1": [
+              0,
+              3,
+              2
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B17",
+      "source_url": "https://codeforces.com/problemset/problem/25/D",
+      "group": "regression9",
+      "frozen_input_sha256": "209a4c3ccb8d6ecf456dbb038f13988c87093b7289c1b8cf0005d850ec1da66c",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B17 · CF25D 最少换边使连通\n\n- 主线：并查集扫描n−1条边；若两端已同根，把这条边列入冗余边，其余作为生成森林。设初始连通块数c，森林n−c条边，因此冗余恰(c−1)条。收集每块代表，逐条删除这些冗余边并从固定代表连向其余代表；最少c−1次。O(n α(n))，空间O(n)。关键 `ds.union-find`、`basic.construction` 与连通性语义；允许用恰当图标签覆盖，不硬性要求所有辅助知识重复贴。\n- 可接受：DFS/BFS生成森林、记录非树边、连块的同等构造；需给具体输出合法性、原图非树边身份和更新后连接关系。若动态选边，应证明每步删除非桥且新边确实跨当前块。\n- 证明：一次新边至多使块数减1，删除非森林边不破坏各原块的森林连接，再跨块加边使块数恰减1，达到下界。n−1条边不意味着无环；可能某块有环而别块孤立。\n- 边界：已是树输出0；三角形+孤点n=4必须删环边再连孤点；多环分量加多个孤点；每步删除的边确实存在且尚未删、新边无自环无重边、总边数保持n−1，最终连通。删桥后只补一条跨原块的边不保证净减分量。\n- 不应贴：最小生成树权值优化、最短路、把输入错误认成森林。构造必须逐步模拟核验，不能只验c−1输出行数。",
+      "checks": [
+        {
+          "check": "All n-1-edge simple graphs n<=6, construction step simulation",
+          "cases": 3539,
+          "status": "passed",
+          "evidence": {
+            "exhaustive_graphs": 3237,
+            "random_graphs": 300,
+            "triangle_plus_isolate_0_based_operations": [
+              [
+                2,
+                0,
+                0,
+                3
+              ]
+            ],
+            "sample2_0_based_operations": [
+              [
+                2,
+                0,
+                0,
+                3
+              ]
+            ],
+            "validated_invariants": [
+              "minimum c-1 operations",
+              "deleted edge currently exists",
+              "new edge has distinct endpoints and is not a duplicate",
+              "edge count n-1 after every operation",
+              "final graph connected"
+            ],
+            "proof_limit": "Finite graph checks support the construction; the c-1 lower bound and spanning-forest argument are the general proof."
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B18",
+      "source_url": "https://www.luogu.com.cn/problem/P3372",
+      "group": "new11",
+      "frozen_input_sha256": "4f9f88e4514c3b449a547285455877f8ee3a3059245115d3bdbf7da01b1c719e",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B18 · P3372 区间加、区间和\n\n- 主线：线段树节点存区间和、懒增量；整段加k更新 `sum+=k*len,lazy+=k`，部分操作前正确下传，合并子和。O((n+m)log n)，关键 `ds.segment-tree.basic`。初始化、段长、闭区间、下传时清父标记需明确。\n- 可接受：双Fenwick差分，维护d和(i−1)d，`prefix(x)=x*Σd[i]−Σ(i−1)d[i]`；区间和差两个prefix。标签 `ds.fenwick`、`basic.difference`、`basic.prefix-sum` 等按语义覆盖。\n- 数值：每次真实区间和≤2×10^18，signed64可装；双BIT的加权差分项可能远大于真实总和，不能据总和界推断所有内部量都安全。例n=100000，只有末项加接近2×10^18的k，(n−1)k约2×10^23；这时双BIT需更宽整数/等价安全分解。线段树只对真实覆盖段算k*len，当前正值/总和约束保障其实际增量范围。若语言任意精度无需此担忧。\n- 边界：单点、整段、相交嵌套、多次懒叠加、修改后局部查；不能只有单BIT差分却把点值当区间和。无需贴可持久化或高精度标签给正常64位线段树。",
+      "checks": [
+        {
+          "check": "Lazy range-add/range-sum tree vs direct updates",
+          "cases": 302,
+          "status": "passed",
+          "evidence": {
+            "random_sequences": 300,
+            "operations_each": 80,
+            "sample": [
+              11,
+              8,
+              20
+            ],
+            "double_Fenwick_signed64_counterexample": {
+              "n": 100000,
+              "initial": "all ones",
+              "operation": [
+                1,
+                100000,
+                100000,
+                1999999999999900000
+              ],
+              "final_total": 2000000000000000000,
+              "weighted_difference_update_(n-1)*k": 199997999999990000100000,
+              "exceeds_int64": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B19",
+      "source_url": "https://www.luogu.com.cn/problem/P1226",
+      "group": "new11",
+      "frozen_input_sha256": "fa71e31ff2da645fadc08f3ccc372da2849403671cbecc15dc2e5e53395d8e49",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B19 · P1226 模幂\n\n- 主线：二进制快速幂，res=1%p、base=a%p，每步模乘、指数右移；O(log b)，O(1)。核心 `math.binary-exponentiation`；位运算只是实现不必重复贴。\n- 证明：res·base^remaining同余于原幂；b=0时输出1，a=0且b>0时输出0。p非素数也可，不能无条件用费马降幂；指数0时不能返回0。\n- 数值与格式：p<2^31，两个余数之积<2^62，signed64足够，32位乘法后再赋64位仍会溢出；输出使用原a,b,p而非循环修改后的b，精确格式 `a^b mod p=s`。\n- 不应贴：矩阵、欧拉定理/逆元、普通浮点pow（精度或溢出无保证）。",
+      "checks": [
+        {
+          "check": "Binary modular power vs exact modular pow",
+          "cases": 1005,
+          "status": "passed",
+          "evidence": {
+            "random": 1000,
+            "sample_format": "2^10 mod 9=7",
+            "zero_base": 0,
+            "zero_exponent": 1,
+            "max_possible_product_less_than_2pow62": true
+          }
+        }
+      ]
+    },
+    {
+      "public_id": "B20",
+      "source_url": "https://www.luogu.com.cn/problem/P3383",
+      "group": "regression9",
+      "frozen_input_sha256": "ba36f135499c4be1675c5c23890e57c03202f0615ab51e8a5675512ddb6d2fad",
+      "reference_status": "checked_reference_not_prediction_judgment",
+      "rubric_markdown": "## B20 · P3383 第k小素数\n\n- 主线：Euler线性筛，每个合数由最小质因子唯一生成；或Eratosthenes（可从p²标记）O(n log log n)。收集升序素数数组，查询primes[k−1] O(1)。核心 `math.number-theory.sieve`，素数上位语义可补但不能只描述语法循环。\n- 证明/可行性：标记1非素；线性筛在p|i时停止；乘积用64位或先比p>n/i防溢出。n=10^8不接受逐数sqrt试除或逐询问重新找素数。8位标记约100MB、int素数表约23MB，需说明空间实现；int标记约400MB，若无明确内存限制不可凭空一票否决，但需标性能待验证。题面没有给运行限制，不可添加臆造的1s/128MiB硬约束。\n- 边界：第1=2、第2=3、第5=11，最后查询可到n内最后素数；2不能被排除，1不能入表。本轮独立 bytearray Eratosthenes 实际筛至n=10^8，得到π(n)=5761455、最后素数99999989；配套JSON记录计时与实现。这是参考检查，不代表模型代码运行或OJ通过。\n- 不应贴：素数计数高级算法（输出第k素数不等同只求π(n)）、单纯二分、每次Miller–Rabin代替全量可行性论证。",
+      "checks": [
+        {
+          "check": "Exact sieve vs trial division, plus full n=100000000",
+          "cases": 9,
+          "status": "passed",
+          "evidence": {
+            "small_bounds": [
+              2,
+              3,
+              10,
+              100,
+              997,
+              1000,
+              10000
+            ],
+            "full_bound": 100000000,
+            "prime_count": 5761455,
+            "last_prime": 99999989,
+            "sample": [
+              2,
+              3,
+              11
+            ],
+            "full_sieve_elapsed_seconds": 0.715203,
+            "marker_bytes": 100000001,
+            "limits": "This timings measures a Python bytearray Eratosthenes reference on this machine, not a submitted model program or OJ benchmark; no query array of all primes was allocated."
+          }
+        }
+      ]
+    }
+  ],
+  "reproduction": {
+    "command": "Read reproduction.python_source from this JSON and execute it with CHECKER_SOURCE bound to that source string, using Python 3 standard library from repository root; it rewrites only this reference-checks.json.",
+    "python_source": "import json, hashlib, random, math, time, itertools, bisect, re\nfrom pathlib import Path\nfrom functools import lru_cache\nfrom collections import deque, Counter\nSTART = time.perf_counter()\nSEED = 2026101702\nrng = random.Random(SEED)\nchecks = {f'B{i:02}': [] for i in range(1,21)}\ndef record(pid, name, count, details):\n    checks[pid].append({'check':name, 'cases':count, 'status':'passed', 'evidence':details})\ndef eq(x,y):\n    assert x==y, (x,y)\n\n# B01: two endpoint difference updates in a Fenwick, vs direct range updates.\ndef range_point(a,ops):\n    n=len(a); bit=[0]*(n+1)\n    def add(i,v):\n        while i<=n: bit[i]+=v; i+=i&-i\n    def query(i):\n        s=0\n        while i: s+=bit[i]; i-=i&-i\n        return s\n    for i,x in enumerate(a,1): add(i,x-(a[i-2] if i>1 else 0))\n    ans=[]\n    for op in ops:\n        if op[0]==1:\n            _,l,r,k=op; add(l,k); add(r+1,-k)\n        else: ans.append(query(op[1]))\n    return ans\nfor z in range(200):\n    n=rng.randint(1,20); a=[rng.randint(-100,100) for _ in range(n)]; b=a[:]; ops=[]; expected=[]\n    for t in range(50):\n        if rng.randrange(2):\n            l=rng.randint(1,n); r=rng.randint(l,n); k=rng.randint(-100,100); ops.append((1,l,r,k))\n            for i in range(l-1,r): b[i]+=k\n        else:\n            p=rng.randint(1,n); ops.append((2,p)); expected.append(b[p-1])\n    eq(range_point(a,ops),expected)\neq(range_point([1,2,3,4],[(2,2),(1,2,4,5),(2,3),(2,1)]),[2,8,1])\nrecord('B01','Fenwick vs direct mutable array',201,{'random_sequences':200,'operations_per_sequence':50,'sample':[2,8,1], 'integer_boundary':{'max_difference_between_legal_elements':2**31,'signed32_max':2**31-1}})\n\n# B02: fixed window rolling sums vs exhaustive starts.\ndef fence(a,k):\n    s=sum(a[:k]); best=s; j=0\n    for i in range(k,len(a)):\n        s+=a[i]-a[i-k]\n        if s<best: best=s; j=i-k+1\n    return j+1\ncount=0\nfor n in range(1,8):\n    for a in itertools.product([1,2,3],repeat=n):\n        for k in range(1,n+1):\n            j=fence(a,k); eq(sum(a[j-1:j-1+k]),min(sum(a[i:i+k]) for i in range(n-k+1))); count+=1\neq(fence([1,2,6,1,1,7,1],3),3)\nrecord('B02','Exhaustive fixed-window start validation',count+1,{'alphabet':[1,2,3],'lengths':[1,7],'all_k':True,'sample_start':3})\n\n# B03: modular matrix exponentiation vs repeated multiplication.\nMOD=10**9+7\ndef mul(a,b):\n    n=len(a); c=[[0]*n for _ in range(n)]\n    for i in range(n):\n        for k in range(n):\n            for j in range(n): c[i][j]=(c[i][j]+a[i][k]*b[k][j])%MOD\n    return c\ndef mpow(a,k):\n    n=len(a); ans=[[int(i==j) for j in range(n)] for i in range(n)]; a=[[v%MOD for v in row] for row in a]\n    while k:\n        if k&1: ans=mul(ans,a)\n        a=mul(a,a); k//=2\n    return ans\nfor z in range(200):\n    n=rng.randint(1,3); k=rng.randrange(9); a=[[rng.randint(-1000,1000) for j in range(n)] for i in range(n)]; b=[[int(i==j) for j in range(n)] for i in range(n)]\n    for _ in range(k): b=mul(b,a)\n    eq(mpow(a,k),b)\neq(mpow([[1,1],[1,1]],1),[[1,1],[1,1]])\neq(mpow([[1,2,3],[4,5,6],[7,8,9]],5),[[121824,149688,177552],[275886,338985,402084],[429948,528282,626616]])\neq(mpow([[-1]],0),[[1]]); eq(mpow([[-1]],1),[[MOD-1]])\nrecord('B03','Matrix binary power vs repeated product',204,{'random':200,'sample2':[[121824,149688,177552],[275886,338985,402084],[429948,528282,626616]],'zero_power':[[1]],'negative_singleton':[[MOD-1]],'hundred_max_products_exceed_int64':100*(MOD-1)**2>2**63-1})\n\n# B04: connected-component cache vs fresh reachability from every cell.\ndef components(grid):\n    n=len(grid); lab=[[-1]*n for _ in range(n)]; sizes=[]\n    for r in range(n):\n        for c in range(n):\n            if lab[r][c]>=0: continue\n            k=len(sizes); lab[r][c]=k; q=[(r,c)]\n            for x,y in q:\n                for u,v in ((x-1,y),(x+1,y),(x,y-1),(x,y+1)):\n                    if 0<=u<n and 0<=v<n and lab[u][v]<0 and grid[u][v]!=grid[x][y]: lab[u][v]=k; q.append((u,v))\n            sizes.append(len(q))\n    return [[sizes[lab[r][c]] for c in range(n)] for r in range(n)]\ndef reach(grid,r,c):\n    n=len(grid); seen={(r,c)}; q=[(r,c)]\n    for x,y in q:\n        for u,v in ((x-1,y),(x+1,y),(x,y-1),(x,y+1)):\n            if 0<=u<n and 0<=v<n and (u,v) not in seen and grid[u][v]!=grid[x][y]: seen.add((u,v)); q.append((u,v))\n    return len(seen)\ncount=0\nfor n in range(1,4):\n    for bits in itertools.product('01',repeat=n*n):\n        g=[bits[i*n:(i+1)*n] for i in range(n)]; a=components(g)\n        for i in range(n):\n            for j in range(n): eq(a[i][j],reach(g,i,j)); count+=1\neq(components(['01','10']),[[4,4],[4,4]])\nrecord('B04','Exhaustive grids, cached size vs fresh BFS per start',count+1,{'grid_side_max':3,'sample_all_queries':[[4,4],[4,4]],'all_same_size':1})\n\n# B05: tree independent-set DP vs all vertex subsets.\ndef party(w,parent):\n    n=len(w); children=[[] for _ in w]; root=0\n    for i,p in enumerate(parent):\n        if p<0: root=i\n        else: children[p].append(i)\n    def dfs(u):\n        no=0; yes=w[u]\n        for v in children[u]:\n            a,b=dfs(v); no+=max(a,b); yes+=a\n        return no,yes\n    return max(dfs(root))\ndef party_brute(w,p):\n    ans=0\n    for mask in range(1<<len(w)):\n        if any(parent>=0 and mask>>i&1 and mask>>parent&1 for i,parent in enumerate(p)): continue\n        ans=max(ans,sum(x for i,x in enumerate(w) if mask>>i&1))\n    return ans\nfor z in range(300):\n    n=rng.randint(1,10); p=[-1]+[rng.randrange(i) for i in range(1,n)]; w=[rng.randint(-10,10) for _ in p]\n    eq(party(w,p),party_brute(w,p))\neq(party([1]*7,[2,2,4,4,-1,3,3]),5); eq(party([-128],[-1]),0)\nrecord('B05','Tree DP vs independent-set exhaustive subsets',302,{'random_trees':300,'vertices_max':10,'sample':5,'negative_singleton':0})\n\n# B06: sorted upper_bound vs inclusive linear counts.\nfor z in range(500):\n    a=[rng.randint(1,30) for _ in range(rng.randint(1,40))]; m=rng.choice([1,10**9,rng.randint(1,40)])\n    eq(bisect.bisect_right(sorted(a),m),sum(x<=m for x in a))\nprices=[3,10,8,6,11]; eq([bisect.bisect_right(sorted(prices),m) for m in [1,10,3,11]],[0,4,1,5])\nrecord('B06','Inclusive budget count vs linear count',501,{'sample':[0,4,1,5],'random_cases':500,'includes_duplicates_and_large_budgets':True})\n\n# B07: AC fail-reverse visit propagation vs exact substring membership.\ndef ac_count(patterns,text):\n    nxt=[{}]; fail=[0]; weight=[0]\n    for s in patterns:\n        u=0\n        for ch in s:\n            if ch not in nxt[u]: nxt[u][ch]=len(nxt); nxt.append({}); fail.append(0); weight.append(0)\n            u=nxt[u][ch]\n        weight[u]+=1\n    alphabet=sorted(set(''.join(patterns)+text))\n    q=deque(nxt[0].values()); order=[]\n    for ch in alphabet: nxt[0].setdefault(ch,0)\n    while q:\n        u=q.popleft(); order.append(u)\n        for ch in alphabet:\n            if ch in nxt[u]:\n                v=nxt[u][ch]; fail[v]=nxt[fail[u]][ch]; q.append(v)\n            else: nxt[u][ch]=nxt[fail[u]][ch]\n    seen=[False]*len(nxt); u=0\n    for ch in text:\n        u=nxt[u][ch]; seen[u]=True\n    for v in reversed(order): seen[fail[v]]|=seen[v]\n    return sum(w for w,s in zip(weight,seen) if s)\nfor z in range(1000):\n    patterns=[''.join(rng.choice('ab') for _ in range(rng.randint(1,6))) for _ in range(rng.randint(1,12))]; text=''.join(rng.choice('ab') for _ in range(rng.randint(1,15)))\n    eq(ac_count(patterns,text),sum(s in text for s in patterns))\nac_cases=[(['a','a','b','ab'],'abab',4),(['a','a'],'a',2),(['a','aa','aaa'],'aaaa',3),(['he','she'],'she',2),(['a','b'],'c',0)]\nfor p,t,a in ac_cases: eq(ac_count(p,t),a)\nrecord('B07','AC propagated terminal weights vs direct substring test',1005,{'random':1000,'fixed': [{'patterns':p,'text':t,'answer':a} for p,t,a in ac_cases],'stress_complexity':'The checker tests correctness on short inputs; O(total pattern length + text length) follows from failure construction and one reverse propagation, not measured full-scale.'})\n\n# B08: augmenting paths vs every possible assignment on all graphs up to 3x3.\ndef kuhn(n,m,edges):\n    adj=[[] for _ in range(n)]\n    for u,v in edges: adj[u].append(v)\n    match=[-1]*m\n    def dfs(u,seen):\n        for v in adj[u]:\n            if v in seen: continue\n            seen.add(v)\n            if match[v]<0 or dfs(match[v],seen): match[v]=u; return True\n        return False\n    return sum(dfs(u,set()) for u in range(n))\ndef match_brute(n,m,edges):\n    adj=[set() for _ in range(n)]\n    for u,v in edges: adj[u].add(v)\n    def go(u,used):\n        if u==n: return 0\n        return max([go(u+1,used)]+[1+go(u+1,used|{v}) for v in adj[u]-used])\n    return go(0,set())\ncount=0\nfor n in range(1,4):\n    for m in range(1,4):\n        es=list(itertools.product(range(n),range(m)))\n        for mask in range(1<<len(es)):\n            ed=[e for i,e in enumerate(es) if mask>>i&1]; eq(kuhn(n,m,ed),match_brute(n,m,ed)); count+=1\neq(kuhn(1,1,[(0,0)]),1); eq(kuhn(4,2,[(2,0),(0,1),(2,1),(0,0),(3,1),(3,0),(0,0)]),2)\nrecord('B08','All simple bipartite graphs up to 3x3 vs exhaustive matching',count+2,{'sample1':1,'sample2_with_duplicate_edge':2,'augmenting_reroute_case':{'edges':[[0,0],[0,1],[1,0]],'answer':2}})\n\n# B09: ring interval DP vs recursion over every current adjacent merge.\ndef stone_dp(a):\n    n=len(a); b=a*2; pre=[0]\n    for v in b: pre.append(pre[-1]+v)\n    lo=[[0]*(2*n) for _ in b]; hi=[[0]*(2*n) for _ in b]\n    for length in range(2,n+1):\n        for l in range(2*n-length+1):\n            r=l+length-1; s=pre[r+1]-pre[l]\n            lo[l][r]=min(lo[l][k]+lo[k+1][r]+s for k in range(l,r)); hi[l][r]=max(hi[l][k]+hi[k+1][r]+s for k in range(l,r))\n    return min(lo[l][l+n-1] for l in range(n)),max(hi[l][l+n-1] for l in range(n))\n@lru_cache(None)\ndef stone_brute(a):\n    if len(a)==1: return 0,0\n    outcomes=[]\n    for k in range(len(a)):\n        b=a[k:]+a[:k]; s=b[0]+b[1]; low,high=stone_brute((s,)+b[2:]); outcomes.append((s+low,s+high))\n    return min(v[0] for v in outcomes),max(v[1] for v in outcomes)\nfor z in range(300):\n    a=[rng.randint(0,5) for _ in range(rng.randint(1,6))]; eq(stone_dp(a),stone_brute(tuple(a)))\neq(stone_dp([4,5,9,4]),(43,54)); eq(stone_dp([20]),(0,0)); eq(stone_dp([0,20]),(20,20))\nrecord('B09','Ring interval DP vs enumeration of all adjacent merges',303,{'random':300,'max_N':6,'sample':[43,54],'singleton':[0,0],'two_piles':[20,20]})\n\n# B10: reverse greedy vs complete unit-edge shortest-path BFS on a safe bounded graph.\ndef buttons(n,m):\n    steps=0\n    while m>n:\n        if m%2: m+=1\n        else: m//=2\n        steps+=1\n    return steps+n-m\ndef buttons_bfs(n,m):\n    bound=2*max(n,m)+2; q=deque([n]); dist={n:0}\n    while q:\n        x=q.popleft()\n        if x==m: return dist[x]\n        for y in (x*2,x-1):\n            if 1<=y<=bound and y not in dist: dist[y]=dist[x]+1; q.append(y)\ncount=0\nfor n in range(1,61):\n    for m in range(1,61):\n        eq(buttons(n,m),buttons_bfs(n,m)); count+=1\nbutton_cases=[(10,1,9),(1,2,1),(1,3,3),(4,6,2),(9,10,5),(10000,1,9999),(1,10000,20)]\nfor n,m,a in button_cases: eq(buttons(n,m),a)\nrecord('B10','Reverse greedy vs positive-state BFS for all n,m<=60',count+len(button_cases),{'all_small_pairs_including_equal_robustness':count,'fixed':[{'n':n,'m':m,'answer':a} for n,m,a in button_cases],'warning':'Equal-input checks are robustness only; manifest requires n != m.'})\n\n# B11: exact counting DP vs enumeration of unique complete output permutations.\n@lru_cache(None)\ndef stack_dp(p,s):\n    if p==0 and s==0: return 1\n    return (stack_dp(p-1,s+1) if p else 0)+(stack_dp(p,s-1) if s else 0)\ndef stack_outputs(n):\n    out=set()\n    def go(next_value,stack,prefix):\n        if len(prefix)==n: out.add(tuple(prefix)); return\n        if next_value<=n: go(next_value+1,stack+[next_value],prefix)\n        if stack: go(next_value,stack[:-1],prefix+[stack[-1]])\n    go(1,[],[]); return out\ncount=0\nfor n in range(1,9):\n    outs=stack_outputs(n); eq(stack_dp(n,0),len(outs)); eq(len(outs),math.comb(2*n,n)//(n+1)); count+=1\nfirst=Counter(x[0] for x in stack_outputs(3)); eq(dict(first),{1:2,2:2,3:1})\neq(stack_dp(18,0),477638700)\nrecord('B11','Counting DP vs unique output permutations and Catalan closed form',count+2,{'enumeration_n':[1,8],'n3_first_output_counts':dict(sorted(first.items())),'n18':stack_dp(18,0),'binomial_36_18':math.comb(36,18),'binomial_exceeds_signed32':math.comb(36,18)>2**31-1,'factorial36_exceeds_signed64':math.factorial(36)>2**63-1})\n\n# B12: lower_bound on prefix totals vs explicit object-to-group map.\nfor z in range(300):\n    a=[rng.randint(1,10) for _ in range(rng.randint(1,20))]; pre=list(itertools.accumulate(a)); flat=[i+1 for i,x in enumerate(a) for _ in range(x)]\n    for q in range(1,len(flat)+1): eq(bisect.bisect_left(pre,q)+1,flat[q-1])\neq([bisect.bisect_left(list(itertools.accumulate([2,7,3,4,9])),q)+1 for q in [1,25,11]],[1,5,3])\nrecord('B12','Prefix lower_bound vs explicit complete object map',301,{'random_group_arrays':300,'all_object_numbers_checked':True,'sample':[1,5,3]})\n\n# B13: precise equality routes only, without treating digest equality as equality proof.\ndef distinct_sorted(a):\n    b=sorted(a); return sum(i==0 or s!=b[i-1] for i,s in enumerate(b))\nfor z in range(300):\n    a=[''.join(rng.choice('aA0bB1') for _ in range(rng.randint(1,20))) for _ in range(rng.randint(1,40))]; a+=a[:rng.randint(0,len(a))]; eq(distinct_sorted(a),len(set(a)))\neq(distinct_sorted(['abc','aaaa','abc','abcc','12345']),4)\neq(distinct_sorted(['a','A','a0','a00','A','a']),4)\neq(distinct_sorted(['a'*1500,'a'*1499+'A','a'*1500]),2)\nrecord('B13','Exact sorted-string equality vs collision-resolving built-in string set',303,{'random':300,'sample':4,'case_sensitive_prefix_case':4,'length1500_case':2,'digest_only_methods':'not certified by this test; a fixed-width digest has fewer states than the allowed string domain, hence cannot establish universal exact equality without collision handling'})\n\n# B14: variable positive-sum sliding window vs exhaustive intervals.\ndef books(a,t):\n    l=0; s=0; ans=0\n    for r,v in enumerate(a):\n        s+=v\n        while s>t: s-=a[l]; l+=1\n        ans=max(ans,r-l+1)\n    return ans\nfor z in range(500):\n    a=[rng.randint(1,20) for _ in range(rng.randint(1,20))]; t=rng.randint(1,200)\n    expected=max([0]+[r-l for l in range(len(a)) for r in range(l+1,len(a)+1) if sum(a[l:r])<=t]); eq(books(a,t),expected)\neq(books([3,1,2,1],5),3); eq(books([2,2,3],3),1); eq(books([2,3],1),0)\nrecord('B14','Positive sliding window vs exhaustive contiguous intervals',503,{'random':500,'samples':[3,1],'none_fits':0})\n\n# B15: end-time greedy vs every subset sorted by starts.\ndef activities(a):\n    end=-1; ans=0\n    for l,r in sorted(a,key=lambda p:p[1]):\n        if l>=end: ans+=1; end=r\n    return ans\ndef activities_brute(a):\n    best=0\n    for mask in range(1<<len(a)):\n        b=sorted(a[i] for i in range(len(a)) if mask>>i&1)\n        if all(b[i-1][1]<=b[i][0] for i in range(1,len(b))): best=max(best,len(b))\n    return best\nfor z in range(300):\n    a=[]\n    for _ in range(rng.randint(1,10)):\n        l=rng.randint(0,10); a.append((l,rng.randint(l+1,12)))\n    eq(activities(a),activities_brute(a))\neq(activities([(0,2),(2,4),(1,3)]),2)\nrecord('B15','Earliest finish greedy vs all subsets',301,{'random':300,'max_intervals':10,'sample_with_touching_endpoints':2})\n\n# B16: index deque, excluding current element, vs direct preceding range minima.\ndef preceding_min(a,m):\n    q=deque(); ans=[]\n    for i,v in enumerate(a):\n        while q and q[0]<i-m: q.popleft()\n        ans.append(a[q[0]] if q else 0)\n        while q and a[q[-1]]>=v: q.pop()\n        q.append(i)\n    return ans\nfor z in range(1000):\n    n=rng.randint(1,50); m=rng.randint(1,n); a=[rng.randint(1,30) for _ in range(n)]\n    eq(preceding_min(a,m),[min(a[max(0,i-m):i]) if i else 0 for i in range(n)])\neq(preceding_min([7,8,1,4,3,2],2),[0,7,7,1,1,3]); eq(preceding_min([3,2,1],1),[0,3,2])\nrecord('B16','Deque history minima vs exact preceding slices',1002,{'random':1000,'sample':[0,7,7,1,1,3],'m1':[0,3,2]})\n\n# B17: explicit DSU construction followed by step-by-step edge simulation.\nclass DSU:\n    def __init__(self,n): self.p=list(range(n)); self.c=n\n    def find(self,x):\n        while self.p[x]!=x: self.p[x]=self.p[self.p[x]]; x=self.p[x]\n        return x\n    def union(self,u,v):\n        u=self.find(u); v=self.find(v)\n        if u==v: return False\n        self.p[v]=u; self.c-=1; return True\n\ndef reconnect(n,edges):\n    d=DSU(n); redundant=[]\n    for u,v in edges:\n        if not d.union(u,v): redundant.append((u,v))\n    roots=sorted({d.find(x) for x in range(n)}); eq(len(redundant),len(roots)-1)\n    return [(u,v,roots[0],r) for (u,v),r in zip(redundant,roots[1:])]\ndef validate_reconnect(n,edges):\n    initial=DSU(n)\n    for u,v in edges: initial.union(u,v)\n    ops=reconnect(n,edges); eq(len(ops),initial.c-1); current={tuple(sorted(e)) for e in edges}\n    for u,v,x,y in ops:\n        old=tuple(sorted((u,v))); new=tuple(sorted((x,y))); assert old in current; current.remove(old); assert x!=y and new not in current; current.add(new); eq(len(current),n-1)\n    final=DSU(n)\n    for u,v in current: final.union(u,v)\n    eq(final.c,1)\n    return ops\ncount=0\nfor n in range(2,7):\n    all_edges=list(itertools.combinations(range(n),2))\n    for ed in itertools.combinations(all_edges,n-1): validate_reconnect(n,ed); count+=1\ntri=validate_reconnect(4,[(0,1),(1,2),(2,0)])\nsample=validate_reconnect(7,[(0,1),(1,2),(2,0),(3,4),(4,5),(5,6)])\nfor z in range(300):\n    n=rng.randint(2,30); ed=rng.sample(list(itertools.combinations(range(n),2)),n-1); validate_reconnect(n,ed)\nrecord('B17','All n-1-edge simple graphs n<=6, construction step simulation',count+302,{'exhaustive_graphs':count,'random_graphs':300,'triangle_plus_isolate_0_based_operations':tri,'sample2_0_based_operations':sample,'validated_invariants':['minimum c-1 operations','deleted edge currently exists','new edge has distinct endpoints and is not a duplicate','edge count n-1 after every operation','final graph connected'],'proof_limit':'Finite graph checks support the construction; the c-1 lower bound and spanning-forest argument are the general proof.'})\n\n# B18: lazy tree vs direct mutable array, plus exact weighted-difference overflow witness.\nclass LazyTree:\n    def __init__(self,a):\n        self.n=len(a); self.s=[0]*(4*self.n); self.z=[0]*(4*self.n)\n        def build(p,l,r):\n            if l==r: self.s[p]=a[l]; return\n            m=(l+r)//2; build(p*2,l,m); build(p*2+1,m+1,r); self.s[p]=self.s[p*2]+self.s[p*2+1]\n        build(1,0,self.n-1)\n    def apply(self,p,l,r,k): self.s[p]+=k*(r-l+1); self.z[p]+=k\n    def push(self,p,l,r):\n        if l<r and self.z[p]:\n            m=(l+r)//2; self.apply(p*2,l,m,self.z[p]); self.apply(p*2+1,m+1,r,self.z[p]); self.z[p]=0\n    def add(self,ql,qr,k,p=1,l=0,r=None):\n        if r is None: r=self.n-1\n        if ql<=l and r<=qr: self.apply(p,l,r,k); return\n        self.push(p,l,r); m=(l+r)//2\n        if ql<=m: self.add(ql,qr,k,p*2,l,m)\n        if qr>m: self.add(ql,qr,k,p*2+1,m+1,r)\n        self.s[p]=self.s[p*2]+self.s[p*2+1]\n    def query(self,ql,qr,p=1,l=0,r=None):\n        if r is None: r=self.n-1\n        if ql<=l and r<=qr: return self.s[p]\n        self.push(p,l,r); m=(l+r)//2; ans=0\n        if ql<=m: ans+=self.query(ql,qr,p*2,l,m)\n        if qr>m: ans+=self.query(ql,qr,p*2+1,m+1,r)\n        return ans\nfor z in range(300):\n    n=rng.randint(1,30); a=[rng.randint(1,30) for _ in range(n)]; tree=LazyTree(a); a=a[:]\n    for _ in range(80):\n        l=rng.randrange(n); r=rng.randrange(l,n)\n        if rng.randrange(2):\n            k=rng.randint(1,100); tree.add(l,r,k)\n            for i in range(l,r+1): a[i]+=k\n        else: eq(tree.query(l,r),sum(a[l:r+1]))\ntree=LazyTree([1,5,4,2,3]); out=[tree.query(1,3)]; tree.add(1,2,2); out.append(tree.query(2,3)); tree.add(0,4,1); out.append(tree.query(0,3)); eq(out,[11,8,20])\nn=100000; k=2*10**18-n; total=n+k; weighted=(n-1)*k\nassert total<=2*10**18 and weighted>2**63-1\nrecord('B18','Lazy range-add/range-sum tree vs direct updates',302,{'random_sequences':300,'operations_each':80,'sample':out,'double_Fenwick_signed64_counterexample':{'n':n,'initial':'all ones','operation':[1,n,n,k],'final_total':total,'weighted_difference_update_(n-1)*k':weighted,'exceeds_int64':True}})\n\n# B19: modular binary exponentiation vs Python exact modular pow and explicit format.\ndef modpow(a,b,p):\n    ans=1%p; a%=p\n    while b:\n        if b&1: ans=ans*a%p\n        a=a*a%p; b//=2\n    return ans\nfor z in range(1000):\n    a=rng.randrange(2**31); b=rng.randrange(2**31); p=rng.randrange(2,2**31); eq(modpow(a,b,p),pow(a,b,p))\nfor a,b,p in [(0,1,2),(1,0,2),(2**31-1,2**31-1,2**31-1),(2,10,9)]: eq(modpow(a,b,p),pow(a,b,p))\nsample_format=f'2^10 mod 9={modpow(2,10,9)}'; eq(sample_format,'2^10 mod 9=7')\nrecord('B19','Binary modular power vs exact modular pow',1005,{'random':1000,'sample_format':sample_format,'zero_base':modpow(0,1,2),'zero_exponent':modpow(1,0,2),'max_possible_product_less_than_2pow62':(2**31-2)**2<2**62})\n\n# B20: independent Eratosthenes vs trial division on small bounds, then full 1e8 bound.\ndef sieve(n):\n    mark=bytearray(b'\\x01')*(n+1); mark[:2]=b'\\x00\\x00'\n    for p in range(2,math.isqrt(n)+1):\n        if mark[p]:\n            start=p*p; length=(n-start)//p+1; mark[start:n+1:p]=b'\\x00'*length\n    return mark\nfor n in [2,3,10,100,997,1000,10000]:\n    mark=sieve(n)\n    expected=[x for x in range(2,n+1) if all(x%d for d in range(2,math.isqrt(x)+1))]\n    eq([i for i in range(2,n+1) if mark[i]],expected)\nsieve_started=time.perf_counter(); mark=sieve(10**8); elapsed=time.perf_counter()-sieve_started\nprime_count=mark.count(1); last_prime=mark.rfind(b'\\x01'); eq(prime_count,5761455); eq(last_prime,99999989)\nfirst=[x for x in range(2,20) if mark[x]]; eq([first[i-1] for i in [1,2,5]],[2,3,11])\nrecord('B20','Exact sieve vs trial division, plus full n=100000000',9,{'small_bounds':[2,3,10,100,997,1000,10000],'full_bound':100000000,'prime_count':prime_count,'last_prime':last_prime,'sample':[2,3,11],'full_sieve_elapsed_seconds':round(elapsed,6),'marker_bytes':len(mark),'limits':'This timings measures a Python bytearray Eratosthenes reference on this machine, not a submitted model program or OJ benchmark; no query array of all primes was allocated.'})\ndel mark\n\nroot=Path.cwd(); manifest_path=root/'data/evaluation/v8-first-test/manifest.json'; manifest=json.loads(manifest_path.read_text(encoding='utf-8'))\ndoc=(root/'docs/v8-second-test-review-rubric.md').read_text(encoding='utf-8')\nsections=dict((m.group(1),m.group(0).strip()) for m in re.finditer(r'^## (B\\d{2})\\b.*?(?=^## |\\Z)',doc,re.M|re.S))\nassert len(sections)==20\nitems=[]\nfor item in manifest['items']:\n    pid=item['public_id']; assert checks[pid]\n    items.append({'public_id':pid,'source_url':item['source_url'],'group':item['group'],'frozen_input_sha256':item['input_sha256'],'reference_status':'checked_reference_not_prediction_judgment','rubric_markdown':sections[pid],'checks':checks[pid]})\noutput={'schema_version':1,'event':'v8-second-test','created_date':'2026-10-17','author':'independent reference subagent; agent-assisted, not teacher gold','source_manifest_path':'data/evaluation/v8-first-test/manifest.json','source_manifest_sha256':hashlib.sha256(manifest_path.read_bytes()).hexdigest(),'rubric_path':'docs/v8-second-test-review-rubric.md','rubric_sha256':hashlib.sha256(doc.encode('utf-8')).hexdigest(),'isolation':{'prediction_files_read':False,'diagnosis_or_rating_files_read':False,'live_model_config_read':False,'paid_model_calls':0,'formal_database_access':False,'historical_summary_exposure':'Required long-lived PROJECT_MEMORY.md contained first-test diagnosis/rating summaries and was read before standard creation; not a fully blind historical review. Second-test predictions were not read.'},'decision_rule':{'solution_correct':'All claimed viable solution methods are technically correct, complete in necessary proof and boundaries, and feasible for frozen constraints; deterministic contradiction fails.','tags_correct':'Tags semantically cover key knowledge of actual claimed methods, with no clear omissions or extras; alternate viable methods allowed.','joint_correct':'solution_correct AND tags_correct; difficulty ignored','needs_verification':'Unresolved cases are not counted as proven correct; final exact 0..4 counts require evidence-based resolution and explicit disclosure if still unresolved.','hashing':'Digest-only string deduplication without collision resolution has no universal exactness guarantee; record probabilistic correctness separately and seek evidence, do not silently certify.'},'verification':{'random_seed':SEED,'all_checks_passed':True,'problem_count':20,'check_groups':sum(len(v) for v in checks.values()),'aggregate_case_count':sum(c['cases'] for v in checks.values() for c in v),'case_count_note':'A case may contain multiple operations, queries, subset enumerations, or comparisons; aggregate count is not a model accuracy statistic.','elapsed_seconds':round(time.perf_counter()-START,6),'scope_limit':'Finite exhaustive/random checks verify these independent references, not model answers; mathematical correctness arguments are in the rubric.'},'items':items,'reproduction':{'command':'Read reproduction.python_source from this JSON and execute it with CHECKER_SOURCE bound to that source string, using Python 3 standard library from repository root; it rewrites only this reference-checks.json.','python_source':CHECKER_SOURCE}}\nout=root/'data/evaluation/v8-second-test/reference-checks.json'; out.parent.mkdir(parents=True,exist_ok=True); out.write_text(json.dumps(output,ensure_ascii=False,indent=2)+'\\n',encoding='utf-8')\nprint(json.dumps({'path':str(out),'problems':20,'case_count':output['verification']['aggregate_case_count'],'elapsed_seconds':output['verification']['elapsed_seconds'],'B20':checks['B20'],'all_checks_passed':True},ensure_ascii=False))\n"
+  }
+}

@@ -1,273 +1,184 @@
-/* 9 个 L1 领域的代码原生 SVG 线条插画，使用经典问题场景。 */
+/* 一级领域的几何线稿：统一 240×160 画布，黑色主线、细辅助线，保留经典算法的可读结构。 */
 const SVG_NS = 'http://www.w3.org/2000/svg';
+const WHITE = '#ffffff';
+const FINE = { 'stroke-width': 1, 'stroke-opacity': .3 };
 
-function line(x1, y1, x2, y2, extra = {}) {
-  return ['line', { x1, y1, x2, y2, 'stroke-width': 1.25, ...extra }];
+const line = (x1, y1, x2, y2, extra = {}) => ['line', { x1, y1, x2, y2, ...extra }];
+const path = (d, extra = {}) => ['path', { d, ...extra }];
+const circle = (cx, cy, r, extra = {}) => ['circle', { cx, cy, r, ...extra }];
+const rect = (x, y, width, height, extra = {}) => ['rect', { x, y, width, height, ...extra }];
+const polygon = (points, extra = {}) => ['polygon', { points, ...extra }];
+const text = (x, y, value, extra = {}) => ['text', {
+  x, y, fill: 'currentColor', stroke: 'none', 'font-size': 11, 'font-weight': 500,
+  'font-family': 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
+  'text-anchor': 'middle', 'dominant-baseline': 'central', ...extra,
+}, value];
+
+function node(x, y, value, extra = {}) {
+  return [circle(x, y, 10, { fill: WHITE, ...extra }), text(x, y + .5, value)];
 }
 
-function circle(cx, cy, r, extra = {}) {
-  return ['circle', { cx, cy, r, 'stroke-width': 1.5, ...extra }];
-}
-
-function ellipse(cx, cy, rx, ry, extra = {}) {
-  return ['ellipse', { cx, cy, rx, ry, 'stroke-width': 1.25, ...extra }];
-}
-
-function path(d, extra = {}) {
-  return ['path', { d, 'stroke-width': 1.5, ...extra }];
-}
-
-function rect(x, y, width, height, extra = {}) {
-  return ['rect', { x, y, width, height, 'stroke-width': 1.5, ...extra }];
-}
-
-function polygon(points, extra = {}) {
-  return ['polygon', { points, 'stroke-width': 1.5, ...extra }];
-}
-
-function text(x, y, value, extra = {}) {
-  return ['text', {
-    x,
-    y,
-    fill: 'currentColor',
-    stroke: 'none',
-    'font-family': 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
-    'font-size': 12,
-    'font-weight': 650,
-    'text-anchor': 'middle',
-    'dominant-baseline': 'central',
-    ...extra,
-  }, value];
-}
-
-function treeNode(cx, cy, radius = 7, value = '') {
-  const shapes = [circle(cx, cy, radius, { fill: '#ffffff' })];
-  if (value) shapes.push(text(cx, cy + 0.5, value, { 'font-size': radius >= 10 ? 12 : 10 }));
-  return shapes;
-}
-
-function isometricBrick(x, y, width, height, depth, studs = 2) {
-  const top = `${x},${y} ${x + depth},${y - depth / 2} ${x + width + depth},${y - depth / 2} ${x + width},${y}`;
-  const side = `${x + width},${y} ${x + width + depth},${y - depth / 2} ${x + width + depth},${y + height - depth / 2} ${x + width},${y + height}`;
-  const shapes = [
-    rect(x, y, width, height, { fill: '#ffffff', 'stroke-width': 1.8 }),
-    polygon(top, { fill: '#ffffff', 'stroke-width': 1.8 }),
-    polygon(side, { fill: '#ffffff', 'stroke-width': 1.8 }),
-  ];
-  for (let index = 0; index < studs; index += 1) {
-    const offset = 13 + index * 22;
-    shapes.push(ellipse(x + depth / 2 + offset, y - depth / 4, 6, 3.2, { fill: '#ffffff' }));
-  }
-  return shapes;
-}
-
-function queen(cx, cy) {
+function sortingColumns() {
+  const heights = [24, 42, 60, 78, 96];
   return [
-    path(`M${cx - 7} ${cy + 6}V${cy + 1}L${cx - 3} ${cy + 4}L${cx - 1} ${cy - 4}L${cx + 2} ${cy + 1}L${cx + 5} ${cy - 5}L${cx + 7} ${cy + 1}V${cy + 6}Z`, { 'stroke-width': 1.7 }),
-    line(cx - 4, cy - 8, cx - 4, cy - 10, { 'stroke-width': 1.6 }),
-    line(cx, cy - 8, cx, cy - 11, { 'stroke-width': 1.6 }),
-    line(cx + 4, cy - 8, cx + 4, cy - 10, { 'stroke-width': 1.6 }),
+    line(38, 122, 202, 122, FINE),
+    ...heights.flatMap((height, index) => [
+      rect(46 + index * 32, 122 - height, 20, height, { rx: 3 }),
+      text(56 + index * 32, 140, index + 1, { 'font-size': 10 }),
+    ]),
+    path('M46 15H191M186 11L191 15L186 19', { 'stroke-width': 1.2 }),
   ];
 }
 
-function eightQueensBoard() {
-  const x = 48;
-  const y = 8;
-  const size = 144;
-  const cell = size / 8;
-  const shapes = [rect(x, y, size, size, { 'stroke-width': 2.2 })];
-  for (let index = 1; index < 8; index += 1) {
-    const offset = index * cell;
-    shapes.push(line(x + offset, y, x + offset, y + size, { 'stroke-width': 1 }));
-    shapes.push(line(x, y + offset, x + size, y + offset, { 'stroke-width': 1 }));
+function codeTerminal() {
+  const code = { 'text-anchor': 'start', 'font-size': 11 };
+  return [
+    rect(30, 22, 180, 116, { rx: 5 }),
+    line(30, 47, 210, 47, FINE),
+    text(44, 35, 'main.c', { ...code, 'font-size': 10, opacity: .55 }),
+    text(45, 65, 'int main(void) {', code),
+    text(57, 84, 'printf("Hi");', code),
+    text(45, 103, '}', code),
+    line(30, 114, 210, 114, FINE),
+    path('M43 122L47 126L43 130', { 'stroke-width': 1.2 }),
+    text(57, 126, 'Hi', { ...code, 'font-size': 10 }),
+  ];
+}
+
+function queensBoard() {
+  const shapes = [rect(52, 12, 136, 136, { rx: 3 }), rect(56, 16, 128, 128, FINE)];
+  for (let i = 1; i < 8; i++) {
+    shapes.push(line(56 + i * 16, 16, 56 + i * 16, 144, FINE),
+      line(56, 16 + i * 16, 184, 16 + i * 16, FINE));
   }
-  const columns = [4, 7, 3, 0, 6, 1, 5, 2];
-  columns.forEach((column, row) => {
-    const cx = x + (column + 0.5) * cell;
-    const cy = y + (row + 0.5) * cell;
-    shapes.push(...queen(cx, cy));
+  // 一个有效的八皇后摆放；小冠用相同轮廓，避免细节挤在格子里。
+  [0, 4, 7, 5, 2, 6, 1, 3].forEach((column, row) => {
+    const x = 64 + column * 16;
+    const y = 24 + row * 16;
+    shapes.push(path(`M${x - 5} ${y - 3}L${x - 3} ${y + 3}H${x + 3}L${x + 5} ${y - 3}`
+      + `L${x + 2} ${y - 1}L${x} ${y - 5}L${x - 2} ${y - 1}Z`,
+    { fill: WHITE, 'stroke-width': 1.1 }), line(x - 3, y + 5, x + 3, y + 5, { 'stroke-width': 1.1 }));
   });
   return shapes;
 }
 
-function dynamicProgrammingSteps() {
+function numberTriangle() {
+  const rows = [[7], [3, 8], [8, 1, 0], [2, 7, 4, 4], [4, 5, 2, 6, 5]];
+  const position = (row, col) => [120 + (col - row / 2) * 38, 18 + row * 30];
   const shapes = [];
-  const stepWidth = 29;
-  const baseY = 142;
-  const startX = 27;
-  for (let index = 0; index < 6; index += 1) {
-    const x = startX + index * 29;
-    const top = 124 - index * 15;
-    shapes.push(rect(x, top, stepWidth, baseY - top, { fill: '#ffffff', 'stroke-width': 1.8 }));
-  }
-  for (let index = 0; index < 5; index += 1) {
-    const x = startX + index * 29 + 22;
-    const y = 124 - index * 15 - 6;
-    const endX = x + 14;
-    const endY = y - 13;
-    shapes.push(path(`M${x} ${y}C${x + 5} ${y - 7}${endX - 5} ${endY + 3}${endX} ${endY}`, { 'stroke-width': 1.3 }));
-    shapes.push(path(`M${endX - 6} ${endY - 1}L${endX} ${endY}L${endX - 1} ${endY + 6}`, { 'stroke-width': 1.3 }));
-  }
-  return shapes;
-}
-
-function trie() {
-  const shapes = [];
-  const nodes = {
-    root: [120, 18], c: [74, 54], d: [166, 54], a: [48, 90], o: [166, 90],
-    t: [24, 126], r: [60, 126], n: [96, 126], g: [166, 126],
-  };
-  const edges = [
-    ['root', 'c'], ['root', 'd'], ['c', 'a'], ['d', 'o'],
-    ['a', 't'], ['a', 'r'], ['a', 'n'], ['o', 'g'],
-  ];
-  for (const [from, to] of edges) {
-    shapes.push(line(nodes[from][0], nodes[from][1] + 9, nodes[to][0], nodes[to][1] - 9, { 'stroke-width': 1.25 }));
-  }
-  shapes.push(circle(nodes.root[0], nodes.root[1], 8, { fill: '#ffffff', 'stroke-width': 2 }));
-  for (const [name, value] of [['c', 'c'], ['d', 'd'], ['a', 'a'], ['o', 'o'], ['t', 't'], ['r', 'r'], ['n', 'n'], ['g', 'g']]) {
-    shapes.push(...treeNode(nodes[name][0], nodes[name][1], 10, value));
-  }
-  shapes.push(circle(nodes.o[0], nodes.o[1], 13, { 'stroke-width': 1.1 }));
-  for (const terminal of ['t', 'r', 'n', 'g']) {
-    shapes.push(circle(nodes[terminal][0], nodes[terminal][1], 13, { 'stroke-width': 1.1 }));
-  }
-  return shapes;
-}
-
-function pythagoreanScene() {
-  const outer = '60,20 180,20 180,140 60,140';
-  const inner = '105,20 180,65 135,140 60,95';
-  return [
-    polygon(outer, { fill: '#ffffff', 'stroke-width': 2.4 }),
-    polygon(inner, { fill: '#ffffff', 'stroke-width': 2 }),
-    line(60, 20, 105, 20, { 'stroke-width': 1.3 }),
-    line(60, 20, 60, 95, { 'stroke-width': 1.3 }),
-    line(105, 20, 60, 95, { 'stroke-width': 1.3 }),
-    line(180, 20, 180, 65, { 'stroke-width': 1.3 }),
-    line(180, 20, 105, 20, { 'stroke-width': 1.3 }),
-    line(180, 65, 105, 20, { 'stroke-width': 1.3 }),
-    line(180, 140, 135, 140, { 'stroke-width': 1.3 }),
-    line(180, 140, 180, 65, { 'stroke-width': 1.3 }),
-    line(135, 140, 180, 65, { 'stroke-width': 1.3 }),
-    line(60, 140, 60, 95, { 'stroke-width': 1.3 }),
-    line(60, 140, 135, 140, { 'stroke-width': 1.3 }),
-    line(60, 95, 135, 140, { 'stroke-width': 1.3 }),
-    path('M60 32H72V20', { 'stroke-width': 1.1 }),
-    path('M168 20V32H180', { 'stroke-width': 1.1 }),
-    path('M180 128H168V140', { 'stroke-width': 1.1 }),
-    path('M72 140V128H60', { 'stroke-width': 1.1 }),
-  ];
-}
-
-function balancedTree() {
-  const positions = {
-    4: [120, 28], 2: [76, 72], 6: [164, 72], 1: [48, 116], 3: [104, 116],
-    5: [140, 116], 7: [190, 116],
-  };
-  const edges = [[4, 2], [4, 6], [2, 1], [2, 3], [6, 5], [6, 7]];
-  const shapes = edges.map(([from, to]) => line(positions[from][0], positions[from][1] + 11, positions[to][0], positions[to][1] - 11, { 'stroke-width': 1.45 }));
-  for (const [value, [x, y]] of Object.entries(positions)) shapes.push(...treeNode(x, y, 12, value));
-  for (const x of [48, 104, 140, 190]) shapes.push(rect(x - 3, 137, 6, 6, { fill: 'currentColor', 'stroke-width': 0 }));
-  return shapes;
-}
-
-function shortestPathGraph() {
-  const edges = [
-    [34, 80, 80, 38], [34, 80, 80, 122], [80, 38, 124, 80],
-    [80, 122, 124, 80], [80, 38, 170, 44], [80, 122, 170, 116],
-    [124, 80, 170, 44], [124, 80, 170, 116], [170, 44, 208, 80], [170, 116, 208, 80],
-  ];
-  const shapes = edges.map(([x1, y1, x2, y2]) => line(x1, y1, x2, y2, {
-    'stroke-width': 1.1,
-    'stroke-dasharray': '4 4',
+  rows.slice(0, -1).forEach((values, row) => values.forEach((_, col) => {
+    const [x, y] = position(row, col);
+    for (const child of [col, col + 1]) shapes.push(line(x, y, ...position(row + 1, child), FINE));
   }));
-  shapes.push(['polyline', {
-    points: '34,80 80,122 124,80 170,44 208,80',
-    'stroke-width': 3.4,
-  }]);
-  for (const [cx, cy] of [[34, 80], [80, 38], [80, 122], [124, 80], [170, 44], [170, 116], [208, 80]]) {
-    shapes.push(circle(cx, cy, 7, { fill: '#ffffff' }));
+  const bestPath = [0, 0, 0, 1, 1];
+  for (let row = 0; row < 4; row++) {
+    shapes.push(line(...position(row, bestPath[row]), ...position(row + 1, bestPath[row + 1]),
+      { 'stroke-width': 2.4 }));
   }
-  shapes.push(circle(34, 80, 10, { 'stroke-width': 1.2 }));
-  shapes.push(circle(208, 80, 10, { 'stroke-width': 1.2 }));
+  rows.forEach((values, row) => values.forEach((value, col) => {
+    const [x, y] = position(row, col);
+    shapes.push(...node(x, y, value, { 'stroke-width': col === bestPath[row] ? 1.8 : 1,
+      'stroke-opacity': col === bestPath[row] ? 1 : .45 }));
+  }));
   return shapes;
 }
 
-function convexHull() {
-  const hull = [
-    [34, 118], [50, 50], [82, 24], [132, 32], [186, 66], [208, 116], [150, 138], [86, 132],
-  ];
-  const shapes = [polygon(hull.map(([x, y]) => `${x},${y}`).join(' '), { 'stroke-width': 2.4 })];
-  for (const [x, y] of [[82, 68], [118, 90], [68, 100], [142, 104], [108, 54], [176, 102]]) {
-    shapes.push(circle(x, y, 3, { fill: 'currentColor', 'stroke-width': 0 }));
-  }
-  for (const [x, y] of hull) shapes.push(circle(x, y, 4.5, { fill: '#ffffff', 'stroke-width': 1.6 }));
-  shapes.push(path('M50 50A34 34 0 0 1 69 34', { 'stroke-width': 1.1 }));
-  return shapes;
-}
-
-function twoPointers() {
-  const values = [1, 3, 4, 7, 9, 12, 15, 19, 23];
-  const cellWidth = 22;
-  const startX = 18;
-  const y = 64;
-  const shapes = [];
-  values.forEach((value, index) => {
-    const x = startX + index * cellWidth;
-    shapes.push(rect(x, y, cellWidth, 34, { fill: '#ffffff', 'stroke-width': 1.35 }));
-    shapes.push(text(x + cellWidth / 2, y + 17, value, { 'font-size': 10 }));
+function letterTrie() {
+  const points = [[120, 20, ''], [76, 58, 'C'], [164, 58, 'D'], [76, 96, 'A'],
+    [164, 96, 'O'], [56, 134, 'R'], [96, 134, 'T'], [164, 134, 'G']];
+  const shapes = [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [3, 6], [4, 7]]
+    .map(([a, b]) => line(...points[a].slice(0, 2), ...points[b].slice(0, 2), { 'stroke-width': 1.2 }));
+  points.forEach(([x, y, value], index) => {
+    shapes.push(...node(x, y, value));
+    if (index >= 5) shapes.push(circle(x, y, 13, { 'stroke-width': .7 }));
   });
-  const centerPointer = startX + 4 * cellWidth + cellWidth / 2;
-  const leftPointer = startX + cellWidth / 2;
-  const rightPointer = startX + 8 * cellWidth + cellWidth / 2;
-  shapes.push(path(`M${leftPointer} ${y}V${y - 24}H${centerPointer}V${y - 6}`, { 'stroke-width': 2.4 }));
-  shapes.push(path(`M${centerPointer - 6} ${y - 6}L${centerPointer} ${y}L${centerPointer + 6} ${y - 6}`, { 'stroke-width': 2.4 }));
-  shapes.push(path(`M${rightPointer} ${y + 34}V${y + 58}H${centerPointer}V${y + 40}`, { 'stroke-width': 2.4 }));
-  shapes.push(path(`M${centerPointer - 6} ${y + 40}L${centerPointer} ${y + 34}L${centerPointer + 6} ${y + 40}`, { 'stroke-width': 2.4 }));
+  return shapes;
+}
+
+function unitCircle() {
+  return [
+    path('M36 82H207M202 78L207 82L202 86M112 137V12M108 17L112 12L116 17', FINE),
+    circle(112, 82, 48),
+    path('M112 82L150.4 53.2V82Z', { 'stroke-width': 1.3 }),
+    path('M137 82A25 25 0 0 0 132 67', { 'stroke-width': 1.1 }),
+    path('M143 82V75H150.4', { 'stroke-width': .9 }),
+    circle(150.4, 53.2, 2.5, { fill: 'currentColor', stroke: 'none' }),
+    text(165, 47, '(x,y)', { 'font-size': 10 }), text(129, 75, 'θ', { 'font-size': 10 }),
+    text(131, 58, 'r', { 'font-size': 10 }), text(112, 150, 'x² + y² = r²', { 'font-size': 10 }),
+  ];
+}
+
+function binaryTree() {
+  const positions = [[120, 24], [76, 68], [164, 68], [48, 116], [104, 116], [136, 116], [192, 116]];
+  const values = [4, 2, 6, 1, 3, 5, 7];
+  return [
+    ...[[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6]]
+      .map(([a, b]) => line(...positions[a], ...positions[b], { 'stroke-width': 1.2 })),
+    ...positions.flatMap(([x, y], index) => node(x, y, values[index])),
+    path('M38 137H202', FINE),
+    ...[48, 104, 136, 192].map(x => line(x, 133, x, 141, FINE)),
+  ];
+}
+
+function weightedGraph() {
+  const positions = [[34, 80], [88, 30], [88, 130], [152, 30], [152, 130], [206, 80]];
+  const shapes = [[0, 1], [0, 2], [1, 2], [1, 3], [2, 4], [3, 4], [3, 5], [4, 5], [1, 4]]
+    .map(([a, b]) => line(...positions[a], ...positions[b], FINE));
+  shapes.push(path('M34 80L88 30H152L206 80', { 'stroke-width': 2.4 }));
+  shapes.push(...positions.flatMap(([x, y], index) => node(x, y, index === 0 ? 's' : index === 5 ? 't' : '')));
+  for (const [x, y, value] of [[57, 46, 2], [120, 21, 3], [183, 46, 1], [120, 142, 7]]) {
+    shapes.push(text(x, y, value, { 'font-size': 10 }));
+  }
+  return shapes;
+}
+
+function geometricHull() {
+  const hull = [[42, 112], [60, 48], [126, 20], [190, 62], [200, 116], [112, 140]];
+  return [
+    line(28, 144, 216, 144, FINE), line(28, 144, 28, 12, FINE),
+    line(42, 112, 126, 20, { ...FINE, 'stroke-dasharray': '3 4' }),
+    line(126, 20, 200, 116, { ...FINE, 'stroke-dasharray': '3 4' }),
+    polygon(hull.map(point => point.join(',')).join(' ')),
+    ...[[86, 68], [128, 72], [74, 102], [146, 104], [112, 112], [166, 84]]
+      .map(([x, y]) => circle(x, y, 2, { fill: 'currentColor', stroke: 'none' })),
+    ...hull.map(([x, y]) => circle(x, y, 3, { fill: WHITE, 'stroke-width': 1.3 })),
+  ];
+}
+
+function slidingWindow() {
+  const shapes = [rect(26, 61, 188, 36, { rx: 3, 'stroke-width': 1.2 })];
+  for (let i = 1; i < 8; i++) shapes.push(line(26 + i * 23.5, 61, 26 + i * 23.5, 97, FINE));
+  shapes.push(rect(73, 61, 94, 36, { 'stroke-width': 2 }));
+  [1, 3, 4, 7, 9, 12, 15, 19].forEach((value, i) => shapes.push(text(37.75 + i * 23.5, 79, value)));
+  shapes.push(path('M84.75 52V30M80.75 48L84.75 52L88.75 48M155.25 106V128'
+    + 'M151.25 110L155.25 106L159.25 110', { 'stroke-width': 1.4 }),
+  text(84.75, 20, 'L', { 'font-size': 10 }), text(155.25, 139, 'R', { 'font-size': 10 }),
+  path('M104 39H144M139 35L144 39L139 43', FINE));
   return shapes;
 }
 
 const DRAWINGS = {
-  'basic': [
-    ...isometricBrick(42, 88, 58, 40, 20, 2),
-    ...isometricBrick(112, 98, 62, 30, 18, 2),
-    ...isometricBrick(82, 44, 54, 38, 18, 2),
-  ],
-  'search': eightQueensBoard(),
-  'dp': dynamicProgrammingSteps(),
-  'string': trie(),
-  'math': pythagoreanScene(),
-  'ds': balancedTree(),
-  'graph': shortestPathGraph(),
-  'geometry': convexHull(),
-  'misc': twoPointers(),
+  'syntax': codeTerminal(),
+  'basic': sortingColumns(),
+  'search': queensBoard(),
+  'dp': numberTriangle(),
+  'string': letterTrie(),
+  'math': unitCircle(),
+  'ds': binaryTree(),
+  'graph': weightedGraph(),
+  'geometry': geometricHull(),
+  'misc': slidingWindow(),
 };
-
-const FALLBACK = [
-  ...treeNode(120, 46, 10),
-  ...treeNode(72, 112, 9),
-  ...treeNode(168, 112, 9),
-  line(113, 56, 77, 103, { 'stroke-width': 1.5 }),
-  line(127, 56, 163, 103, { 'stroke-width': 1.5 }),
-];
 
 export function knowledgeIllustration(id, { label = '', className = '' } = {}) {
   const svg = document.createElementNS(SVG_NS, 'svg');
-  svg.setAttribute('viewBox', '0 0 240 160');
-  svg.setAttribute('fill', 'none');
-  svg.setAttribute('stroke', 'currentColor');
-  svg.setAttribute('stroke-width', '1.5');
-  svg.setAttribute('stroke-linecap', 'round');
-  svg.setAttribute('stroke-linejoin', 'round');
-  svg.setAttribute('role', 'img');
-  svg.setAttribute('aria-label', label || '知识示意图');
-  svg.setAttribute('class', ['knowledge-illustration', className].filter(Boolean).join(' '));
-  for (const [tag, attributes, value] of DRAWINGS[id] || FALLBACK) {
+  const attributes = { viewBox: '0 0 240 160', fill: 'none', stroke: 'currentColor',
+    'stroke-width': 1.7, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', role: 'img',
+    'aria-label': label || '知识示意图', class: ['knowledge-illustration', className].filter(Boolean).join(' ') };
+  for (const [key, value] of Object.entries(attributes)) svg.setAttribute(key, value);
+  for (const [tag, attributes, value] of DRAWINGS[id] || DRAWINGS.ds) {
     const node = document.createElementNS(SVG_NS, tag);
-    for (const [key, attribute] of Object.entries(attributes)) {
-      if (attribute !== null && attribute !== undefined) node.setAttribute(key, String(attribute));
-    }
+    for (const [key, attribute] of Object.entries(attributes)) node.setAttribute(key, String(attribute));
     if (value !== undefined) node.textContent = value;
     svg.append(node);
   }

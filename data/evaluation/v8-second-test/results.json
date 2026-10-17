@@ -1,0 +1,831 @@
+{
+  "schema_version": 1,
+  "event": "v8二测",
+  "status": "reviewed",
+  "human_revision": "r1",
+  "reviewed_by": "两组代理逐份复核，root按冻结题意/词表及反例终审；非教师金标准",
+  "reviewed_at": "2026-10-17T03:54:15.607380+00:00",
+  "rubric_sha256": "0d0e3528523bd484e1874a30da2abdfbd8aee4beb1cdfd7781b4feb530c84d26",
+  "problems": [
+    {
+      "anonymous_id": "B01",
+      "title": "区间加与单点查询",
+      "url": "https://www.luogu.com.cn/problem/P3368",
+      "group": "regression9",
+      "human_rating": 1100,
+      "runs": {
+        "first": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "差分两端点修改与前缀和还原一致，Fenwick维护动态修改，单次O(log N)满足规模；明确y=N不写N+1，并采用64位避免差分及中间累加溢出。basic.difference与ds.fenwick恰好覆盖实际主线。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/0"
+        },
+        "second_1": {
+          "rating": 1300,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "差分定义、闭区间两端更新及动态前缀和还原完整；y=N不改越界点，64位处理可能达2^31的差分。另列区间加懒标记、沿路径累计的线段树点查也成立。线性建树可实现O(N+M log N)，四标签为两种方法并集。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/0"
+        },
+        "second_2": {
+          "rating": 1300,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "保留初始a[p]，d维护历史增量，两端点修改对p的前缀和恰在x<=p<=y时贡献k。Fenwick在线维护与懒标记线段树均O(log N)每操作；N+1哨兵或忽略不影响查询，64位边界合理。四标签与两法并集一致。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/0"
+        },
+        "second_3": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "差分含初始数组，区间两端单点修改与前缀和还原严格一致；Fenwick保证历史修改叠加，y=N忽略后端，负k和64位边界明确。O((N+M)log N)、O(N)可行；差分与Fenwick标签覆盖主线。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/0"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B02",
+      "title": "长度固定为 k 的最小区间和起点",
+      "url": "https://codeforces.com/problemset/problem/363/B",
+      "group": "regression9",
+      "human_rating": 1100,
+      "runs": {
+        "first": {
+          "rating": 800,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "pre[0]=0，pre[j+k-1]-pre[j-1]枚举全部n-k+1个非环形定长窗口，最小和及起点正确，k=1、k=n均覆盖。前缀和主线O(n)时间空间可行；滚动求和在已保存输入数组后可用O(1)辅助空间。前缀和和枚举标签覆盖实际方法，不强制双指针标签。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/1"
+        },
+        "second_1": {
+          "rating": 800,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "前缀和差枚举全部起点，或首窗求和后减旧加新，均覆盖全部n-k+1个定长非环形窗口。k=n及并列任意明确，总和至多15000000。两法O(n)，滑窗O(1)按已存输入后的辅助空间解释；前缀和、枚举和双指针均实际使用。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/1"
+        },
+        "second_2": {
+          "rating": 1000,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "首窗作为初始最优，滑动从j到j+1减h_j加h_(j+k)，逐窗不漏合法起点；k=1、k=n及并列任意处理。明确存数组O(n)或长度k缓冲O(k)，没有流式O(1)缺口。前缀和备选可行，两标签覆盖两法。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/1"
+        },
+        "second_3": {
+          "rating": 800,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "首窗求和，逐次减离开元素加新元素，枚举全部n-k+1窗口记录最优起点；k=1/k=n与1-based正确，15000000最大和32位安全。前缀和备选正确；滑窗O(1)额外空间按已存输入解释，两标签对应方法。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/1"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B03",
+      "title": "矩阵快速幂取模",
+      "url": "https://www.luogu.com.cn/problem/P3390",
+      "group": "new11",
+      "human_rating": 1500,
+      "runs": {
+        "first": {
+          "rating": 1300,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "单位阵初始化、按位乘入及底数平方组成标准矩阵二进制幂，只依赖结合律。乘法每步取模及long long能承受单次余数乘积，负值归一化和k=0均明确。O(n^3 log k)、O(n^2)在抽象算法口径可接受；矩阵与快速幂标签完整。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/2"
+        },
+        "second_1": {
+          "rating": 1300,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "按k二进制分解为A^(2^i)，结合律与单位阵处理k=0，负元素归一化明确。抽象矩阵模乘可逐项取模，没有指定类型或代码证实先累加溢出。O(n^3 log k)、O(n^2)可接受，矩阵和快速幂标签覆盖核心。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/2"
+        },
+        "second_2": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "ans=I，最低位1则乘base，每轮平方和右移，正是结合律下矩阵二进制幂；k=0、n=1与负数规范明确。模乘逐项取模可安全实现，O(n^3 log k)、O(n^2)可接受，矩阵和快速幂标签准确。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/2"
+        },
+        "second_3": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "R单位阵、B初始底数并按指数二进制乘入平方，依据结合律与同底数幂相加，不假设任意矩阵可交换。k=0、负余数和中途溢出已说明，模乘可逐项约简。O(n^3 log k)、O(n^2)可接受，两标签准确。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/2"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B04",
+      "title": "01网格连通块查询",
+      "url": "https://www.luogu.com.cn/problem/P1141",
+      "group": "new11",
+      "human_rating": 1000,
+      "runs": {
+        "first": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "异值四邻关系为无向可达关系，搜索对每个格子恰归入一个连通块，块编号与块大小使重复询问O(1)，总O(n^2+m)。起点计入及单点网格正确。BFS或显式栈DFS均可实现，无代码证实递归栈错误；搜索及图建模标签符合明确的备选方法。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/3"
+        },
+        "second_1": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "异值四邻无向图预处理全部连通分量，编号及大小查询O(1)，不同格只计一次且单格大小1。明确BFS或显式栈DFS，避免深递归；总时间O(n^2+m)、空间O(n^2)可行，图建模及两个搜索标签一致。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/3"
+        },
+        "second_2": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "异值四邻关系对称，可达集合等于连通分量，预处理每格编号及大小后常数回答正确。正式方法为BFS洪泛与并查集合并异色邻边，均可行且单格答案1。graph.bfs、graph.connectivity和ds.union-find覆盖正式两法，正文顺带等价DFS不强制重复标签。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/3"
+        },
+        "second_3": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "迭代BFS沿异值四邻无向边完整划分连通块，各格一次入队，编号大小缓存后常数回答；全同值各1、棋盘格全连通、重复问及单格自然覆盖。O(n^2+m)可行，graph.bfs覆盖该图搜索方法，不强制重复连通性标签。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/3"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B05",
+      "title": "职员宴会最大快乐指数",
+      "url": "https://www.luogu.com.cn/problem/P1352",
+      "group": "new11",
+      "human_rating": 1300,
+      "runs": {
+        "first": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "选u时子结点只能不选，不选u时每个子树独立取两状态最大；叶子初始化允许空集，故负权及仅禁直接父子均正确。由根的两个状态取最大即目标，根可由父子关系确定，无须再展开模板细节。O(n)可行，树DP和树结构标签准确。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/4"
+        },
+        "second_1": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "两状态转移只禁直接父子同时选，子树条件独立；叶子不选0、选自身权重，根取最大允许空集并明确找无上司根及n=1。O(n)可行，树DP与树结构标签准确。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/4"
+        },
+        "second_2": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "选不选状态、初始0/权值、两种对子转移及后序合并完整，只禁相邻父子，负权允许空集；根由无上司关系确定，不假设根1。根两态取最大与目标一致，O(n)可行，dp.tree与树基础标签准确。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/4"
+        },
+        "second_3": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "选u时子不选，不选u时各子取两态最大，叶子0/权值后序合并，根两态取max。根由无父节点确定、全负允许空集0；O(n)可行，树DP、树基础及明确后序DFS标签均实际使用。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/4"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B06",
+      "title": "商店价格预算计数",
+      "url": "https://codeforces.com/problemset/problem/706/B",
+      "group": "regression9",
+      "human_rating": 1100,
+      "runs": {
+        "first": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "排序保持价格多重集合，最后一个不超过m的位置加一恰为可负担商店数；预算小于最小值与大于最大值分别返回0、n，重复价格也按元素计数。排序加逐查询二分可行，两标签对应所述方法。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/5"
+        },
+        "second_1": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "排序后找首个大于预算位置即含等号计数，保留重复价格并处理0/n答案。频数前缀和备选利用V=10^5，预算越界直接n；两种复杂度可行，排序、二分、前缀和并集恰当。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/5"
+        },
+        "second_2": {
+          "rating": 800,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "频数cnt保存相同价格的所有商店，pref[m]对应<=m且超过10^5返回n，预算不足自然0。排序二分上界备选含等号且独立询问正确，两种复杂度可行。basic.use-of-sort为排序应用，配binary/prefix-sum与方法一致。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/5"
+        },
+        "second_3": {
+          "rating": 1100,
+          "tags_correct": false,
+          "solution_correct": true,
+          "joint_correct": false,
+          "evidence": "频数前缀和保留重复商店、预算超过V直接n，排序二分上界备选也正确，时间空间可行，故solution=true。但basic.counting-sort多标：当前data/knowledge_taxonomy.json:321-325定义为统计次数后按值从小到大输出，用于整数排序；本输出只做累计计数，没有重建或输出有序序列。prefix-sum/use-of-sort/binary正确不能消除这一多标，故tags及joint=false。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/5"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B07",
+      "title": "统计在文本中出现过的模式串编号数",
+      "url": "https://www.luogu.com.cn/problem/P3808",
+      "group": "regression9",
+      "human_rating": 1700,
+      "runs": {
+        "first": {
+          "rating": 1700,
+          "tags_correct": true,
+          "solution_correct": false,
+          "joint_correct": false,
+          "evidence": "AC加fail树上传标记的主线、复杂度与AC/Trie/DFS标签均合理，完整编号集合也能保留重复模式。但原文另声称“或只记录一个代表编号”，未附终点编号数量或重复编号映射。模式a,a、文本a时只标一个代表只能得到1，要求为2；后续要求重复编号分别计未说明如何恢复已丢信息。全部声称备选都须成立，故solution=false。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/6"
+        },
+        "second_1": {
+          "rating": 1800,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "终点数量保留重复模式，扫描仅标到达状态，BFS逆序向fail父传播后每个标记终点只累加一次数量。a,a配a得2；a,aa,aaa配aaaa得3；he,she配she得2。无需每位置扫全fail链，固定26字母因子线性可行；AC标签覆盖主线。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/6"
+        },
+        "second_2": {
+          "rating": 1900,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "Trie终点存编号数量保留重复，文本到达状态标记后按逆BFS向fail父传播，终点标记当且仅当其fail子树曾被到达。每终点权重只累加一次，重复a,a配a为2，he与she后缀均覆盖。固定26转移规模可行，AC及Trie标签准确。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/6"
+        },
+        "second_3": {
+          "rating": 1800,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "AC记录每编号终点，文本到达状态做逆BFS fail上传，逐编号查终点故重复串不丢计数，每编号仅一次，固定26转移可行。SAM备选建于文本，从初态完整走通模式当且仅当为子串，逐编号累计且总匹配长度S，O(|t|+S)可行。AC、Trie、fail构建队列及SAM标签对应两法。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/6"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B08",
+      "title": "二分图最大匹配",
+      "url": "https://www.luogu.com.cn/problem/P3386",
+      "group": "new11",
+      "human_rating": 1500,
+      "runs": {
+        "first": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "明确使用逐左点DFS增广路、match[v]保存右点匹配及本轮vis[v]；增广沿已有匹配重排并使数量加一，Berge定理支撑最大性。算法级说明无需展开代码。重边不增加容量，左右部另行编号，O(n e)可行；匹配与DFS标签准确。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/7"
+        },
+        "second_1": {
+          "rating": 1700,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "说明交错增广路径及翻转匹配，每次增加1，增广路定理保证最大值，左右部及重边处理正确。DFS匈牙利O(nE)与BFS分层/DFS批量增广Hopcroft-Karp O(E sqrt(V))均可行；匹配、DFS、BFS对应方法并集。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/7"
+        },
+        "second_2": {
+          "rating": 1500,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "右侧match记录配对，逐左点找增广路并翻转，明确遇已占右点让原左点改配；增广定理保证无路时最大。访问标记在空间说明出现，未展开代码不臆测跨轮不清空。重边孤点合理，O(n e)可行，匹配与DFS对应。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/7"
+        },
+        "second_3": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "空匹配逐左点增广，明确每轮清右访问标记，未匹配右点成功否则递归使原左点改配，成功翻转增加1。增广定理保证最大，重边不增容量，左右编号及孤点正确。O(n(n+m+e))可行，二分图、匹配及DFS标签恰当。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/7"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B09",
+      "title": "环形石子合并的最小与最大得分",
+      "url": "https://www.luogu.com.cn/problem/P1880",
+      "group": "new11",
+      "human_rating": 1400,
+      "runs": {
+        "first": {
+          "rating": 1500,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "倍长后枚举全部N个切口，区间长度由小到大、单点代价0，最后合并划分枚举k同时求最小最大，加上整段和的转移正确。N=1和零石子边界明确，O(N^3)对N不超过100可行；区间DP与前缀和标签完整。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/8"
+        },
+        "second_1": {
+          "rating": 1500,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "倍长后枚举所有长度N区间覆盖全部切口，最后合并分裂为相邻两段，最小最大分别转移并加整段和。单堆无需操作为0，零石子不破坏转移；前缀和常数求和，O(N^3)可行，两标签准确。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/8"
+        },
+        "second_2": {
+          "rating": 1500,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "两倍数组各长度N区间覆盖环切口，最后分界两子区间独立最优，分别min/max并加整段和正确。N=1无操作为0、零石子不影响；前缀和保持O(N^3)时间与O(N^2)空间，区间DP和前缀和标签相符。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/8"
+        },
+        "second_3": {
+          "rating": 1500,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "断环倍长后取全部长度N区间，枚举最后合并点并加整段和，同时min/max，单堆初始0明确。N=1及全零均0，最后合并连续子区间覆盖合法合并树。O(N^3)/O(N^2)可行，区间DP与前缀和标签准确。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/8"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B10",
+      "title": "乘二减一最少操作",
+      "url": "https://codeforces.com/problemset/problem/520/B",
+      "group": "regression9",
+      "human_rating": 1400,
+      "runs": {
+        "first": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": false,
+          "joint_correct": false,
+          "evidence": "BFS和状态图标签与声称方法相符，但未分n>=m就将状态域固定为[1,2m]。题面样例n=10,m=1时域为[1,2]，起点10不在域中，无法运行其定义的起点到终点BFS；真实最优为连续减一9步。文本既无直接相减分支也无含起点的界，故solution=false。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/9"
+        },
+        "second_1": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "逆操作为偶数除2和加1；x>n奇数须加1，偶数用交换论证立即除2不劣，x<=n后补差值。n>m因而直接n-m，修复首测缺口。每至多两步下降约一半，O(log m)成立且保持正值，贪心标签准确。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/9"
+        },
+        "second_2": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "n>m直接减差值；n<m从m逆推，偶数立即除2、奇数加1后除2，用加偶数次再除可交换为先除再加一半证明不劣。x<=n补差最优，正逆路径对应并保持正值，O(log max(n,m))、O(1)正确，贪心标签准确。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/9"
+        },
+        "second_3": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "n>m直接减n-m；n<m只有x<m的乘法有用，峰值2x<2m，故[1,2m+2]含最优路径及起点。正值限制用x>1才能减，BFS按层首达最短。O(max(n,m))时间空间可行，修复首测界错误，BFS及队列实际使用。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/9"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B11",
+      "title": "栈输出序列计数",
+      "url": "https://www.luogu.com.cn/problem/P1044",
+      "group": "new11",
+      "human_rating": 1500,
+      "runs": {
+        "first": {
+          "rating": 1100,
+          "tags_correct": false,
+          "solution_correct": false,
+          "joint_correct": false,
+          "evidence": "卡特兰总递推及最终值C18=477638700正确，但其按“第一个输出k”划成独立子问题的证明不成立。独立枚举n=3全部输出为123、132、213、231、321，按首输出1/2/3的实际数量是2/2/1；所写f[k-1]f[n-k]对应2/1/2。首输出2时既有213又有231，表明栈内剩余与未入栈部分并非所称笛卡尔积。方法表的dp.interval只由这个无效区间分解支持，实际给出的f[m]是按规模的卡特兰计数递推，未建立有效区间状态；Catalan、组合数标签本身有依据。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/10"
+        },
+        "second_1": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "二维已压i/已弹j计数DP的合法域j<=i、两种转移、初始与终点完整；输出序列唯一决定压弹操作的双射说明正确，不再使用首弹k伪分解。另一Catalan线性递推逐步精确整除。dp.count及Catalan分别覆盖两法。独立核验k=1..18线性式均等于组合公式，n18=477638700、最大乘法中间分子9075135300，64位安全；原参考另枚举n<=8完整输出支持DP计数。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/10"
+        },
+        "second_2": {
+          "rating": 1300,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "压栈/弹栈对应合法括号前缀，栈顶决定下步是否弹/继续压的唯一性给出输出与操作串双射；按括号首次平衡点分解而非首个弹出值分解，得到正确Catalan递推f0=1、fi=sum fj*f(i-1-j)。Catalan与dp.count覆盖方法，O(n²)可行。独立参考n<=8枚举不同输出与计数一致，n18=477638700；每个非负递推分项不超总和，long long安全。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/10"
+        },
+        "second_3": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "合法P/O串与Dyck路径等价，并按目标输出重构唯一操作说明双射，未用首弹k错误分解。Catalan递推与binom(2n,n)/(n+1)均正确，Catalan已覆盖该特定计数递推核心，不强制再重复dp.count；组合数标签对应替代公式。独立按乘除递推计算binom(36,18)=9075135300，最大乘法中间量163352435400，64位安全，除19得477638700；不存在要求直接阶乘36!的说明。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/10"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B12",
+      "title": "连续编号分组查询",
+      "url": "https://codeforces.com/problemset/problem/474/B",
+      "group": "regression9",
+      "human_rating": 1200,
+      "runs": {
+        "first": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "用正数组前缀和S确定组i范围(S[i-1],S[i]]，二分第一个S[i]>=q；等号及首尾编号处理正确。basic.prefix-sum/basic.binary完整覆盖唯一方法。独立参考对300组随机组大小逐个对象与显式组号表比较通过，原样例1/25/11对应1/5/3；总和<=10^6，复杂度O(n+m log n)可行。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/11"
+        },
+        "second_1": {
+          "rating": 1000,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "前缀和严格递增，查最小p_i>=q，组末等号及首尾编号正确；第二法逐组铺位置→组号，总位置<=10^6所以O(sum a+m)可行。prefix-sum/binary覆盖主线、simulate覆盖直接铺号，均有实际方法依据。独立参考300组所有对象号同时对比二分与铺号结果一致；原样例1/5/3。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/11"
+        },
+        "second_2": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "pre[i]为组末，组i闭区间[pre[i-1]+1,pre[i]]，前缀严格递增，二分最小pre>=q覆盖组末等号与首尾。prefix-sum/binary准确，无多余标签；O(n+m log n)可行。独立参考300组全部对象号与铺号表一致，原样例1/5/3。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/11"
+        },
+        "second_3": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "组末前缀和严格递增，二分最小p>=q精确定位，首尾/n1边界正确；直接按组展开所有编号也因总数<=10^6可行。prefix-sum/binary/simulate分别对应两条实述方法，无多余知识。独立参考300组完整映射比较通过；复杂度O(n+m log n)与O(sum a+m)均正确。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/11"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B13",
+      "title": "统计不同字符串个数",
+      "url": "https://www.luogu.com.cn/problem/P3370",
+      "group": "new11",
+      "human_rating": 1100,
+      "runs": {
+        "first": {
+          "rating": 800,
+          "tags_correct": true,
+          "solution_correct": false,
+          "joint_correct": false,
+          "evidence": "排序后完整字符串相邻比较的主线正确；哈希表存储完整字符串、用精确等价比较也可以正确去重，basic.sort/string.basic/ds.hash各有实际方法依据。问题只在methods[1].time_complexity明确称“最坏O(N·L)哈希计算加冲突处理”：若N个不同键落同桶，逐次插入可累计1+...+(N-1)次精确判等，每次最坏O(L)，最坏可达O(N²L)，不能把正文的期望O(NL)当最坏。按冻结标准全部声称可行方法的技术结论都须正确，因此solution=false；不是禁止哈希表、不是要求官方字符串哈希，也不是仅存摘要导致结果碰撞错误。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/12"
+        },
+        "second_1": {
+          "rating": 800,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "排序+完整字符串比较精确去重，基本排序应用/string.basic准确；替代法明确哈希冲突后逐字符核对，保留原串，不会把摘要相同当字符串必同。string.hash与ds.hash对应实际字符串映射及哈希表操作。正文/表均注明期望O(sum长度+N)，最坏O(N² Mmax)，已纠正首测错误最坏上界；排序O(N log N Mmax)可行。N=0或空串的条件性冗余说明不改变有效输入算法。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/12"
+        },
+        "second_2": {
+          "rating": 800,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "主线unordered_set存完整字符串，哈希冲突时精确逐字符/长度判等，不存在摘要碰撞漏判；明确期望O(sum M)、最坏O(N² Lmax)，排序替代法也准确计入最坏比较字符数。ds.hash/string.basic/basic.sort分别覆盖两法，不要求贴官方“字符串哈希”。原参考300随机去重数据、大小写/前缀/长度1500边界均支持两条精确判等路线。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/12"
+        },
+        "second_3": {
+          "rating": 800,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "完整字符串哈希表在摘要相同后仍比较完整原串，大小写和长度精确判等；仅声称期望O(S)，没有首测错误最坏线性上界。排序方法O(N log N Lmax+S)最坏与完整字符串去重正确，hash/string.basic/use-of-sort覆盖两法。表中“可视为O(S log N)量级”为总字节随比较排序层次重复处理的概括，可用归并排序做到，不否定前面明确上界。原参考300组、大小写/前缀/1500字符边界通过。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/12"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B14",
+      "title": "连续阅读任务的最大完成数",
+      "url": "https://codeforces.com/problemset/problem/279/B",
+      "group": "regression9",
+      "human_rating": 1300,
+      "runs": {
+        "first": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "正耗时保证窗口和的单调性；扩右后while超时缩左，记录最长合法窗口，覆盖空窗口及全项>t输出0。misc.two-pointer对应实际方法，未多贴背包或排序。独立参考500个随机数组与全部连续区间穷举一致，两个原样例为3和1；O(n)可行。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/13"
+        },
+        "second_1": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "双指针按正数单调性维护最长连续合法窗口、while超限收缩及空窗口答案0正确。另法对每个左端点在严格递增前缀和上二分最远满足差<=t的右端点，也不遗漏最优。two-pointer与prefix-sum/binary分别覆盖两法；原参考500组与穷举一致，两个样例3/1；两法O(n)及O(n log n)均可行。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/13"
+        },
+        "second_2": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "正耗时使固定右端的最左合法起点单调；扩右后while超限右移左端，允许缩空，记录最长连续段。备选前缀和+二分最远合法终点也可行；two-pointer/prefix-sum/binary覆盖所声称两法。原参考500组全区间穷举一致，样例3/1；O(n)及O(n log n)均可行。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/13"
+        },
+        "second_3": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "正数滑窗扩右、超t时while缩左至合法并更新最长连续长度，空窗口输出0成立；“覆盖所有子段”理解为不遗漏最优而非实际枚举O(n²)个子段。备选方法在evidence明确前缀和+每起点二分最远合法右端，O(n log n)可行；two-pointer/prefix-sum/binary覆盖两法。原参考500组与全部连续区间穷举一致。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/13"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B15",
+      "title": "最多参加的完整比赛数",
+      "url": "https://www.luogu.com.cn/problem/P1803",
+      "group": "new11",
+      "human_rating": 1000,
+      "runs": {
+        "first": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "按结束时间升序，开始>=上一已选结束即选择；可相接及0起点语义正确，交换论证说明最早结束可替换最优首场。basic.greedy/basic.sort均为实际关键知识。独立参考300组最多10区间与全部子集合法调度穷举一致，原相接样例答案2；O(n log n)符合约束。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/14"
+        },
+        "second_1": {
+          "rating": 1300,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "结束时间递增的贪心，a>=last_end接纳，初值-1涵盖0起点，交换论证安全；greedy/sort覆盖实际方法。虽然开头记作闭区间[a,b]，随后明确相接允许且判断>=，不导致执行或结果错误，不因记号差异否决。独立参考300组与所有子集穷举一致，原相接样例为2。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/14"
+        },
+        "second_2": {
+          "rating": 1300,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "按结束升序、a>=last_end选择，初始-1且相接合法，交换论证完整。greedy及use-of-sort准确覆盖排序后选择，不因闭区间记号而否决明确>=判断。原参考300组子集穷举与贪心一致，样例2；O(n log n)适用n<=10^6。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/14"
+        },
+        "second_3": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "按b<=10^6做计数/桶排序后执行最早结束贪心，保留各场起点信息；同结束的正长度区间最多选1个，桶内顺序不影响最优，a>=last_end及初始-1正确。greedy/counting-sort准确覆盖具体方法，O(n+B)时间/空间可行。独立500组随机区间验证桶序贪心与比较排序贪心一致，基础贪心另有300组子集穷举参考。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/14"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B16",
+      "title": "滑动窗口前缀最小值",
+      "url": "https://www.luogu.com.cn/problem/P1440",
+      "group": "new11",
+      "human_rating": 1300,
+      "runs": {
+        "first": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "处理i先移除下标<i-m，查询队首，输出后才插入i，因此精确查询[max(1,i-m),i-1]，没有包含当前位置。值>=新值的队尾可淘汰且新下标更晚过期；单调队列标签准确。独立参考1000组数组与直接历史切片最小值一致，原样例0/7/7/1/1/3，m=1时输出前项；O(n)及O(n)空间可行。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/15"
+        },
+        "second_1": {
+          "rating": 1300,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "不同于首测的等价顺序：当前先输出前次维护好的队首，再插入i并剔除<i+1-m，为下一次i+1预备[max(1,i+1-m),i]。初始空队输出0、m=1及m=n正确，未包含当前位置。独立按这一次具体顺序实现，1000随机数组与直接前项最小值逐项一致；monotonic-queue准确，摊还O(n)、队列O(m)。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/15"
+        },
+        "second_2": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "先剔除<i-m过期下标、输出后才插入i并去尾>=值，精确排除当前位置；单调队列候选支配与过期逻辑成立，i1输出0、m1及mn自然覆盖。monotonic-queue准确，O(n)时间及O(n)/流式O(m)空间合理；原参考1000组与历史切片最小值一致。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/15"
+        },
+        "second_3": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "先剔除<i-m的过期下标，取队首前项最小，输出后才入i且去尾>=值，窗口正是[max(1,i-m),i-1]。i1空队输出0、m1/全前缀有效；monotonic-queue覆盖核心。每下标至多进出一次O(n)，原1000组直接历史切片差分支持其具体逻辑，原样例0/7/7/1/1/3。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/15"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B17",
+      "title": "图的最少换边连通（CF25D）",
+      "url": "https://codeforces.com/problemset/problem/25/D",
+      "group": "regression9",
+      "human_rating": 1500,
+      "runs": {
+        "first": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": false,
+          "joint_correct": false,
+          "evidence": "所列DFS、树基础、构造是其声称方法实际使用的知识，标签本身独立判为覆盖；但解法核心命题及构造确定错误。合法n=4边(1,2),(2,3),(3,1)恰n-1边，分量为三角形与孤点4，反驳“每块都是树”；把含1的块作基准时孤点块没有可删除边。原7点样例若删桥(4,5)再加(1,4)，独立连通分量模拟由2仍为2，剩余{5,6,7}孤立，反驳“删树边再跨块加边净减1”。应删环上非森林边，但该输出没有给出这一可行构造。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/16"
+        },
+        "second_1": {
+          "rating": 1700,
+          "tags_correct": false,
+          "solution_correct": true,
+          "joint_correct": false,
+          "evidence": "并查集提取生成森林，合并失败边恰c-1条可删除；保留森林保证删边不拆块，跨当前块加边并合并，方案最优且合法，solution=true。标签只有ds.union-find与graph.basic：当前词表前者说明集合合并/连通，后者说明度/路径/连通块/表示/DFS/BFS，均未语义覆盖必须输出具体删边加边方案这一独立构造核心，缺basic.construction或同等精确覆盖，tags=false。该漏标与解法本身正确分开。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/16"
+        },
+        "second_2": {
+          "rating": 1500,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "DSU合并成功边构成生成森林，失败边恰c-1条；代表按链r_i→r_(i+1)连接，并逐条删除非森林边，始终保留原森林。一次替换至多减块1，构造达到c-1，且新边不同初始分量故无自环/重边。union-find与construction覆盖两个独立核心，补齐R1漏标。独立按本次“链式”实现对n<=6所有3237个n-1边简单图逐步模拟：删边存在、新边不重复、最终连通且边数n-1全部通过。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/16"
+        },
+        "second_3": {
+          "rating": 1600,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "DSU成功合并边组成各分量生成森林，失败边恰k-1条；保留森林使逐条删除非树边均不拆分原块，再从首代表星形连接其余初始代表，确实逐步合并且无重边/自环，k-1达到下界。union-find+construction+graph.basic完整覆盖集合识别、具体替换方案及图语义，已补R1缺失。与事前独立参考相同构造，n<=6所有3237个合法n-1边简单图逐步模拟通过，三角形+孤点亦可处理。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/16"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B18",
+      "title": "区间加与区间和",
+      "url": "https://www.luogu.com.cn/problem/P3372",
+      "group": "new11",
+      "human_rating": 1700,
+      "runs": {
+        "first": {
+          "rating": 1500,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "懒加线段树节点存真实区间和，整段sum+=k*len并累加lazy，部分访问前下传后合并，操作顺序完整，ds.segment-tree.basic准确覆盖。正初值/正增量且总和<=2e18保障节点和及实际加量处在signed64范围；此份没有双BIT加权中间项问题。独立参考300组各80步与直接数组一致，原样例11/8/20；总O(n+m log n)。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/17"
+        },
+        "second_1": {
+          "rating": 1600,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "懒标记线段树与双Fenwick差分两法均完整；公式S(x)=(x+1)Σd_j−Σj*d_j正确，r=n跳过n+1，区间和取前缀差。明确指出加权内部量可超signed64并要求128位/安全处理，未把真实总和界误当内部界。标签segment-tree/fenwick/difference/prefix-sum覆盖两法。独立双BIT实现300组×60步与直接数组一致，主线树在原参考300组×80步也通过。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/17"
+        },
+        "second_2": {
+          "rating": 1500,
+          "tags_correct": true,
+          "solution_correct": false,
+          "joint_correct": false,
+          "evidence": "线段树与双BIT公式本身正确，标签segment-tree/fenwick/difference/prefix-sum覆盖两法；但两法合述只要求64位，未保障双BIT加权项i*d_i与(p+1)Σd_i的中间范围。合法n=100000、初值全1，末项加k=1999999999999900000后总和恰2e18，然而加权更新n*k=199999999999990000000000，远超signed64最大9223372036854775807。R1明确128位才覆盖此边界，R2未覆盖；按全部声称方法须完整处理范围，solution=false，不是线段树主线错误。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/17"
+        },
+        "second_3": {
+          "rating": 1400,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "懒加线段树sum+=k*len与lazy正确，下传/部分递归/合并完整；真实节点和<=2e18，signed64可存。双Fenwick差分及加权项路线说明明确要求128位中间量或选择线段树，因此覆盖R2缺失数值边界。segment-tree/fenwick/difference/prefix-sum覆盖两法。原参考树300组×80步、双BIT补查300组×60步均与直接数组一致；不要求说明书再给全量代码。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/17"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B19",
+      "title": "快速幂取模",
+      "url": "https://www.luogu.com.cn/problem/P1226",
+      "group": "new11",
+      "human_rating": 1100,
+      "runs": {
+        "first": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "二进制幂递推、每步模乘及b=0/a=0边界正确，p<2^31使模后余数乘积<2^62，可用64位。math.binary-exponentiation为实际核心，精确输出格式也写出。独立参考1000组完整32位输入与Python精确模幂一致，原输出2^10 mod 9=7。证据中“唯一可行”是对快速幂族的过度措辞，但不改变算法、可行性、执行结果，按任务要求不因此否决。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/18"
+        },
+        "second_1": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": false,
+          "joint_correct": false,
+          "evidence": "具体迭代方法base=a%p、res=1%p、奇位乘res、平方base、右移指数完整正确，边界与64位模乘也正确，binary-exponentiation标签准确；但开头明确写a^b=(a^floor(b/2))²，未限制偶数b。合法a=2,b=3,p=9时左边8、该等式右边4，构成确定性数学矛盾。按冻结“题解技术完整、无确定性矛盾”的严格文本口径solution=false；这不等同其后具体迭代程序必然WA。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/18"
+        },
+        "second_2": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "逐指数二进制位平方、奇位累乘并取模，边界b0=>1、a0且b>0=>0正确；说明需足够宽乘法并输出原始a/b/p，未出现R1错误幂等式。binary-exponentiation标签准确，O(log b)/O(1)可行；独立参考1000组与精确模幂一致，样例2^10 mod 9=7。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/18"
+        },
+        "second_3": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "base=a%p、ans=1%p，奇位累乘、base平方、指数右移完整，解释每轮a^(2^k)与二进制分解正确，没有R1错误恒等式。a0/b0、64位乘积<2^62及精确输出格式均覆盖，binary-exponentiation准确。原参考1000组完整31位范围输入对精确modpow一致，复杂度O(log b)/O(1)。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/18"
+        }
+      }
+    },
+    {
+      "anonymous_id": "B20",
+      "title": "第 k 个素数查询",
+      "url": "https://www.luogu.com.cn/problem/P3383",
+      "group": "regression9",
+      "human_rating": 1300,
+      "runs": {
+        "first": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "埃氏筛一次标记合数、按升序收集素数，primes[k-1]查询；sieve/prime覆盖实际方法，O(n log log n+q)与O(n+pi(n))可行。其提及n<2只是题外冗余边界，不影响冻结n=10^8算法。独立参考实际筛满10^8，计5761455个素数、最后99999989，前1/2/5个为2/3/11；有限实测不冒充模型代码运行。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/first.json#/items/19"
+        },
+        "second_1": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "埃氏筛按升序发现素数并标记其合数倍数，primes[k-1]直接查；筛法/素数标签对应实际知识。明确n=10^8需紧凑标记与批量输出，O(n log log n+q)及紧凑O(n)空间可行。本轮“所有i的倍数”按标准埃氏筛中不含i本身的倍数解释，已加入素数表的i仍保持素数身份，不因概述未写2i/p²起点否决。原参考实筛n=10^8得到5761455及末素数99999989。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_1.json#/items/19"
+        },
+        "second_2": {
+          "rating": 1100,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "筛出全部<=n素数再按primes[k-1]查，明确容量应覆盖pi(n)而非q，1-based及从2起正确；列埃氏和Euler两种标准筛法，复杂度分别O(n log log n+q)、O(n+q)，标签sieve/prime覆盖筛法族。冻结题面无额外时空限制，未凭空要求特定版本。原参考实筛n=10^8得到pi=5761455、末素数99999989、样例2/3/11。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_2.json#/items/19"
+        },
+        "second_3": {
+          "rating": 1200,
+          "tags_correct": true,
+          "solution_correct": true,
+          "joint_correct": true,
+          "evidence": "只筛一次、排除1、升序收素数、primes[k-1]查询正确，位集/奇数压缩仅改变常数；sieve/prime覆盖实际算法。复杂度埃氏O(n log log n+q)，Euler可O(n+q)均为标准筛法。原参考实筛到10^8，表长5761455、末值99999989、样例2/3/11验证了容量与索引边界；文本说“题目保证编号及数值不超过n”可由保证查询素数存在推出，不构成新假设。",
+          "source_ref": "data/evaluation/v8-second-test/review-packets/second_3.json#/items/19"
+        }
+      }
+    }
+  ]
+}

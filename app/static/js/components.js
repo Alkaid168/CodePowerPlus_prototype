@@ -43,11 +43,11 @@ export function verdictBadge(verdict) {
   return h('span', { class: `badge ${kind}` }, verdict);
 }
 
-/** 难度只显示 Codeforces 风格的 800–3500 评分，档位名作为补充。 */
+/** 难度使用 100–3500 评分：100–700 为语法入门细分，800 起沿用 Codeforces 风格，档位名作为补充。 */
 export function difficultyTag(rating, band = '') {
   if (rating === null || rating === undefined) return h('span', { class: 'tag' }, '未评估');
   const text = band ? `${rating} · ${band}` : String(rating);
-  return h('span', { class: 'tag difficulty', title: `Codeforces 风格评分 ${rating}` }, text);
+  return h('span', { class: 'tag difficulty', title: rating < 800 ? `语法入门评分 ${rating}` : `Codeforces 风格评分 ${rating}` }, text);
 }
 
 export function sourceLink(sourceUrl, label = '') {
@@ -98,7 +98,9 @@ export function progress(value) {
     h('span', { class: 'mono nowrap' }, percent === null ? '无证据' : `${percent}%`));
 }
 
+let fieldSequence = 0;
 export function field(label, control, hint = '') {
+  if (!control.id) control.id = `field-${++fieldSequence}`;
   return h('div', { class: 'field' },
     h('label', { class: 'field-label', for: control.id || undefined }, label),
     control,

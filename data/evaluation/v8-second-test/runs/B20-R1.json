@@ -1,0 +1,239 @@
+{
+  "event": "v8二测",
+  "key": "B20-R1",
+  "public_id": "B20",
+  "repetition": 1,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "ba36f135499c4be1675c5c23890e57c03202f0615ab51e8a5675512ddb6d2fad",
+  "completed_at": "2026-10-17T03:41:46.042770+00:00",
+  "analysis": {
+    "title": "第 k 个素数查询",
+    "difficulty": 1200,
+    "difficulty_reason": "题目本质是直接使用埃氏筛生成素数表后按询问下标查询，建模门槛低，正确性证明是常规筛法论证。实现上需要注意 10^8 范围的筛表空间、约 5.76e6 个素数的存储以及 10^6 次查询的快速 IO，因此不是最简单的签到题；但不需要发现非平凡状态不变量或复杂构造，整体符合基础算法档，定为 1200。",
+    "solution_idea": "把询问转化为：先筛出不超过 n 的所有素数，按升序存入数组，则第 k 个询问答案就是 `primes[k-1]`。使用埃拉托斯特尼筛：初始化全部为候选素数，从 2 开始，若 i 未被标记为合数，则 i 为素数并加入素数表，同时把所有 i 的倍数标记为合数；筛完后未被标记的数恰为素数，因此按扫描顺序得到的素数表升序且完整。由于保证被查询素数不超过 n，预处理到 n 即可覆盖全部合法 k。边界为 k=1 对应 2；n=10^8 时素数表约 5.76e6 个，查询 q 达 10^6，需用紧凑筛表并批量输出。预处理 O(n log log n)，查询 O(q)，总时间 O(n log log n + q)；空间为筛表 O(n) 位（或 O(n) 字）加素数表 O(pi(n))。",
+    "confidence": 0.9,
+    "primary_knowledge_ids": [
+      "math.number-theory.sieve",
+      "math.number-theory.prime"
+    ],
+    "secondary_knowledge_ids": [],
+    "evidence": {
+      "math.number-theory.sieve": "主线用埃拉托斯特尼筛标记合数并生成不超过 n 的素数表。",
+      "math.number-theory.prime": "题目要求第 k 个素数，正确性依赖素数与合数的判定及素数升序表。"
+    },
+    "knowledge_confidence": {
+      "math.number-theory.sieve": 0.99,
+      "math.number-theory.prime": 0.98
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "筛法",
+      "素数"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "0f6e4fe0-9e82-43f5-a2ab-0b6e58b31e4d",
+          "usage": {
+            "completion_tokens": 3411,
+            "prompt_tokens": 5428,
+            "total_tokens": 8839,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 2957,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 4992,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 4992,
+            "prompt_cache_miss_tokens": 436
+          },
+          "elapsed_seconds": 16.269,
+          "valid": true,
+          "response_text": "{\"title\":\"第 k 个素数查询\",\"kind\":\"algorithm\",\"solution_idea\":\"把询问转化为：先筛出不超过 n 的所有素数，按升序存入数组，则第 k 个询问答案就是 `primes[k-1]`。使用埃拉托斯特尼筛：初始化全部为候选素数，从 2 开始，若 i 未被标记为合数，则 i 为素数并加入素数表，同时把所有 i 的倍数标记为合数；筛完后未被标记的数恰为素数，因此按扫描顺序得到的素数表升序且完整。由于保证被查询素数不超过 n，预处理到 n 即可覆盖全部合法 k。边界为 k=1 对应 2；n=10^8 时素数表约 5.76e6 个，查询 q 达 10^6，需用紧凑筛表并批量输出。预处理 O(n log log n)，查询 O(q)，总时间 O(n log log n + q)；空间为筛表 O(n) 位（或 O(n) 字）加素数表 O(pi(n))。\",\"methods\":[{\"name\":\"埃拉托斯特尼筛法预处理素数表 + 按第 k 项直接查询\",\"knowledge_ids\":[\"math.number-theory.sieve\",\"math.number-theory.prime\"],\"time_complexity\":\"O(n log log n + q)\",\"space_complexity\":\"O(n) 位筛表 + O(pi(n)) 个整数存素数表（渐进为 O(n)）\"}],\"primary_knowledge_ids\":[\"math.number-theory.sieve\",\"math.number-theory.prime\"],\"secondary_knowledge_ids\":[],\"evidence\":{\"math.number-theory.sieve\":\"主线用埃拉托斯特尼筛标记合数并生成不超过 n 的素数表。\",\"math.number-theory.prime\":\"题目要求第 k 个素数，正确性依赖素数与合数的判定及素数升序表。\"},\"knowledge_confidence\":{\"math.number-theory.sieve\":0.99,\"math.number-theory.prime\":0.98},\"confidence\":0.97}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "a5d7d8a0-1156-4f69-bfa7-0f426c2f3bb3",
+          "usage": {
+            "completion_tokens": 1565,
+            "prompt_tokens": 1865,
+            "total_tokens": 3430,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1245,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 768,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 1097
+          },
+          "elapsed_seconds": 8.93,
+          "valid": true,
+          "response_text": "{\"rubric\":{\"knowledge\":\"需要知道素数与合数的基本定义，掌握埃拉托斯特尼筛法，并能用数组保存筛表与素数序列；还要熟悉大批量输入输出。\",\"modelling\":\"题意转化非常直接：预处理出不超过 n 的所有素数，按升序存入数组，之后第 k 个询问就是数组第 k-1 项，无需额外建模。\",\"proof\":\"需要说明筛法的正确性：若一个数在扫描到它时未被标记，则它没有更小的素因子，因此是素数；每个合数会被其素因子筛掉，因此得到的素数表完整且升序。论证常规但不可完全省略。\",\"implementation\":\"主要负担在于 n=10^8 时的紧凑筛表、时间控制在 O(n log log n)，以及 q=10^6 的快速输出和素数表存储；逻辑简单但大范围与内存/IO 细节需处理。\"},\"consistency_issues\":[],\"difficulty\":1200,\"difficulty_reason\":\"题目本质是直接使用埃氏筛生成素数表后按询问下标查询，建模门槛低，正确性证明是常规筛法论证。实现上需要注意 10^8 范围的筛表空间、约 5.76e6 个素数的存储以及 10^6 次查询的快速 IO，因此不是最简单的签到题；但不需要发现非平凡状态不变量或复杂构造，整体符合基础算法档，定为 1200。\",\"confidence\":0.9}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "第 k 个素数查询",
+        "kind": "algorithm",
+        "solution_idea": "把询问转化为：先筛出不超过 n 的所有素数，按升序存入数组，则第 k 个询问答案就是 `primes[k-1]`。使用埃拉托斯特尼筛：初始化全部为候选素数，从 2 开始，若 i 未被标记为合数，则 i 为素数并加入素数表，同时把所有 i 的倍数标记为合数；筛完后未被标记的数恰为素数，因此按扫描顺序得到的素数表升序且完整。由于保证被查询素数不超过 n，预处理到 n 即可覆盖全部合法 k。边界为 k=1 对应 2；n=10^8 时素数表约 5.76e6 个，查询 q 达 10^6，需用紧凑筛表并批量输出。预处理 O(n log log n)，查询 O(q)，总时间 O(n log log n + q)；空间为筛表 O(n) 位（或 O(n) 字）加素数表 O(pi(n))。",
+        "methods": [
+          {
+            "name": "埃拉托斯特尼筛法预处理素数表 + 按第 k 项直接查询",
+            "knowledge_ids": [
+              "math.number-theory.sieve",
+              "math.number-theory.prime"
+            ],
+            "time_complexity": "O(n log log n + q)",
+            "space_complexity": "O(n) 位筛表 + O(pi(n)) 个整数存素数表（渐进为 O(n)）"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "math.number-theory.sieve",
+          "math.number-theory.prime"
+        ],
+        "secondary_knowledge_ids": [],
+        "evidence": {
+          "math.number-theory.sieve": "主线用埃拉托斯特尼筛标记合数并生成不超过 n 的素数表。",
+          "math.number-theory.prime": "题目要求第 k 个素数，正确性依赖素数与合数的判定及素数升序表。"
+        },
+        "knowledge_confidence": {
+          "math.number-theory.sieve": 0.99,
+          "math.number-theory.prime": 0.98
+        },
+        "confidence": 0.97
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要知道素数与合数的基本定义，掌握埃拉托斯特尼筛法，并能用数组保存筛表与素数序列；还要熟悉大批量输入输出。",
+          "modelling": "题意转化非常直接：预处理出不超过 n 的所有素数，按升序存入数组，之后第 k 个询问就是数组第 k-1 项，无需额外建模。",
+          "proof": "需要说明筛法的正确性：若一个数在扫描到它时未被标记，则它没有更小的素因子，因此是素数；每个合数会被其素因子筛掉，因此得到的素数表完整且升序。论证常规但不可完全省略。",
+          "implementation": "主要负担在于 n=10^8 时的紧凑筛表、时间控制在 O(n log log n)，以及 q=10^6 的快速输出和素数表存储；逻辑简单但大范围与内存/IO 细节需处理。"
+        },
+        "consistency_issues": [],
+        "difficulty": 1200,
+        "difficulty_reason": "题目本质是直接使用埃氏筛生成素数表后按询问下标查询，建模门槛低，正确性证明是常规筛法论证。实现上需要注意 10^8 范围的筛表空间、约 5.76e6 个素数的存储以及 10^6 次查询的快速 IO，因此不是最简单的签到题；但不需要发现非平凡状态不变量或复杂构造，整体符合基础算法档，定为 1200。",
+        "confidence": 0.9
+      },
+      "elapsed_seconds": 25.199,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "ed80f10ae4860a7c3d6f1b55100ba3c88f6145b2325c6bea972ccff76f335f58",
+      "response_model": "deepseek-flash",
+      "response_id": "0f6e4fe0-9e82-43f5-a2ab-0b6e58b31e4d",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 10240,
+      "reasoning_content_sha256": "212fd0cbb09be3c7c5378c6f85a9cdac312d1955f3c4f007f86f07ec47b7ee7c",
+      "usage": {
+        "completion_tokens": 3411,
+        "prompt_tokens": 5428,
+        "total_tokens": 8839,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 2957,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 4992,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 4992,
+        "prompt_cache_miss_tokens": 436
+      },
+      "elapsed_seconds": 16.269
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "e46b49548419d1cadf63e074cd046f1b9d63f0fadc2ff4829ed955d10f3dc876",
+      "response_model": "deepseek-flash",
+      "response_id": "a5d7d8a0-1156-4f69-bfa7-0f426c2f3bb3",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 4991,
+      "reasoning_content_sha256": "ad15886ac35f0f27fe4d56e0232720e9f5eb48ce785dfe1fbb359b9fafdd06e7",
+      "usage": {
+        "completion_tokens": 1565,
+        "prompt_tokens": 1865,
+        "total_tokens": 3430,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 1245,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 768,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 1097
+      },
+      "elapsed_seconds": 8.93
+    }
+  ]
+}

@@ -1,0 +1,851 @@
+{
+  "version": "problem-reassessment-v1",
+  "taxonomy_version": "2026.10.1",
+  "taxonomy_sha256": "15753e73e58c1be2c1088ff2e69127b0a61bb241a8137dc59476c58a6c6db380",
+  "prompt_version": "problem-analysis-v6",
+  "prompt_sha256": "4748ec00e9686aa02c5cb9829b23a07ec2d2086f9bc727724392d006c2316aee",
+  "model_name": "deepseek-chat",
+  "endpoint": "https://api.deepseek.com",
+  "items": [
+    {
+      "title": "区间求和（单点修改 + 区间查询）",
+      "description": "## 区间求和\n\n给定一个长度为 $n$ 的整数序列 $a_1, a_2, \\dots, a_n$，需要处理 $q$ 次操作：\n\n- `1 i x`：把 $a_i$ 增加 $x$；\n- `2 l r`：输出 $\\sum_{k=l}^{r} a_k$ 的值。\n\n### 输入格式\n\n第一行两个整数 $n, q$（$1 \\le n, q \\le 2 \\times 10^5$）。\n第二行 $n$ 个整数 $a_1, \\dots, a_n$（$|a_i| \\le 10^9$）。\n接下来 $q$ 行，每行是 `1 i x` 或 `2 l r`，保证 $1 \\le i, l, r \\le n$ 且 $l \\le r$。\n\n### 输出格式\n\n对每个 `2 l r` 操作，输出一行一个整数表示区间和。\n\n### 样例\n\n输入：\n\n    5 4\n    1 2 3 4 5\n    2 1 5\n    1 3 10\n    2 2 4\n    2 1 5\n\n输出：\n\n    15\n    19\n    25",
+      "source_url": "https://www.luogu.com.cn/problem/P3374",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1000,
+      "revision": 1,
+      "baseline_analysis_id": 1,
+      "before": {
+        "difficulty": 1200,
+        "primary_knowledge_ids": [
+          "ds.fenwick",
+          "ds.segment-tree.basic"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.prefix-sum"
+        ],
+        "review_status": "approved"
+      }
+    },
+    {
+      "title": "A+B Problem",
+      "description": "## 任务\n计算两个整数的和。\n\n## 输入\n两个整数 $a$、$b$。\n\n## 输出\n一个整数 $a+b$。\n\n## 约束\n$-10^9 \\le a,b \\le 10^9$。\n\n## 示例\n官方样例，已逐字核对。\n\n输入：\n```text\n20 30\n```\n\n输出：\n```text\n50\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P1001",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1001,
+      "revision": 1,
+      "baseline_analysis_id": 2,
+      "before": {
+        "difficulty": 800,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [],
+        "review_status": "approved"
+      }
+    },
+    {
+      "title": "[NOIP 2005 普及组] 校门外的树",
+      "description": "## 任务\n整数位置 $0$ 到 $l$ 各有一棵树。移除 $m$ 个闭区间中的所有树，区间可重叠；求剩余棵数。\n\n## 输入\n首行 $l$、$m$；之后 $m$ 行各为闭区间端点 $u$、$v$。\n\n## 输出\n剩余树的数量。\n\n## 约束\n$1 \\le l \\le 10^4$，$1 \\le m \\le 100$，$0 \\le u \\le v \\le l$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n10 2\n2 4\n4 7\n```\n\n输出：\n```text\n5\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P1047",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1002,
+      "revision": 1,
+      "baseline_analysis_id": 3,
+      "before": {
+        "difficulty": 900,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate",
+          "basic.sort"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "[NOIP 2008 普及组] ISBN 号码",
+      "description": "## 任务\nISBN 格式为 `x-xxx-xxxxx-x`。将前九个数字从左到右分别乘 $1$ 到 $9$ 后求和，再模 $11$；余数 $10$ 写作 `X`。判断末位校验字符是否正确。\n\n## 输入\n一个符合上述格式的 ISBN 字符串。\n\n## 输出\n校验正确输出 `Right`，否则输出保留分隔符、修正末位后的 ISBN。\n\n## 约束\n前九位均为十进制数字；分隔符和长度符合格式。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n0-000-00001-0\n```\n\n输出：\n```text\n0-000-00001-9\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P1055",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1003,
+      "revision": 1,
+      "baseline_analysis_id": 4,
+      "before": {
+        "difficulty": 800,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "math.bit"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "[USACO1.5] 八皇后 Checker Challenge",
+      "description": "## 任务\n在 $n\\times n$ 棋盘放 $n$ 个棋子，每行每列恰有一个，任一对角线上至多一个。以每行棋子的列号表示方案，求按字典序排列的前三个方案及总方案数。\n\n## 输入\n一个整数 $n$。\n\n## 输出\n前三行各输出一个方案的 $n$ 个列号；第四行输出方案总数。\n\n## 约束\n$6 \\le n \\le 13$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n6\n```\n\n输出：\n```text\n2 4 6 1 3 5\n3 6 2 5 1 4\n4 1 5 2 6 3\n4\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P1219",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1004,
+      "revision": 1,
+      "baseline_analysis_id": 5,
+      "before": {
+        "difficulty": 1400,
+        "primary_knowledge_ids": [
+          "search.dfs"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "[NOIP 2002 普及组] 过河卒",
+      "description": "## 任务\n从 $(0,0)$ 到 $(n,m)$，每步只能让横坐标或纵坐标增加 $1$。固定的马位于 $(x,y)$，其所在点及一次马步能到达的点均不可经过；求合法路径数。\n\n## 输入\n四个整数 $n$、$m$、$x$、$y$。\n\n## 输出\n合法路径总数。\n\n## 约束\n$1 \\le n,m \\le 20$，$0 \\le x,y \\le 20$；起点不在马的控制点内。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n3 3 0 3\n```\n\n输出：\n```text\n3\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P1002",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1005,
+      "revision": 1,
+      "baseline_analysis_id": 6,
+      "before": {
+        "difficulty": 1000,
+        "primary_knowledge_ids": [
+          "dp.misc"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "[NOIP 2005 普及组] 采药",
+      "description": "## 任务\n每株草药都有采集时间和价值，最多采一次。在总用时不超过 $T$ 的条件下，求最大总价值。\n\n## 输入\n首行 $T$、$M$；接着 $M$ 行每行给出一株草药的时间与价值。\n\n## 输出\n能获得的最大总价值。\n\n## 约束\n$1 \\le T \\le 1000$，$1 \\le M \\le 100$；每株的时间、价值均在 $1$ 到 $100$ 内。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n5 3\n2 3\n3 4\n4 5\n```\n\n输出：\n```text\n7\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P1048",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1006,
+      "revision": 1,
+      "baseline_analysis_id": 7,
+      "before": {
+        "difficulty": 1200,
+        "primary_knowledge_ids": [
+          "dp.knapsack"
+        ],
+        "secondary_knowledge_ids": [],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "[NOIP 2006 提高组] 金明的预算方案",
+      "description": "## 任务\n物品有价格和重要度，收益为两者乘积。附件只有在其主件被购买时才能购买；每个主件最多两个附件，附件没有下属。预算内最大化总收益。\n\n## 输入\n首行预算 $n$、物品数 $m$；接着 $m$ 行为价格 $v$、重要度 $w$、所属主件编号 $q$；$q=0$ 表示主件。\n\n## 输出\n最大收益。\n\n## 约束\n$1 \\le n \\le 32000$，$1 \\le m \\le 60$，$0 \\le v \\le 10000$，$1 \\le w \\le 5$，$0 \\le q \\le m$；价格为 $10$ 的倍数，答案不超过 $200000$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n100 3\n40 2 0\n20 3 1\n50 2 0\n```\n\n输出：\n```text\n180\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P1064",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1007,
+      "revision": 1,
+      "baseline_analysis_id": 8,
+      "before": {
+        "difficulty": 1600,
+        "primary_knowledge_ids": [
+          "dp.knapsack"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "[NOIP 2004 提高组] 合唱队形",
+      "description": "## 任务\n删除尽量少的元素，保留原顺序，使身高序列在某个峰值前严格递增、峰值后严格递减；两侧允许为空。\n\n## 输入\n首行 $n$；第二行 $n$ 个身高 $t_i$。\n\n## 输出\n最少删除人数。\n\n## 约束\n$2 \\le n \\le 100$，$130 \\le t_i \\le 230$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n5\n130 150 140 160 130\n```\n\n输出：\n```text\n1\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P1091",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1008,
+      "revision": 1,
+      "baseline_analysis_id": 9,
+      "before": {
+        "difficulty": 1400,
+        "primary_knowledge_ids": [
+          "dp.misc"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "[NOIP 1999 提高组] 导弹拦截",
+      "description": "## 任务\n导弹高度按到达顺序给出。一套系统所选高度必须不递增。求一套系统最多拦截数，以及覆盖所有导弹所需的最少系统数。\n\n## 输入\n一行若干个正整数，读至输入结束。\n\n## 输出\n两行分别输出最多拦截数和最少系统数。\n\n## 约束\n$\\text{高度}\\le 50000$；$\\text{前半部分数据个数}\\le 10^4$，$\\text{后半部分}\\le 10^5$，完整通过应采用 $O(n \\log n)$ 方法。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n5 3 4 2 2\n```\n\n输出：\n```text\n4\n2\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P1020",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1009,
+      "revision": 1,
+      "baseline_analysis_id": 10,
+      "before": {
+        "difficulty": 1600,
+        "primary_knowledge_ids": [
+          "dp.misc",
+          "basic.binary",
+          "math.order-theory"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.greedy",
+          "ds.fenwick"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "【模板】单源最短路径（弱化版）",
+      "description": "## 任务\n在非负边权有向图中，求从 $s$ 到每个顶点的最短距离；可有重边。\n\n## 输入\n首行 $n$、$m$、$s$；之后 $m$ 行 $u$、$v$、$w$，表示 $u$ 到 $v$ 的有向边及权值。\n\n## 输出\n输出 $n$ 个距离；不可达点输出 $2147483647$。\n\n## 约束\n$1 \\le n \\le 10^4$，$1 \\le m \\le 5\\times 10^5$，$1 \\le u,v \\le n$，$w\\ge 0$，$\\text{所有边权之和}<2^{31}$；题目说明数据随机。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4 4 1\n1 2 5\n1 3 2\n3 2 1\n2 4 4\n```\n\n输出：\n```text\n0 3 2 7\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P3371",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1010,
+      "revision": 1,
+      "baseline_analysis_id": 11,
+      "before": {
+        "difficulty": 1400,
+        "primary_knowledge_ids": [
+          "graph.shortest-path",
+          "ds.heap"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.basic"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "【模板】最小生成树",
+      "description": "## 任务\n给定带权无向图，求连接全部顶点的最小总边权；图不连通时报告失败。\n\n## 输入\n首行 $N$、$M$；之后 $M$ 行 $X$、$Y$、$Z$，表示无向边及权值。\n\n## 输出\n连通则输出最小生成树总边权，否则输出 `orz`。\n\n## 约束\n$1 \\le N \\le 5000$，$1 \\le M \\le 2\\times 10^5$，$1 \\le Z \\le 10^4$，$1 \\le X,Y \\le N$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4 5\n1 2 2\n2 3 3\n3 4 1\n1 4 8\n1 3 7\n```\n\n输出：\n```text\n6\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P3366",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1011,
+      "revision": 1,
+      "baseline_analysis_id": 12,
+      "before": {
+        "difficulty": 1300,
+        "primary_knowledge_ids": [
+          "graph.mst",
+          "ds.union-find"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.sort",
+          "graph.basic"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "【模板】并查集",
+      "description": "## 任务\n初始 $N$ 个元素各自成集合。按操作合并两个元素所在集合，或判断两元素是否同属一个集合。\n\n## 输入\n首行 $N$、$M$；之后 $M$ 行 $Z$、$X$、$Y$。$Z=1$ 合并集合，$Z=2$ 查询。\n\n## 输出\n每个查询输出 `Y`（同集合）或 `N`（不同集合）。\n\n## 约束\n$1 \\le N \\le 2\\times 10^5$，$1 \\le M \\le 10^6$，$1 \\le X,Y \\le N$，$Z\\in\\{1,2\\}$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4 5\n2 1 2\n1 1 2\n1 2 3\n2 1 3\n2 1 4\n```\n\n输出：\n```text\nN\nY\nN\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P3367",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1012,
+      "revision": 1,
+      "baseline_analysis_id": 13,
+      "before": {
+        "difficulty": 1200,
+        "primary_knowledge_ids": [
+          "ds.union-find"
+        ],
+        "secondary_knowledge_ids": [],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "【模板】树状数组 2",
+      "description": "## 任务\n维护整数序列，支持闭区间整体增加一个整数，以及查询某一位置的当前值。\n\n## 输入\n首行 $N$、$M$；第二行 $N$ 个初始值；之后 $M$ 行操作：$1\\ x\\ y\\ k$ 将 $[x,y]$ 加 $k$，$2\\ x$ 查询位置 $x$。\n\n## 输出\n每个查询输出一行当前值。\n\n## 约束\n$1 \\le N,M \\le 5\\times 10^5$；下标在 $1$ 到 $N$ 内，区间 $x\\le y$；$\\text{任意时刻元素绝对值}\\le 2^{30}$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4 4\n1 2 3 4\n2 2\n1 2 4 5\n2 3\n2 1\n```\n\n输出：\n```text\n2\n8\n1\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P3368",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1013,
+      "revision": 1,
+      "baseline_analysis_id": 14,
+      "before": {
+        "difficulty": 1200,
+        "primary_knowledge_ids": [
+          "basic.difference",
+          "basic.prefix-sum"
+        ],
+        "secondary_knowledge_ids": [
+          "ds.fenwick"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "【模板】线性筛素数",
+      "description": "## 任务\n列出不超过 $n$ 的素数并按升序编号。每次询问给出 $k$，输出第 $k$ 个素数。\n\n## 输入\n首行 $n$、$q$；之后 $q$ 行每行一个正整数 $k$。\n\n## 输出\n每个询问输出一行素数。\n\n## 约束\n全量数据 $n=10^8$，$1 \\le q \\le 10^6$；保证$\\text{被查询的素数}\\le n$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n100000000 3\n1\n2\n5\n```\n\n输出：\n```text\n2\n3\n11\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P3383",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1014,
+      "revision": 1,
+      "baseline_analysis_id": 15,
+      "before": {
+        "difficulty": 2400,
+        "primary_knowledge_ids": [
+          "math.number-theory.sieve",
+          "math.number-theory.prime"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate",
+          "basic.prefix-sum"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "【模板】负环",
+      "description": "## 任务\n判断是否存在从顶点 $1$ 能到达的负权回路。每条输入边在权值非负时双向添加，在权值为负时只添加给出的方向。\n\n## 输入\n首行测试组数 $T$；每组首行 $n$、$m$，随后 $m$ 行 $u$、$v$、$w$。$m$ 是输入信息条数，不是展开后的有向边数。\n\n## 输出\n每组输出 `YES`（存在可达负环）或 `NO`。\n\n## 约束\n$1 \\le T \\le 10$，$1 \\le n \\le 2000$，$1 \\le m \\le 3000$，$1 \\le u,v \\le n$，$-10^4 \\le w \\le 10^4$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n2\n2 2\n1 2 -1\n2 1 -1\n3 2\n2 3 -1\n3 2 -1\n```\n\n输出：\n```text\nYES\nNO\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P3385",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1015,
+      "revision": 1,
+      "baseline_analysis_id": 16,
+      "before": {
+        "difficulty": 1600,
+        "primary_knowledge_ids": [
+          "graph.shortest-path",
+          "graph.basic"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.bfs",
+          "graph.dfs"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "【模板】KMP",
+      "description": "## 任务\n给定文本 $s_1$ 和模式 $s_2$，输出模式在文本中的所有匹配起点（从 $1$ 编号）。另输出模式每个前缀的最长真前后缀长度。\n\n## 输入\n两行分别为 $s_1$、$s_2$。\n\n## 输出\n匹配起点按升序逐行输出，允许重叠匹配；最后一行输出 $|s_2|$ 个最长真前后缀长度。\n\n## 约束\n$1 \\le |s_1|,|s_2| \\le 10^6$；字符均为大写英文字母。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\nABABABA\nABA\n```\n\n输出：\n```text\n1\n3\n5\n0 0 1\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P3375",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1016,
+      "revision": 1,
+      "baseline_analysis_id": 17,
+      "before": {
+        "difficulty": 1400,
+        "primary_knowledge_ids": [
+          "string.kmp"
+        ],
+        "secondary_knowledge_ids": [
+          "string.match",
+          "string.basic"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "AC 自动机（简单版）",
+      "description": "## 任务\n给定 $n$ 个有编号的模式串和文本 $t$，统计至少在 $t$ 中出现一次的模式编号数。内容相同而编号不同的模式分别计数，同一编号出现多次只计一次。\n\n## 输入\n首行 $n$；之后 $n$ 行模式串；最后一行文本 $t$。\n\n## 输出\n至少出现一次的模式编号总数。\n\n## 约束\n$1 \\le n \\le 10^6$，$1 \\le |t| \\le 10^6$，$1 \\le \\text{所有模式串长度之和} \\le 10^6$；均为小写字母。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4\na\na\nb\nab\nabab\n```\n\n输出：\n```text\n4\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P3808",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1017,
+      "revision": 1,
+      "baseline_analysis_id": 18,
+      "before": {
+        "difficulty": 1700,
+        "primary_knowledge_ids": [
+          "string.ac-automaton",
+          "graph.tree",
+          "ds.fenwick"
+        ],
+        "secondary_knowledge_ids": [
+          "string.trie",
+          "string.kmp",
+          "basic.sort"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "【模板】单源最短路径（标准版）",
+      "description": "## 任务\n在非负权有向图中求 $s$ 到所有顶点的最短距离。保证源点可以到达全部顶点，需应对非随机数据。\n\n## 输入\n首行 $n$、$m$、$s$；之后 $m$ 行 $u$、$v$、$w$，表示有向边及权值。\n\n## 输出\n一行输出 $n$ 个距离。\n\n## 约束\n$1 \\le n \\le 10^5$，$1 \\le m \\le 2\\times 10^5$，$s=1$，$1 \\le u,v \\le n$，$0 \\le w \\le 10^9$；$\\text{所有边权之和}\\le 10^9$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4 4 1\n1 2 5\n1 3 2\n3 2 1\n2 4 4\n```\n\n输出：\n```text\n0 3 2 7\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P4779",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1018,
+      "revision": 1,
+      "baseline_analysis_id": 19,
+      "before": {
+        "difficulty": 1500,
+        "primary_knowledge_ids": [
+          "graph.shortest-path",
+          "ds.heap"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.basic"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "[NOIP 2012 普及组] 质因数分解",
+      "description": "## 任务\n保证 $n$ 是两个不同质数的乘积，求其中较大的质数。\n\n## 输入\n一个正整数 $n$。\n\n## 输出\n较大质因数。\n\n## 约束\n$1 \\le n \\le 2\\times 10^9$，且满足两个不同质数乘积的保证。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n91\n```\n\n输出：\n```text\n13\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P1075",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1019,
+      "revision": 1,
+      "baseline_analysis_id": 20,
+      "before": {
+        "difficulty": 1200,
+        "primary_knowledge_ids": [
+          "math.number-theory.prime",
+          "basic.enumerate"
+        ],
+        "secondary_knowledge_ids": [
+          "math.number-theory.basic"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "最大子段和",
+      "description": "## 任务\n从整数序列选择连续且非空的一段，使其元素和最大；序列允许全负数。\n\n## 输入\n首行 $n$；第二行 $n$ 个整数 $a_i$。\n\n## 输出\n最大非空子段和。\n\n## 约束\n$1 \\le n \\le 2\\times 10^5$，$-10^4 \\le a_i \\le 10^4$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n5\n-2 3 -1 4 -5\n```\n\n输出：\n```text\n6\n```",
+      "source_url": "https://www.luogu.com.cn/problem/P1115",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1020,
+      "revision": 1,
+      "baseline_analysis_id": 21,
+      "before": {
+        "difficulty": 1100,
+        "primary_knowledge_ids": [
+          "dp.misc",
+          "basic.prefix-sum"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate",
+          "basic.greedy"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Watermelon",
+      "description": "## 题目定义\n\n给定整数 $w$，判断它能否写成两个正偶数之和；两项允许不同。\n\n## 输入格式\n\n一行一个整数 $w$。\n\n## 输出格式\n\n可行输出 `YES`，否则输出 `NO`。\n\n## 数据范围\n\n$1 \\le w \\le 100$。\n\n## 样例 1\n\n输入：\n\n```text\n8\n```\n\n输出：\n\n```text\nYES\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/4/A",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1021,
+      "revision": 1,
+      "baseline_analysis_id": 22,
+      "before": {
+        "difficulty": 800,
+        "primary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "secondary_knowledge_ids": [
+          "math.number-theory.basic"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Way Too Long Words",
+      "description": "## 题目定义\n\n对每个只含小写英文字母的单词，长度大于 10 时，把它改写为首字母、内部字符数量的十进制表示、末字母；长度不超过 10 时原样保留。数字不带前导零。\n\n## 输入格式\n\n第一行 $n$，随后 $n$ 行各一个单词。\n\n## 输出格式\n\n逐行输出处理后的单词。\n\n## 数据范围\n\n$1 \\le n \\le 100$；每个单词长度为 1 到 100。\n\n## 样例 1\n\n输入：\n\n```text\n4\nword\nlocalization\ninternationalization\npneumonoultramicroscopicsilicovolcanoconiosis\n```\n\n输出：\n\n```text\nword\nl10n\ni18n\np43s\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/71/A",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1022,
+      "revision": 1,
+      "baseline_analysis_id": 23,
+      "before": {
+        "difficulty": 800,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "string.basic"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Team",
+      "description": "## 题目定义\n\n有 $n$ 个事项，每个事项有三个人的二进制意见。只有至少两人的意见为 $1$ 时该事项才被选中。统计被选中的事项数。\n\n## 输入格式\n\n第一行 $n$；随后 $n$ 行各有三个 $0$ 或 $1$。\n\n## 输出格式\n\n输出符合条件的行数。\n\n## 数据范围\n\n$1 \\le n \\le 1000$。\n\n## 样例 1\n\n输入：\n\n```text\n3\n1 1 0\n1 1 1\n1 0 0\n```\n\n输出：\n\n```text\n2\n```\n\n## 样例 2\n\n输入：\n\n```text\n2\n1 0 0\n0 1 1\n```\n\n输出：\n\n```text\n1\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/231/A",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1023,
+      "revision": 1,
+      "baseline_analysis_id": 24,
+      "before": {
+        "difficulty": 800,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Next Round",
+      "description": "## 题目定义\n\n$n$ 个分数已按非递增顺序给出。一个分数必须为正且不低于第 $k$ 个分数，才算符合资格。求符合资格的数量。\n\n## 输入格式\n\n第一行 $n,k$；第二行 $n$ 个分数 $a_i$。\n\n## 输出格式\n\n输出符合资格的分数个数。\n\n## 数据范围\n\n$1 \\le k \\le n \\le 50$；$0 \\le a_i \\le 100$；$a_i \\ge a_{i+1}$。\n\n## 样例 1\n\n输入：\n\n```text\n8 5\n10 9 8 7 7 7 5 5\n```\n\n输出：\n\n```text\n6\n```\n\n## 样例 2\n\n输入：\n\n```text\n4 2\n0 0 0 0\n```\n\n输出：\n\n```text\n0\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/158/A",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1024,
+      "revision": 1,
+      "baseline_analysis_id": 25,
+      "before": {
+        "difficulty": 800,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Domino piling",
+      "description": "## 题目定义\n\n在 $M\\times N$ 个单位方格的矩形内放置若干 $2\\times 1$ 骨牌。可旋转，不能重叠，不能超出矩形，允许接触边界。求最多能放多少块。\n\n## 输入格式\n\n一行 $M,N$。\n\n## 输出格式\n\n输出最大骨牌数量。\n\n## 数据范围\n\n$1 \\le M \\le N \\le 16$。\n\n## 样例 1\n\n输入：\n\n```text\n2 4\n```\n\n输出：\n\n```text\n4\n```\n\n## 样例 2\n\n输入：\n\n```text\n3 3\n```\n\n输出：\n\n```text\n4\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/50/A",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1025,
+      "revision": 1,
+      "baseline_analysis_id": 26,
+      "before": {
+        "difficulty": 1500,
+        "primary_knowledge_ids": [
+          "dp.state",
+          "dp.profile"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Bit++",
+      "description": "## 题目定义\n\n变量 $x$ 初值为 $0$。每条语句由 `X` 与 `++` 或 `--` 组成，操作可以放在 `X` 前或后；`++` 使 $x$ 加一，`--` 使 $x$ 减一。执行全部语句后求 $x$。\n\n## 输入格式\n\n第一行 $n$；随后 $n$ 行各为 `++X`、`X++`、`--X`、`X--` 之一。\n\n## 输出格式\n\n输出 $x$ 的最终整数值。\n\n## 数据范围\n\n$1 \\le n \\le 150$。\n\n## 样例 1\n\n输入：\n\n```text\n1\n++X\n```\n\n输出：\n\n```text\n1\n```\n\n## 样例 2\n\n输入：\n\n```text\n2\nX++\n--X\n```\n\n输出：\n\n```text\n0\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/282/A",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1026,
+      "revision": 1,
+      "baseline_analysis_id": 27,
+      "before": {
+        "difficulty": 800,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "string.basic"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Petya and Strings",
+      "description": "## 题目定义\n\n比较两个等长、由大小写英文字母组成的字符串的字典序，比较时对应的大小写字母视为同一字符。\n\n## 输入格式\n\n前两行分别给出一个字符串。\n\n## 输出格式\n\n第一串较小输出 $-1$，较大输出 $1$，相等输出 $0$。\n\n## 数据范围\n\n两串长度相同，均为 1 到 100。\n\n## 样例 1\n\n输入：\n\n```text\naaaa\naaaA\n```\n\n输出：\n\n```text\n0\n```\n\n## 样例 2\n\n输入：\n\n```text\nabs\nAbz\n```\n\n输出：\n\n```text\n-1\n```\n\n## 样例 3\n\n输入：\n\n```text\nabcdefg\nAbCdEfF\n```\n\n输出：\n\n```text\n1\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/112/A",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1027,
+      "revision": 1,
+      "baseline_analysis_id": 28,
+      "before": {
+        "difficulty": 800,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "string.basic"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Helpful Maths",
+      "description": "## 题目定义\n\n输入一个由数字 $1$、$2$、$3$ 和加号组成的合法加法式。保留各数字出现的次数，将数字按非递减次序重新排列，并仍用加号分隔。\n\n## 输入格式\n\n一行无空格的非空合法表达式 $s$。\n\n## 输出格式\n\n输出重排后的表达式。\n\n## 数据范围\n\n$1 \\le |s| \\le 100$；运算数只能是单个数字 $1$、$2$ 或 $3$。\n\n## 样例 1\n\n输入：\n\n```text\n3+2+1\n```\n\n输出：\n\n```text\n1+2+3\n```\n\n## 样例 2\n\n输入：\n\n```text\n1+1+3+1+3\n```\n\n输出：\n\n```text\n1+1+1+3+3\n```\n\n## 样例 3\n\n输入：\n\n```text\n2\n```\n\n输出：\n\n```text\n2\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/339/A",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1028,
+      "revision": 1,
+      "baseline_analysis_id": 29,
+      "before": {
+        "difficulty": 800,
+        "primary_knowledge_ids": [
+          "basic.counting-sort"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Theatre Square",
+      "description": "## 题目定义\n\n用边长为 $a$ 的完整正方形板覆盖 $n\\times m$ 的矩形。板边必须平行于矩形边，不可切割；覆盖范围可以超出矩形。求所需板数的最小值。\n\n## 输入格式\n\n一行 $n,m,a$。\n\n## 输出格式\n\n输出最少板数。\n\n## 数据范围\n\n$1 \\le n,m,a \\le 10^9$；答案可能超出 32 位整数范围。\n\n## 样例 1\n\n输入：\n\n```text\n6 6 4\n```\n\n输出：\n\n```text\n4\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/1/A",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1029,
+      "revision": 1,
+      "baseline_analysis_id": 30,
+      "before": {
+        "difficulty": 800,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "T-primes",
+      "description": "## 题目定义\n\n一个正整数若恰好有三个不同的正因数，则称为 T-prime。对 $n$ 个正整数分别判断这一性质。\n\n## 输入格式\n\n第一行 $n$；第二行 $n$ 个 $x_i$。\n\n## 输出格式\n\n每个数输出一行 `YES` 或 `NO`。\n\n## 数据范围\n\n$1 \\le n \\le 10^5$；$1 \\le x_i \\le 10^{12}$。\n\n## 样例 1\n\n输入：\n\n```text\n3\n4 5 6\n```\n\n输出：\n\n```text\nYES\nNO\nNO\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/230/B",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1030,
+      "revision": 1,
+      "baseline_analysis_id": 31,
+      "before": {
+        "difficulty": 1300,
+        "primary_knowledge_ids": [
+          "math.number-theory.prime",
+          "math.number-theory.basic"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.binary",
+          "math.number-theory.sieve"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Kefa and First Steps",
+      "description": "## 题目定义\n\n给定整数序列，求最长连续非递减片段的长度。连续片段不能跳过中间元素，相邻值允许相等。\n\n## 输入格式\n\n第一行 $n$；第二行 $n$ 个 $a_i$。\n\n## 输出格式\n\n输出最大长度。\n\n## 数据范围\n\n$1 \\le n \\le 10^5$；$1 \\le a_i \\le 10^9$。\n\n## 样例 1\n\n输入：\n\n```text\n6\n2 2 1 3 4 1\n```\n\n输出：\n\n```text\n3\n```\n\n## 样例 2\n\n输入：\n\n```text\n3\n2 2 9\n```\n\n输出：\n\n```text\n3\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/580/A",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1031,
+      "revision": 1,
+      "baseline_analysis_id": 32,
+      "before": {
+        "difficulty": 800,
+        "primary_knowledge_ids": [
+          "basic.simulate"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Boredom",
+      "description": "## 题目定义\n\n从一个整数多重集合中反复选择一个现存元素 $v$：删除该元素并获得 $v$ 分，同时删除所有值为 $v-1$ 或 $v+1$ 的元素。可以随时结束。求最大总分。\n\n## 输入格式\n\n第一行 $n$；第二行 $n$ 个 $a_i$。\n\n## 输出格式\n\n输出可以获得的最大总分。\n\n## 数据范围\n\n$1 \\le n \\le 10^5$；$1 \\le a_i \\le 10^5$；总分使用 64 位整数。\n\n## 样例 1\n\n输入：\n\n```text\n2\n1 2\n```\n\n输出：\n\n```text\n2\n```\n\n## 样例 2\n\n输入：\n\n```text\n3\n1 2 3\n```\n\n输出：\n\n```text\n4\n```\n\n## 样例 3\n\n输入：\n\n```text\n9\n1 2 1 3 2 2 2 2 3\n```\n\n输出：\n\n```text\n10\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/455/A",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1032,
+      "revision": 1,
+      "baseline_analysis_id": 33,
+      "before": {
+        "difficulty": 1500,
+        "primary_knowledge_ids": [
+          "dp.misc",
+          "basic.counting-sort"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.prefix-sum"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Worms",
+      "description": "## 题目定义\n\n$n$ 个有序组的大小为 $a_i$。把所有对象按组的顺序连续编号，从 1 开始。对 $m$ 个对象编号，回答其所在组的编号（组编号也从 1 开始）。\n\n## 输入格式\n\n第一行 $n$；第二行 $a_i$；第三行 $m$；第四行 $m$ 个查询 $q_i$。\n\n## 输出格式\n\n每个查询输出一行所在组的编号。\n\n## 数据范围\n\n$1 \\le n,m \\le 10^5$；$1 \\le a_i \\le 10^3$；$\\sum a_i \\le 10^6$；$1 \\le q_i \\le \\sum a_i$。\n\n## 样例 1\n\n输入：\n\n```text\n5\n2 7 3 4 9\n3\n1 25 11\n```\n\n输出：\n\n```text\n1\n5\n3\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/474/B",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1033,
+      "revision": 1,
+      "baseline_analysis_id": 34,
+      "before": {
+        "difficulty": 900,
+        "primary_knowledge_ids": [
+          "basic.prefix-sum",
+          "basic.binary"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Interesting drink",
+      "description": "## 题目定义\n\n$n$ 个商店的同一商品价格为 $x_i$。每个查询给出预算 $m$，求价格不超过该预算的商店数；各查询互不影响。\n\n## 输入格式\n\n第一行 $n$；第二行 $n$ 个价格；第三行 $q$；随后 $q$ 行各一个预算 $m_i$。\n\n## 输出格式\n\n每个查询输出符合预算的商店个数。\n\n## 数据范围\n\n$1 \\le n,q \\le 10^5$；$1 \\le x_i \\le 10^5$；$1 \\le m_i \\le 10^9$。\n\n## 样例 1\n\n输入：\n\n```text\n5\n3 10 8 6 11\n4\n1\n10\n3\n11\n```\n\n输出：\n\n```text\n0\n4\n1\n5\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/706/B",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1034,
+      "revision": 1,
+      "baseline_analysis_id": 35,
+      "before": {
+        "difficulty": 900,
+        "primary_knowledge_ids": [
+          "basic.sort",
+          "basic.binary"
+        ],
+        "secondary_knowledge_ids": [],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Books",
+      "description": "## 题目定义\n\n有 $n$ 个按顺序排列的阅读任务，第 $i$ 个耗时 $a_i$。可以任选起点，但之后必须按顺序连续完成，不能跳过任务，总时间不得超过 $t$。求最多能完整完成多少个任务。\n\n## 输入格式\n\n第一行 $n,t$；第二行 $n$ 个 $a_i$。\n\n## 输出格式\n\n输出可完成的最大数量；如果一个也无法完成则输出 $0$。\n\n## 数据范围\n\n$1 \\le n \\le 10^5$；$1 \\le t \\le 10^9$；$1 \\le a_i \\le 10^4$。\n\n## 样例 1\n\n输入：\n\n```text\n4 5\n3 1 2 1\n```\n\n输出：\n\n```text\n3\n```\n\n## 样例 2\n\n输入：\n\n```text\n3 3\n2 2 3\n```\n\n输出：\n\n```text\n1\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/279/B",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1035,
+      "revision": 1,
+      "baseline_analysis_id": 36,
+      "before": {
+        "difficulty": 1200,
+        "primary_knowledge_ids": [
+          "misc.two-pointer",
+          "basic.prefix-sum"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.binary"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Fence",
+      "description": "## 题目定义\n\n给定一条非环形序列，选择恰好 $k$ 个连续元素，使其总和最小。输出这一片段的起始下标；有多个最优片段时任意一个均可。\n\n## 输入格式\n\n第一行 $n,k$；第二行 $n$ 个高度 $h_i$。\n\n## 输出格式\n\n输出一个最优起点 $j$（$1 \\le j \\le n-k+1$）。\n\n## 数据范围\n\n$1 \\le n \\le 150000$；$1 \\le k \\le n$；$1 \\le h_i \\le 100$。\n\n## 样例 1\n\n输入：\n\n```text\n7 3\n1 2 6 1 1 7 1\n```\n\n输出：\n\n```text\n3\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/363/B",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1036,
+      "revision": 1,
+      "baseline_analysis_id": 37,
+      "before": {
+        "difficulty": 900,
+        "primary_knowledge_ids": [
+          "basic.prefix-sum"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.enumerate",
+          "basic.simulate"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Two Buttons",
+      "description": "## 题目定义\n\n从正整数 $n$ 出发，一次操作可以把当前值乘 $2$，或减 $1$；整个过程必须保持值为正。求变为 $m$ 所需的最少操作次数。中间值允许超过输入范围。\n\n## 输入格式\n\n一行不同的两个整数 $n,m$。\n\n## 输出格式\n\n输出最少操作数。\n\n## 数据范围\n\n$1 \\le n,m \\le 10^4$；$n\\ne m$。\n\n## 样例 1\n\n输入：\n\n```text\n4 6\n```\n\n输出：\n\n```text\n2\n```\n\n## 样例 2\n\n输入：\n\n```text\n10 1\n```\n\n输出：\n\n```text\n9\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/520/B",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1037,
+      "revision": 1,
+      "baseline_analysis_id": 38,
+      "before": {
+        "difficulty": 1500,
+        "primary_knowledge_ids": [
+          "basic.greedy",
+          "search.bfs"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.binary"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Woodcutters",
+      "description": "## 题目定义\n\n$n$ 棵树位于数轴上，坐标 $x_i$ 严格递增，高度为 $h_i$。未砍的树占点 $x_i$，向左或右砍后分别占闭区间 $[x_i-h_i,x_i]$ 或 $[x_i,x_i+h_i]$。不同树占用的位置不能相交，包括端点。求最多可砍树数。\n\n## 输入格式\n\n第一行 $n$；随后 $n$ 行各为 $x_i,h_i$，按 $x_i$ 递增给出。\n\n## 输出格式\n\n输出可砍倒的最大树数。\n\n## 数据范围\n\n$1 \\le n \\le 10^5$；$1 \\le x_i,h_i \\le 10^9$；坐标各不相同。\n\n## 样例 1\n\n输入：\n\n```text\n5\n1 2\n2 1\n5 10\n10 9\n19 1\n```\n\n输出：\n\n```text\n3\n```\n\n## 样例 2\n\n输入：\n\n```text\n5\n1 2\n2 1\n5 10\n10 9\n20 1\n```\n\n输出：\n\n```text\n4\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/545/C",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1038,
+      "revision": 1,
+      "baseline_analysis_id": 39,
+      "before": {
+        "difficulty": 1500,
+        "primary_knowledge_ids": [
+          "basic.greedy"
+        ],
+        "secondary_knowledge_ids": [],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Roads not only in Berland",
+      "description": "## 题目定义\n\n有 $n$ 个顶点和恰好 $n-1$ 条无向边，可能不连通。一次操作删除一条现有边，并立即添加一条新边。求使整个图连通所需的最少操作次数，并输出一组具体替换方案。\n\n## 输入格式\n\n第一行 $n$；随后 $n-1$ 行每行两个端点 $a_i,b_i$。\n\n## 输出格式\n\n先输出最少次数 $t$；随后 $t$ 行 $i\\ j\\ u\\ v$，表示删除边 $(i,j)$ 并添加边 $(u,v)$。有多解可输出任意方案。\n\n## 数据范围\n\n$2 \\le n \\le 1000$；端点在 $1\\ldots n$；无自环、无重边。\n\n## 样例 1\n\n输入：\n\n```text\n2\n1 2\n```\n\n输出：\n\n```text\n0\n```\n\n## 样例 2\n\n输入：\n\n```text\n7\n1 2\n2 3\n3 1\n4 5\n5 6\n6 7\n```\n\n输出：\n\n```text\n1\n3 1 3 7\n```\n",
+      "source_url": "https://codeforces.com/problemset/problem/25/D",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1039,
+      "revision": 1,
+      "baseline_analysis_id": 40,
+      "before": {
+        "difficulty": 1500,
+        "primary_knowledge_ids": [
+          "ds.union-find",
+          "basic.construction"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.connectivity",
+          "graph.tree-basic"
+        ],
+        "review_status": "pending"
+      }
+    },
+    {
+      "title": "Dijkstra?",
+      "description": "## 题目定义\n\n给定一个带正权的无向图，顶点编号为 $1\\ldots n$。输出从 $1$ 到 $n$ 的一条最短路径；不存在路径时输出 $-1$。图允许自环与重边。\n\n## 输入格式\n\n第一行 $n,m$；随后 $m$ 行 $a_i,b_i,w_i$，表示一条无向边及其长度。\n\n## 输出格式\n\n不可达输出 $-1$，否则按顺序输出一条最短路径的顶点编号；有多条最短路径时任意一条均可。\n\n## 数据范围\n\n$2 \\le n \\le 10^5$；$0 \\le m \\le 10^5$；$1 \\le a_i,b_i \\le n$；$1 \\le w_i \\le 10^6$。\n\n## 样例 1\n\n输入：\n\n```text\n5 6\n1 2 2\n2 5 5\n2 3 4\n1 4 1\n4 3 3\n3 5 1\n```\n\n输出：\n\n```text\n1 4 3 5\n```\n\n## 样例 2\n\n输入：\n\n```text\n5 6\n1 2 2\n2 5 5\n2 3 4\n1 4 1\n4 3 3\n3 5 1\n```\n\n输出：\n\n```text\n1 4 3 5\n```",
+      "source_url": "https://codeforces.com/problemset/problem/20/C",
+      "reference_solution": "",
+      "reference_code": "",
+      "id": 1040,
+      "revision": 2,
+      "baseline_analysis_id": 41,
+      "before": {
+        "difficulty": 1500,
+        "primary_knowledge_ids": [
+          "graph.shortest-path",
+          "ds.heap"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.basic"
+        ],
+        "review_status": "pending"
+      }
+    }
+  ]
+}

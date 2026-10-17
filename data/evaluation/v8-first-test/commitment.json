@@ -1,0 +1,12 @@
+{
+  "event": "v8首测",
+  "state": "awaiting_human",
+  "completed": 20,
+  "sealed_at": "2026-10-16T18:24:06.239668+00:00",
+  "manifest_sha256": "027f9e713f425f068f074d34c05f7dac96a8b5b1d44f20600c1ad8e113f1a9a4",
+  "predictions_sha256": "2d06cae771d9aad8c5dcac06198da7e4081b7a5d0845f9d486895c75268c4432",
+  "public_manifest_sha256": "0e9ab341e94a6d35ef4c7270b09a474c491c2899ce0bf62bf020a146f7cce843",
+  "database_unchanged": true,
+  "confidence_is_calibrated": false,
+  "metric_protocol": "docs/v8-first-test-protocol.md"
+}

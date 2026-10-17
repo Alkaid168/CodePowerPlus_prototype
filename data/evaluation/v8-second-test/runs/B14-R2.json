@@ -1,0 +1,256 @@
+{
+  "event": "v8二测",
+  "key": "B14-R2",
+  "public_id": "B14",
+  "repetition": 2,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "4fdd393006011e5be758f43f5c04ab28c6ab017eaac9472695b89b48f2b1694c",
+  "completed_at": "2026-10-17T03:43:32.940539+00:00",
+  "analysis": {
+    "title": "连续任务最大完成数量",
+    "difficulty": 1200,
+    "difficulty_reason": "题目本质是最长连续子数组和不超过 t，正数条件直接支持滑动窗口，但新生仍需学习并独立选择双指针方法；正确性依赖正数带来的窗口单调性，需要简单不变量说明；实现为 O(n) 单次扫描，边界和窗口维护略有要求。整体符合“需要选用一个常规基础算法并完成直接转化”的 1100–1300 档，定为 1200。",
+    "solution_idea": "题意是求最长的连续子数组，使其元素和不超过 t。由于所有 a_i 均为正数，固定右端点后，子数组和随左端点左移而增大；因此对每个右端点，只需维护满足和不超过 t 的最左可行起点。滑动窗口在加入 a[r] 后若和超过 t，就不断右移 l 并减去 a[l]，此时窗口 [l,r] 是结束于 r 的最长可行连续段，更新最大长度即可。正确性基于正数保证的单调性：被移出的起点不可能在后续形成更优窗口。若 a_i>t，窗口可被缩成空窗口，答案为 0 的情况自然处理。前缀和加二分是另一可行方案：前缀和严格递增，对每个起点二分最大的不超过 t 的终点。两种方法均需注意总和上界与空窗口边界。",
+    "confidence": 0.92,
+    "primary_knowledge_ids": [
+      "misc.two-pointer"
+    ],
+    "secondary_knowledge_ids": [
+      "basic.prefix-sum",
+      "basic.binary"
+    ],
+    "evidence": {
+      "misc.two-pointer": "题目要求最长的连续子数组和不超过 t；由于 a_i 为正，窗口和随右端点增加而单调不减，可用滑动窗口在 O(n) 内维护最长可行区间。",
+      "basic.prefix-sum": "前缀和可把任意连续区间和转化为两个前缀和之差，用于判定区间是否不超过 t。",
+      "basic.binary": "前缀和数组严格递增，可用二分为每个起点查找满足条件和限制的最远终点，从而求最大长度。"
+    },
+    "knowledge_confidence": {
+      "misc.two-pointer": 0.98,
+      "basic.prefix-sum": 0.97,
+      "basic.binary": 0.97
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "双指针",
+      "前缀和",
+      "二分"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "09b23dcb-d1bb-4543-9090-eb5b42008389",
+          "usage": {
+            "completion_tokens": 3470,
+            "prompt_tokens": 5488,
+            "total_tokens": 8958,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 2983,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 5248,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 5248,
+            "prompt_cache_miss_tokens": 240
+          },
+          "elapsed_seconds": 18.274,
+          "valid": true,
+          "response_text": "{\"title\":\"连续任务最大完成数量\",\"kind\":\"algorithm\",\"solution_idea\":\"题意是求最长的连续子数组，使其元素和不超过 t。由于所有 a_i 均为正数，固定右端点后，子数组和随左端点左移而增大；因此对每个右端点，只需维护满足和不超过 t 的最左可行起点。滑动窗口在加入 a[r] 后若和超过 t，就不断右移 l 并减去 a[l]，此时窗口 [l,r] 是结束于 r 的最长可行连续段，更新最大长度即可。正确性基于正数保证的单调性：被移出的起点不可能在后续形成更优窗口。若 a_i>t，窗口可被缩成空窗口，答案为 0 的情况自然处理。前缀和加二分是另一可行方案：前缀和严格递增，对每个起点二分最大的不超过 t 的终点。两种方法均需注意总和上界与空窗口边界。\",\"methods\":[{\"name\":\"滑动窗口（双指针）\",\"knowledge_ids\":[\"misc.two-pointer\"],\"time_complexity\":\"O(n)\",\"space_complexity\":\"O(n)（保存数组；除输入数组外额外 O(1)）\"},{\"name\":\"前缀和加二分查找终点\",\"knowledge_ids\":[\"basic.prefix-sum\",\"basic.binary\"],\"time_complexity\":\"O(n log n)\",\"space_complexity\":\"O(n)\"}],\"primary_knowledge_ids\":[\"misc.two-pointer\"],\"secondary_knowledge_ids\":[\"basic.prefix-sum\",\"basic.binary\"],\"evidence\":{\"misc.two-pointer\":\"题目要求最长的连续子数组和不超过 t；由于 a_i 为正，窗口和随右端点增加而单调不减，可用滑动窗口在 O(n) 内维护最长可行区间。\",\"basic.prefix-sum\":\"前缀和可把任意连续区间和转化为两个前缀和之差，用于判定区间是否不超过 t。\",\"basic.binary\":\"前缀和数组严格递增，可用二分为每个起点查找满足条件和限制的最远终点，从而求最大长度。\"},\"knowledge_confidence\":{\"misc.two-pointer\":0.98,\"basic.prefix-sum\":0.97,\"basic.binary\":0.97},\"confidence\":0.98}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "632ddfe8-f0b7-4333-b908-51d8c1ad36b6",
+          "usage": {
+            "completion_tokens": 1131,
+            "prompt_tokens": 2077,
+            "total_tokens": 3208,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 838,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1024,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 1053
+          },
+          "elapsed_seconds": 6.918,
+          "valid": true,
+          "response_text": "{\"rubric\":{\"knowledge\":\"需要认识滑动窗口/双指针这一常规基础算法；若采用另一方案，还需掌握前缀和与二分。对新生而言，需要事先学习区间和或双指针模板。\",\"modelling\":\"需要把“任选起点后连续完成”转化为求最长连续子数组且和不超过 t。由于 a_i 为正，窗口和随右端点扩大单调不减，才能自然想到维护滑动窗口。\",\"proof\":\"需要说明固定右端点时，和超过 t 后右移左端点是必要的；被移出的起点在后续也不会形成更优窗口。这个单调性论证不难但不可省略。\",\"implementation\":\"一次扫描维护当前窗口和、左右端点和最大长度即可；需处理窗口为空、单个任务超过 t、总和边界。整体代码较短，但边界需细心。\"},\"consistency_issues\":[],\"difficulty\":1200,\"difficulty_reason\":\"题目本质是最长连续子数组和不超过 t，正数条件直接支持滑动窗口，但新生仍需学习并独立选择双指针方法；正确性依赖正数带来的窗口单调性，需要简单不变量说明；实现为 O(n) 单次扫描，边界和窗口维护略有要求。整体符合“需要选用一个常规基础算法并完成直接转化”的 1100–1300 档，定为 1200。\",\"confidence\":0.92}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "连续任务最大完成数量",
+        "kind": "algorithm",
+        "solution_idea": "题意是求最长的连续子数组，使其元素和不超过 t。由于所有 a_i 均为正数，固定右端点后，子数组和随左端点左移而增大；因此对每个右端点，只需维护满足和不超过 t 的最左可行起点。滑动窗口在加入 a[r] 后若和超过 t，就不断右移 l 并减去 a[l]，此时窗口 [l,r] 是结束于 r 的最长可行连续段，更新最大长度即可。正确性基于正数保证的单调性：被移出的起点不可能在后续形成更优窗口。若 a_i>t，窗口可被缩成空窗口，答案为 0 的情况自然处理。前缀和加二分是另一可行方案：前缀和严格递增，对每个起点二分最大的不超过 t 的终点。两种方法均需注意总和上界与空窗口边界。",
+        "methods": [
+          {
+            "name": "滑动窗口（双指针）",
+            "knowledge_ids": [
+              "misc.two-pointer"
+            ],
+            "time_complexity": "O(n)",
+            "space_complexity": "O(n)（保存数组；除输入数组外额外 O(1)）"
+          },
+          {
+            "name": "前缀和加二分查找终点",
+            "knowledge_ids": [
+              "basic.prefix-sum",
+              "basic.binary"
+            ],
+            "time_complexity": "O(n log n)",
+            "space_complexity": "O(n)"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "misc.two-pointer"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.prefix-sum",
+          "basic.binary"
+        ],
+        "evidence": {
+          "misc.two-pointer": "题目要求最长的连续子数组和不超过 t；由于 a_i 为正，窗口和随右端点增加而单调不减，可用滑动窗口在 O(n) 内维护最长可行区间。",
+          "basic.prefix-sum": "前缀和可把任意连续区间和转化为两个前缀和之差，用于判定区间是否不超过 t。",
+          "basic.binary": "前缀和数组严格递增，可用二分为每个起点查找满足条件和限制的最远终点，从而求最大长度。"
+        },
+        "knowledge_confidence": {
+          "misc.two-pointer": 0.98,
+          "basic.prefix-sum": 0.97,
+          "basic.binary": 0.97
+        },
+        "confidence": 0.98
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要认识滑动窗口/双指针这一常规基础算法；若采用另一方案，还需掌握前缀和与二分。对新生而言，需要事先学习区间和或双指针模板。",
+          "modelling": "需要把“任选起点后连续完成”转化为求最长连续子数组且和不超过 t。由于 a_i 为正，窗口和随右端点扩大单调不减，才能自然想到维护滑动窗口。",
+          "proof": "需要说明固定右端点时，和超过 t 后右移左端点是必要的；被移出的起点在后续也不会形成更优窗口。这个单调性论证不难但不可省略。",
+          "implementation": "一次扫描维护当前窗口和、左右端点和最大长度即可；需处理窗口为空、单个任务超过 t、总和边界。整体代码较短，但边界需细心。"
+        },
+        "consistency_issues": [],
+        "difficulty": 1200,
+        "difficulty_reason": "题目本质是最长连续子数组和不超过 t，正数条件直接支持滑动窗口，但新生仍需学习并独立选择双指针方法；正确性依赖正数带来的窗口单调性，需要简单不变量说明；实现为 O(n) 单次扫描，边界和窗口维护略有要求。整体符合“需要选用一个常规基础算法并完成直接转化”的 1100–1300 档，定为 1200。",
+        "confidence": 0.92
+      },
+      "elapsed_seconds": 25.193,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "1ff97c6e69e4d943ecb6c6cab91d83711f3c173da0857582c2ca95ab61569df5",
+      "response_model": "deepseek-flash",
+      "response_id": "09b23dcb-d1bb-4543-9090-eb5b42008389",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 11555,
+      "reasoning_content_sha256": "ef4d3799dfd15937cdfcf35eb9e414b28d51fd797e218a2fb7679e1efadcb10c",
+      "usage": {
+        "completion_tokens": 3470,
+        "prompt_tokens": 5488,
+        "total_tokens": 8958,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 2983,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 5248,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 5248,
+        "prompt_cache_miss_tokens": 240
+      },
+      "elapsed_seconds": 18.274
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "950bac42632b762c2561c0f3d60cb950c889da5c76716d6b3b4914b48c1790c0",
+      "response_model": "deepseek-flash",
+      "response_id": "632ddfe8-f0b7-4333-b908-51d8c1ad36b6",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 3305,
+      "reasoning_content_sha256": "9e23c87550ee90ee8247a59ae3ec082078ce17c277466fcb91937c7e8aac417d",
+      "usage": {
+        "completion_tokens": 1131,
+        "prompt_tokens": 2077,
+        "total_tokens": 3208,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 838,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1024,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 1024,
+        "prompt_cache_miss_tokens": 1053
+      },
+      "elapsed_seconds": 6.918
+    }
+  ]
+}

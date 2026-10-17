@@ -4,6 +4,27 @@ import sqlite3
 import pytest
 
 from app.db import FIRST_PROBLEM_ID, SCHEMA_VERSION, Database, utcnow
+from app.db import SCHEMA
+
+
+def test_version_two_database_retains_rows_when_revision_columns_are_added(tmp_path):
+    """原二版表结构仍在 SCHEMA 中；新增列由补列迁移提供，不能伪造历史输入。"""
+    path = tmp_path / 'v2.db'
+    with sqlite3.connect(path) as conn:
+        conn.executescript(SCHEMA)
+        conn.execute("INSERT INTO schema_meta VALUES ('schema_version','2')")
+        conn.execute("INSERT INTO problems(id,title,description,source_url,created_at) VALUES (1000,'old','old statement','','old time')")
+        conn.execute("INSERT INTO problem_analyses(problem_id,payload,origin,initial_status,taxonomy_version,created_at) VALUES (1000,'{}','manual','pending','old','old time')")
+    db = Database(path)
+    try:
+        problem = dict(db.query_one('SELECT * FROM problems'))
+        analysis = dict(db.query_one('SELECT * FROM problem_analyses'))
+        assert problem['description'] == 'old statement' and problem['revision'] == 1
+        assert problem['reference_solution'] == problem['reference_code'] == ''
+        assert analysis['problem_revision'] == 1 and analysis['input_snapshot'] == '{}'
+        assert db.schema_version == 3
+    finally:
+        db.close()
 
 
 def test_fresh_database_has_current_schema(tmp_path):

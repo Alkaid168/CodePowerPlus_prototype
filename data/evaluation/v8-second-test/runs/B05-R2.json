@@ -1,0 +1,241 @@
+{
+  "event": "v8二测",
+  "key": "B05-R2",
+  "public_id": "B05",
+  "repetition": 2,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "0142e6c366f9c9fe0ad1ccd92eba0e7d46ffc1dd3a7fcb52658204c8f8ddd6e5",
+  "completed_at": "2026-10-17T03:42:30.685289+00:00",
+  "analysis": {
+    "title": "职员宴会的最优邀请",
+    "difficulty": 1200,
+    "difficulty_reason": "解法与标签一致：这是标准的树上最大权独立集树形 DP，主标签 dp.tree 与辅助标签 graph.tree-basic 均匹配。知识上需要新生掌握树形 DP 和树遍历；建模上需把邀请限制转为选/不选两状态，较直接；证明是子树归纳，门槛不高；实现是建树、找根、后序合并，边界需注意负权与空方案。总体属于“学习并独立选用一个常规基础算法、定义简单状态”的基础档，定为 1200。",
+    "solution_idea": "把邀请方案看成树上相邻结点不能同时选的最大权独立集。对每个结点 `u` 维护两种状态：`dp[u][0]` 表示不邀请 `u` 时其子树内的最大快乐值，`dp[u][1]` 表示邀请 `u` 时其子树内的最大快乐值。初值取 `dp[u][0]=0`，`dp[u][1]=r_u`。对每个子结点 `v`，若 `u` 不邀请，则 `v` 可邀请也可不邀请，因此 `dp[u][0] += max(dp[v][0], dp[v][1])`；若 `u` 邀请，则 `v` 不能邀请，因此 `dp[u][1] += dp[v][0]`。按树的后序自底向上合并即可。正确性可由子树归纳说明：两种状态分别覆盖了根结点是否被邀请的所有合法子方案。由于快乐指数可能为负，`dp[u][0]` 从 0 开始且不邀请的结点不会强制选择负收益后代，因而允许空邀请方案并得到 0。根是唯一没有上司的结点，可根据输入父子关系确定。时间复杂度 O(n)，空间复杂度 O(n)。",
+    "confidence": 0.9,
+    "primary_knowledge_ids": [
+      "dp.tree"
+    ],
+    "secondary_knowledge_ids": [
+      "graph.tree-basic"
+    ],
+    "evidence": {
+      "dp.tree": "每个结点需要维护邀请与不邀请两种状态，并由子结点最优值合并，是树形 DP 的核心。",
+      "graph.tree-basic": "需要根据输入的父子关系建立树、找到根，并按树结构自底向上处理。"
+    },
+    "knowledge_confidence": {
+      "dp.tree": 0.98,
+      "graph.tree-basic": 0.9
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "树形 DP",
+      "树基础"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "4d70f68c-b183-4638-b2f8-c7e2dcdab1c5",
+          "usage": {
+            "completion_tokens": 2650,
+            "prompt_tokens": 5610,
+            "total_tokens": 8260,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 2200,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 5376,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 5376,
+            "prompt_cache_miss_tokens": 234
+          },
+          "elapsed_seconds": 13.992,
+          "valid": true,
+          "response_text": "{\"title\":\"职员宴会的最优邀请\",\"kind\":\"algorithm\",\"solution_idea\":\"把邀请方案看成树上相邻结点不能同时选的最大权独立集。对每个结点 `u` 维护两种状态：`dp[u][0]` 表示不邀请 `u` 时其子树内的最大快乐值，`dp[u][1]` 表示邀请 `u` 时其子树内的最大快乐值。初值取 `dp[u][0]=0`，`dp[u][1]=r_u`。对每个子结点 `v`，若 `u` 不邀请，则 `v` 可邀请也可不邀请，因此 `dp[u][0] += max(dp[v][0], dp[v][1])`；若 `u` 邀请，则 `v` 不能邀请，因此 `dp[u][1] += dp[v][0]`。按树的后序自底向上合并即可。正确性可由子树归纳说明：两种状态分别覆盖了根结点是否被邀请的所有合法子方案。由于快乐指数可能为负，`dp[u][0]` 从 0 开始且不邀请的结点不会强制选择负收益后代，因而允许空邀请方案并得到 0。根是唯一没有上司的结点，可根据输入父子关系确定。时间复杂度 O(n)，空间复杂度 O(n)。\",\"methods\":[{\"name\":\"树上最大权独立集的树形 DP\",\"knowledge_ids\":[\"dp.tree\",\"graph.tree-basic\"],\"time_complexity\":\"O(n)\",\"space_complexity\":\"O(n)\"}],\"primary_knowledge_ids\":[\"dp.tree\"],\"secondary_knowledge_ids\":[\"graph.tree-basic\"],\"evidence\":{\"dp.tree\":\"每个结点需要维护邀请与不邀请两种状态，并由子结点最优值合并，是树形 DP 的核心。\",\"graph.tree-basic\":\"需要根据输入的父子关系建立树、找到根，并按树结构自底向上处理。 \"},\"knowledge_confidence\":{\"dp.tree\":0.98,\"graph.tree-basic\":0.9},\"confidence\":0.98}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "2fe7316d-309c-4bb7-b2d9-48855054d3c1",
+          "usage": {
+            "completion_tokens": 1386,
+            "prompt_tokens": 2044,
+            "total_tokens": 3430,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 988,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1152,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 892
+          },
+          "elapsed_seconds": 8.668,
+          "valid": true,
+          "response_text": "{\n  \"rubric\": {\n    \"knowledge\": \"需要掌握树的基本概念（根、父子关系、自底向上遍历）以及树形 DP 的基本思想：为结点维护多个状态并合并子树信息。对新生而言，这是需要预先学习的常规算法模板，不是纯语法题。\",\n    \"modelling\": \"把邀请方案转化为树上相邻结点不能同时选择的独立集，并为每个结点定义“选/不选”两种状态。题意与状态定义对应较直接，但需要完成一次从题目限制到 DP 模型的转化。\",\n    \"proof\": \"正确性依赖对子树进行归纳：不选父结点时子结点选或不选均可，选父结点时子结点必不能选。论证不复杂，但需要说明两种状态覆盖所有合法子方案，并处理负权时允许空方案。\",\n    \"implementation\": \"需要根据父子关系建树、确定唯一根、按后序合并子树。转移简单，边界主要是负快乐值、单结点、根的选择以及最大答案可为 0。n≤6000 下 O(n) 时间与空间足够，整体实现负担较低。\"\n  },\n  \"consistency_issues\": [],\n  \"difficulty\": 1200,\n  \"difficulty_reason\": \"解法与标签一致：这是标准的树上最大权独立集树形 DP，主标签 dp.tree 与辅助标签 graph.tree-basic 均匹配。知识上需要新生掌握树形 DP 和树遍历；建模上需把邀请限制转为选/不选两状态，较直接；证明是子树归纳，门槛不高；实现是建树、找根、后序合并，边界需注意负权与空方案。总体属于“学习并独立选用一个常规基础算法、定义简单状态”的基础档，定为 1200。\",\n  \"confidence\": 0.9\n}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "职员宴会的最优邀请",
+        "kind": "algorithm",
+        "solution_idea": "把邀请方案看成树上相邻结点不能同时选的最大权独立集。对每个结点 `u` 维护两种状态：`dp[u][0]` 表示不邀请 `u` 时其子树内的最大快乐值，`dp[u][1]` 表示邀请 `u` 时其子树内的最大快乐值。初值取 `dp[u][0]=0`，`dp[u][1]=r_u`。对每个子结点 `v`，若 `u` 不邀请，则 `v` 可邀请也可不邀请，因此 `dp[u][0] += max(dp[v][0], dp[v][1])`；若 `u` 邀请，则 `v` 不能邀请，因此 `dp[u][1] += dp[v][0]`。按树的后序自底向上合并即可。正确性可由子树归纳说明：两种状态分别覆盖了根结点是否被邀请的所有合法子方案。由于快乐指数可能为负，`dp[u][0]` 从 0 开始且不邀请的结点不会强制选择负收益后代，因而允许空邀请方案并得到 0。根是唯一没有上司的结点，可根据输入父子关系确定。时间复杂度 O(n)，空间复杂度 O(n)。",
+        "methods": [
+          {
+            "name": "树上最大权独立集的树形 DP",
+            "knowledge_ids": [
+              "dp.tree",
+              "graph.tree-basic"
+            ],
+            "time_complexity": "O(n)",
+            "space_complexity": "O(n)"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "dp.tree"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.tree-basic"
+        ],
+        "evidence": {
+          "dp.tree": "每个结点需要维护邀请与不邀请两种状态，并由子结点最优值合并，是树形 DP 的核心。",
+          "graph.tree-basic": "需要根据输入的父子关系建立树、找到根，并按树结构自底向上处理。"
+        },
+        "knowledge_confidence": {
+          "dp.tree": 0.98,
+          "graph.tree-basic": 0.9
+        },
+        "confidence": 0.98
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要掌握树的基本概念（根、父子关系、自底向上遍历）以及树形 DP 的基本思想：为结点维护多个状态并合并子树信息。对新生而言，这是需要预先学习的常规算法模板，不是纯语法题。",
+          "modelling": "把邀请方案转化为树上相邻结点不能同时选择的独立集，并为每个结点定义“选/不选”两种状态。题意与状态定义对应较直接，但需要完成一次从题目限制到 DP 模型的转化。",
+          "proof": "正确性依赖对子树进行归纳：不选父结点时子结点选或不选均可，选父结点时子结点必不能选。论证不复杂，但需要说明两种状态覆盖所有合法子方案，并处理负权时允许空方案。",
+          "implementation": "需要根据父子关系建树、确定唯一根、按后序合并子树。转移简单，边界主要是负快乐值、单结点、根的选择以及最大答案可为 0。n≤6000 下 O(n) 时间与空间足够，整体实现负担较低。"
+        },
+        "consistency_issues": [],
+        "difficulty": 1200,
+        "difficulty_reason": "解法与标签一致：这是标准的树上最大权独立集树形 DP，主标签 dp.tree 与辅助标签 graph.tree-basic 均匹配。知识上需要新生掌握树形 DP 和树遍历；建模上需把邀请限制转为选/不选两状态，较直接；证明是子树归纳，门槛不高；实现是建树、找根、后序合并，边界需注意负权与空方案。总体属于“学习并独立选用一个常规基础算法、定义简单状态”的基础档，定为 1200。",
+        "confidence": 0.9
+      },
+      "elapsed_seconds": 22.661,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "9966292cadd28b9ad53bb8517ad09b85523b2feb4da8344fc7a19044a21b5a4e",
+      "response_model": "deepseek-flash",
+      "response_id": "4d70f68c-b183-4638-b2f8-c7e2dcdab1c5",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 8368,
+      "reasoning_content_sha256": "04d80d1f3ac4b5f214b2c4600ad7472858544cbe44a3d528ded25b55add0dbd8",
+      "usage": {
+        "completion_tokens": 2650,
+        "prompt_tokens": 5610,
+        "total_tokens": 8260,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 2200,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 5376,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 5376,
+        "prompt_cache_miss_tokens": 234
+      },
+      "elapsed_seconds": 13.992
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "3dd50cac29590fe72749297c55394aef62b7897c8b112cf5bb541d7a875cf712",
+      "response_model": "deepseek-flash",
+      "response_id": "2fe7316d-309c-4bb7-b2d9-48855054d3c1",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 1924,
+      "reasoning_content_sha256": "b353bb95cc6cb0d80b3d6105a493a0610e345a74b43f7bae22aef30b4aeb1525",
+      "usage": {
+        "completion_tokens": 1386,
+        "prompt_tokens": 2044,
+        "total_tokens": 3430,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 988,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1152,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 1152,
+        "prompt_cache_miss_tokens": 892
+      },
+      "elapsed_seconds": 8.668
+    }
+  ]
+}

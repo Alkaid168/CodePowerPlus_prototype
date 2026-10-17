@@ -1,0 +1,241 @@
+{
+  "event": "v8二测",
+  "key": "B17-R2",
+  "public_id": "B17",
+  "repetition": 2,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "209a4c3ccb8d6ecf456dbb038f13988c87093b7289c1b8cf0005d850ec1da66c",
+  "completed_at": "2026-10-17T03:44:48.053225+00:00",
+  "analysis": {
+    "title": "替换边使图连通",
+    "difficulty": 1500,
+    "difficulty_reason": "本题属于 1400–1600 进阶档：主算法是常规并查集，但核心难点在于发现答案与连通分量数 c 的关系，并证明恰有 c-1 条非树边可用于构造合法替换方案。实现较短，但建模和正确性说明具有非平凡的图论转化与构造步骤，因此不落在 1100–1300 的基础算法档。",
+    "solution_idea": "设原图连通分量数为 $c$。一次替换最多使连通分量数减少 $1$，所以答案至少为 $c-1$。原图有 $n$ 个点和 $n-1$ 条边；若每个连通分量取一棵生成树，共需要 $n-c$ 条树边，因此剩下的 $(n-1)-(n-c)=c-1$ 条边是非树边，也就是可删除且不会破坏所在分量连通性的边。\n\n用并查集按输入顺序处理边：连接不同集合的边视为生成树边；连接同一集合的边收集为可删除边。这样收集到的可删除边数量恰好为 $c-1$。再为每个连通分量任选一个代表点，将第 $i$ 条可删除边与连接第 $i$ 个和第 $i+1$ 个连通分量代表的新边配对，按链式合并所有分量。删除非树边保持原分量连通，新增边连接不同初始分量，故恰好用 $c-1$ 次操作使全图连通。\n\n边界：$c=1$ 时答案为 $0$，不输出替换行；新增边端点来自不同初始连通分量，因此不会自环或与已有边重边。时间复杂度 $O(n\\alpha(n))$，空间复杂度 $O(n)$。",
+    "confidence": 0.9,
+    "primary_knowledge_ids": [
+      "ds.union-find"
+    ],
+    "secondary_knowledge_ids": [
+      "basic.construction"
+    ],
+    "evidence": {
+      "ds.union-find": "读入 $n-1$ 条边时用并查集合并，统计连通分量数；若边连接同一集合，则将其收集为可删除的非树边。",
+      "basic.construction": "将 $c-1$ 条非树边与 $c$ 个连通分量的代表点按链式配对，逐条删除非树边并添加连接不同分量的新边，构造合法替换方案。"
+    },
+    "knowledge_confidence": {
+      "ds.union-find": 0.99,
+      "basic.construction": 0.95
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "并查集",
+      "构造"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "92b2ed4d-826b-4406-9d8e-11b866b6adc9",
+          "usage": {
+            "completion_tokens": 7159,
+            "prompt_tokens": 5532,
+            "total_tokens": 12691,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 6561,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 5376,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 5376,
+            "prompt_cache_miss_tokens": 156
+          },
+          "elapsed_seconds": 35.368,
+          "valid": true,
+          "response_text": "{\n  \"title\": \"替换边使图连通\",\n  \"kind\": \"algorithm\",\n  \"solution_idea\": \"设原图连通分量数为 $c$。一次替换最多使连通分量数减少 $1$，所以答案至少为 $c-1$。原图有 $n$ 个点和 $n-1$ 条边；若每个连通分量取一棵生成树，共需要 $n-c$ 条树边，因此剩下的 $(n-1)-(n-c)=c-1$ 条边是非树边，也就是可删除且不会破坏所在分量连通性的边。\\n\\n用并查集按输入顺序处理边：连接不同集合的边视为生成树边；连接同一集合的边收集为可删除边。这样收集到的可删除边数量恰好为 $c-1$。再为每个连通分量任选一个代表点，将第 $i$ 条可删除边与连接第 $i$ 个和第 $i+1$ 个连通分量代表的新边配对，按链式合并所有分量。删除非树边保持原分量连通，新增边连接不同初始分量，故恰好用 $c-1$ 次操作使全图连通。\\n\\n边界：$c=1$ 时答案为 $0$，不输出替换行；新增边端点来自不同初始连通分量，因此不会自环或与已有边重边。时间复杂度 $O(n\\\\alpha(n))$，空间复杂度 $O(n)$。\",\n  \"methods\": [\n    {\n      \"name\": \"并查集找非树边并构造连接\",\n      \"knowledge_ids\": [\n        \"ds.union-find\",\n        \"basic.construction\"\n      ],\n      \"time_complexity\": \"$O(n\\\\alpha(n))$，其中 $n\\\\le 1000$\",\n      \"space_complexity\": \"$O(n)$\"\n    }\n  ],\n  \"primary_knowledge_ids\": [\n    \"ds.union-find\"\n  ],\n  \"secondary_knowledge_ids\": [\n    \"basic.construction\"\n  ],\n  \"evidence\": {\n    \"ds.union-find\": \"读入 $n-1$ 条边时用并查集合并，统计连通分量数；若边连接同一集合，则将其收集为可删除的非树边。\",\n    \"basic.construction\": \"将 $c-1$ 条非树边与 $c$ 个连通分量的代表点按链式配对，逐条删除非树边并添加连接不同分量的新边，构造合法替换方案。\"\n  },\n  \"knowledge_confidence\": {\n    \"ds.union-find\": 0.99,\n    \"basic.construction\": 0.95\n  },\n  \"confidence\": 0.98\n}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "708c09e4-a608-4389-b0f6-f5b738c67dae",
+          "usage": {
+            "completion_tokens": 4642,
+            "prompt_tokens": 2047,
+            "total_tokens": 6689,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 4260,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 1152,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 895
+          },
+          "elapsed_seconds": 24.653,
+          "valid": true,
+          "response_text": "{\n  \"rubric\": {\n    \"knowledge\": \"需要掌握连通分量、生成森林/树边与非树边的概念，以及并查集的基本合并与查询；对刚入学的新生而言，并查集和“非树边可删除且不破坏连通性”不是完全先验的内容。\",\n    \"modelling\": \"关键转化是从连通分量数 c 推出答案下界 c-1，并利用 n 个点、n-1 条边推出可删除的非树边恰有 c-1 条；这一步需要把“最少量”和“可构造替换”统一起来，转化不算直接。\",\n    \"proof\": \"需要证明一次操作最多使连通分量数减少 1，从而给出下界；还要说明删除生成森林外的边不会破坏原分量连通性，并能用这些边把各分量链式连接起来达到下界，正确性链较完整但不算很深。\",\n    \"implementation\": \"并查集收集非树边、记录各连通分量代表点，再逐条配对输出即可；主要边界是 c=1 时不输出替换行，并保证新增边连接不同初始分量。实现量不大，复杂度 O(nα(n))。\"\n  },\n  \"consistency_issues\": [],\n  \"difficulty\": 1500,\n  \"difficulty_reason\": \"本题属于 1400–1600 进阶档：主算法是常规并查集，但核心难点在于发现答案与连通分量数 c 的关系，并证明恰有 c-1 条非树边可用于构造合法替换方案。实现较短，但建模和正确性说明具有非平凡的图论转化与构造步骤，因此不落在 1100–1300 的基础算法档。\",\n  \"confidence\": 0.9\n}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "替换边使图连通",
+        "kind": "algorithm",
+        "solution_idea": "设原图连通分量数为 $c$。一次替换最多使连通分量数减少 $1$，所以答案至少为 $c-1$。原图有 $n$ 个点和 $n-1$ 条边；若每个连通分量取一棵生成树，共需要 $n-c$ 条树边，因此剩下的 $(n-1)-(n-c)=c-1$ 条边是非树边，也就是可删除且不会破坏所在分量连通性的边。\n\n用并查集按输入顺序处理边：连接不同集合的边视为生成树边；连接同一集合的边收集为可删除边。这样收集到的可删除边数量恰好为 $c-1$。再为每个连通分量任选一个代表点，将第 $i$ 条可删除边与连接第 $i$ 个和第 $i+1$ 个连通分量代表的新边配对，按链式合并所有分量。删除非树边保持原分量连通，新增边连接不同初始分量，故恰好用 $c-1$ 次操作使全图连通。\n\n边界：$c=1$ 时答案为 $0$，不输出替换行；新增边端点来自不同初始连通分量，因此不会自环或与已有边重边。时间复杂度 $O(n\\alpha(n))$，空间复杂度 $O(n)$。",
+        "methods": [
+          {
+            "name": "并查集找非树边并构造连接",
+            "knowledge_ids": [
+              "ds.union-find",
+              "basic.construction"
+            ],
+            "time_complexity": "$O(n\\alpha(n))$，其中 $n\\le 1000$",
+            "space_complexity": "$O(n)$"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "ds.union-find"
+        ],
+        "secondary_knowledge_ids": [
+          "basic.construction"
+        ],
+        "evidence": {
+          "ds.union-find": "读入 $n-1$ 条边时用并查集合并，统计连通分量数；若边连接同一集合，则将其收集为可删除的非树边。",
+          "basic.construction": "将 $c-1$ 条非树边与 $c$ 个连通分量的代表点按链式配对，逐条删除非树边并添加连接不同分量的新边，构造合法替换方案。"
+        },
+        "knowledge_confidence": {
+          "ds.union-find": 0.99,
+          "basic.construction": 0.95
+        },
+        "confidence": 0.98
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要掌握连通分量、生成森林/树边与非树边的概念，以及并查集的基本合并与查询；对刚入学的新生而言，并查集和“非树边可删除且不破坏连通性”不是完全先验的内容。",
+          "modelling": "关键转化是从连通分量数 c 推出答案下界 c-1，并利用 n 个点、n-1 条边推出可删除的非树边恰有 c-1 条；这一步需要把“最少量”和“可构造替换”统一起来，转化不算直接。",
+          "proof": "需要证明一次操作最多使连通分量数减少 1，从而给出下界；还要说明删除生成森林外的边不会破坏原分量连通性，并能用这些边把各分量链式连接起来达到下界，正确性链较完整但不算很深。",
+          "implementation": "并查集收集非树边、记录各连通分量代表点，再逐条配对输出即可；主要边界是 c=1 时不输出替换行，并保证新增边连接不同初始分量。实现量不大，复杂度 O(nα(n))。"
+        },
+        "consistency_issues": [],
+        "difficulty": 1500,
+        "difficulty_reason": "本题属于 1400–1600 进阶档：主算法是常规并查集，但核心难点在于发现答案与连通分量数 c 的关系，并证明恰有 c-1 条非树边可用于构造合法替换方案。实现较短，但建模和正确性说明具有非平凡的图论转化与构造步骤，因此不落在 1100–1300 的基础算法档。",
+        "confidence": 0.9
+      },
+      "elapsed_seconds": 60.023,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "76b5c3fd2fee59393b21dc499b22e5e2f5d00eb87e7b87ddf212bc6f88fb07fd",
+      "response_model": "deepseek-flash",
+      "response_id": "92b2ed4d-826b-4406-9d8e-11b866b6adc9",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 27572,
+      "reasoning_content_sha256": "d4ac57081509d943d517c0206fbed8e4c714d0102ee122f9ee028c78df50590a",
+      "usage": {
+        "completion_tokens": 7159,
+        "prompt_tokens": 5532,
+        "total_tokens": 12691,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 6561,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 5376,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 5376,
+        "prompt_cache_miss_tokens": 156
+      },
+      "elapsed_seconds": 35.368
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "02f8a3cc4964834d73b88f4ce12520556caf0c86b6208f9198f6bc532a41e57a",
+      "response_model": "deepseek-flash",
+      "response_id": "708c09e4-a608-4389-b0f6-f5b738c67dae",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 18178,
+      "reasoning_content_sha256": "3e34728d71b0313aaf84e5a8166ea66d57c6e32940e03ff9a5bce164ef459a03",
+      "usage": {
+        "completion_tokens": 4642,
+        "prompt_tokens": 2047,
+        "total_tokens": 6689,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 4260,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 1152,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 1152,
+        "prompt_cache_miss_tokens": 895
+      },
+      "elapsed_seconds": 24.653
+    }
+  ]
+}

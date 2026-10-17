@@ -3,7 +3,7 @@ import { api } from '../api.js';
 import { h } from '../dom.js';
 import { navigate } from '../router.js';
 import { store } from '../store.js';
-import { button, notice, sourceHost } from '../components.js';
+import { button } from '../components.js';
 
 function greeting() {
   const hour = new Date().getHours();
@@ -22,9 +22,9 @@ function focusCard(problem) {
   if (problem) {
     return h('section', { class: 'card overview-focus' },
       h('div', { class: 'overview-focus-copy' },
-        h('span', { class: 'tag' }, problem.source_url
-          ? `#${problem.id} · ${sourceHost(problem.source_url)}` : `#${problem.id} · 本地录入`),
-        h('h2', {}, problem.title),
+        h('h2', { class: 'overview-problem-heading' },
+          h('span', { class: 'overview-problem-number' }, `#${problem.id} `),
+          h('span', { class: 'overview-problem-title' }, problem.title)),
         h('div', { class: 'overview-focus-actions' },
           button('开始练习', { iconName: 'play', onClick: () => navigate(`problems/${problem.id}`) }),
           button('查看题目分析', { variant: 'secondary', iconName: 'clipboard-check', onClick: () => navigate(`analysis/${problem.id}`) }))));
@@ -73,7 +73,6 @@ export default {
         metric('题目', data.problems),
         metric('待审核分析', data.pending_reviews),
         metric('提交记录', data.submissions)),
-      data.model_configured ? null : h('div', { class: 'overview-model-note' }, notice('当前未配置模型密钥。', 'warn')),
       focusCard(problem),
       knowledgePanel(weak));
   },

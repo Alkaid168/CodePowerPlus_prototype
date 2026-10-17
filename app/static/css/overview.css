@@ -3,9 +3,10 @@
   height: 100%;
   min-height: 100%;
   display: grid;
-  grid-template-rows: auto auto minmax(300px, 1fr) minmax(220px, auto);
+  grid-template-rows: auto auto minmax(260px, 1fr) auto;
   gap: 18px;
 }
+.route-shell-overview { height: 100%; min-height: 0; }
 .overview-head {
   display: flex;
   align-items: center;
@@ -36,7 +37,8 @@
 
 /* 主卡使用单一白色横向布局，不再放置右侧浮层或品牌图示。 */
 .overview-focus {
-  min-height: 300px;
+  min-height: 220px;
+  flex: 1;
   padding: 38px 40px;
   display: flex;
   align-items: center;
@@ -63,10 +65,19 @@
   letter-spacing: -.05em;
   font-weight: 700;
 }
+.overview-focus .overview-problem-heading { margin-top: 0; }
+.overview-problem-number {
+  margin-right: 18px;
+  color: var(--ink-soft);
+  font: 500 24px/1.4 var(--mono);
+  letter-spacing: -.035em;
+  white-space: nowrap;
+}
+.overview-problem-title { overflow-wrap: anywhere; }
 .overview-focus-actions { display: flex; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
 .overview-focus-actions .btn { min-height: 44px; padding: 0 17px; font-size: 13px; }
 
-.overview-lower-card { min-height: 220px; padding: 24px; display: flex; flex-direction: column; }
+.overview-lower-card { min-height: 160px; padding: 24px; display: flex; flex-direction: column; }
 .overview-section-head { display: flex; align-items: center; min-height: 24px; margin-bottom: 20px; }
 .overview-section-head h2 { font-size: 18px; font-weight: 680; letter-spacing: -.025em; }
 .overview-progress-list { display: grid; gap: 16px; }
@@ -84,7 +95,6 @@
   font-size: 15px;
 }
 .overview-lower-empty .btn { min-height: 40px; padding: 0 15px; }
-.overview-model-note { margin-bottom: 0; }
 
 @media (hover: hover) and (pointer: fine) {
   .overview-focus:hover { border-color: #d2d2d2; box-shadow: 0 20px 48px rgba(0, 0, 0, .07); }
@@ -109,6 +119,7 @@
   .overview-head h1 { font-size: 30px; }
   .overview-focus { padding: 28px 24px; }
   .overview-focus h2 { font-size: 30px; }
+  .overview-problem-number { margin-right: 12px; font-size: 20px; }
   .overview-progress-row { grid-template-columns: 100px minmax(0, 1fr) 40px; }
   .overview-lower-empty .overview-empty-copy { align-items: flex-start; flex-direction: column; }
 }

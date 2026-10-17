@@ -139,7 +139,8 @@ def markdown_report(report: dict) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--dataset', type=Path, default=ROOT / 'data/evaluation/authored_fixture.json')
-    parser.add_argument('--taxonomy', type=Path, default=ROOT / 'data/knowledge_taxonomy.json')
+    parser.add_argument('--taxonomy', type=Path, default=ROOT / 'data/taxonomy_versions/2026.09.9.json',
+                        help='默认固定到 authored_fixture 对应的历史快照；新数据集需显式指定版本')
     parser.add_argument('--predictions', type=Path, help='External complete predictions JSON; never generated from gold.')
     parser.add_argument('--output-dir', type=Path, default=ROOT / 'data/evaluation/reports')
     parser.add_argument('--seed', type=int, default=42)

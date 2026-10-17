@@ -1,0 +1,360 @@
+{
+  "event": "v8二测",
+  "frozen_at": "2026-10-17T03:37:48.028107+00:00",
+  "fingerprint": {
+    "original_fingerprint": {
+      "files": {
+        "app/prompts/problem-analysis-v8-solve.txt": "6f32b2b2b4b8c034ea428e01554d5a5e5834d0ef36024928dffa7d0253435754",
+        "app/prompts/problem-analysis-v8-grade.txt": "f0cabfea78cf6aba9541963dfd0fddd3e8b6c7d0235c5aa367ad147597c81d0a",
+        "app/services/analysis.py": "cebd7760d2e26052ae21d3e3bcc6f3df3992e8aa3b024a1519ce43cb80bfb32e",
+        "app/services/analysis_v8.py": "7681a7087cd1b034a2fd1ba220ff0cfa1479759a333e213cbb59456cf98bfe2e",
+        "app/schemas.py": "5f59ca97716047845a8bb294430038cbc20b8cda7d0a49dbb301455c30630ace",
+        "app/services/difficulty.py": "428aae7da607bc1e847b68b56830d734733bc73132a20a8b9fbc45b10097df78",
+        "app/knowledge.py": "325107eb2a57824e42d32b633984a4bc9b040a6664267e1cea4add109b6a8d97",
+        "data/knowledge_taxonomy.json": "67327f0e2858c20a197f673922fb10cd44ac307efed0ceb1f9b93e48c607c15b",
+        "app/blind_evaluation.py": "3fcba982e0c3bbbf9612630e8644dee139ca6818157337978d8e7a2d92846b5c",
+        "scripts/v8_blind_evaluation.py": "c7a263451c8198d3a018b4615f6fafd6e866c9c79027adb31d248d76ba3396ed",
+        "docs/v8-first-test-protocol.md": "efff1b9821eac24c67005886b57f508f1f4fa5f4eeb3ea93fcd25a9808b52dd9"
+      },
+      "prompt_version": "problem-analysis-v8",
+      "request_model": "deepseek-chat",
+      "endpoint": "https://api.deepseek.com",
+      "temperature": 0,
+      "request_timeout": 35.0
+    },
+    "experiment_files": {
+      "app/v8_high_transport.py": "1ebed6a8dc9b1d2d0363a6b6c773a67b978c9f7975ee915257b1bb49fe18cd11",
+      "scripts/v8_second_test.py": "8e4c4d7108c1bce08c1a52f873bd65c8ffe5fa1ae4ce35791341e34ecae00f96",
+      "docs/v8-second-test-protocol.md": "d3b06d7921d27a18c1d4525e766cdf3b82ebb487ee628513159fed02b95b6fff"
+    },
+    "profile": {
+      "model": "deepseek-flash",
+      "reasoning_effort": "high",
+      "thinking": {
+        "type": "enabled"
+      },
+      "max_tokens": 32768,
+      "temperature": 0,
+      "timeout_seconds": 300,
+      "sdk_transport_retries": 1
+    },
+    "endpoint": "https://api.deepseek.com",
+    "first_prediction_commitment": "2d06cae771d9aad8c5dcac06198da7e4081b7a5d0845f9d486895c75268c4432",
+    "human_revision_r1_sha256": "3c527231b003495aebff129b084ae0fe95a8ee617ccf40e73b84913fba20f5ad"
+  },
+  "items": [
+    {
+      "group": "regression9",
+      "origin_problem_id": 1013,
+      "source_id": "1013",
+      "source_url": "https://www.luogu.com.cn/problem/P3368",
+      "description": "## 任务\n维护整数序列，支持闭区间整体增加一个整数，以及查询某一位置的当前值。\n\n## 输入\n首行 $N$、$M$；第二行 $N$ 个初始值；之后 $M$ 行操作：$1\\ x\\ y\\ k$ 将 $[x,y]$ 加 $k$，$2\\ x$ 查询位置 $x$。\n\n## 输出\n每个查询输出一行当前值。\n\n## 约束\n$1 \\le N,M \\le 5\\times 10^5$；下标在 $1$ 到 $N$ 内，区间 $x\\le y$；$\\text{任意时刻元素绝对值}\\le 2^{30}$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4 4\n1 2 3 4\n2 2\n1 2 4 5\n2 3\n2 1\n```\n\n输出：\n```text\n2\n8\n1\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "input_origin": "v7_frozen_exact",
+      "public_id": "B01",
+      "input_sha256": "3f7f16ab2b7b09705a7f2251dbed0d13bd40ca9dacb2cdfc3b0e698d632db1f2"
+    },
+    {
+      "group": "regression9",
+      "origin_problem_id": 1036,
+      "source_id": "1036",
+      "source_url": "https://codeforces.com/problemset/problem/363/B",
+      "description": "## 题目定义\n\n给定一条非环形序列，选择恰好 $k$ 个连续元素，使其总和最小。输出这一片段的起始下标；有多个最优片段时任意一个均可。\n\n## 输入格式\n\n第一行 $n,k$；第二行 $n$ 个高度 $h_i$。\n\n## 输出格式\n\n输出一个最优起点 $j$（$1 \\le j \\le n-k+1$）。\n\n## 数据范围\n\n$1 \\le n \\le 150000$；$1 \\le k \\le n$；$1 \\le h_i \\le 100$。\n\n## 样例 1\n\n输入：\n\n```text\n7 3\n1 2 6 1 1 7 1\n```\n\n输出：\n\n```text\n3\n```\n",
+      "reference_solution": "",
+      "reference_code": "",
+      "input_origin": "v7_frozen_exact",
+      "public_id": "B02",
+      "input_sha256": "8adb95a59f7925e26d4edeae5b2e2fcbf1eb5db1f24500b11f7fc2ad5a291acc"
+    },
+    {
+      "source_id": "P3390",
+      "source_url": "https://www.luogu.com.cn/problem/P3390",
+      "description": "## 题目描述\n\n给定一个 $n\\times n$ 的整数矩阵 $A$ 和非负整数 $k$，求矩阵幂 $A^k$，并将结果矩阵的每个元素对 $10^9+7$ 取模后输出。\n\n这里使用普通矩阵乘法：若 $C=AB$，则 $C_{i,j}=\\sum_{t=1}^{n}A_{i,t}B_{t,j}$。对于正整数 $k$，$A^k$ 表示 $k$ 个 $A$ 相乘；当 $k=0$ 时，$A^0$ 为单位矩阵，其主对角线元素为 $1$，其余为 $0$。\n\n## 输入格式\n\n第一行给出 $n,k$。\n\n接下来 $n$ 行，每行 $n$ 个整数，第 $i$ 行第 $j$ 个数是 $A_{i,j}$。\n\n## 输出格式\n\n输出 $n$ 行，每行 $n$ 个整数，依次表示 $A^k$ 对应位置的元素模 $10^9+7$ 的结果。\n\n## 数据范围\n\n$1\\le n\\le100$，$0\\le k\\le10^{12}$，$|A_{i,j}|\\le1000$。矩阵元素可以为负数。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：262144 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n2 1\n1 1\n1 1\n```\n\n### 输出\n\n```text\n1 1\n1 1\n```\n\n## 样例 2\n\n### 输入\n\n```text\n3 5\n1 2 3\n4 5 6\n7 8 9\n```\n\n### 输出\n\n```text\n121824 149688 177552\n275886 338985 402084\n429948 528282 626616\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "group": "new11",
+      "input_origin": "official_verified_independent_restatement",
+      "public_id": "B03",
+      "input_sha256": "6906b233b93017c95ba6b557e05c42a700f9caa189a6ca99ca9404fefdbd3e59"
+    },
+    {
+      "source_id": "P1141",
+      "source_url": "https://www.luogu.com.cn/problem/P1141",
+      "description": "## 题目描述\n\n给定一个由字符 `0` 和 `1` 构成的 $n\\times n$ 网格。每一步只能走到上下左右相邻且数字与当前位置不同的格子，不能走出网格。对于每个指定的起点，求从该点出发能够到达的不同格子的数量，起点本身也计入答案。各次询问都针对同一个网格。\n\n## 输入格式\n\n第一行给出 $n,m$，分别为网格边长和询问数。\n\n接下来 $n$ 行，每行是一个长度为 $n$ 的 `01` 字符串，字符间没有空格。\n\n随后 $m$ 行，每行给出一对行列编号 $i,j$，表示询问的起点。行、列均从 $1$ 开始编号。\n\n## 输出格式\n\n按输入顺序输出 $m$ 行，每行一个整数，表示对应起点能够到达的格子数。\n\n## 数据范围\n\n$1\\le n\\le1000$，$1\\le m\\le100000$，$1\\le i,j\\le n$。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：131072 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n2 2\n01\n10\n1 1\n2 2\n```\n\n### 输出\n\n```text\n4\n4\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "group": "new11",
+      "input_origin": "official_verified_independent_restatement",
+      "public_id": "B04",
+      "input_sha256": "e0c00dd148ce6505c3c5a5fef3555df2c570e8a54f18d1c90314bf25a434b0cd"
+    },
+    {
+      "source_id": "P1352",
+      "source_url": "https://www.luogu.com.cn/problem/P1352",
+      "description": "## 题目描述\n\n有 $n$ 名职员，编号为 $1$ 至 $n$。他们的上下级关系构成一棵以校长为根的树：每个非根职员的父结点就是其直接上司。邀请职员 $i$ 参加宴会可增加快乐指数 $r_i$，该值可能为负数。\n\n如果某名职员和他的直接上司都受到邀请，该邀请方案就不合法；间接上下级关系没有这一直接限制。在所有合法邀请方案中，求被邀请职员快乐指数之和的最大值。\n\n## 输入格式\n\n第一行给出 $n$。\n\n接下来 $n$ 行，每行一个整数，第 $i$ 个数为职员 $i$ 的快乐指数 $r_i$。\n\n随后 $n-1$ 行，每行给出 $l,k$，表示 $k$ 是 $l$ 的直接上司。关系保证构成一棵树。\n\n## 输出格式\n\n输出一个整数，表示能够得到的最大快乐指数总和。\n\n## 数据范围\n\n$1\\le n\\le6\\times10^3$，$-128\\le r_i\\le127$，$1\\le l,k\\le n$。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：131072 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n7\n1\n1\n1\n1\n1\n1\n1\n1 3\n2 3\n6 4\n7 4\n4 5\n3 5\n```\n\n### 输出\n\n```text\n5\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "group": "new11",
+      "input_origin": "official_verified_independent_restatement",
+      "public_id": "B05",
+      "input_sha256": "0142e6c366f9c9fe0ad1ccd92eba0e7d46ffc1dd3a7fcb52658204c8f8ddd6e5"
+    },
+    {
+      "group": "regression9",
+      "origin_problem_id": 1034,
+      "source_id": "1034",
+      "source_url": "https://codeforces.com/problemset/problem/706/B",
+      "description": "## 题目定义\n\n$n$ 个商店的同一商品价格为 $x_i$。每个查询给出预算 $m$，求价格不超过该预算的商店数；各查询互不影响。\n\n## 输入格式\n\n第一行 $n$；第二行 $n$ 个价格；第三行 $q$；随后 $q$ 行各一个预算 $m_i$。\n\n## 输出格式\n\n每个查询输出符合预算的商店个数。\n\n## 数据范围\n\n$1 \\le n,q \\le 10^5$；$1 \\le x_i \\le 10^5$；$1 \\le m_i \\le 10^9$。\n\n## 样例 1\n\n输入：\n\n```text\n5\n3 10 8 6 11\n4\n1\n10\n3\n11\n```\n\n输出：\n\n```text\n0\n4\n1\n5\n```\n",
+      "reference_solution": "",
+      "reference_code": "",
+      "input_origin": "v7_frozen_exact",
+      "public_id": "B06",
+      "input_sha256": "3e4bd89d796d5b7c27b28f891ef1c421b677e609a74687fcd22b55769b23721b"
+    },
+    {
+      "group": "regression9",
+      "origin_problem_id": 1017,
+      "source_id": "1017",
+      "source_url": "https://www.luogu.com.cn/problem/P3808",
+      "description": "## 任务\n给定 $n$ 个有编号的模式串和文本 $t$，统计至少在 $t$ 中出现一次的模式编号数。内容相同而编号不同的模式分别计数，同一编号出现多次只计一次。\n\n## 输入\n首行 $n$；之后 $n$ 行模式串；最后一行文本 $t$。\n\n## 输出\n至少出现一次的模式编号总数。\n\n## 约束\n$1 \\le n \\le 10^6$，$1 \\le |t| \\le 10^6$，$1 \\le \\text{所有模式串长度之和} \\le 10^6$；均为小写字母。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n4\na\na\nb\nab\nabab\n```\n\n输出：\n```text\n4\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "input_origin": "v7_frozen_exact",
+      "public_id": "B07",
+      "input_sha256": "d52e40d4e4591baa63c5667e23a2adad199c2bd7889ba76badd87f9f8cb97286"
+    },
+    {
+      "source_id": "P3386",
+      "source_url": "https://www.luogu.com.cn/problem/P3386",
+      "description": "## 题目描述\n\n给定一个二分图，左侧有 $n$ 个顶点，编号为 $1$ 至 $n$；右侧有 $m$ 个顶点，另行编号为 $1$ 至 $m$。每条边都连接一个左侧顶点和一个右侧顶点。\n\n从这些边中选出若干条，使任意一个顶点至多属于其中一条边。求最多能选出多少条边。输入可能重复给出同一对顶点之间的边。\n\n## 输入格式\n\n第一行给出三个整数 $n,m,e$，其中 $e$ 为给出的边数。\n\n接下来 $e$ 行，每行给出 $u,v$，表示左侧顶点 $u$ 和右侧顶点 $v$ 之间有一条边。\n\n## 输出格式\n\n输出一个整数，表示满足条件的最多边数。\n\n## 数据范围\n\n$1\\le n,m\\le500$，$1\\le e\\le5\\times10^4$，$1\\le u\\le n$，$1\\le v\\le m$。允许重边。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：524288 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n1 1 1\n1 1\n```\n\n### 输出\n\n```text\n1\n```\n\n## 样例 2\n\n### 输入\n\n```text\n4 2 7\n3 1\n1 2\n3 2\n1 1\n4 2\n4 1\n1 1\n```\n\n### 输出\n\n```text\n2\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "group": "new11",
+      "input_origin": "official_verified_independent_restatement",
+      "public_id": "B08",
+      "input_sha256": "7dce77429c947cae9200032773cde6124d5a0253e412d09203563f3c76f86318"
+    },
+    {
+      "source_id": "P1880",
+      "source_url": "https://www.luogu.com.cn/problem/P1880",
+      "description": "## 题目描述\n\n有 $N$ 堆石子按输入顺序围成一个圆环，每堆有 $a_i$ 颗石子。圆环上第一堆与最后一堆也相邻。每次只能选择当前相邻的两堆合并为一堆，新堆的石子数是两堆之和，同时把新堆的石子数记作这次操作的得分。\n\n不断操作直到只剩一堆。一次完整合并方案的总得分为所有合并操作得分之和。请分别求可能的最小总得分和最大总得分。\n\n## 输入格式\n\n第一行给出堆数 $N$。\n\n第二行给出 $N$ 个整数 $a_1,a_2,\\ldots,a_N$，表示沿圆环顺序的各堆石子数量。\n\n## 输出格式\n\n输出两行：第一行是最小总得分，第二行是最大总得分。\n\n## 数据范围\n\n$1\\le N\\le100$，$0\\le a_i\\le20$。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：128000 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n4\n4 5 9 4\n```\n\n### 输出\n\n```text\n43\n54\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "group": "new11",
+      "input_origin": "official_verified_independent_restatement",
+      "public_id": "B09",
+      "input_sha256": "9a237ec4cbdb5854fb9d9cae5f5cda5bcd26deb8e26158e530fed796ecfd709c"
+    },
+    {
+      "group": "regression9",
+      "origin_problem_id": 1037,
+      "source_id": "1037",
+      "source_url": "https://codeforces.com/problemset/problem/520/B",
+      "description": "## 题目定义\n\n从正整数 $n$ 出发，一次操作可以把当前值乘 $2$，或减 $1$；整个过程必须保持值为正。求变为 $m$ 所需的最少操作次数。中间值允许超过输入范围。\n\n## 输入格式\n\n一行不同的两个整数 $n,m$。\n\n## 输出格式\n\n输出最少操作数。\n\n## 数据范围\n\n$1 \\le n,m \\le 10^4$；$n\\ne m$。\n\n## 样例 1\n\n输入：\n\n```text\n4 6\n```\n\n输出：\n\n```text\n2\n```\n\n## 样例 2\n\n输入：\n\n```text\n10 1\n```\n\n输出：\n\n```text\n9\n```\n",
+      "reference_solution": "",
+      "reference_code": "",
+      "input_origin": "v7_frozen_exact",
+      "public_id": "B10",
+      "input_sha256": "a0cfac0d8a162c0d2623bc2e5595766aa3b224ffadc1a7410b6adff130824647"
+    },
+    {
+      "source_id": "P1044",
+      "source_url": "https://www.luogu.com.cn/problem/P1044",
+      "description": "## 题目描述\n\n初始输入序列依次为 $1,2,\\ldots,n$，另有一个空栈和一个空的输出序列。栈的容量大于 $n$。\n\n允许反复执行以下操作：取输入序列中尚未取走的第一个数压入栈顶；或者在栈非空时弹出栈顶元素，把它接到输出序列末尾。输入的相对次序不能改变，每个数最终都要进入输出序列。\n\n给定 $n$，求通过这些操作能够产生多少种不同的完整输出序列。\n\n## 输入格式\n\n输入一个整数 $n$。\n\n## 输出格式\n\n输出一个整数，表示不同输出序列的总数。\n\n## 数据范围\n\n$1\\le n\\le18$。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：128000 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n3\n```\n\n### 输出\n\n```text\n5\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "group": "new11",
+      "input_origin": "official_verified_independent_restatement",
+      "public_id": "B11",
+      "input_sha256": "591fd18d3f0285aa1108111adc8d356459dbff70c8951b2b8950b0d0d947bd05"
+    },
+    {
+      "group": "regression9",
+      "origin_problem_id": 1033,
+      "source_id": "1033",
+      "source_url": "https://codeforces.com/problemset/problem/474/B",
+      "description": "## 题目定义\n\n$n$ 个有序组的大小为 $a_i$。把所有对象按组的顺序连续编号，从 1 开始。对 $m$ 个对象编号，回答其所在组的编号（组编号也从 1 开始）。\n\n## 输入格式\n\n第一行 $n$；第二行 $a_i$；第三行 $m$；第四行 $m$ 个查询 $q_i$。\n\n## 输出格式\n\n每个查询输出一行所在组的编号。\n\n## 数据范围\n\n$1 \\le n,m \\le 10^5$；$1 \\le a_i \\le 10^3$；$\\sum a_i \\le 10^6$；$1 \\le q_i \\le \\sum a_i$。\n\n## 样例 1\n\n输入：\n\n```text\n5\n2 7 3 4 9\n3\n1 25 11\n```\n\n输出：\n\n```text\n1\n5\n3\n```\n",
+      "reference_solution": "",
+      "reference_code": "",
+      "input_origin": "v7_frozen_exact",
+      "public_id": "B12",
+      "input_sha256": "0f2b15c5e440122ccd9303fc8533568c6653511c42c915db81fa9efedd1000ce"
+    },
+    {
+      "source_id": "P3370",
+      "source_url": "https://www.luogu.com.cn/problem/P3370",
+      "description": "## 题目描述\n\n给出 $N$ 个字符串。字符串只含数字、大写英文字母和小写英文字母，比较时区分大小写。只有长度相等且每个位置的字符都相等，两个字符串才相同。请统计输入中不同字符串的个数。\n\n## 输入格式\n\n第一行给出字符串个数 $N$。\n\n接下来 $N$ 行，每行给出一个字符串，记第 $i$ 个字符串的长度为 $M_i$。\n\n## 输出格式\n\n输出一个整数，表示不同字符串的数量。\n\n## 数据范围\n\n对全部数据，$N\\le10000$，每个字符串长度不超过 $1500$。官方同时以 $M_i\\approx1000$ 描述全部数据的字符串长度规模；这一近似说明不是每条字符串长度的精确等式。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：131072 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n5\nabc\naaaa\nabc\nabcc\n12345\n```\n\n### 输出\n\n```text\n4\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "group": "new11",
+      "input_origin": "official_verified_independent_restatement",
+      "public_id": "B13",
+      "input_sha256": "e06db4f73c971b4c0292e8bd049fc850ed1e55dd77609436251e636d8e5d21fc"
+    },
+    {
+      "group": "regression9",
+      "origin_problem_id": 1035,
+      "source_id": "1035",
+      "source_url": "https://codeforces.com/problemset/problem/279/B",
+      "description": "## 题目定义\n\n有 $n$ 个按顺序排列的阅读任务，第 $i$ 个耗时 $a_i$。可以任选起点，但之后必须按顺序连续完成，不能跳过任务，总时间不得超过 $t$。求最多能完整完成多少个任务。\n\n## 输入格式\n\n第一行 $n,t$；第二行 $n$ 个 $a_i$。\n\n## 输出格式\n\n输出可完成的最大数量；如果一个也无法完成则输出 $0$。\n\n## 数据范围\n\n$1 \\le n \\le 10^5$；$1 \\le t \\le 10^9$；$1 \\le a_i \\le 10^4$。\n\n## 样例 1\n\n输入：\n\n```text\n4 5\n3 1 2 1\n```\n\n输出：\n\n```text\n3\n```\n\n## 样例 2\n\n输入：\n\n```text\n3 3\n2 2 3\n```\n\n输出：\n\n```text\n1\n```\n",
+      "reference_solution": "",
+      "reference_code": "",
+      "input_origin": "v7_frozen_exact",
+      "public_id": "B14",
+      "input_sha256": "4fdd393006011e5be758f43f5c04ab28c6ab017eaac9472695b89b48f2b1694c"
+    },
+    {
+      "source_id": "P1803",
+      "source_url": "https://www.luogu.com.cn/problem/P1803",
+      "description": "## 题目描述\n\n有 $n$ 场比赛，第 $i$ 场从时刻 $a_i$ 开始，到时刻 $b_i$ 结束。选择参加一场比赛时，必须参加完整场比赛，并且不能同时参加两场比赛。一场比赛结束的时刻可以作为另一场比赛的开始时刻。求最多能够参加多少场比赛。\n\n## 输入格式\n\n第一行给出比赛数 $n$。\n\n接下来 $n$ 行，每行两个整数 $a_i,b_i$，表示一场比赛的起止时刻。\n\n## 输出格式\n\n输出一个整数，表示可参加比赛数量的最大值。\n\n## 数据范围\n\n$1\\le n\\le10^6$，$0\\le a_i<b_i\\le10^6$。\n\n## 运行限制\n\n时间限制：3000 毫秒；内存限制：524288 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n3\n0 2\n2 4\n1 3\n```\n\n### 输出\n\n```text\n2\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "group": "new11",
+      "input_origin": "official_verified_independent_restatement",
+      "public_id": "B15",
+      "input_sha256": "01d80c4a9a8cb9c59e6f04bcd39f4be0507ec3b2985e2cb2954f81ca67709e1d"
+    },
+    {
+      "source_id": "P1440",
+      "source_url": "https://www.luogu.com.cn/problem/P1440",
+      "description": "## 题目描述\n\n给定长度为 $n$ 的正整数序列 $a_1,a_2,\\ldots,a_n$ 和整数 $m$。对于每一个位置 $i$，求该位置之前至多 $m$ 项的最小值，当前位置 $a_i$ 不参与计算。即在 $i>1$ 时，计算下标区间 $[\\max(1,i-m),i-1]$ 中的最小值；若该位置之前没有元素，则输出 $0$。\n\n## 输入格式\n\n第一行给出 $n,m$。\n\n第二行给出 $n$ 个正整数，依次为序列各项。\n\n## 输出格式\n\n输出 $n$ 行。第 $i$ 行是位置 $i$ 所要求的最小值；第一行应为 $0$。\n\n## 数据范围\n\n$1\\le m\\le n\\le2\\times10^6$，$1\\le a_i\\le3\\times10^7$。\n\n## 运行限制\n\n时间限制：1500 毫秒；内存限制：524288 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n6 2\n7 8 1 4 3 2\n```\n\n### 输出\n\n```text\n0\n7\n7\n1\n1\n3 \n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "group": "new11",
+      "input_origin": "official_verified_independent_restatement",
+      "public_id": "B16",
+      "input_sha256": "fd562294ad5f51945f12a99ba80e0d8653e63333203c1c80eb5678361e60d114"
+    },
+    {
+      "group": "regression9",
+      "origin_problem_id": 1039,
+      "source_id": "1039",
+      "source_url": "https://codeforces.com/problemset/problem/25/D",
+      "description": "## 题目定义\n\n有 $n$ 个顶点和恰好 $n-1$ 条无向边，可能不连通。一次操作删除一条现有边，并立即添加一条新边。求使整个图连通所需的最少操作次数，并输出一组具体替换方案。\n\n## 输入格式\n\n第一行 $n$；随后 $n-1$ 行每行两个端点 $a_i,b_i$。\n\n## 输出格式\n\n先输出最少次数 $t$；随后 $t$ 行 $i\\ j\\ u\\ v$，表示删除边 $(i,j)$ 并添加边 $(u,v)$。有多解可输出任意方案。\n\n## 数据范围\n\n$2 \\le n \\le 1000$；端点在 $1\\ldots n$；无自环、无重边。\n\n## 样例 1\n\n输入：\n\n```text\n2\n1 2\n```\n\n输出：\n\n```text\n0\n```\n\n## 样例 2\n\n输入：\n\n```text\n7\n1 2\n2 3\n3 1\n4 5\n5 6\n6 7\n```\n\n输出：\n\n```text\n1\n3 1 3 7\n```\n",
+      "reference_solution": "",
+      "reference_code": "",
+      "input_origin": "v7_frozen_exact",
+      "public_id": "B17",
+      "input_sha256": "209a4c3ccb8d6ecf456dbb038f13988c87093b7289c1b8cf0005d850ec1da66c"
+    },
+    {
+      "source_id": "P3372",
+      "source_url": "https://www.luogu.com.cn/problem/P3372",
+      "description": "## 题目描述\n\n维护一个长度为 $n$ 的整数序列，初值为 $a_1,a_2,\\ldots,a_n$。按给定顺序执行 $m$ 次操作：可以把某个闭区间内的每个元素都加上同一个整数，也可以询问某个闭区间内全部元素的和。每次询问都以此前所有修改生效后的序列为准。\n\n## 输入格式\n\n第一行给出 $n,m$。\n\n第二行给出 $n$ 个整数，依次表示序列初值。\n\n接下来 $m$ 行，每行为下列两种格式之一：\n\n- `1 x y k`：将下标在 $[x,y]$ 内的每个元素增加 $k$。\n- `2 x y`：查询并输出下标在 $[x,y]$ 内的元素总和。\n\n序列下标从 $1$ 开始，操作指定序列内的合法闭区间。\n\n## 输出格式\n\n每遇到一次第二类操作，输出一行整数作为该次查询结果。\n\n## 数据范围\n\n$1\\le n,m\\le10^5$。初值 $a_i$ 与增量 $k$ 均为正数；在任意时刻，整个序列的总和不超过 $2\\times10^{18}$。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：524288 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n5 5\n1 5 4 2 3\n2 2 4\n1 2 3 2\n2 3 4\n1 1 5 1\n2 1 4\n```\n\n### 输出\n\n```text\n11\n8\n20\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "group": "new11",
+      "input_origin": "official_verified_independent_restatement",
+      "public_id": "B18",
+      "input_sha256": "4f9f88e4514c3b449a547285455877f8ee3a3059245115d3bdbf7da01b1c719e"
+    },
+    {
+      "source_id": "P1226",
+      "source_url": "https://www.luogu.com.cn/problem/P1226",
+      "description": "## 题目描述\n\n给定整数 $a,b,p$，计算 $a^b$ 除以 $p$ 的余数 $s$。\n\n## 输入格式\n\n一行给出三个整数，依次为 $a,b,p$。\n\n## 输出格式\n\n输出一行，格式必须为 `a^b mod p=s`，其中用输入的三个整数替换 `a`、`b`、`p`，用计算出的余数替换 `s`。`mod` 两侧各有一个空格，等号两侧没有空格。\n\n## 数据范围\n\n$0\\le a,b<2^{31}$，$a+b>0$，$2\\le p<2^{31}$。因此底数或指数可以为 $0$，但二者不能同时为 $0$。\n\n## 运行限制\n\n时间限制：1000 毫秒；内存限制：131072 KiB。\n\n## 样例 1\n\n### 输入\n\n```text\n2 10 9\n```\n\n### 输出\n\n```text\n2^10 mod 9=7\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "group": "new11",
+      "input_origin": "official_verified_independent_restatement",
+      "public_id": "B19",
+      "input_sha256": "fa71e31ff2da645fadc08f3ccc372da2849403671cbecc15dc2e5e53395d8e49"
+    },
+    {
+      "group": "regression9",
+      "origin_problem_id": 1014,
+      "source_id": "1014",
+      "source_url": "https://www.luogu.com.cn/problem/P3383",
+      "description": "## 任务\n列出不超过 $n$ 的素数并按升序编号。每次询问给出 $k$，输出第 $k$ 个素数。\n\n## 输入\n首行 $n$、$q$；之后 $q$ 行每行一个正整数 $k$。\n\n## 输出\n每个询问输出一行素数。\n\n## 约束\n全量数据 $n=10^8$，$1 \\le q \\le 10^6$；保证$\\text{被查询的素数}\\le n$。\n\n## 示例\n独立构造样例，非官方样例。\n\n输入：\n```text\n100000000 3\n1\n2\n5\n```\n\n输出：\n```text\n2\n3\n11\n```",
+      "reference_solution": "",
+      "reference_code": "",
+      "input_origin": "v7_frozen_exact",
+      "public_id": "B20",
+      "input_sha256": "ba36f135499c4be1675c5c23890e57c03202f0615ab51e8a5675512ddb6d2fad"
+    }
+  ],
+  "database_before": {
+    "problems": {
+      "count": 41,
+      "rows_sha256": "f92beaee07008a79636bc3904d0775813bb0fae071ae2d92f04b7cf8e453ce7a"
+    },
+    "problem_analyses": {
+      "count": 120,
+      "rows_sha256": "08de8b4a2fd1e5b0d02b74d4568ca73502035c7b917eca72e1ee7e7a6783e3c5"
+    },
+    "analysis_reviews": {
+      "count": 47,
+      "rows_sha256": "8a4b8464f69a41a8bc654c71b134f5be848621e90eaa9d9453a0fd9867c376b7"
+    },
+    "submissions": {
+      "count": 0,
+      "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "schema_meta": {
+      "count": 3,
+      "rows_sha256": "cb57c4c3cef9482cccd4df8fede2e08c60997619c1dac6461c27c674c818976e"
+    }
+  },
+  "tasks": [
+    "B01-R1",
+    "B02-R1",
+    "B03-R1",
+    "B04-R1",
+    "B05-R1",
+    "B06-R1",
+    "B07-R1",
+    "B08-R1",
+    "B09-R1",
+    "B10-R1",
+    "B11-R1",
+    "B12-R1",
+    "B13-R1",
+    "B14-R1",
+    "B15-R1",
+    "B16-R1",
+    "B17-R1",
+    "B18-R1",
+    "B19-R1",
+    "B20-R1",
+    "B01-R2",
+    "B02-R2",
+    "B03-R2",
+    "B04-R2",
+    "B05-R2",
+    "B06-R2",
+    "B07-R2",
+    "B08-R2",
+    "B09-R2",
+    "B10-R2",
+    "B11-R2",
+    "B12-R2",
+    "B13-R2",
+    "B14-R2",
+    "B15-R2",
+    "B16-R2",
+    "B17-R2",
+    "B18-R2",
+    "B19-R2",
+    "B20-R2",
+    "B01-R3",
+    "B02-R3",
+    "B03-R3",
+    "B04-R3",
+    "B05-R3",
+    "B06-R3",
+    "B07-R3",
+    "B08-R3",
+    "B09-R3",
+    "B10-R3",
+    "B11-R3",
+    "B12-R3",
+    "B13-R3",
+    "B14-R3",
+    "B15-R3",
+    "B16-R3",
+    "B17-R3",
+    "B18-R3",
+    "B19-R3",
+    "B20-R3"
+  ]
+}

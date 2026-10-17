@@ -8,6 +8,8 @@
 难度改成 Codeforces 风格评分，题目编号从 1000 起自动分配，来源改成链接，
 录入后调用模型分析并在页面上渲染 LaTeX 公式。下面标注了本次改动的部分。
 
+2026-10-16 扩展为项目评分 100–3500：100–700 面向 C 语言新生，800 起保留原算法评分分档。词表 `2026.10.1` 共 377 节点、10 个一级领域，新增语法基础 `syntax`；`basic` 仅更名为算法基础，原算法节点 ID 保留。
+
 ## 一、分层与职责
 
 | 层 | 文件 | 只负责 | 不负责 |
@@ -24,13 +26,19 @@
 ## 二、数据模型
 
 ```sql
-problems(id, title, description, source_url, created_at)
-problem_analyses(id, problem_id, payload, origin, initial_status, taxonomy_version, created_at)
+problems(id, title, description, source_url, reference_solution, reference_code, revision, created_at)
+problem_analyses(id, problem_id, payload, origin, initial_status, taxonomy_version, problem_revision, input_snapshot, created_at)
 analysis_reviews(id, problem_id, original_analysis_id, analysis_id, action, reviewer, comment, created_at)
 submissions(id, user_id, problem_id, verdict, code, language, knowledge_ids,
             taxonomy_version, analysis_id, difficulty, created_at)
 schema_meta(key, value)
 ```
+
+2026-10-04 存储版本升级至 3：参考题解和代码独立保存，可为空。题目信息变化时 `revision` 加一，
+分析保存对应的 `problem_revision` 和完整输入快照。`is_stale` 根据当前题目版本推导，不改写旧审核状态。
+过期分析不能审核、不参与推荐或新提交的知识证据；已有提交保留原快照。旧分析没有历史输入快照时返回空对象，
+界面明确说明无法核验历史输入，不用当前题面冒充旧输入。题目修改使用版本乐观锁；
+分析保存、审核纠正与审计、提交证据读取与写入均在事务中完成。
 
 两条贯穿全系统的约定：
 
@@ -44,9 +52,8 @@ schema_meta(key, value)
    不依赖 `AUTOINCREMENT`——0.2 版原型建的库是普通 `INTEGER PRIMARY KEY`，
    根本没有 `sqlite_sequence` 表（这一点踩过一次，见 `findings.md`）。
 2. **题面是 Markdown**，服务端只去掉整段首尾空白，不做任何转换；渲染与公式排版在前端完成。
-3. **难度是 Codeforces 风格整数评分 800–3500**，必须是 100 的整数倍，没有更低档位。
-   中文档位（入门/基础/…/国际赛）不落库，由 `services/difficulty.py` 按评分实时推导，
-   避免两处数据打架。
+3. **难度是项目整数评分 100–3500**，必须是 100 的整数倍。100–700 依次覆盖固定输出、变量与输入输出、基本运算、条件分支、循环与数组、字符与字符串、基础综合；800 起保持原算法分档。
+   中文档位不落库，由 `services/difficulty.py` 按评分实时推导。语法 L2/L3 的 `intro_rating` 表示最低适用阶段，普通算法标签最低 800；标签门槛不等于题目最终评分，出现数组也不代表固定评为 500。
 
 `source_url` 可以为空，非空时必须是 `http(s)://` 链接；旧库的 `source` 自由文本列
 在启动时自动改名为 `source_url` 并保留原值。
@@ -76,7 +83,17 @@ schema_meta(key, value)
 模型输出与人工标注走**同一个**校验函数（`services/analysis.py` 的 `validate`），
 区别只写在 `model_name` 与 `origin` 上。这样模型不可能绕过规则，人工纠错也不必走第二套代码。
 
+当前模型提示词版本为 `problem-analysis-v8`，人工分析来源版本为 `manual-v2`。`analysis_v8.py`真实分两次调用：先形成解法、可行方法和标签映射，机器校验方法知识点并集与最终标签相等；再以知识、建模、证明、实现四维审查后整体评分，发现实质问题最多退回解法一次。结构修复保留模型自己的被拒响应和具体错误，不机械加分或改标签规避校验。`assessment_meta`保留阶段、响应model、用量、耗时和可见结构化输出；人工标注会清除旧模型审计元数据。自报置信度未校准。
+
+700及以下只能包含syntax标签并满足门槛，800及以上在核心／辅助中均禁止syntax标签；通过validate统一强制执行，不能依赖模型自觉遵守。历史分析、审核、提交及冻结 public40 结果保留原版本。词表快照按版本存放，700的小规模质数试除与原高级数论标签分离，详见 [C 语言新生语法词表说明](c-syntax-taxonomy-2026-10-16.md)。v7为非成品，v8的20题实验不进入正式库，预测先封存，人工只评难度后再揭盲，参见[v8首测协议](v8-first-test-protocol.md)。
+
+显式批量重评由 `app/reassessment.py` 和 `scripts/reassess_problems.py` 承担。首次冻结全部五项题目信息、revision及最新分析ID；断点指纹包含完整词表与系统提示词哈希、模型和端点。模型调用最多两路并发，检查点由主线程串行写入。全部通过后先在线备份，再在单个事务中核对题目集合、五字段及最新分析，追加pending记录，并在schema_meta保存批次收据以防重复追加。失败不部分入库，也不更改旧分析、审核或提交。默认离线evaluate命令固定使用其authored_fixture对应的2026.09.9快照，保持历史实验可复现。
+
+`--unreviewed-only`冻结从未有审核记录且当前待审或无分析的题目。事务写入前重新核验该范围；模型运行期间新增审核、分析或题目会导致冲突，不能覆盖人工决定。已成功批次的事务收据先校验原结果，幂等重跑不会撤销后来的人审。
+
 ### 2. 人工审核
+
+负责人明确要求撤销误通过时，可由内部维护函数withdraw_approval按指定当前approved分析ID处理，不开放为普通审核接口。先校验可选纠正内容，再在事务内对原版本追加reject审计；有纠正则追加manual分析及其reject审计，保留原通过记录。#1005本次按指示修正1200并去掉语法标签，原版本与修正版本均驳回。该操作须先在线备份，不是批量模型评估产生的人工金标准。
 
 审核请求必须带上它看到的 `analysis_id`。服务端在 `BEGIN IMMEDIATE` 事务里重新读一次：
 
@@ -102,7 +119,7 @@ schema_meta(key, value)
 - 失败统一返回 `{"code": "...", "detail": "..."}`：
   `404 not_found`、`409 conflict`、`422 invalid_input`、`503 model_unavailable`。
 - 请求体禁止多余字段：提交接口根本没有「自由标签」这个入参，客户端无法伪造知识证据。
-- 列表接口支持 `limit` / `offset`，并在响应里返回 `total`。
+- 题目列表支持 `q`（标题优先，正文／当前标签其次）、`difficulty_min` / `difficulty_max` 与逗号分隔的 `knowledge_ids`。每个已选标签独立包含下级，不同标签组必须同时满足；保留旧 `knowledge_id` 兼容，若同时提供也参与交集。筛选和计数在 `limit` / `offset` 分页前执行，并返回 `total`；历史分析不参与当前筛选。
 
 ## 五、前端结构
 
@@ -143,7 +160,7 @@ static/js/views/*.js    每个页面一个模块
 
 | 手段 | 覆盖内容 |
 | --- | --- |
-| `pytest`（145 项） | 词表规则、数据库与旧库兼容、仓储、分析校验、审核流程、提交、画像、推荐、各接口 |
+| `pytest` | 词表规则、数据库与旧库兼容、仓储、分析校验、审核流程、提交、画像、推荐、各接口 |
 | `scripts/smoke_test.py` | 在临时库里跑完整流程：建题 → 标注 → 审核 → 提交 → 画像 → 路径 → 辅导 |
 | `scripts/evaluate.py` | 离线夹具上的标签指标与推荐指标，固定随机种子可复现 |
 | `scripts/check_frontend.py` | 前端每个 JS 模块按真正的 ES 模块语法解析（`node --check` 会漏报） |

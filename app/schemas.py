@@ -26,11 +26,17 @@ class ProblemCreate(RequestModel):
     title: str = Field(min_length=1, max_length=300)
     description: str = Field(min_length=1, max_length=200000)
     source_url: str = Field(default='', max_length=2000)
+    reference_solution: str = Field(default='', max_length=200000)
+    reference_code: str = Field(default='', max_length=200000)
 
     @field_validator('source_url')
     @classmethod
     def _check_source_url(cls, value: str) -> str:
         return _normalize_url(value)
+
+
+class ProblemUpdate(ProblemCreate):
+    expected_revision: int = Field(gt=0)
 
 
 def _normalize_url(value: str) -> str:
@@ -63,6 +69,7 @@ class AnalysisPayload(BaseModel):
     model_name: str = Field(default='', max_length=100)
     prompt_version: str = Field(default='', max_length=100)
     tags: list[str] = Field(default_factory=list)
+    assessment_meta: dict = Field(default_factory=dict)
 
     @field_validator('difficulty')
     @classmethod
@@ -77,12 +84,19 @@ class AnalysisOut(AnalysisPayload):
     review_status: REVIEW_STATUS
     origin: ANALYSIS_ORIGIN
     created_at: str
+    problem_revision: int = 1
+    is_stale: bool = False
+    input_snapshot: dict = Field(default_factory=dict)
 
     @computed_field
     @property
     def difficulty_band(self) -> str:
         from app.services.difficulty import band_name
         return band_name(self.difficulty)
+
+
+class ManualAnalysisRequest(AnalysisPayload):
+    expected_revision: int | None = Field(default=None, gt=0)
 
 
 class ReviewRequest(RequestModel):
@@ -113,6 +127,7 @@ class KnowledgeNodeOut(BaseModel):
     level: int
     parent_id: str | None = None
     summary: str = ''
+    intro_rating: int | None = None
 
 
 class KnowledgeNodeTree(KnowledgeNodeOut):
@@ -147,6 +162,8 @@ class ProblemSummaryOut(BaseModel):
     analysis_status: REVIEW_STATUS | None = None
     knowledge_ids: list[str] = Field(default_factory=list)
     difficulty: int | None = None
+    revision: int = 1
+    analysis_stale: bool = False
 
     @computed_field
     @property
@@ -157,6 +174,8 @@ class ProblemSummaryOut(BaseModel):
 
 class ProblemDetailOut(ProblemSummaryOut):
     description: str
+    reference_solution: str = ''
+    reference_code: str = ''
     analysis: AnalysisOut | None = None
 
 

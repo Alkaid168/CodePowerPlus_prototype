@@ -1,0 +1,258 @@
+{
+  "event": "v8二测",
+  "key": "B08-R1",
+  "public_id": "B08",
+  "repetition": 1,
+  "manifest_sha256": "650cf8902ad1463b93d32ffdfab70dfdf931aabbacf32deeeeca5d70eb5d941c",
+  "input_sha256": "7dce77429c947cae9200032773cde6124d5a0253e412d09203563f3c76f86318",
+  "completed_at": "2026-10-17T03:39:59.331735+00:00",
+  "analysis": {
+    "title": "二分图最大匹配",
+    "difficulty": 1700,
+    "difficulty_reason": "该题是标准的二分图最大匹配：题意可直接落到匹配模型，但需要专门的增广路算法结构、正确的翻转维护和增广路定理支撑，证明与实现均有较长链条。其规模小且不要求输出方案，主算法可用标准匈牙利模板完成，因此不到需要复杂组合建模或区域赛铜牌级优化的程度；综合定在 1700，符合“有更专门算法结构、较长正确性链”的进阶到提高档。",
+    "solution_idea": "题目要求从二分图中选取尽量多互不共享端点的边，这正是二分图最大匹配问题。把左侧点与右侧点分别作为匹配两侧，维护每个右点当前匹配的左点；每次从尚未匹配的左点出发，沿“未匹配边—匹配边—未匹配边”交错路径寻找增广路，找到后翻转路径上的匹配状态，匹配数增加 1。正确性依据是增广路定理：当前匹配不是最大匹配当且仅当仍存在增广路。重复给出的同一对顶点之间的边不会改变最大匹配数，因为匹配中同一左侧点和同一右侧点不能同时被两条边使用；保留重复边或去重均可。边界包括 n 或 m 较小、没有可用边、递归深度最多为左侧点数，故 DFS 递归深度不超过 500，安全。自然主线为 DFS 增广路（匈牙利算法），复杂度 O(nE)，在 n,m≤500、e≤5×10^4 下可行；也可用 Hopcroft-Karp 以 BFS 建层次图并 DFS 找增广路，达到 O(E√(n+m))。",
+    "confidence": 0.88,
+    "primary_knowledge_ids": [
+      "graph.graph-matching.bigraph-match"
+    ],
+    "secondary_knowledge_ids": [
+      "graph.dfs",
+      "graph.bfs"
+    ],
+    "evidence": {
+      "graph.graph-matching.bigraph-match": "题面要求在二分图中选取最多互不共享端点的边，即二分图最大匹配；两种方法都直接求解该问题。",
+      "graph.dfs": "DFS 增广路方法用深度优先搜索寻找交错增广路；Hopcroft-Karp 中也用 DFS 沿层次图寻找增广路。",
+      "graph.bfs": "Hopcroft-Karp 用广度优先搜索从所有未匹配左点建立层次图，以批量寻找最短增广路。"
+    },
+    "knowledge_confidence": {
+      "graph.graph-matching.bigraph-match": 0.99,
+      "graph.dfs": 0.95,
+      "graph.bfs": 0.9
+    },
+    "taxonomy_version": "2026.10.1",
+    "model_name": "deepseek-flash",
+    "prompt_version": "problem-analysis-v8",
+    "tags": [
+      "二分图最大匹配",
+      "图上深度优先搜索（DFS）",
+      "图上广度优先搜索（BFS）"
+    ],
+    "assessment_meta": {
+      "pipeline_version": "solve-grade-v8.0",
+      "calls": [
+        {
+          "stage": "solve",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "2911d718-ff99-469d-b724-41cd8dff6135",
+          "usage": {
+            "completion_tokens": 2485,
+            "prompt_tokens": 5616,
+            "total_tokens": 8101,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1912,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 4992,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 4992,
+            "prompt_cache_miss_tokens": 624
+          },
+          "elapsed_seconds": 12.543,
+          "valid": true,
+          "response_text": "{\"title\":\"二分图最大匹配\",\"kind\":\"algorithm\",\"solution_idea\":\"题目要求从二分图中选取尽量多互不共享端点的边，这正是二分图最大匹配问题。把左侧点与右侧点分别作为匹配两侧，维护每个右点当前匹配的左点；每次从尚未匹配的左点出发，沿“未匹配边—匹配边—未匹配边”交错路径寻找增广路，找到后翻转路径上的匹配状态，匹配数增加 1。正确性依据是增广路定理：当前匹配不是最大匹配当且仅当仍存在增广路。重复给出的同一对顶点之间的边不会改变最大匹配数，因为匹配中同一左侧点和同一右侧点不能同时被两条边使用；保留重复边或去重均可。边界包括 n 或 m 较小、没有可用边、递归深度最多为左侧点数，故 DFS 递归深度不超过 500，安全。自然主线为 DFS 增广路（匈牙利算法），复杂度 O(nE)，在 n,m≤500、e≤5×10^4 下可行；也可用 Hopcroft-Karp 以 BFS 建层次图并 DFS 找增广路，达到 O(E√(n+m))。\",\"methods\":[{\"name\":\"DFS 增广路（匈牙利算法）\",\"knowledge_ids\":[\"graph.graph-matching.bigraph-match\",\"graph.dfs\"],\"time_complexity\":\"O(nE)（最坏 O(VE)，n≤500，E≤5×10^4）\",\"space_complexity\":\"O(n+m+E)\"},{\"name\":\"Hopcroft-Karp 算法\",\"knowledge_ids\":[\"graph.graph-matching.bigraph-match\",\"graph.bfs\",\"graph.dfs\"],\"time_complexity\":\"O(E√(n+m))\",\"space_complexity\":\"O(n+m+E)\"}],\"primary_knowledge_ids\":[\"graph.graph-matching.bigraph-match\"],\"secondary_knowledge_ids\":[\"graph.dfs\",\"graph.bfs\"],\"evidence\":{\"graph.graph-matching.bigraph-match\":\"题面要求在二分图中选取最多互不共享端点的边，即二分图最大匹配；两种方法都直接求解该问题。\",\"graph.dfs\":\"DFS 增广路方法用深度优先搜索寻找交错增广路；Hopcroft-Karp 中也用 DFS 沿层次图寻找增广路。\",\"graph.bfs\":\"Hopcroft-Karp 用广度优先搜索从所有未匹配左点建立层次图，以批量寻找最短增广路。\"},\"knowledge_confidence\":{\"graph.graph-matching.bigraph-match\":0.99,\"graph.dfs\":0.95,\"graph.bfs\":0.9},\"confidence\":0.97}"
+        },
+        {
+          "stage": "grade",
+          "attempt": 1,
+          "request_model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_id": "406613ba-080a-4f7a-a03a-230b011f4e79",
+          "usage": {
+            "completion_tokens": 1544,
+            "prompt_tokens": 2306,
+            "total_tokens": 3850,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1163,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cache_write_tokens": null,
+              "cached_tokens": 768,
+              "image_tokens": null,
+              "text_tokens": null
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 1538
+          },
+          "elapsed_seconds": 10.383,
+          "valid": true,
+          "response_text": "{\"rubric\":{\"knowledge\":\"需要掌握二分图、匹配、增广路等图论概念，以及 DFS/BFS 基础。二分图最大匹配对大学新生通常不是课程先验，而是需要额外学习的专门算法；若只用匈牙利算法，核心知识是 match 数组与交错路翻转。\",\"modelling\":\"题意“选边且任一顶点至多属于一条边”可直接对应二分图匹配模型，转化本身明确；难点主要在于识别这是最大匹配问题并知道可用增广路求解，而不是复杂建模。\",\"proof\":\"需要论证沿未匹配边—匹配边—未匹配边找到增广路后翻转能使匹配数增加 1 且保持合法；还要依赖增广路定理说明不存在增广路时当前匹配最大。这一正确性链非平凡，不能只靠实现验证。\",\"implementation\":\"实现需维护右侧匹配点、访问标记和 DFS 交错路搜索；重边不影响正确性，可原样保留或去重。n,m≤500、e≤5×10^4 时 O(nE) 匈牙利算法可行，递归深度不超过左侧点数 500，边界较安全。Hopcroft-Karp 更复杂但非必需。\"},\"consistency_issues\":[],\"difficulty\":1700,\"difficulty_reason\":\"该题是标准的二分图最大匹配：题意可直接落到匹配模型，但需要专门的增广路算法结构、正确的翻转维护和增广路定理支撑，证明与实现均有较长链条。其规模小且不要求输出方案，主算法可用标准匈牙利模板完成，因此不到需要复杂组合建模或区域赛铜牌级优化的程度；综合定在 1700，符合“有更专门算法结构、较长正确性链”的进阶到提高档。\" ,\"confidence\":0.88}",
+          "consistent": true
+        }
+      ],
+      "solution_record": {
+        "title": "二分图最大匹配",
+        "kind": "algorithm",
+        "solution_idea": "题目要求从二分图中选取尽量多互不共享端点的边，这正是二分图最大匹配问题。把左侧点与右侧点分别作为匹配两侧，维护每个右点当前匹配的左点；每次从尚未匹配的左点出发，沿“未匹配边—匹配边—未匹配边”交错路径寻找增广路，找到后翻转路径上的匹配状态，匹配数增加 1。正确性依据是增广路定理：当前匹配不是最大匹配当且仅当仍存在增广路。重复给出的同一对顶点之间的边不会改变最大匹配数，因为匹配中同一左侧点和同一右侧点不能同时被两条边使用；保留重复边或去重均可。边界包括 n 或 m 较小、没有可用边、递归深度最多为左侧点数，故 DFS 递归深度不超过 500，安全。自然主线为 DFS 增广路（匈牙利算法），复杂度 O(nE)，在 n,m≤500、e≤5×10^4 下可行；也可用 Hopcroft-Karp 以 BFS 建层次图并 DFS 找增广路，达到 O(E√(n+m))。",
+        "methods": [
+          {
+            "name": "DFS 增广路（匈牙利算法）",
+            "knowledge_ids": [
+              "graph.graph-matching.bigraph-match",
+              "graph.dfs"
+            ],
+            "time_complexity": "O(nE)（最坏 O(VE)，n≤500，E≤5×10^4）",
+            "space_complexity": "O(n+m+E)"
+          },
+          {
+            "name": "Hopcroft-Karp 算法",
+            "knowledge_ids": [
+              "graph.graph-matching.bigraph-match",
+              "graph.bfs",
+              "graph.dfs"
+            ],
+            "time_complexity": "O(E√(n+m))",
+            "space_complexity": "O(n+m+E)"
+          }
+        ],
+        "primary_knowledge_ids": [
+          "graph.graph-matching.bigraph-match"
+        ],
+        "secondary_knowledge_ids": [
+          "graph.dfs",
+          "graph.bfs"
+        ],
+        "evidence": {
+          "graph.graph-matching.bigraph-match": "题面要求在二分图中选取最多互不共享端点的边，即二分图最大匹配；两种方法都直接求解该问题。",
+          "graph.dfs": "DFS 增广路方法用深度优先搜索寻找交错增广路；Hopcroft-Karp 中也用 DFS 沿层次图寻找增广路。",
+          "graph.bfs": "Hopcroft-Karp 用广度优先搜索从所有未匹配左点建立层次图，以批量寻找最短增广路。"
+        },
+        "knowledge_confidence": {
+          "graph.graph-matching.bigraph-match": 0.99,
+          "graph.dfs": 0.95,
+          "graph.bfs": 0.9
+        },
+        "confidence": 0.97
+      },
+      "grading_record": {
+        "rubric": {
+          "knowledge": "需要掌握二分图、匹配、增广路等图论概念，以及 DFS/BFS 基础。二分图最大匹配对大学新生通常不是课程先验，而是需要额外学习的专门算法；若只用匈牙利算法，核心知识是 match 数组与交错路翻转。",
+          "modelling": "题意“选边且任一顶点至多属于一条边”可直接对应二分图匹配模型，转化本身明确；难点主要在于识别这是最大匹配问题并知道可用增广路求解，而不是复杂建模。",
+          "proof": "需要论证沿未匹配边—匹配边—未匹配边找到增广路后翻转能使匹配数增加 1 且保持合法；还要依赖增广路定理说明不存在增广路时当前匹配最大。这一正确性链非平凡，不能只靠实现验证。",
+          "implementation": "实现需维护右侧匹配点、访问标记和 DFS 交错路搜索；重边不影响正确性，可原样保留或去重。n,m≤500、e≤5×10^4 时 O(nE) 匈牙利算法可行，递归深度不超过左侧点数 500，边界较安全。Hopcroft-Karp 更复杂但非必需。"
+        },
+        "consistency_issues": [],
+        "difficulty": 1700,
+        "difficulty_reason": "该题是标准的二分图最大匹配：题意可直接落到匹配模型，但需要专门的增广路算法结构、正确的翻转维护和增广路定理支撑，证明与实现均有较长链条。其规模小且不要求输出方案，主算法可用标准匈牙利模板完成，因此不到需要复杂组合建模或区域赛铜牌级优化的程度；综合定在 1700，符合“有更专门算法结构、较长正确性链”的进阶到提高档。",
+        "confidence": 0.88
+      },
+      "elapsed_seconds": 22.928,
+      "sdk_transport_retries": 1,
+      "confidence_policy": "min_of_two_uncalibrated_self_reports"
+    }
+  },
+  "transport_records": [
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "2f0bdb5b1b13dc158f81d139b20a379be4c85db341a732caed7c198f62760c81",
+      "response_model": "deepseek-flash",
+      "response_id": "2911d718-ff99-469d-b724-41cd8dff6135",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 7491,
+      "reasoning_content_sha256": "cf55f5ccce2c5f4765923889207f3156906fee257ec67c15307c71a7fc22bde4",
+      "usage": {
+        "completion_tokens": 2485,
+        "prompt_tokens": 5616,
+        "total_tokens": 8101,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 1912,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 4992,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 4992,
+        "prompt_cache_miss_tokens": 624
+      },
+      "elapsed_seconds": 12.543
+    },
+    {
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0,
+        "response_format": {
+          "type": "json_object"
+        },
+        "reasoning_effort": "high",
+        "extra_body": {
+          "thinking": {
+            "type": "enabled"
+          }
+        },
+        "max_tokens": 32768
+      },
+      "messages_sha256": "dc7e1e517691a5b30688690fde88b7cce1aed74fb5644dccd222a1b73090865b",
+      "response_model": "deepseek-flash",
+      "response_id": "406613ba-080a-4f7a-a03a-230b011f4e79",
+      "finish_reason": "stop",
+      "reasoning_content_chars": 2055,
+      "reasoning_content_sha256": "8eb9ad21654c14ceb42c833d006c62696200c87236c10104497d32d0fc9fdf84",
+      "usage": {
+        "completion_tokens": 1544,
+        "prompt_tokens": 2306,
+        "total_tokens": 3850,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 1163,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 768,
+          "image_tokens": null,
+          "text_tokens": null
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 1538
+      },
+      "elapsed_seconds": 10.383
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "event": "v8二测",
+  "state": "complete",
+  "verified_at": "2026-10-17T03:55:39.230523+00:00",
+  "new_analyses": 60,
+  "reviewed_analyses_including_first": 80,
+  "human_revision": "r1",
+  "joint_correct_by_run": [
+    15,
+    18,
+    19,
+    19
+  ],
+  "mae_by_run": [
+    170,
+    155,
+    140,
+    170
+  ],
+  "workbook": "output/v8-second-test/v8二测-四次对比与代理复核.xlsx",
+  "workbook_sha256": "c81c6642dc526c414b2e379309edf71e04319716076b682720767a73716b3921",
+  "results_sha256": "0e3cbb23e2fe3cd991a56db96d3dd6934b11890f7275e11c60ddf26253545c78",
+  "sealed_predictions_sha256": "b2d3ba08ca1bedcd6331cbcdb063b5bf53892f292241a403fd9247eeb14fb42b",
+  "human_workbook_unchanged": true,
+  "production_database_unchanged": true,
+  "prompts_and_frozen_implementation_unchanged": true,
+  "workbook_independent_readback": true,
+  "previews_visually_inspected": true,
+  "native_excel_validation": false,
+  "correctness_source": "代理逐份语义复核，非教师金标准或OJ AC率"
+}

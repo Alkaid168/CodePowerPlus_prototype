@@ -29,6 +29,7 @@ def approved_analysis(problem: dict, taxonomy) -> dict | None:
     analysis = problem.get('analysis') or {}
     ids = tags_of(analysis)
     if (analysis.get('review_status') != 'approved'
+            or analysis.get('is_stale')
             or analysis.get('taxonomy_version') != taxonomy.version
             or not taxonomy.allowed(ids)):
         return None

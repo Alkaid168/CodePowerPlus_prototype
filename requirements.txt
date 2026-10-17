@@ -6,3 +6,5 @@ httpx[socks]
 pydantic-settings
 python-dotenv
 jsonschema>=4.23,<5
+# 仅用于读取用户提交的难度盲评表，不用于模型调用或正式题库写入。
+openpyxl>=3.1,<4

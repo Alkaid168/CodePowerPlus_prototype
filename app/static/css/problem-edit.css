@@ -1,0 +1,53 @@
+/* 专用编辑页：可读的双栏工作区，复用现有颜色、控件和草稿状态。 */
+html:has(.problem-editor), body:has(.problem-editor), .main:has(.problem-editor) { scrollbar-width: none; }
+html:has(.problem-editor)::-webkit-scrollbar, body:has(.problem-editor)::-webkit-scrollbar, .main:has(.problem-editor)::-webkit-scrollbar { display: none; }
+.route-shell:has(.problem-editor) { height: 100%; min-height: 0; }
+.problem-editor { display: flex; flex-direction: column; width: 100%; max-width: 1480px; height: 100%; min-height: 0; margin: 0 auto; gap: 24px; }
+.problem-edit-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex: none; }
+.problem-edit-actions { display: flex; gap: 10px; flex: none; }
+.problem-edit-workspace { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; flex: 1; min-height: 0; }
+.problem-edit-card, .problem-edit-preview-card { display: flex; flex-direction: column; min-width: 0; min-height: 0; padding: 22px; }
+.problem-edit-card .card-head, .problem-edit-preview-card .card-head { flex: none; min-height: 34px; margin-bottom: 18px; }
+.problem-edit-workspace .card-head h2 { font-size: 15px; font-weight: 650; }
+.problem-edit-preview-card .card-head { flex-wrap: wrap; }
+.problem-edit-preview-card .tabs { width: auto; }
+.problem-edit-preview-card .tab { padding: 7px 12px; font-size: 12px; font-weight: 500; }
+.problem-edit-form { display: grid; grid-template-rows: auto minmax(180px, 1fr) auto auto; gap: 18px; flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; }
+.problem-edit-form::-webkit-scrollbar, .problem-edit-preview::-webkit-scrollbar { display: none; }
+.problem-edit-form .field { margin: 0; min-width: 0; }
+.problem-edit-form label { font-size: 12px; font-weight: 500; color: var(--ink-soft); }
+.problem-edit-form .input { font-size: 13px; font-weight: 400; }
+.problem-edit-form textarea { scrollbar-width: none; }
+.problem-edit-form textarea::-webkit-scrollbar { display: none; }
+.problem-edit-basics, .problem-edit-references { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px; }
+.problem-edit-statement-field, .problem-edit-statement-field .field { display: flex; flex-direction: column; min-height: 0; }
+.problem-edit-statement-field .field { flex: 1; }
+.problem-edit-statement-field textarea { height: 100%; min-height: 150px; resize: none; line-height: 1.8; }
+.problem-edit-references textarea { height: 96px; min-height: 96px; resize: vertical; line-height: 1.7; }
+.problem-edit-feedback:empty { display: none; }
+.problem-edit-feedback { display: flex; flex-direction: column; align-items: start; gap: 8px; font-size: 12px; }
+.problem-edit-feedback .notice { margin: 0; padding: 10px 12px; font-size: 12px; }
+.problem-edit-saved { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: var(--ink-soft); }
+.problem-edit-preview { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; }
+.problem-edit-preview-title { font-size: 20px; line-height: 1.5; font-weight: 650; margin: 0 0 24px; overflow-wrap: anywhere; }
+.problem-edit-empty { display: grid; place-items: center; min-height: 240px; color: var(--ink-faint); font-size: 13px; }
+.problem-edit-code { margin: 0; white-space: pre; font: 13px/1.8 var(--mono); overflow: auto; scrollbar-width: none; }
+@media (max-width: 1100px), (max-height: 680px) {
+  .route-shell:has(.problem-editor), .problem-editor { height: auto; min-height: 100%; }
+  .problem-edit-workspace { min-height: 620px; }
+  .problem-edit-form { min-height: 500px; }
+  .problem-edit-preview { max-height: 650px; }
+}
+@media (max-width: 900px) {
+  .problem-edit-workspace { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .problem-edit-form { min-height: 600px; }
+  .problem-edit-header { align-items: start; flex-wrap: wrap; }
+  .problem-edit-actions { margin-left: auto; }
+}
+@media (max-width: 600px) {
+  .problem-edit-card, .problem-edit-preview-card { padding: 18px; }
+  .problem-edit-basics, .problem-edit-references { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .problem-edit-form { min-height: 780px; }
+  .problem-edit-header .problem-title { font-size: 24px; }
+  .problem-edit-header .problem-number { font-size: 18px; }
+}

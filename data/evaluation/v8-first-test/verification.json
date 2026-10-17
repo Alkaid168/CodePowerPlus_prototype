@@ -1,0 +1,29 @@
+{
+  "event": "v8首测",
+  "state": "awaiting_human",
+  "successful_items": 20,
+  "groups": {
+    "regression9": 9,
+    "new11": 11
+  },
+  "logical_calls": 45,
+  "stages": {
+    "solve": 25,
+    "grade": 20
+  },
+  "response_models": {
+    "deepseek-flash": 45
+  },
+  "validation_repairs": 5,
+  "failed_problem_attempts": 0,
+  "formal_database_unchanged": true,
+  "database_counts": {
+    "problems": 41,
+    "problem_analyses": 120,
+    "analysis_reviews": 47,
+    "submissions": 0,
+    "schema_meta": 3
+  },
+  "predictions_sha256": "2d06cae771d9aad8c5dcac06198da7e4081b7a5d0845f9d486895c75268c4432",
+  "no_difficulty_results_disclosed": true
+}

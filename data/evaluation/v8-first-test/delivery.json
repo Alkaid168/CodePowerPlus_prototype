@@ -1,0 +1,10 @@
+{
+  "event": "v8首测",
+  "human_form": "output\\v8-blind-form\\v8首测-人工难度评测.xlsx",
+  "file_sha256": "ef632061769ac38eb1b387aec6b3594d077dc33a9620789da8815f11031de728",
+  "model_sealed_before_form": "2026-10-16T18:24:06.239668+00:00",
+  "state": "awaiting_human",
+  "frozen_implementation_unchanged": true,
+  "blank_form_and_synthetic_roundtrip_verified": true,
+  "tests_passed": 222
+}

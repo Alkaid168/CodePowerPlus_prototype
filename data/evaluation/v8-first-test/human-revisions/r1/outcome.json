@@ -1,0 +1,17 @@
+{
+  "event": "v8首测",
+  "state": "analyzed",
+  "human_evaluation": "complete",
+  "diagnosis": "complete",
+  "module_status": "experimental_not_ready_for_unreviewed_production",
+  "report": "docs/v8-first-test-analysis.md",
+  "comparison": "data/evaluation/v8-first-test/comparison.json",
+  "diagnosis_file": "data/evaluation/v8-first-test/diagnosis.json",
+  "prediction_commitment": "2d06cae771d9aad8c5dcac06198da7e4081b7a5d0845f9d486895c75268c4432",
+  "human_file_sha256": "188f4b7af283ceef5d70d129578cf74f6c9b227f806d73636ce815c2680eb5ae",
+  "independent_raw_score_recalculation": "passed",
+  "no_new_model_calls": true,
+  "no_formal_database_changes": true,
+  "human_revision": 1,
+  "supersedes": "human-revisions/r0/outcome.json"
+}

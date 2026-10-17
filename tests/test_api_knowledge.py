@@ -7,8 +7,9 @@ def test_tree_reports_version_total_and_children(client):
     data = client.get('/api/knowledge/tree').json()
     assert data['version'] and data['total'] >= 330
     assert [node['name'] for node in data['tree']] == [
-        '基础', '搜索', '动态规划', '字符串', '数学', '数据结构', '图论', '计算几何', '杂项']
-    assert set(data['tree'][0]) <= {'id', 'name', 'level', 'parent_id', 'summary', 'children'}
+        '语法基础', '算法基础', '搜索', '动态规划', '字符串', '数学', '数据结构', '图论', '计算几何', '杂项']
+    assert data['total'] == 377
+    assert set(data['tree'][0]) <= {'id', 'name', 'level', 'parent_id', 'summary', 'children', 'intro_rating'}
     assert data['tree'][0]['summary'] == ''          # L1 领域是分支，没有介绍
 
 

@@ -5,12 +5,14 @@ import re
 from pathlib import Path
 
 ASSETS = [
+    '/static/js/problemFilters.js',
     '/static/css/base.css',
     '/static/css/layout.css',
     '/static/css/components.css',
     '/static/css/overview.css',
     '/static/css/knowledge.css',
     '/static/css/analysis.css',
+    '/static/css/problems.css',
     '/static/js/app.js',
     '/static/js/api.js',
     '/static/js/dom.js',
@@ -21,6 +23,7 @@ ASSETS = [
     '/static/js/icons.js',
     '/static/js/tagEditor.js',
     '/static/js/markdown.js',
+    '/static/js/codeCopy.js',
     '/static/js/views/overview.js',
     '/static/js/views/knowledge.js',
     '/static/js/knowledgeIllustrations.js',
@@ -61,7 +64,7 @@ def test_static_assets_are_available(client):
 
 def test_static_assets_revalidate_so_the_browser_never_runs_stale_modules(client):
     """没有 Cache-Control 时浏览器会启发式缓存模块，改前端却像没生效。"""
-    for path in ('/static/js/app.js', '/static/css/analysis.css', '/static/js/views/analysis.js'):
+    for path in ('/', '/static/js/app.js', '/static/css/analysis.css', '/static/js/views/analysis.js'):
         response = client.get(path)
         assert response.status_code == 200
         assert response.headers['cache-control'] == 'no-cache', path

@@ -53,7 +53,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         让人误判“改了没效果”。这里统一加 no-cache（仍然走 304，不会重复下载）。
         """
         response = await call_next(request)
-        if request.url.path.startswith('/static/'):
+        if request.url.path == '/' or request.url.path.startswith('/static/'):
             response.headers.setdefault('Cache-Control', 'no-cache')
         return response
 
