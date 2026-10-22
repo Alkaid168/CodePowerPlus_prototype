@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "CodePowerPlus 采集助手",
+  "version": "0.4.7",
+  "description": "在本机采集本人竞赛提交与源码，预览后导出或上传。",
+  "minimum_chrome_version": "120",
+  "permissions": [
+    "scripting",
+    "storage",
+    "alarms"
+  ],
+  "optional_host_permissions": [
+    "https://codeforces.com/*",
+    "https://www.luogu.com.cn/*",
+    "https://atcoder.jp/*",
+    "https://kenkoooo.com/*",
+    "https://vjudge.net/*",
+    "https://*/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "src/worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "打开采集任务"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'"
+  }
+}

@@ -1,0 +1,1527 @@
+{
+  "version": "2026.10.1",
+  "taxonomy_version": "2026.10.1",
+  "provenance": "agent-curated-prerequisites-v1; not teacher-reviewed",
+  "edges": [
+    {
+      "source": "basic.binary",
+      "target": "dp.opt.wqs-binary-search",
+      "reason": "WQS对附加代价进行二分以控制最优选择个数，必须先理解单调判定与二分边界。",
+      "references": [
+        "https://oi-wiki.org/dp/opt/wqs-binary-search/"
+      ]
+    },
+    {
+      "source": "basic.binary",
+      "target": "misc.parallel-binsearch",
+      "reason": "整体二分把多次单独二分按答案区间合并执行，必须先理解答案二分。",
+      "references": [
+        "https://oi-wiki.org/misc/parallel-binsearch/"
+      ]
+    },
+    {
+      "source": "basic.binary-lifting",
+      "target": "ds.sparse-table",
+      "reason": "ST表按2的幂长度合并区间信息，直接依赖倍增预处理。",
+      "references": [
+        "https://oi-wiki.org/ds/sparse-table/"
+      ]
+    },
+    {
+      "source": "basic.divide-and-conquer",
+      "target": "basic.merge-sort",
+      "reason": "归并排序先递归排序互不重叠的子区间再合并，直接使用分治框架。",
+      "references": [
+        "https://oi-wiki.org/basic/merge-sort/"
+      ]
+    },
+    {
+      "source": "basic.divide-and-conquer",
+      "target": "basic.quick-sort",
+      "reason": "快速排序的算法结构是划分后分别求解子区间，必须理解分治的子问题划分与终止。",
+      "references": [
+        "https://oi-wiki.org/basic/quick-sort/"
+      ]
+    },
+    {
+      "source": "basic.divide-and-conquer",
+      "target": "graph.tree-divide",
+      "reason": "树分治递归处理删点或删边后的独立树块，需要理解分治与子问题合并。",
+      "references": [
+        "https://oi-wiki.org/graph/tree-divide/"
+      ]
+    },
+    {
+      "source": "basic.divide-and-conquer",
+      "target": "math.poly.fft",
+      "reason": "FFT把变换按奇偶项分解再用蝴蝶合并，必须理解递归分治及合并。",
+      "references": [
+        "https://oi-wiki.org/math/poly/fft/"
+      ]
+    },
+    {
+      "source": "basic.divide-and-conquer",
+      "target": "misc.cdq-divide",
+      "reason": "CDQ递归计算左右区间并单独统计左对右贡献，分治结构是算法本体。",
+      "references": [
+        "https://oi-wiki.org/misc/cdq-divide/"
+      ]
+    },
+    {
+      "source": "basic.divide-and-conquer",
+      "target": "string.main-lorentz",
+      "reason": "Main-Lorentz递归处理左右串再统计跨中点重复，分治划分是其核心步骤。",
+      "references": [
+        "https://oi-wiki.org/string/main-lorentz/"
+      ]
+    },
+    {
+      "source": "basic.insertion-sort",
+      "target": "basic.shell-sort",
+      "reason": "希尔排序在每个间隔组内执行插入排序，最后以间隔一完成插入排序。",
+      "references": [
+        "https://oi-wiki.org/basic/shell-sort/"
+      ]
+    },
+    {
+      "source": "basic.insertion-sort",
+      "target": "basic.tim-sort",
+      "reason": "本词表定义的Tim排序把短自然有序段用插入排序补齐，必须理解段内插入。",
+      "references": [
+        "https://oi-wiki.org/basic/tim-sort/"
+      ]
+    },
+    {
+      "source": "basic.merge-sort",
+      "target": "basic.tim-sort",
+      "reason": "Tim排序把已排好的自然段按归并规则合并，需要理解两个有序段的稳定归并。",
+      "references": [
+        "https://oi-wiki.org/basic/tim-sort/"
+      ]
+    },
+    {
+      "source": "basic.prefix-sum",
+      "target": "basic.difference",
+      "reason": "差分的区间修改结果通过前缀累加还原，必须理解前缀累加与相邻差分的互逆关系。",
+      "references": [
+        "https://oi-wiki.org/basic/prefix-sum/"
+      ]
+    },
+    {
+      "source": "dp.profile",
+      "target": "dp.plug",
+      "reason": "插头DP在轮廓状态上额外编码连通关系，必须先理解逐格扫描时轮廓保留哪些边界信息。",
+      "references": [
+        "https://oi-wiki.org/dp/plug/"
+      ]
+    },
+    {
+      "source": "dp.tree",
+      "target": "dp.dynamic",
+      "reason": "该叶子定义带修改的树上DP，动态维护的对象就是原有树形DP状态与转移。",
+      "references": [
+        "https://oi-wiki.org/dp/dynamic/"
+      ]
+    },
+    {
+      "source": "ds.binary-heap",
+      "target": "basic.heap-sort",
+      "reason": "该叶子的堆排序以数组上的二叉大根堆反复取最大值，必须理解建堆与向下调整。",
+      "references": [
+        "https://oi-wiki.org/basic/heap-sort/"
+      ]
+    },
+    {
+      "source": "ds.block-array",
+      "target": "ds.bit-in-block-array",
+      "reason": "分块套树状数组把序列切成数组块后维护块内统计，需要理解块状数组。",
+      "references": [
+        "https://oi-wiki.org/ds/bit-in-block-array/"
+      ]
+    },
+    {
+      "source": "ds.block-array",
+      "target": "ds.persistent-block-array",
+      "reason": "可持久化块状数组复制受影响的数组块，必须理解块表和块内访问。",
+      "references": [
+        "https://oi-wiki.org/ds/persistent-block-array/"
+      ]
+    },
+    {
+      "source": "ds.bst",
+      "target": "ds.aa-tree",
+      "reason": "AA树用层数和旋转维持有序搜索树，必须先理解二叉搜索树与有序遍历。",
+      "references": [
+        "https://oi-wiki.org/ds/aa-tree/"
+      ]
+    },
+    {
+      "source": "ds.bst",
+      "target": "ds.avl",
+      "reason": "AVL在二叉搜索树上额外限制高度差，旋转必须保持搜索树顺序。",
+      "references": [
+        "https://oi-wiki.org/ds/avl/"
+      ]
+    },
+    {
+      "source": "ds.bst",
+      "target": "ds.balanced-in-seg",
+      "reason": "内层平衡树维护有序集合和排名，必须先理解搜索树的有序性。",
+      "references": [
+        "https://oi-wiki.org/ds/balanced-in-seg/"
+      ]
+    },
+    {
+      "source": "ds.bst",
+      "target": "ds.persistent-balanced",
+      "reason": "可持久化平衡树保存有序搜索树的历史版本，必须理解原结构的有序性与操作。",
+      "references": [
+        "https://oi-wiki.org/ds/persistent-balanced/"
+      ]
+    },
+    {
+      "source": "ds.bst",
+      "target": "ds.rbtree",
+      "reason": "红黑树给搜索树增加颜色约束并通过旋转保持有序，需要先理解二叉搜索树。",
+      "references": [
+        "https://oi-wiki.org/ds/rbtree/"
+      ]
+    },
+    {
+      "source": "ds.bst",
+      "target": "ds.sbt",
+      "reason": "SBT通过子树大小与旋转维护搜索树，必须先理解二叉搜索树的有序性。",
+      "references": [
+        "https://oi-wiki.org/ds/sbt/"
+      ]
+    },
+    {
+      "source": "ds.bst",
+      "target": "ds.seg-in-balanced",
+      "reason": "该叶子按词表summary用外层平衡树维护顺序，必须理解有序搜索树。",
+      "references": [
+        "https://oi-wiki.org/ds/seg-in-balanced/"
+      ]
+    },
+    {
+      "source": "ds.bst",
+      "target": "ds.sgt",
+      "reason": "替罪羊树重建后仍要保持搜索树有序，必须理解二叉搜索树与中序序列。",
+      "references": [
+        "https://oi-wiki.org/ds/sgt/"
+      ]
+    },
+    {
+      "source": "ds.bst",
+      "target": "ds.splay",
+      "reason": "Splay的旋转要保持二叉搜索树中序有序，需要先理解搜索树的查找与结构。",
+      "references": [
+        "https://oi-wiki.org/ds/splay/"
+      ]
+    },
+    {
+      "source": "ds.bst",
+      "target": "ds.treap",
+      "reason": "Treap需要同时维持二叉搜索树的关键字顺序与随机优先级，搜索树有序性是必要不变量。",
+      "references": [
+        "https://oi-wiki.org/ds/treap/"
+      ]
+    },
+    {
+      "source": "ds.bst",
+      "target": "ds.wblt",
+      "reason": "WBLT在搜索树上以权重约束平衡，必须先理解二叉搜索树的有序不变量。",
+      "references": [
+        "https://oi-wiki.org/ds/wblt/"
+      ]
+    },
+    {
+      "source": "ds.bst",
+      "target": "string.suffix-bst",
+      "reason": "后缀平衡树以有序搜索树维护后缀顺序，必须理解搜索树的有序性与查找。",
+      "references": [
+        "https://oi-wiki.org/string/suffix-bst/"
+      ]
+    },
+    {
+      "source": "ds.decompose",
+      "target": "ds.block-array",
+      "reason": "块状数组把序列分块并分开处理整块与零散部分，直接依赖分块思想。",
+      "references": [
+        "https://oi-wiki.org/ds/block-array/"
+      ]
+    },
+    {
+      "source": "ds.decompose",
+      "target": "ds.block-list",
+      "reason": "块状链表需要理解块内局部处理与块间整体定位的分块思想。",
+      "references": [
+        "https://oi-wiki.org/ds/block-list/"
+      ]
+    },
+    {
+      "source": "ds.decompose",
+      "target": "ds.sqrt-tree",
+      "reason": "Sqrt Tree递归分块并保存块间、块内信息，必须先理解分块查询。",
+      "references": [
+        "https://oi-wiki.org/ds/sqrt-tree/"
+      ]
+    },
+    {
+      "source": "ds.decompose",
+      "target": "ds.tree-decompose",
+      "reason": "树分块按树结构组织整块与边界暴力，需要先理解分块的代价平衡。",
+      "references": [
+        "https://oi-wiki.org/ds/tree-decompose/"
+      ]
+    },
+    {
+      "source": "ds.fenwick",
+      "target": "ds.bit-in-block-array",
+      "reason": "每个块内的计数结构是树状数组，需要理解其单点修改与前缀查询。",
+      "references": [
+        "https://oi-wiki.org/ds/bit-in-block-array/"
+      ]
+    },
+    {
+      "source": "ds.fenwick",
+      "target": "ds.seg-in-bit",
+      "reason": "树状数组套权值线段树按树状数组更新和查询路径访问内层结构，需要理解树状数组。",
+      "references": [
+        "https://oi-wiki.org/ds/seg-in-bit/"
+      ]
+    },
+    {
+      "source": "ds.linked-list",
+      "target": "ds.block-list",
+      "reason": "块状链表以链表链接多个数组块，需要理解相邻结点链接与插入删除。",
+      "references": [
+        "https://oi-wiki.org/ds/block-list/"
+      ]
+    },
+    {
+      "source": "ds.linked-list",
+      "target": "ds.skiplist",
+      "reason": "跳表把有序链表叠成多层索引，必须理解链表链接与沿链接访问。",
+      "references": [
+        "https://oi-wiki.org/ds/skiplist/"
+      ]
+    },
+    {
+      "source": "ds.linked-list",
+      "target": "search.dlx",
+      "reason": "十字双向链表靠删除与恢复相邻链接实现撤销，链表链接和局部修改是算法本体。",
+      "references": [
+        "https://oi-wiki.org/search/dlx/"
+      ]
+    },
+    {
+      "source": "ds.queue",
+      "target": "ds.monotonic-queue",
+      "reason": "单调队列按元素入队顺序在队首移除过期元素，需先理解队列的先进先出与队首过期，再扩展为允许队尾淘汰的双端维护。",
+      "references": [
+        "https://oi-wiki.org/ds/monotonic-queue/"
+      ]
+    },
+    {
+      "source": "ds.rbtree",
+      "target": "ds.llrbt",
+      "reason": "左偏红黑树是对红链接方向追加约束的红黑树，需要理解红黑树的颜色与黑高不变量。",
+      "references": [
+        "https://oi-wiki.org/ds/llrbt/"
+      ]
+    },
+    {
+      "source": "ds.segment-tree.basic",
+      "target": "dp.dynamic",
+      "reason": "该叶子明确定义线段树维护链上转移，需先理解区间合并、单点修改和更新传播。",
+      "references": [
+        "https://oi-wiki.org/dp/dynamic/"
+      ]
+    },
+    {
+      "source": "ds.segment-tree.basic",
+      "target": "ds.balanced-in-seg",
+      "reason": "该叶子按词表summary为外层线段树、内层平衡树，必须理解外层区间划分。",
+      "references": [
+        "https://oi-wiki.org/ds/balanced-in-seg/"
+      ]
+    },
+    {
+      "source": "ds.segment-tree.basic",
+      "target": "ds.kinetic-tournament-tree",
+      "reason": "该结构在线段树结点扩展维护胜者与失效条件，必须理解区间合并和修改传播。",
+      "references": [
+        "https://oi-wiki.org/ds/kinetic-tournament-tree/"
+      ]
+    },
+    {
+      "source": "ds.segment-tree.basic",
+      "target": "ds.li-chao-tree",
+      "reason": "李超线段树沿区间树插入直线并在路径上查询，需要理解区间递归划分。",
+      "references": [
+        "https://oi-wiki.org/ds/li-chao-tree/"
+      ]
+    },
+    {
+      "source": "ds.segment-tree.basic",
+      "target": "ds.persistent-seg",
+      "reason": "可持久化线段树在普通线段树的修改路径上复制结点，必须先理解区间树的更新路径。",
+      "references": [
+        "https://oi-wiki.org/ds/persistent-seg/"
+      ]
+    },
+    {
+      "source": "ds.segment-tree.basic",
+      "target": "ds.seg-in-balanced",
+      "reason": "该叶子按词表summary为外层平衡树、内层线段树，内层统计依赖线段树。",
+      "references": [
+        "https://oi-wiki.org/ds/seg-in-balanced/"
+      ]
+    },
+    {
+      "source": "ds.segment-tree.basic",
+      "target": "ds.seg-in-bit",
+      "reason": "内层权值线段树维护值域计数与第k小，需要理解线段树区间统计。",
+      "references": [
+        "https://oi-wiki.org/ds/seg-in-bit/"
+      ]
+    },
+    {
+      "source": "ds.segment-tree.basic",
+      "target": "ds.seg-in-seg",
+      "reason": "两层均是线段树，必须理解每层区间划分、查询及更新。",
+      "references": [
+        "https://oi-wiki.org/ds/seg-in-seg/"
+      ]
+    },
+    {
+      "source": "ds.segment-tree.basic",
+      "target": "ds.seg-merge-split",
+      "reason": "线段树合并与分裂递归处理对应区间结点，需要理解线段树划分及维护信息。",
+      "references": [
+        "https://oi-wiki.org/ds/seg-merge-split/"
+      ]
+    },
+    {
+      "source": "ds.splay",
+      "target": "ds.lct",
+      "reason": "本词表LCT以Splay维护辅助实链，access等操作直接依赖Splay旋转与伸展。",
+      "references": [
+        "https://oi-wiki.org/ds/lct/"
+      ]
+    },
+    {
+      "source": "ds.stack",
+      "target": "ds.monotonic-stack",
+      "reason": "单调栈在栈接口上约束入栈与弹栈，必须理解后进先出和栈顶操作。",
+      "references": [
+        "https://oi-wiki.org/ds/monotonic-stack/"
+      ]
+    },
+    {
+      "source": "ds.union-find",
+      "target": "ds.union-find-extended",
+      "reason": "扩展域并查集通过普通并查集的代表元与合并表达多种关系，合并查询接口不可缺少。",
+      "references": [
+        "https://oi-wiki.org/ds/dsu/"
+      ]
+    },
+    {
+      "source": "ds.union-find",
+      "target": "ds.union-find-weighted",
+      "reason": "带权并查集在find与merge中维护相对权值，必须先理解集合代表元与路径压缩。",
+      "references": [
+        "https://oi-wiki.org/ds/dsu/"
+      ]
+    },
+    {
+      "source": "geometry.2d",
+      "target": "geometry.convex-hull",
+      "reason": "平面凸包需要以有向面积和转向判断凸性，必须先理解二维叉积与方向。",
+      "references": [
+        "https://oi-wiki.org/geometry/convex-hull/"
+      ]
+    },
+    {
+      "source": "geometry.2d",
+      "target": "geometry.half-plane",
+      "reason": "半平面交用有向直线、交点和点在线的哪一侧表达约束，需要理解二维几何。",
+      "references": [
+        "https://oi-wiki.org/geometry/half-plane/"
+      ]
+    },
+    {
+      "source": "geometry.2d",
+      "target": "geometry.triangulation",
+      "reason": "三角剖分要判断点、边与多边形的方向和相交，必须理解平面几何对象。",
+      "references": [
+        "https://oi-wiki.org/geometry/triangulation/"
+      ]
+    },
+    {
+      "source": "graph.bcc",
+      "target": "graph.block-forest",
+      "reason": "圆方树为每个点双连通分量建方点，需要先理解点双分量及其共享割点关系。",
+      "references": [
+        "https://oi-wiki.org/graph/block-forest/"
+      ]
+    },
+    {
+      "source": "graph.bi-graph",
+      "target": "graph.graph-matching.bigraph-match",
+      "reason": "二分图匹配的左右点集与增广路径建立在二分图结构上。",
+      "references": [
+        "https://oi-wiki.org/graph/graph-matching/bigraph-match/"
+      ]
+    },
+    {
+      "source": "graph.bi-graph",
+      "target": "graph.graph-matching.bigraph-weight-match",
+      "reason": "二分图最大权匹配要求左右二分点集结构，必须先理解二分图。",
+      "references": [
+        "https://oi-wiki.org/graph/graph-matching/bigraph-weight-match/"
+      ]
+    },
+    {
+      "source": "graph.dag",
+      "target": "dp.dag",
+      "reason": "DAG DP的状态依赖必须构成有向无环图，才能保证沿依赖方向完成递推。",
+      "references": [
+        "https://oi-wiki.org/dp/dag/"
+      ]
+    },
+    {
+      "source": "graph.dag",
+      "target": "graph.lgv",
+      "reason": "该叶子限定DAG上的路径计数，必须理解有向无环图及无环路径依赖。",
+      "references": [
+        "https://oi-wiki.org/graph/lgv/"
+      ]
+    },
+    {
+      "source": "graph.dag",
+      "target": "graph.topo",
+      "reason": "拓扑排序以有向边表示先后约束，合法全序存在的前提是无有向环。",
+      "references": [
+        "https://oi-wiki.org/graph/topo/"
+      ]
+    },
+    {
+      "source": "graph.dfs",
+      "target": "graph.scc",
+      "reason": "该叶子采用Tarjan的DFS时间戳、追溯值与回溯出栈，必须理解图DFS的搜索树和回退边。",
+      "references": [
+        "https://oi-wiki.org/graph/scc/"
+      ]
+    },
+    {
+      "source": "graph.flow.max-flow",
+      "target": "graph.flow.bound",
+      "reason": "上下界网络流通过补偿下界造成的不平衡并求可行增广，需要先理解普通容量网络流。",
+      "references": [
+        "https://oi-wiki.org/graph/flow/bound/"
+      ]
+    },
+    {
+      "source": "graph.flow.max-flow",
+      "target": "graph.flow.max-flow-min-cut",
+      "reason": "最大流最小割定理的一侧是最大可行流，必须理解容量与流量守恒。",
+      "references": [
+        "https://oi-wiki.org/graph/flow/min-cut/"
+      ]
+    },
+    {
+      "source": "graph.flow.min-cut",
+      "target": "graph.flow.max-flow-min-cut",
+      "reason": "最大流最小割定理的另一侧是源汇割容量，必须先理解割及其容量。",
+      "references": [
+        "https://oi-wiki.org/graph/flow/min-cut/"
+      ]
+    },
+    {
+      "source": "graph.graph-matching.general-match",
+      "target": "graph.graph-matching.general-weight-match",
+      "reason": "本词表带权带花树在一般图带花树框架上维护权值与对偶变量，需要先理解缩花与增广。",
+      "references": [
+        "https://oi-wiki.org/graph/graph-matching/general-weight-match/"
+      ]
+    },
+    {
+      "source": "graph.hld",
+      "target": "dp.dynamic",
+      "reason": "该叶子明确定义重链剖分维护路线，必须先理解把树转移分解到各条重链的方法。",
+      "references": [
+        "https://oi-wiki.org/dp/dynamic/"
+      ]
+    },
+    {
+      "source": "graph.hld",
+      "target": "ds.global-bst",
+      "reason": "全局平衡二叉树按重链构造并连接辅助树，需要理解重链与链头父亲关系。",
+      "references": [
+        "https://oi-wiki.org/ds/global-bst/"
+      ]
+    },
+    {
+      "source": "graph.lca",
+      "target": "graph.virtual-tree",
+      "reason": "虚树必须加入关键点间的最近公共祖先，LCA决定压缩后保留的分叉结点。",
+      "references": [
+        "https://oi-wiki.org/graph/virtual-tree/"
+      ]
+    },
+    {
+      "source": "graph.lca",
+      "target": "misc.mo-algo-on-tree",
+      "reason": "该叶子的树上莫队路线将路径变为欧拉序区间并单独补LCA，需要理解最近公共祖先。",
+      "references": [
+        "https://oi-wiki.org/misc/mo-algo-on-tree/"
+      ]
+    },
+    {
+      "source": "graph.scc",
+      "target": "graph.2-sat",
+      "reason": "本词表2-SAT使用蕴含图的强连通分量判矛盾并赋值，需要理解SCC与缩点。",
+      "references": [
+        "https://oi-wiki.org/graph/2-sat/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "dp.tree",
+      "reason": "树形DP按父子与子树关系合并状态，必须理解根树与子树结构。",
+      "references": [
+        "https://oi-wiki.org/dp/tree/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "ds.ett",
+      "reason": "ETT把树的欧拉环游编码为序列，必须先理解树边、子树与遍历顺序。",
+      "references": [
+        "https://oi-wiki.org/ds/ett/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "ds.lct",
+      "reason": "LCT维护森林中的根、祖先与路径关系，需要理解树与森林结构。",
+      "references": [
+        "https://oi-wiki.org/ds/lct/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "ds.top-tree",
+      "reason": "Top Tree的簇由树边和路径合并而成，需要理解树的连通性与唯一路径。",
+      "references": [
+        "https://oi-wiki.org/ds/top-tree/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "ds.tree-decompose",
+      "reason": "树分块以子树、深度和路径确定块边界，必须理解根树结构。",
+      "references": [
+        "https://oi-wiki.org/ds/tree-decompose/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "graph.dsu-on-tree",
+      "reason": "树上启发式合并区分轻重子树并汇总子树统计，需要理解子树与父子关系。",
+      "references": [
+        "https://oi-wiki.org/graph/dsu-on-tree/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "graph.hld",
+      "reason": "重链按子树大小选取并由父子边连接，需要先理解根树与子树。",
+      "references": [
+        "https://oi-wiki.org/graph/hld/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "graph.lca",
+      "reason": "LCA使用根、祖先及深度定义，需要先理解根树的父子关系。",
+      "references": [
+        "https://oi-wiki.org/graph/lca/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "graph.prufer",
+      "reason": "Prüfer编码反复删除树叶并记录其邻点，需要理解树、叶结点和度。",
+      "references": [
+        "https://oi-wiki.org/graph/prufer/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "graph.tree-ahu",
+      "reason": "AHU自底向上对有根子树生成规范编号，需要先理解子树与根树。",
+      "references": [
+        "https://oi-wiki.org/graph/tree-ahu/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "graph.tree-center",
+      "reason": "树中心以到其他树结点的最远距离定义，需要先理解树上路径与距离。",
+      "references": [
+        "https://oi-wiki.org/graph/tree-center/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "graph.tree-centroid",
+      "reason": "树重心按删除结点后各子树连通块规模定义，需要理解树与连通块。",
+      "references": [
+        "https://oi-wiki.org/graph/tree-centroid/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "graph.tree-diameter",
+      "reason": "树直径在树上唯一路径和距离的基础上定义，需要理解树的结构。",
+      "references": [
+        "https://oi-wiki.org/graph/tree-diameter/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "graph.tree-divide",
+      "reason": "树分治按树中删点或删边形成的连通块递归，必须理解树结构。",
+      "references": [
+        "https://oi-wiki.org/graph/tree-divide/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "graph.tree-hash",
+      "reason": "树哈希按子树结构递归组合，必须先理解父子与子树结构。",
+      "references": [
+        "https://oi-wiki.org/graph/tree-hash/"
+      ]
+    },
+    {
+      "source": "graph.tree-basic",
+      "target": "graph.tree-random-walk",
+      "reason": "树上随机游走按相邻边转移，并利用树的唯一路径分析期望，需要理解树结构。",
+      "references": [
+        "https://oi-wiki.org/graph/tree-random-walk/"
+      ]
+    },
+    {
+      "source": "graph.tree-divide",
+      "target": "graph.dynamic-tree-divide",
+      "reason": "动态树分治维护点分治产生的分治树，需要先理解静态树分治与分治层级。",
+      "references": [
+        "https://oi-wiki.org/graph/dynamic-tree-divide/"
+      ]
+    },
+    {
+      "source": "math.binary-set",
+      "target": "dp.state",
+      "reason": "该叶子以二进制集合为状态，需要用位表示成员、检查成员并枚举子集合。",
+      "references": [
+        "https://oi-wiki.org/dp/state/"
+      ]
+    },
+    {
+      "source": "math.binary-set",
+      "target": "misc.mo-algo-with-bitset",
+      "reason": "位集维护值域集合并批量做集合运算，需要先理解二进制集合表示。",
+      "references": [
+        "https://oi-wiki.org/misc/mo-algo-with-bitset/"
+      ]
+    },
+    {
+      "source": "math.bit",
+      "target": "math.binary-set",
+      "reason": "二进制集合用位与、位或及移位实现集合运算，位操作是其表示与运算基础。",
+      "references": [
+        "https://oi-wiki.org/math/binary-set/"
+      ]
+    },
+    {
+      "source": "math.bit",
+      "target": "math.poly.fwt",
+      "reason": "FWT的卷积下标由与、或、异或决定，需要先理解相应位运算。",
+      "references": [
+        "https://oi-wiki.org/math/poly/fwt/"
+      ]
+    },
+    {
+      "source": "math.boolean-algebra",
+      "target": "graph.2-sat",
+      "reason": "2-SAT由布尔文字与析取子句构成，蕴含边的构造需要理解否定、析取和真假赋值。",
+      "references": [
+        "https://oi-wiki.org/graph/2-sat/"
+      ]
+    },
+    {
+      "source": "math.combinatorics.combination",
+      "target": "math.combinatorics.vandermonde-convolution",
+      "reason": "范德蒙德卷积把分组选取的组合数乘积求和，必须先理解组合数的计数含义。",
+      "references": [
+        "https://oi-wiki.org/math/combinatorics/vandermonde-convolution/"
+      ]
+    },
+    {
+      "source": "math.combinatorics.combination",
+      "target": "math.number-theory.lucas",
+      "reason": "Lucas定理把大组合数分解为各位小组合数之积，必须先理解组合数的含义。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/lucas/"
+      ]
+    },
+    {
+      "source": "math.combinatorics.combination",
+      "target": "math.poly.egf",
+      "reason": "EGF乘法对应带标号对象的组合划分，需要理解标号分配中的组合数权重。",
+      "references": [
+        "https://oi-wiki.org/math/poly/egf/"
+      ]
+    },
+    {
+      "source": "math.complex",
+      "target": "math.poly.fft",
+      "reason": "该叶子定义的FFT使用复数单位根与复数乘法，必须理解复数运算。",
+      "references": [
+        "https://oi-wiki.org/math/poly/fft/"
+      ]
+    },
+    {
+      "source": "math.complex",
+      "target": "math.poly.fundamental",
+      "reason": "代数基本定理在复数域陈述根的存在性，必须先理解复数及复系数。",
+      "references": [
+        "https://oi-wiki.org/math/poly/fundamental/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.determinant",
+      "target": "graph.lgv",
+      "reason": "LGV用路径计数矩阵的带符号行列式表示不相交路径计数，必须先理解行列式展开。",
+      "references": [
+        "https://oi-wiki.org/graph/lgv/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.determinant",
+      "target": "graph.matrix-tree",
+      "reason": "矩阵树定理的答案是拉普拉斯矩阵余子式的行列式，需要先理解行列式。",
+      "references": [
+        "https://oi-wiki.org/graph/matrix-tree/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.determinant",
+      "target": "math.linear-algebra.char-poly",
+      "reason": "特征多项式直接定义为det(λI−A)，必须先理解行列式。",
+      "references": [
+        "https://oi-wiki.org/math/linear-algebra/char-poly/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.elementary-operations",
+      "target": "math.numerical.gauss",
+      "reason": "高斯消元通过一系列初等行变换得到阶梯矩阵，必须理解这些变换为何保持方程组等价。",
+      "references": [
+        "https://oi-wiki.org/math/numerical/gauss/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.matrix",
+      "target": "dp.dynamic",
+      "reason": "该叶子把转移写成矩阵并组合维护，必须理解矩阵表示与乘法次序。",
+      "references": [
+        "https://oi-wiki.org/dp/dynamic/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.matrix",
+      "target": "math.linear-algebra.determinant",
+      "reason": "行列式定义在方阵上，以行列位置组织带符号乘积，必须先理解方阵。",
+      "references": [
+        "https://oi-wiki.org/math/linear-algebra/determinant/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.matrix",
+      "target": "math.linear-algebra.diagonalization",
+      "reason": "对角化要求理解相似变换与矩阵乘法，才能解释P的逆乘A乘P。",
+      "references": [
+        "https://oi-wiki.org/math/linear-algebra/diagonalization/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.matrix",
+      "target": "math.linear-algebra.elementary-operations",
+      "reason": "初等行变换对矩阵的行执行交换、倍乘与倍加，必须先理解矩阵与行。",
+      "references": [
+        "https://oi-wiki.org/math/linear-algebra/elementary-operations/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.matrix",
+      "target": "math.linear-algebra.jordan",
+      "reason": "Jordan标准型是矩阵相似变换下的分块矩阵表示，必须理解矩阵与相似关系。",
+      "references": [
+        "https://oi-wiki.org/math/linear-algebra/jordan/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.product",
+      "target": "geometry.3d",
+      "reason": "三维几何使用点积、叉积及混合积处理投影、法向和体积，需要理解向量积。",
+      "references": [
+        "https://oi-wiki.org/geometry/3d/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.vector",
+      "target": "geometry.2d",
+      "reason": "平面向量加减与数乘是二维几何坐标计算的操作对象，必须先理解向量。",
+      "references": [
+        "https://oi-wiki.org/geometry/2d/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.vector",
+      "target": "math.linear-algebra.product",
+      "reason": "内积与外积的操作对象是向量，必须先理解向量坐标、加法和数乘。",
+      "references": [
+        "https://oi-wiki.org/math/linear-algebra/product/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.vector",
+      "target": "math.linear-algebra.vector-space",
+      "reason": "线性空间由向量及加法、数乘公理定义，必须先理解向量运算。",
+      "references": [
+        "https://oi-wiki.org/math/linear-algebra/vector-space/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.vector-space",
+      "target": "math.linear-algebra.basis",
+      "reason": "线性基是张成空间的极大无关向量组，必须理解张成、线性相关与维数。",
+      "references": [
+        "https://oi-wiki.org/math/linear-algebra/basis/"
+      ]
+    },
+    {
+      "source": "math.linear-algebra.vector-space",
+      "target": "math.linear-algebra.linear-mapping",
+      "reason": "线性映射定义在两个线性空间之间并保持向量加法与数乘，必须理解线性空间。",
+      "references": [
+        "https://oi-wiki.org/math/linear-algebra/linear-mapping/"
+      ]
+    },
+    {
+      "source": "math.number-theory.dirichlet",
+      "target": "math.number-theory.hyperbola",
+      "reason": "该叶子的双曲线法与杜教筛处理约数卷积求和，卷积恒等式决定递归归约。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/hyperbola/"
+      ]
+    },
+    {
+      "source": "math.number-theory.dirichlet",
+      "target": "math.number-theory.mobius",
+      "reason": "莫比乌斯反演把约数求和反演为μ参与的卷积，必须理解约数卷积的定义与恒等元。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/mobius/"
+      ]
+    },
+    {
+      "source": "math.number-theory.dirichlet",
+      "target": "math.number-theory.powerful-number",
+      "reason": "Powerful Number筛先构造目标函数的狄利克雷卷积分解，再仅枚举非零贡献的强数。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/powerful-number/"
+      ]
+    },
+    {
+      "source": "math.number-theory.euler-totient",
+      "target": "math.number-theory.euler-theorem",
+      "reason": "欧拉定理以欧拉函数作为指数，必须先理解该函数与互素条件。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/fermat/"
+      ]
+    },
+    {
+      "source": "math.number-theory.euler-totient",
+      "target": "math.number-theory.primitive-root",
+      "reason": "原根定义以元素的阶等于欧拉函数值为条件，必须先理解互素剩余类与φ值。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/primitive-root/"
+      ]
+    },
+    {
+      "source": "math.number-theory.gcd",
+      "target": "math.number-theory.bezouts",
+      "reason": "裴蜀等式的常数项与有解判定直接由最大公约数确定。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/bezouts/"
+      ]
+    },
+    {
+      "source": "math.number-theory.gcd",
+      "target": "math.number-theory.euler-totient",
+      "reason": "欧拉函数统计与模数互素的整数，必须理解最大公约数为一的互素条件。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/euler-totient/"
+      ]
+    },
+    {
+      "source": "math.number-theory.gcd",
+      "target": "math.number-theory.inverse",
+      "reason": "模逆元存在当且仅当底数与模数最大公约数为一，需先理解互素条件。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/inverse/"
+      ]
+    },
+    {
+      "source": "math.number-theory.prime",
+      "target": "math.number-theory.fermat",
+      "reason": "费马小定理的适用条件是素数模，必须理解素数并排除合数模的误用。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/fermat/"
+      ]
+    },
+    {
+      "source": "math.number-theory.prime",
+      "target": "math.number-theory.lift-the-exponent",
+      "reason": "升幂引理分析指定素数在整数分解中的指数，必须理解素数与素数幂。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/lift-the-exponent/"
+      ]
+    },
+    {
+      "source": "math.number-theory.prime",
+      "target": "math.number-theory.lucas",
+      "reason": "Lucas定理的基础版本要求素数模，必须理解并检查这一前提。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/lucas/"
+      ]
+    },
+    {
+      "source": "math.number-theory.prime",
+      "target": "math.number-theory.min-25",
+      "reason": "Min_25筛按最小素因子和素数幂组织贡献，必须理解素数分解。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/min-25/"
+      ]
+    },
+    {
+      "source": "math.number-theory.prime",
+      "target": "math.number-theory.pollard-rho",
+      "reason": "分解以素数为终止因子并递归拆合数，必须理解素数与质因子分解。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/pollard-rho/"
+      ]
+    },
+    {
+      "source": "math.number-theory.prime",
+      "target": "math.number-theory.prime-counting",
+      "reason": "素数计数的对象是素数，必须能区分素数与合数并理解π函数的计数范围。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/prime-counting/"
+      ]
+    },
+    {
+      "source": "math.number-theory.prime",
+      "target": "math.number-theory.sieve",
+      "reason": "素数筛通过标记合数找出素数，必须先理解素数、合数及倍数关系。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/sieve/"
+      ]
+    },
+    {
+      "source": "math.number-theory.prime",
+      "target": "math.number-theory.zhou",
+      "reason": "洲阁筛按最小质因子分类并预处理素数贡献，必须理解素数与质因子分解。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/zhou/"
+      ]
+    },
+    {
+      "source": "math.number-theory.primitive-root",
+      "target": "math.poly.ntt",
+      "reason": "NTT在素数模下选择所需阶的单位根，必须理解原根、元素阶及单位根构造。",
+      "references": [
+        "https://oi-wiki.org/math/poly/ntt/"
+      ]
+    },
+    {
+      "source": "math.number-theory.sqrt-decomposition",
+      "target": "math.number-theory.min-25",
+      "reason": "Min_25筛只保存floor(n/i)处的加权素数和，需要先理解整除商的分块与下标映射。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/min-25/"
+      ]
+    },
+    {
+      "source": "math.number-theory.sqrt-decomposition",
+      "target": "math.number-theory.zhou",
+      "reason": "洲阁筛在floor(n/i)关键值上递推，必须理解整除商分块。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/zhou/"
+      ]
+    },
+    {
+      "source": "math.numeral-sys.base",
+      "target": "math.numeral-sys.balanced-ternary",
+      "reason": "平衡三进制修改普通进位制的数码与进位规则，必须先理解基底、位权与进位。",
+      "references": [
+        "https://oi-wiki.org/math/numeral-sys/balanced-ternary/"
+      ]
+    },
+    {
+      "source": "math.permutation",
+      "target": "math.combinatorics.derangement",
+      "reason": "错位排列是没有固定点的排列，必须先理解排列与元素原位置。",
+      "references": [
+        "https://oi-wiki.org/math/combinatorics/derangement/"
+      ]
+    },
+    {
+      "source": "math.permutation",
+      "target": "math.combinatorics.polya",
+      "reason": "Pólya按置换的循环结构计算不动染色，必须先理解置换与循环分解。",
+      "references": [
+        "https://oi-wiki.org/math/combinatorics/polya/"
+      ]
+    },
+    {
+      "source": "math.poly.linear-recurrence",
+      "target": "math.berlekamp-massey",
+      "reason": "BM求的是数列的最短常系数线性递推，必须先理解递推阶数与系数关系。",
+      "references": [
+        "https://oi-wiki.org/math/berlekamp-massey/"
+      ]
+    },
+    {
+      "source": "math.probability",
+      "target": "dp.probability",
+      "reason": "概率DP的状态值与转移权重是概率或期望，必须理解条件概率和期望求和。",
+      "references": [
+        "https://oi-wiki.org/dp/probability/"
+      ]
+    },
+    {
+      "source": "math.probability",
+      "target": "graph.graph-random-walk",
+      "reason": "图上随机游走以转移概率、命中期望和平稳分布描述，需要理解概率与期望。",
+      "references": [
+        "https://oi-wiki.org/graph/graph-random-walk/"
+      ]
+    },
+    {
+      "source": "math.probability",
+      "target": "graph.tree-random-walk",
+      "reason": "随机游走的目标是命中概率或期望步数，需要理解概率、条件转移和期望。",
+      "references": [
+        "https://oi-wiki.org/graph/tree-random-walk/"
+      ]
+    },
+    {
+      "source": "search.dfs",
+      "target": "dp.memo",
+      "reason": "记忆化搜索以深度优先递归求状态并回溯返回结果，需要理解深搜的递归求解过程。",
+      "references": [
+        "https://oi-wiki.org/dp/memo/"
+      ]
+    },
+    {
+      "source": "search.dfs",
+      "target": "search.dlx",
+      "reason": "Dancing Links用于精确覆盖的逐层选择与撤销，需要理解深度优先回溯。",
+      "references": [
+        "https://oi-wiki.org/search/dlx/"
+      ]
+    },
+    {
+      "source": "search.dfs",
+      "target": "search.iterative",
+      "reason": "迭代加深每一轮执行有深度上限的DFS，直接复用深搜与回溯过程。",
+      "references": [
+        "https://oi-wiki.org/search/iterative/"
+      ]
+    },
+    {
+      "source": "search.heuristic",
+      "target": "search.astar",
+      "reason": "A*按实际代价与启发式估价之和扩展状态，必须理解估价函数及其不高估条件。",
+      "references": [
+        "https://oi-wiki.org/search/astar/"
+      ]
+    },
+    {
+      "source": "search.heuristic",
+      "target": "search.idastar",
+      "reason": "IDA*以实际代价加剩余估价设置剪枝阈值，需要理解启发式估价的含义。",
+      "references": [
+        "https://oi-wiki.org/search/idastar/"
+      ]
+    },
+    {
+      "source": "search.iterative",
+      "target": "search.idastar",
+      "reason": "IDA*反复提升阈值并重做深度优先搜索，直接建立在迭代加深框架上。",
+      "references": [
+        "https://oi-wiki.org/search/idastar/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.hash",
+      "reason": "字符串哈希按字符序列递推并比较子串，需要先理解子串下标与长度。",
+      "references": [
+        "https://oi-wiki.org/string/hash/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.lyndon",
+      "reason": "Lyndon串定义使用字典序及真后缀，必须先理解这些字符串概念。",
+      "references": [
+        "https://oi-wiki.org/string/lyndon/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.manacher",
+      "reason": "Manacher围绕字符序列上的回文中心与半径展开，需要先理解串的下标与连续子串。",
+      "references": [
+        "https://oi-wiki.org/string/manacher/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.match",
+      "reason": "匹配必须先区分文本、子串、起始下标和串长，才能定义模式出现的位置。",
+      "references": [
+        "https://oi-wiki.org/string/match/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.minimal-string",
+      "reason": "最小表示法比较循环移位的字典序，必须先理解字符串顺序比较与拼接。",
+      "references": [
+        "https://oi-wiki.org/string/minimal-string/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.pam",
+      "reason": "回文树的节点对应不同回文子串，需要先理解子串与反向相等。",
+      "references": [
+        "https://oi-wiki.org/string/pam/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.sa",
+      "reason": "后缀数组按字典序排列所有后缀，必须理解后缀、字典序与公共前缀。",
+      "references": [
+        "https://oi-wiki.org/string/sa/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.sam",
+      "reason": "SAM的状态代表结束位置集合相同的一族子串，必须先理解子串与出现位置。",
+      "references": [
+        "https://oi-wiki.org/string/sam/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.seq-automaton",
+      "reason": "序列自动机按下标查找下一次字符出现，需要先区分子序列与子串及其顺序含义。",
+      "references": [
+        "https://oi-wiki.org/string/seq-automaton/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.suffix-bst",
+      "reason": "后缀平衡树维护后缀之间的字典序，必须理解后缀比较。",
+      "references": [
+        "https://oi-wiki.org/string/suffix-bst/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.suffix-tree",
+      "reason": "后缀树压缩存储全部后缀，需要先理解后缀、公共前缀和子串。",
+      "references": [
+        "https://oi-wiki.org/string/suffix-tree/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.trie",
+      "reason": "Trie按字符串字符与公共前缀建树，必须先理解字符序列与前缀。",
+      "references": [
+        "https://oi-wiki.org/string/trie/"
+      ]
+    },
+    {
+      "source": "string.basic",
+      "target": "string.z-func",
+      "reason": "Z函数衡量后缀与原串前缀的最长公共前缀，必须理解前缀、后缀与连续匹配。",
+      "references": [
+        "https://oi-wiki.org/string/z-func/"
+      ]
+    },
+    {
+      "source": "string.match",
+      "target": "string.bm",
+      "reason": "Boyer-Moore的跳跃规则围绕一次模式匹配的失配位置定义，必须先理解字符串匹配问题。",
+      "references": [
+        "https://oi-wiki.org/string/bm/"
+      ]
+    },
+    {
+      "source": "string.match",
+      "target": "string.kmp",
+      "reason": "KMP解决模式串在文本中的连续匹配，必须先理解一次匹配与失配的含义。",
+      "references": [
+        "https://oi-wiki.org/string/kmp/"
+      ]
+    },
+    {
+      "source": "string.sam",
+      "target": "string.general-sam",
+      "reason": "广义SAM把单串后缀自动机推广到多串，保留状态、转移与后缀链接的核心定义。",
+      "references": [
+        "https://oi-wiki.org/string/general-sam/"
+      ]
+    },
+    {
+      "source": "string.trie",
+      "target": "ds.persistent-trie",
+      "reason": "可持久化Trie复制插入路径并共享其余分支，需要理解Trie节点与字符转移。",
+      "references": [
+        "https://oi-wiki.org/ds/persistent-trie/"
+      ]
+    },
+    {
+      "source": "string.trie",
+      "target": "string.ac-automaton",
+      "reason": "AC自动机的状态就是模式串Trie结点，失配转移在Trie前缀状态间定义。",
+      "references": [
+        "https://oi-wiki.org/string/ac-automaton/"
+      ]
+    },
+    {
+      "source": "string.z-func",
+      "target": "string.main-lorentz",
+      "reason": "Main-Lorentz用Z函数批量求跨中点重复的左右扩展长度，需先理解Z值与线性求法。",
+      "references": [
+        "https://oi-wiki.org/string/main-lorentz/"
+      ]
+    },
+    {
+      "source": "syntax.basic-integration.divisor-trial",
+      "target": "syntax.basic-integration.prime-trial",
+      "reason": "该叶子限定试除判素，判断非平凡因数是否存在直接依赖基础因数试除。",
+      "references": [
+        "https://oi-wiki.org/math/number-theory/prime/"
+      ]
+    },
+    {
+      "source": "syntax.characters-strings.string-input",
+      "target": "syntax.characters-strings.string-comparison",
+      "reason": "字符串内容比较与复制需要先理解字符序列的存储、长度与结束位置。",
+      "references": [
+        "https://oi-wiki.org/lang/array/"
+      ]
+    },
+    {
+      "source": "syntax.characters-strings.string-input",
+      "target": "syntax.characters-strings.string-traversal",
+      "reason": "C字符数组遍历需要先理解字符存储与字符串终止标记，才能判断有效访问范围。",
+      "references": [
+        "https://oi-wiki.org/lang/array/"
+      ]
+    },
+    {
+      "source": "syntax.conditions.comparison",
+      "target": "syntax.conditions.logical-condition",
+      "reason": "组合条件把单个关系判断连接为整体，必须先能解释一个条件的真假。",
+      "references": [
+        "https://oi-wiki.org/lang/branch/"
+      ]
+    },
+    {
+      "source": "syntax.conditions.comparison",
+      "target": "syntax.conditions.multi-branch",
+      "reason": "多分支以一系列条件真假选择执行路径，需要先理解条件判断与单分支执行。",
+      "references": [
+        "https://oi-wiki.org/lang/branch/"
+      ]
+    },
+    {
+      "source": "syntax.conditions.comparison",
+      "target": "syntax.loops-arrays.for-while",
+      "reason": "条件循环必须判断继续条件是否成立，才能解释何时重复及何时终止。",
+      "references": [
+        "https://oi-wiki.org/lang/loop/"
+      ]
+    },
+    {
+      "source": "syntax.expressions.arithmetic",
+      "target": "syntax.expressions.division-remainder",
+      "reason": "整数除法与取余是算术表达式中的运算，必须先理解操作数和运算结果。",
+      "references": [
+        "https://oi-wiki.org/lang/op/"
+      ]
+    },
+    {
+      "source": "syntax.expressions.arithmetic",
+      "target": "syntax.loops-arrays.loop-accumulation",
+      "reason": "累加器更新把旧值与当前项相加，必须先理解算术计算与赋值。",
+      "references": [
+        "https://oi-wiki.org/lang/loop/"
+      ]
+    },
+    {
+      "source": "syntax.expressions.division-remainder",
+      "target": "syntax.basic-integration.digit-loop",
+      "reason": "逐位拆数直接使用整除去掉低位、取余取得低位，这两个操作不可缺少。",
+      "references": [
+        "https://oi-wiki.org/lang/op/"
+      ]
+    },
+    {
+      "source": "syntax.expressions.division-remainder",
+      "target": "syntax.basic-integration.divisor-trial",
+      "reason": "判断候选是否为因数必须使用整除或余数为零的条件。",
+      "references": [
+        "https://oi-wiki.org/lang/op/"
+      ]
+    },
+    {
+      "source": "syntax.loops-arrays.array-traversal",
+      "target": "syntax.loops-arrays.array-basic-update",
+      "reason": "元素修改与搬移依赖数组下标访问，且必须能按指定顺序遍历被搬移的元素。",
+      "references": [
+        "https://oi-wiki.org/lang/array/"
+      ]
+    },
+    {
+      "source": "syntax.loops-arrays.for-while",
+      "target": "syntax.basic-integration.digit-loop",
+      "reason": "数位拆分反复处理剩余数，必须能控制循环直到所有数位处理完毕。",
+      "references": [
+        "https://oi-wiki.org/lang/loop/"
+      ]
+    },
+    {
+      "source": "syntax.loops-arrays.for-while",
+      "target": "syntax.basic-integration.divisor-trial",
+      "reason": "因数试除要依次检验候选除数，依赖循环控制候选范围。",
+      "references": [
+        "https://oi-wiki.org/lang/loop/"
+      ]
+    },
+    {
+      "source": "syntax.loops-arrays.for-while",
+      "target": "syntax.characters-strings.string-traversal",
+      "reason": "逐字符统计要反复访问字符并在边界停止，需要先掌握循环控制。",
+      "references": [
+        "https://oi-wiki.org/lang/loop/"
+      ]
+    },
+    {
+      "source": "syntax.loops-arrays.for-while",
+      "target": "syntax.loops-arrays.array-traversal",
+      "reason": "该叶子包含数组遍历，必须能用循环控制访问下标与停止边界。",
+      "references": [
+        "https://oi-wiki.org/lang/array/"
+      ]
+    },
+    {
+      "source": "syntax.loops-arrays.for-while",
+      "target": "syntax.loops-arrays.loop-accumulation",
+      "reason": "循环累加把一次更新重复执行，需要先理解循环初始化、条件与迭代。",
+      "references": [
+        "https://oi-wiki.org/lang/loop/"
+      ]
+    },
+    {
+      "source": "syntax.loops-arrays.for-while",
+      "target": "syntax.loops-arrays.nested-loop",
+      "reason": "嵌套循环是在外层循环中再次执行循环，必须先理解单层循环的执行与终止。",
+      "references": [
+        "https://oi-wiki.org/lang/loop/"
+      ]
+    },
+    {
+      "source": "syntax.loops-arrays.nested-loop",
+      "target": "syntax.basic-integration.loop-integration",
+      "reason": "多重循环条件综合需要先能解释内外层循环组合产生的候选。",
+      "references": [
+        "https://oi-wiki.org/lang/loop/"
+      ]
+    },
+    {
+      "source": "syntax.variables-io.variables",
+      "target": "syntax.conditions.comparison",
+      "reason": "关系比较先取得变量的值，再判断两个值之间的关系。",
+      "references": [
+        "https://oi-wiki.org/lang/branch/"
+      ]
+    },
+    {
+      "source": "syntax.variables-io.variables",
+      "target": "syntax.expressions.arithmetic",
+      "reason": "算术表达式要读取操作数并把计算结果赋给变量，需先理解变量的值与赋值。",
+      "references": [
+        "https://oi-wiki.org/lang/op/"
+      ]
+    },
+    {
+      "source": "syntax.variables-io.variables",
+      "target": "syntax.expressions.conversion",
+      "reason": "类型转换改变数值的表示类型，必须先理解基本数值类型与取值范围。",
+      "references": [
+        "https://oi-wiki.org/lang/op/"
+      ]
+    },
+    {
+      "source": "syntax.variables-io.variables",
+      "target": "syntax.variables-io.formatted-output",
+      "reason": "数值格式说明作用于具有确定类型的数值，必须先区分整数与浮点变量。",
+      "references": [
+        "https://oi-wiki.org/lang/var/"
+      ]
+    },
+    {
+      "source": "syntax.variables-io.variables",
+      "target": "syntax.variables-io.numeric-input",
+      "reason": "数值输入先要把读入值保存在类型匹配的变量中，并在输出时取出变量值。",
+      "references": [
+        "https://oi-wiki.org/lang/var/"
+      ]
+    }
+  ],
+  "node_overrides": {
+    "graph.2-sat": {
+      "summary": "2-SAT 是每个子句至多包含两个文字的合取范式的可满足性问题，变量出现次数不限。把每个变量与其否定各建一个点，对子句 (a∨b) 连边 ¬a→b 与 ¬b→a，单文字子句可重复该文字表示；再用 SCC 缩点。若某个变量及其否定落在同一分量则无解；否则可按缩点 DAG 的拓扑关系构造一组满足赋值，复杂度 O(n+m)。",
+      "references": [
+        "https://oi-wiki.org/graph/2-sat/"
+      ]
+    }
+  }
+}

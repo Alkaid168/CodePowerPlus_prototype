@@ -107,6 +107,20 @@ const SHAPES = {
     ['path', { d: 'M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7' }],
     ['path', { d: 'M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z' }],
   ],
+  'network': [
+    ['rect', { x: '16', y: '16', width: '6', height: '6', rx: '1' }],
+    ['rect', { x: '2', y: '16', width: '6', height: '6', rx: '1' }],
+    ['rect', { x: '9', y: '2', width: '6', height: '6', rx: '1' }],
+    ['path', { d: 'M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3' }],
+    ['path', { d: 'M12 12V8' }],
+  ],
+  'minus': [
+    ['path', { d: 'M5 12h14' }],
+  ],
+  'pause': [
+    ['rect', { x: '14', y: '3', width: '5', height: '18', rx: '1' }],
+    ['rect', { x: '5', y: '3', width: '5', height: '18', rx: '1' }],
+  ],
 };
 
 const SVG_NS = 'http://www.w3.org/2000/svg';

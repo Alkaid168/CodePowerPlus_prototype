@@ -1,0 +1,18 @@
+| 形态 | 登录态留本机／免贴cookie | 跨域与四站适配 | 1000–2000名学生安装门槛 | 更新／分发 | 权限与用户信任 | 上传服务器的数据 |
+| --- | --- | --- | --- | --- | --- | --- |
+| **Chrome/Edge MV3扩展（主选）** | 是；复用安装扩展的浏览器profile，正常站内登录，无需读出cookie值。 | 四站标签内同源请求/DOM；跨源请求由扩展页面或后台凭限定`host_permissions`执行，内容脚本本身不获跨域豁免。[网络规则](https://developer.chrome.com/docs/extensions/develop/concepts/network-requests) | 低：商店安装一次、逐站点击授权；须装在学生日常登录的profile。 | 同一代码库发Edge Add-ons与Chrome商店，审核后自动更新；小试可解压加载，大规模不用开发者模式。 | 仅四站及本站域名；优先`optional_host_permissions`、`scripting/storage`，不默认申请`cookies/debugger/<all_urls>`；明确读源码并预览上传。 | 本地规范化JSON批次+源码文本/哈希；上传前用户确认。 |
+| Python/Node CLI | 是；原生HTTP不会自动继承Edge登录，须自行登录独立浏览器/配置本地会话；CF API凭据可本地输入。 | 原生HTTP不受浏览器CORS；WAF/页面流程仍需浏览器适配，不能靠换HTTP库解决。 | 高：运行环境、命令行、报错；打包可执行文件仍缺可视操作，不适合普及。 | 发布包/可执行文件；适配器改动快，但学生版本分散、支持成本高。 | 本地程序权限面大；公开源码与签名发布提高可审计性，不扫描浏览器cookie库。 | 同一JSON协议；调试可先导出文件再导入。 |
+| **本地GUI（备选：Electron；Tauri可评估）** | 是；在工具独立浏览器正常登录，不自动共享日常Edge会话；免贴cookie但可能需重新登录。[Electron会话](https://www.electronjs.org/docs/latest/api/session) | 浏览器页面走同源采集；Node/Rust HTTP可跨域，须显式接通工具会话；Tauri前端fetch仍受CORS，原生HTTP另有域名授权。[Tauri](https://v2.tauri.app/plugin/http-client/) | 中：签名安装包、可见进度/暂停；Electron包较大，Tauri另有系统WebView适配。 | 校内下载/安装包+签名更新；多OS构建、运行时修补和分发成本高于扩展。 | 工具持有独立本机会话；只访问四站，隔离远程页面与本地能力，清楚展示上传范围。 | 同一JSON批次；本地任务库适合大历史量、暂停恢复。 |
+| 纯网页／PWA | cookie仍由各OJ管理，但本站页面无法直接取得或普遍使用这些会话完成跨域读取。 | CF公共API/AtCoder副本可无凭据CORS；三站代表响应无放行头，无法覆盖本人源码；`no-cors`响应不可读，本地代理/扩展会改变“纯网页”形态。[CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS) | 最低：打开网页；但无法单独完成四站目标。 | 服务端发布即时更新；PWA安装不增加跨站权限。 | 免扩展授权，但不能因此访问其他站DOM/HttpOnly cookie；不要索要cookie粘贴。 | 可做结果预览/导入与接收端，不能独立产生完整四站数据。 |
+| 油猴脚本 | 是；运行于四站登录页，站内请求复用会话；无需用户贴cookie。 | 同源DOM/请求可用；跨源通过脚本管理器`GM_xmlhttpRequest`及`@connect`，四站各有脚本适配。[文档](https://www.tampermonkey.net/documentation.php) | 中高：先装管理器、再装脚本；Chromium脚本执行开关/授权增加指导成本。 | 更新地址易修复；管理器/浏览器版本差异与四站页面改动增大排障量，适合技术小组试验。 | 管理器权限常比专用扩展宽；限定`@match/@connect`并展示上传动作，不能靠远程脚本随意扩大功能。 | 同一JSON或导出文件；跨站任务调度与恢复需自建。 |
+
+- **主路线：MV3扩展＋四站标签页采集＋扩展任务页**；最能复用学生已有登录，安装和更新成本适合千人规模；这是一项选型建议。
+- **备选：签名Electron GUI＋独立持久化浏览器会话**；面向不能装扩展或需独立长任务者，复用同一适配器/JSON契约；CLI仅开发排障、油猴仅小试。
+- **跨域实测（2026-10-21，匿名GET带测试Origin）**：CF `user.status`与AtCoder副本为`ACAO=*`；洛谷401、AtCoder登录最终200、VJudge列表200均无ACAO/ACAC；只代表这些端点与响应，[收据](../output/client-collector-options-2026-10-21/cors-check.json)。
+- **四站路径**：CF元数据走官方API，本人源码可在本地签名（key/secret不上传）或本人网页取；洛谷用正常WAF后的站内cookie/CSRF；AtCoder源码/内存走官网逐比赛页面，副本只辅助；VJudge用本站内部列表/详情接口。
+- **权限不等于通行证**：`host_permissions`解决扩展上下文跨域，不保证cookie分区、CSRF、WAF放行；优先四站顶层标签同源请求，遇交互验证暂停由学生在原站完成。[cookie规则](https://developer.chrome.com/docs/extensions/develop/concepts/storage-and-cookies)
+- **任务可靠性**：MV3后台会休眠，进度/分页游标写IndexedDB或storage.local（不用sync），分批重试、按平台提交ID去重，不能靠popup存活跑全量。[生命周期](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/lifecycle)
+- **分发**：Edge Add-ons可Hidden链接分发；Chrome走商店（校内非公开试点用商店可见性设置）；Windows/macOS自托管通常需企业策略，非受管学生电脑不把CRX内部分发当免审核方案。[Edge](https://learn.microsoft.com/en-us/microsoft-edge/extensions/publish/publish-extension#visibility)／[Chrome](https://developer.chrome.com/docs/extensions/how-to/distribute)
+- **维护与信任**：四站适配器打包进扩展随审核更新，不下载执行远程JS；固定目标域名/路径，不接服务器任意URL指令；发布者身份、源码、隐私说明及源码上传用途可见。[权限](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions)／[MV3代码规则](https://developer.chrome.com/docs/extensions/develop/migrate/remote-hosted-code)
+- **上传契约**：`schema_version/adapter_version/platform/account_id/submission_id/problem_key/submitted_at/language/verdict/score/time_ms/memory_bytes/source_code/source_hash/source_state/coverage/batch_id`；无值留空，元数据/源码可分批；剔除密码、cookie、CSRF、API secret和原始请求头。
+- **服务端边界**：用本站独立短期导入令牌绑定学习者，校验批次/字段/大小并幂等写SQLite；客户端来源不等于已核实学业证据，保留来源与版本；收据可携覆盖摘要，不上传包含会话秘密的原始HTML。

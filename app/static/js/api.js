@@ -33,6 +33,7 @@ export const api = {
   overview: (userId) => request('/api/overview', { params: { user_id: userId } }),
 
   knowledgeTree: () => request('/api/knowledge/tree'),
+  knowledgeGraph: () => request('/api/knowledge/graph'),
   knowledgeSearch: (q, level) => request('/api/knowledge/search', { params: { q, level } }),
   knowledgeDetail: (id) => request(`/api/knowledge/node/${encodeURIComponent(id)}`),
 
