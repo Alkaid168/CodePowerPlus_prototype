@@ -3,6 +3,7 @@ import { api } from '../api.js';
 import { h, mount } from '../dom.js';
 import { icon } from '../icons.js';
 import { knowledgeIllustration } from '../knowledgeIllustrations.js';
+import { knowledgeTitle } from '../knowledgeWeights.js';
 import { matchesSearch, normalizeSearch } from '../search.js';
 import { store } from '../store.js';
 import { button, emptyState, errorBox, loading } from '../components.js';
@@ -221,7 +222,7 @@ export default {
               crumb(item, index === path.length - 1),
               index < path.length - 1 ? h('span', { class: 'knowledge-crumb-sep', 'aria-hidden': 'true' }) : null,
             ])),
-          h('header', { class: 'knowledge-detail-header' }, h('h2', {}, node.name)),
+          h('header', { class: 'knowledge-detail-header' }, knowledgeTitle(node)),
           isL1
             ? h('div', { class: 'knowledge-l1-art' },
                 knowledgeIllustration(node.id, { label: `${node.name}核心知识示意图` }))

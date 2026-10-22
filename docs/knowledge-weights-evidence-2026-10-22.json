@@ -1,0 +1,185 @@
+{
+  "accessed": "2026-10-22",
+  "scope": "14 representative templates; other nodes are estimates",
+  "sources": [
+    {
+      "id": "P3808",
+      "url": "https://www.luogu.com.cn/problem/P3808",
+      "status": 200,
+      "sha256": "4969d6aeb6e1796734bf1b7c4717205a330e1680642b29c5db0cd6bc6d4baeee",
+      "title": "AC 自动机（简单版）",
+      "difficulty": 6
+    },
+    {
+      "id": "P3796",
+      "url": "https://www.luogu.com.cn/problem/P3796",
+      "status": 200,
+      "sha256": "4f64d3c1f03f4970812440820c5e16e546c0e10666f18edefcbddb9802059d19",
+      "title": "AC 自动机（简单版 II）",
+      "difficulty": 6
+    },
+    {
+      "id": "P5357",
+      "url": "https://www.luogu.com.cn/problem/P5357",
+      "status": 200,
+      "sha256": "01c16aa4b319df0bf6d5b57eca0b69068c910922c795e98edd19c51ccb42fba7",
+      "title": "【模板】AC 自动机",
+      "difficulty": 6
+    },
+    {
+      "id": "P5056",
+      "url": "https://www.luogu.com.cn/problem/P5056",
+      "status": 200,
+      "sha256": "f77141afbe77fbeb13d499cb266626a8ca1898942a5906c88218bf75fb0cad5e",
+      "title": "【模板】插头 DP",
+      "difficulty": 8
+    },
+    {
+      "id": "P3374",
+      "url": "https://www.luogu.com.cn/problem/P3374",
+      "status": 200,
+      "sha256": "efaa914c09677a7a5ee1c642c16027e69b2f190747b68525d91f843fc25efa7b",
+      "title": "【模板】树状数组 1",
+      "difficulty": 4
+    },
+    {
+      "id": "P3372",
+      "url": "https://www.luogu.com.cn/problem/P3372",
+      "status": 200,
+      "sha256": "f4a1587a96b28481af86f09d08391828d9ab9c92bb2a69222d95fcdbfeef9a14",
+      "title": "【模板】线段树 1",
+      "difficulty": 4
+    },
+    {
+      "id": "P3809",
+      "url": "https://www.luogu.com.cn/problem/P3809",
+      "status": 200,
+      "sha256": "318d6f1dfb7df765156e59b43f54f33fca9fc276fb76ed485a9036b3826be037",
+      "title": "【模板】后缀排序（SA）",
+      "difficulty": 6
+    },
+    {
+      "id": "P3806",
+      "url": "https://www.luogu.com.cn/problem/P3806",
+      "status": 200,
+      "sha256": "a45e1a1695adc07e58f200479594bda8f3738f33d6ab079ae06eb514c8cda527",
+      "title": "【模板】点分治",
+      "difficulty": 6
+    },
+    {
+      "id": "P3805",
+      "url": "https://www.luogu.com.cn/problem/P3805",
+      "status": 200,
+      "sha256": "980c2f996ec79257bdef18ea798c047c9d8ddbee472ffd3d4a1bd0e21a6bb8b4",
+      "title": "【模板】Manacher",
+      "difficulty": 5
+    },
+    {
+      "id": "P3366",
+      "url": "https://www.luogu.com.cn/problem/P3366",
+      "status": 200,
+      "sha256": "43bd08c07457c468b4cc9edb85faed780c89adea02a59495d3a45e6e44eab38b",
+      "title": "【模板】最小生成树",
+      "difficulty": 3
+    },
+    {
+      "id": "P3376",
+      "url": "https://www.luogu.com.cn/problem/P3376",
+      "status": 200,
+      "sha256": "ecf306ebd091ef3f131cf36f0d188c54579a7f28e2516a0965616570cfc56fd6",
+      "title": "【模板】网络最大流",
+      "difficulty": 6
+    },
+    {
+      "id": "P3381",
+      "url": "https://www.luogu.com.cn/problem/P3381",
+      "status": 200,
+      "sha256": "580a8a1647eeaa0334413dd44974eb64326aa0601e7ab8b40e90d91a41691091",
+      "title": "【模板】最小费用最大流",
+      "difficulty": 6
+    },
+    {
+      "id": "P5854",
+      "url": "https://www.luogu.com.cn/problem/P5854",
+      "status": 200,
+      "sha256": "c28a7d0d73bccec2e419bf78f13cd4ec718b0c4dc3240d742562cbad2f65a173",
+      "title": "【模板】笛卡尔树",
+      "difficulty": 4
+    },
+    {
+      "id": "P3865",
+      "url": "https://www.luogu.com.cn/problem/P3865",
+      "status": 200,
+      "sha256": "010ef622f450431debf6613fd07e585a16aab466d6e219f937d0e6c013198a1e",
+      "title": "【模板】ST 表 & RMQ 问题",
+      "difficulty": 3
+    }
+  ],
+  "scale_source": {
+    "url": "https://www.luogu.com.cn/_lfe/config",
+    "status": 200,
+    "sha256": "0f0c896e03ab1bd015ff10cd8dbaed423c9a9944a86b7f74c14cad4c61f37658",
+    "ProblemDifficulty": [
+      {
+        "type": "Nil",
+        "id": 0,
+        "name": "暂无评定",
+        "color": "grey-3"
+      },
+      {
+        "type": "Pupil",
+        "id": 1,
+        "name": "入门",
+        "color": "pink-3"
+      },
+      {
+        "type": "JuniorUnder",
+        "id": 2,
+        "name": "普及−",
+        "color": "orange-3"
+      },
+      {
+        "type": "Junior",
+        "id": 3,
+        "name": "普及",
+        "color": "gold-3"
+      },
+      {
+        "type": "JuniorAbove",
+        "id": 4,
+        "name": "普及+/提高−",
+        "color": "green-3"
+      },
+      {
+        "type": "Senior",
+        "id": 5,
+        "name": "提高",
+        "color": "cyan-3"
+      },
+      {
+        "type": "SeniorAbove",
+        "id": 6,
+        "name": "提高+/省选−",
+        "color": "blue-3"
+      },
+      {
+        "type": "NoiUnder",
+        "id": 7,
+        "name": "省选/NOI−",
+        "color": "purple-3"
+      },
+      {
+        "type": "Noi",
+        "id": 8,
+        "name": "NOI/NOI+/CTS",
+        "color": "lapis-4"
+      }
+    ]
+  },
+  "user_override": {
+    "string.ac-automaton": {
+      "difficulty_weight": 5,
+      "reason": "basic version without topological counting; user explicitly overrides current Luogu simple-version level 6"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+/* Semantic difficulty accents are deliberately confined to tiny badges and node halos. */
+.knowledge-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  min-width: 0;
+}
+.knowledge-title-row > h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  max-width: 100%;
+}
+.knowledge-title-name { min-width: 0; overflow-wrap: anywhere; }
+.knowledge-difficulty {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  box-sizing: border-box;
+  flex: none;
+  padding: 3px;
+  border: 1.4px solid #111;
+  border-radius: 50%;
+  background: #fff;
+  vertical-align: .04em;
+}
+.knowledge-difficulty-core {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--difficulty-color);
+}
+.knowledge-importance {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  gap: 5px;
+  color: #111;
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 450;
+  letter-spacing: 0;
+}
+.knowledge-importance-label { color: var(--ink-soft); }
+.knowledge-stars { display: inline-flex; align-items: center; gap: 3px; }
+.knowledge-star {
+  display: block;
+  width: 13px;
+  height: 13px;
+  background: #111;
+  clip-path: polygon(50% 0%, 64% 34%, 100% 38%, 73% 63%, 81% 100%, 50% 81%, 19% 100%, 27% 63%, 0% 38%, 36% 34%);
+}
+.kg-inspector .knowledge-title-row { gap: 7px 10px; }
+.kg-inspector .knowledge-title-row > h2 { gap: 8px; }
+.kg-inspector .knowledge-difficulty { width: 17px; height: 17px; padding: 2px; border-width: 1.2px; }
+.kg-inspector .knowledge-importance { font-size: 10px; }
+.kg-inspector .knowledge-star { width: 11px; height: 11px; }
+.kg-inspector .knowledge-stars { gap: 2px; }
+@media (forced-colors: active) {
+  .knowledge-difficulty { forced-color-adjust: none; }
+  .knowledge-star { background: CanvasText; }
+}

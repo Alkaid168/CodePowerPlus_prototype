@@ -1,0 +1,548 @@
+{
+  "research_date": "2026-10-21",
+  "timezone": "Asia/Shanghai",
+  "scope": "Public anonymous low-frequency mechanism research; no application collector or database migration",
+  "probe_attempt_count": 50,
+  "raw_evidence_directory": "output/collection-research-2026-10-21/ (git-ignored local evidence)",
+  "requests": [
+    {
+      "name": "ac-official-user",
+      "url": "https://atcoder.jp/users/tourist",
+      "started_at_utc": "2026-10-21T04:34:49.259531+00:00",
+      "authentication": "none",
+      "error": "<urlopen error [WinError 10054] 远程主机强迫关闭了一个现有的连接。>",
+      "method": "GET"
+    },
+    {
+      "name": "ac-source-0",
+      "url": "https://api.github.com/repos/kenkoooo/AtCoderProblems/git/blobs/a3a6537305c07b3a539236f3bb947d11d495c28c",
+      "started_at_utc": "2026-10-21T04:38:22.640679+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://api.github.com/repos/kenkoooo/AtCoderProblems/git/blobs/a3a6537305c07b3a539236f3bb947d11d495c28c",
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"95b8853a4f495a4b6cb133084cea6a9a57c0e9fdf31029bc0d534233f86f201d\"",
+        "Server": "github.com"
+      },
+      "bytes": 5629,
+      "sha256": "8e67e1881c38cefbcd49a594c4bf4f3bea8181b032dc8bc03f1c7df17f4f6cde",
+      "method": "GET"
+    },
+    {
+      "name": "ac-source-1",
+      "url": "https://api.github.com/repos/kenkoooo/AtCoderProblems/git/blobs/d92ef48e4b8f9c36869e91e6078b5de50120e15b",
+      "started_at_utc": "2026-10-21T04:38:26.234272+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://api.github.com/repos/kenkoooo/AtCoderProblems/git/blobs/d92ef48e4b8f9c36869e91e6078b5de50120e15b",
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"657be54fdb453daa48127006698a09f819a5fc124c49a29205468c7b59c140ea\"",
+        "Server": "github.com"
+      },
+      "bytes": 5515,
+      "sha256": "413699fc35f401bfa3571e5df8d711e6cb85db4890f1f046024c4e8d8a8b5ca3",
+      "method": "GET"
+    },
+    {
+      "name": "ac-source",
+      "url": "https://atcoder.jp/contests/agc004/submissions/865336",
+      "started_at_utc": "2026-10-21T04:37:22.877713+00:00",
+      "authentication": "none",
+      "error": "<urlopen error [WinError 10054] 远程主机强迫关闭了一个现有的连接。>",
+      "method": "GET"
+    },
+    {
+      "name": "acproblems-boundary-count",
+      "url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submission_count?user=tourist&from_second=1576041068&to_second=1576041069",
+      "started_at_utc": "2026-10-21T04:37:26.173294+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submission_count?user=tourist&from_second=1576041068&to_second=1576041069",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 11,
+      "sha256": "6aea6dfe6561984cdc5c54ead84d47d2cf29e48253ae282aef237404adad4661",
+      "method": "GET"
+    },
+    {
+      "name": "acproblems-boundary",
+      "url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions?user=tourist&from_second=1576041068",
+      "started_at_utc": "2026-10-21T04:37:22.209094+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions?user=tourist&from_second=1576041068",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 100286,
+      "sha256": "7405b8918adb909297bbd02a2cebf627415174ee1738a684a11ce2ce69220b44",
+      "method": "GET"
+    },
+    {
+      "name": "acproblems-count",
+      "url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submission_count?user=tourist&from_second=0&to_second=1792537200",
+      "started_at_utc": "2026-10-21T04:36:20.336724+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submission_count?user=tourist&from_second=0&to_second=1792537200",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 14,
+      "sha256": "40b0ed9783a09dc0a3e624697f7e5258e9bde1d6e00af78c74e11a65db5030d4",
+      "method": "GET"
+    },
+    {
+      "name": "acproblems-end",
+      "url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions?user=tourist&from_second=1783572602",
+      "started_at_utc": "2026-10-21T04:40:53.647763+00:00",
+      "authentication": "none",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions?user=tourist&from_second=1783572602",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "acproblems-last-second-count",
+      "url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submission_count?user=tourist&from_second=1783572601&to_second=1783572602",
+      "started_at_utc": "2026-10-21T04:40:57.153495+00:00",
+      "authentication": "none",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submission_count?user=tourist&from_second=1783572601&to_second=1783572602",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 11,
+      "sha256": "6aea6dfe6561984cdc5c54ead84d47d2cf29e48253ae282aef237404adad4661"
+    },
+    {
+      "name": "acproblems-page3",
+      "url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions?user=tourist&from_second=1634385927",
+      "started_at_utc": "2026-10-21T04:39:34.107524+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions?user=tourist&from_second=1634385927",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 100434,
+      "sha256": "2b0a93922c6974fd15156e33f68cb130e2a4272545727766821bbd6ff39f84c1",
+      "method": "GET"
+    },
+    {
+      "name": "acproblems-page4",
+      "url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions?user=tourist&from_second=1722082222",
+      "started_at_utc": "2026-10-21T04:40:23.930716+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions?user=tourist&from_second=1722082222",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 27059,
+      "sha256": "7d7f50f990606de065778580dedb4132402baf1e1ae51228c7ad865a98adc225",
+      "method": "GET"
+    },
+    {
+      "name": "acproblems-user",
+      "url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions?user=tourist&from_second=0",
+      "started_at_utc": "2026-10-21T04:36:15.902051+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions?user=tourist&from_second=0",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 103357,
+      "sha256": "09cfed2c787a1b3578572288be7534c690921e5fc19388d9a7e4c9852296a403",
+      "method": "GET"
+    },
+    {
+      "name": "cf-api-help",
+      "url": "https://codeforces.com/apiHelp",
+      "started_at_utc": "2026-10-21T04:34:49.258607+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://codeforces.com/apiHelp",
+      "headers": {
+        "Content-Type": "text/html;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 49076,
+      "sha256": "0d65db81f41b800495f8bb68194a213b9c186f2a78282cf0ecf2e3d3946d6945",
+      "method": "GET"
+    },
+    {
+      "name": "cf-methods",
+      "url": "https://codeforces.com/apiHelp/methods",
+      "started_at_utc": "2026-10-21T04:36:15.900970+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://codeforces.com/apiHelp/methods",
+      "headers": {
+        "Content-Type": "text/html;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 64008,
+      "sha256": "442735b562fa5c777fd4698ba273400949c6fe26333a4aa6e1c10f7527cbaddf",
+      "method": "GET"
+    },
+    {
+      "name": "cf-objects",
+      "url": "https://codeforces.com/apiHelp/objects",
+      "started_at_utc": "2026-10-21T04:36:20.338690+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://codeforces.com/apiHelp/objects",
+      "headers": {
+        "Content-Type": "text/html;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 62989,
+      "sha256": "75443e4465b953a8344337a38b683ce92c28003f8b9e5d51409aade373d3f7f3",
+      "method": "GET"
+    },
+    {
+      "name": "cf-source-anonymous",
+      "url": "https://codeforces.com/api/user.status?handle=tourist&from=1&count=1&includeSources=true",
+      "started_at_utc": "2026-10-21T04:38:22.641581+00:00",
+      "authentication": "none",
+      "status": 400,
+      "final_url": "https://codeforces.com/api/user.status?handle=tourist&from=1&count=1&includeSources=true",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 101,
+      "sha256": "8be03e548c8691765bb56fad68e649ab038cbc52876ee12653e24fb1ad1c3776",
+      "method": "GET"
+    },
+    {
+      "name": "cf-user-batch1000",
+      "url": "https://codeforces.com/api/user.status?handle=tourist&from=1&count=1000",
+      "started_at_utc": "2026-10-21T04:42:33.098031+00:00",
+      "authentication": "none",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://codeforces.com/api/user.status?handle=tourist&from=1&count=1000",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 590129,
+      "sha256": "27ca8f81ce7bc2c820953478ec623f936b4a550cb16737e7b6cdec33a12b0173"
+    },
+    {
+      "name": "cf-user-end",
+      "url": "https://codeforces.com/api/user.status?handle=tourist&from=1000000&count=2",
+      "started_at_utc": "2026-10-21T04:36:28.493779+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://codeforces.com/api/user.status?handle=tourist&from=1000000&count=2",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 27,
+      "sha256": "e76aeeda588651f2b383be1a61a153db93b795ffc5df6ea38aa7f42ba5e3bc8f",
+      "method": "GET"
+    },
+    {
+      "name": "cf-user-page2",
+      "url": "https://codeforces.com/api/user.status?handle=tourist&from=3&count=2",
+      "started_at_utc": "2026-10-21T04:36:24.543230+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://codeforces.com/api/user.status?handle=tourist&from=3&count=2",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 1376,
+      "sha256": "9c08070a2384b7ef6f43209a8aadfd1201b4876cb10793b340fd2e4795f36d18",
+      "method": "GET"
+    },
+    {
+      "name": "cf-user-status",
+      "url": "https://codeforces.com/api/user.status?handle=tourist&from=1&count=2",
+      "started_at_utc": "2026-10-21T04:34:53.646287+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://codeforces.com/api/user.status?handle=tourist&from=1&count=2",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 1315,
+      "sha256": "077427323dba3167c0204a9e00be4104267aed62a88c3aac4b568764564e9cec",
+      "method": "GET"
+    },
+    {
+      "name": "github-ac-tree",
+      "url": "https://api.github.com/repos/kenkoooo/AtCoderProblems/git/trees/main?recursive=1",
+      "started_at_utc": "2026-10-21T04:37:22.208752+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://api.github.com/repos/kenkoooo/AtCoderProblems/git/trees/main?recursive=1",
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"38f08202c0aa51abbd64df1f6459a8ddd2db02aab5bba3348d36e48d52f50b9d\"",
+        "Last-Modified": "Tue, 20 Oct 2026 06:41:18 GMT",
+        "Server": "github.com"
+      },
+      "bytes": 116408,
+      "sha256": "7e0e59ed8765e57f99d5d98cb4b2dde874918fd0a557d16db4396af9c4d3a606",
+      "method": "GET"
+    },
+    {
+      "name": "luogu-open-endpoint",
+      "url": "https://docs.lgapi.cn/open/api/endpoint",
+      "started_at_utc": "2026-10-21T04:40:23.931255+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://docs.lgapi.cn/open/api/endpoint",
+      "headers": {
+        "Server": "Tengine",
+        "Content-Type": "text/html",
+        "ETag": "\"063629B207589713BDFE8FEBB0F6137F\"",
+        "Last-Modified": "Tue, 20 Oct 2026 18:59:48 GMT"
+      },
+      "bytes": 12417,
+      "sha256": "f206d398c566ff4fb2bac687540683479e6a2eb63c0ae270253d4c0fd6b9ffac",
+      "method": "GET"
+    },
+    {
+      "name": "luogu-open-schema",
+      "url": "https://docs.lgapi.cn/open/openapi",
+      "started_at_utc": "2026-10-21T04:40:28.103711+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://docs.lgapi.cn/open/openapi",
+      "headers": {
+        "Server": "Tengine",
+        "Content-Type": "text/html",
+        "ETag": "\"270853E61D57CF2C00215411BD14E58A\"",
+        "Last-Modified": "Tue, 20 Oct 2026 18:59:57 GMT"
+      },
+      "bytes": 132216,
+      "sha256": "c4188a00800513f55d9d9f175e74dd809002168203eb435d2b25dfac9be670e6",
+      "method": "GET"
+    },
+    {
+      "name": "luogu-problem",
+      "url": "https://www.luogu.com.cn/problem/P1001",
+      "started_at_utc": "2026-10-21T04:36:16.186349+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://www.luogu.com.cn/problem/P1001",
+      "headers": {
+        "Content-Type": "text/html; charset=UTF-8"
+      },
+      "bytes": 42957,
+      "sha256": "e2d188022ecfd7cbbcc16f5d5f77463e6532ca4d42e64d94fc4fb2800f65c8c5",
+      "method": "GET"
+    },
+    {
+      "name": "luogu-records",
+      "url": "https://www.luogu.com.cn/record/list?user=1&page=1",
+      "started_at_utc": "2026-10-21T04:34:49.483418+00:00",
+      "authentication": "none",
+      "status": 401,
+      "final_url": "https://www.luogu.com.cn/record/list?user=1&page=1",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 155,
+      "sha256": "563e06839b331b44e1d73c6c19ae87e39dbc4f7527aabd9d416ae53ee2376129",
+      "method": "GET"
+    },
+    {
+      "name": "luogu-settings",
+      "url": "https://help.luogu.com.cn/manual/luogu/account/setting",
+      "started_at_utc": "2026-10-21T04:36:15.902389+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://help.luogu.com.cn/manual/luogu/account/setting",
+      "headers": {
+        "Server": "Tengine",
+        "Content-Type": "text/html",
+        "ETag": "\"C1FCEB21D42B8B18F4B414923D6E9DC6\"",
+        "Last-Modified": "Mon, 12 Oct 2026 22:20:07 GMT"
+      },
+      "bytes": 25563,
+      "sha256": "1e68f55f1920cc888ca2b30a3f5bf00847179c752cfbf6a107386a5b92327e9e",
+      "method": "GET"
+    },
+    {
+      "name": "luogu-tags",
+      "url": "https://www.luogu.com.cn/_lfe/tags",
+      "started_at_utc": "2026-10-21T04:37:22.209421+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://www.luogu.com.cn/_lfe/tags",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 32624,
+      "sha256": "1ea5ebec12e584fba2487b202b78338a5dea224397a1c7da06e3d6fba7549a3b",
+      "method": "GET"
+    },
+    {
+      "name": "vj-source-post",
+      "url": "https://vjudge.net/solution/data/17694493",
+      "started_at_utc": "2026-10-21T04:40:53.647143+00:00",
+      "authentication": "none",
+      "method": "POST",
+      "status": 400,
+      "final_url": "https://vjudge.net/solution/data/17694493",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 72,
+      "sha256": "608f9ef81a171299815836bbb272256a093e7369e1f51bca7e9bce62d240e612"
+    },
+    {
+      "name": "vj-status-batch20",
+      "url": "https://vjudge.net/status/data?draw=4&start=0&length=20&un=kuangbin",
+      "started_at_utc": "2026-10-21T04:42:33.098604+00:00",
+      "authentication": "none",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://vjudge.net/status/data?draw=4&start=0&length=20&un=kuangbin",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 8727,
+      "sha256": "56e1158c738408c8db67478dc8a7ffc1155fa2705fcb74e8b2b2988f612e1b0b"
+    },
+    {
+      "name": "vj-status-js2",
+      "url": "https://vjudge.net/static/bundle/87ea8690d273e8ae3c8c.js",
+      "started_at_utc": "2026-10-21T04:37:25.934388+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://vjudge.net/static/bundle/87ea8690d273e8ae3c8c.js",
+      "headers": {
+        "Content-Type": "text/javascript",
+        "Server": "cloudflare",
+        "Last-Modified": "Sun, 18 Oct 2026 14:48:21 GMT"
+      },
+      "bytes": 10067,
+      "sha256": "4fc14b0b1e30fceb2465d7b89280df6bd16351ccacaf9c97230c8f3827949f13",
+      "method": "GET"
+    },
+    {
+      "name": "vj-status-js3",
+      "url": "https://vjudge.net/static/bundle/8656acb6bcf92f34ece7.js",
+      "started_at_utc": "2026-10-21T04:37:29.608861+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://vjudge.net/static/bundle/8656acb6bcf92f34ece7.js",
+      "headers": {
+        "Content-Type": "text/javascript",
+        "Server": "cloudflare",
+        "Last-Modified": "Sun, 18 Oct 2026 18:12:00 GMT"
+      },
+      "bytes": 50091,
+      "sha256": "42f9ad5eec8d5572a08e746dc415220eb3bfb14850a0db7e8c6ba9affc5fbec4",
+      "method": "GET"
+    },
+    {
+      "name": "vjudge-status-end",
+      "url": "https://vjudge.net/status/data?draw=3&start=1000000&length=2&un=kuangbin",
+      "started_at_utc": "2026-10-21T04:36:24.190154+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://vjudge.net/status/data?draw=3&start=1000000&length=2&un=kuangbin",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 69,
+      "sha256": "aae7084f1bcc71b63f8071e38abb5503165d03da1a74ea70ce3555529774170d",
+      "method": "GET"
+    },
+    {
+      "name": "vjudge-status-page2",
+      "url": "https://vjudge.net/status/data?draw=2&start=2&length=2&un=kuangbin",
+      "started_at_utc": "2026-10-21T04:36:20.480882+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://vjudge.net/status/data?draw=2&start=2&length=2&un=kuangbin",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 926,
+      "sha256": "f875a5d3859eb38d0c3a187963d166950ca9c2ff4c8d71ccd3f0d826745408ea",
+      "method": "GET"
+    },
+    {
+      "name": "vjudge-status",
+      "url": "https://vjudge.net/status/data?draw=1&start=0&length=2&un=kuangbin",
+      "started_at_utc": "2026-10-21T04:34:53.645803+00:00",
+      "authentication": "none",
+      "status": 200,
+      "final_url": "https://vjudge.net/status/data?draw=1&start=0&length=2&un=kuangbin",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Server": "cloudflare"
+      },
+      "bytes": 927,
+      "sha256": "ca96fb75af5d74bb1bbb5a5688b162c0fca3ac5db80f2a663f2c58d80218401a",
+      "method": "GET"
+    }
+  ],
+  "atcoder_replica_coverage": {
+    "source": "AtCoder Problems nonofficial public replica",
+    "example_account": "tourist",
+    "coverage_window_utc": [
+      "1970-01-01T00:00:00+00:00",
+      "2026-10-20T23:00:00+00:00"
+    ],
+    "cutoff_exclusive": 1792537200,
+    "page_sizes": [
+      500,
+      500,
+      500,
+      133
+    ],
+    "raw_count": 1633,
+    "duplicates": 3,
+    "unique_count": 1630,
+    "replica_count": 1630,
+    "oldest_epoch_second": 1472990942,
+    "latest_epoch_second": 1783572601,
+    "last_second_count": 1,
+    "after_last_page": [],
+    "unique_matches_replica": true,
+    "official_site_completeness_verified": false,
+    "source_code_downloaded": false
+  },
+  "external_reader_observations": [
+    {
+      "checked_date": "2026-10-21",
+      "url": "https://atcoder.jp/contests/agc004/submissions?f.User=tourist",
+      "redirected_to": "https://atcoder.jp/login?continue=https://atcoder.jp/contests/agc004/submissions?f.User%3Dtourist",
+      "observation": "Sign In page; separate web reading service, not local transport",
+      "limitation": "No authenticated official history or source-code verification"
+    }
+  ],
+  "unverified": [
+    "Authenticated Codeforces includeSources response",
+    "Authenticated Luogu record pagination and code visibility",
+    "Authenticated AtCoder official history/source and replica completeness",
+    "VJudge source access in a normal authenticated session",
+    "Production restart/incremental/rejudge completeness for all adapters"
+  ]
+}

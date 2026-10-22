@@ -18,7 +18,7 @@ ICONS = [
     'layout-dashboard', 'book-open', 'list-checks', 'sparkles', 'clipboard-check', 'send',
     'user-round', 'route', 'target', 'message-circle', 'search', 'plus', 'check', 'x',
     'refresh-cw', 'chevron-right', 'alert-triangle', 'save', 'trash-2', 'play', 'external-link',
-    'tags', 'square-pen',
+    'tags', 'square-pen', 'network', 'minus', 'pause',
 ]
 KEEP = {'d', 'cx', 'cy', 'r', 'x', 'y', 'width', 'height', 'x1', 'x2', 'y1', 'y2', 'points', 'rx', 'ry'}
 

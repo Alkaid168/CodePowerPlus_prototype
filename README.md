@@ -16,6 +16,22 @@ GitHub：<https://github.com/Alkaid168/CodePowerPlus_prototype>。
 3. **能力画像**：按独立题目的最后一次非 CE 结果估计每个知识点的掌握度。
 4. **推荐与路径**：只用当前版本、已审核的题目，按标签薄弱度与难度适配排序。
 
+## 知识图谱
+
+侧栏“知识树”下方的“知识图谱”（`#/knowledge-graph`）显示全部337个叶子与189条前置关系。
+支持可拖动、甩动、平移和缩放的弹性视图，以及固定节点、向下滚动的科技树；两种视图共用同一数据。
+可按领域筛选、搜索中英文知识点、查看前驱和后继。关系为代理编纂并经过独立代理复核，尚未教师逐边审核，
+不会自动修改画像或学习记录。来源与范围见[图谱内容说明](docs/knowledge-graph-content-2026-10-22.md)，
+实现与验证见[图谱交付记录](docs/knowledge-graph-implementation-2026-10-22.md)。
+
+## 四平台提交采集与存储
+
+`extensions/collector`提供本机浏览器MV3采集助手，复用本人已登录的平台标签页，支持Codeforces、洛谷、AtCoder和VJudge的提交/可见源码采集、断点恢复、JSON导出和可选分批上传。平台密码与cookie留在本机；AtCoder使用提交副本，覆盖明确标为partial。
+
+服务端导入使用独立SQLite采集库及按用户/平台/账号限定的短期令牌，支持幂等、源码去重、配额、删除与新文件备份恢复。采集结果不会自动写入已审核题目或学习证据；当前是本人数据开发闭环，尚未包含多人自助认证、题面标签难度关联或跨站同题映射。
+
+安装与使用见[采集助手指南](extensions/collector/README.md)、[快速开始](docs/collection-quickstart-2026-10-22.md)与[阶段验收](docs/collection-stage-acceptance-2026-10-22.md)。本轮合并验收见[总控验收记录](docs/module-acceptance-2026-10-22.md)。
+
 ## 快速开始
 
 本地统一入口为 `F:\CODES\CodePowerPlus_prototype`，可双击 `start_CodePowerPlus_prototype.bat` 启动。
@@ -126,6 +142,7 @@ v8首测单独使用 `scripts/v8_blind_evaluation.py`：先冻结9道旧驳回�
 
 题目修改后，原分析和审核记录仍然保留；旧分析不再用于新提交和推荐，需生成新分析并重新审核。
 手工标注页面携带 `expected_revision` 防止把旧输入的标签保存到已修订题目；原有提交的知识快照不倒改。
+
 
 ## Docker
 

@@ -128,6 +128,8 @@ class KnowledgeNodeOut(BaseModel):
     parent_id: str | None = None
     summary: str = ''
     intro_rating: int | None = None
+    difficulty_weight: int = Field(ge=1, le=8)
+    importance_weight: int = Field(ge=1, le=5)
 
 
 class KnowledgeNodeTree(KnowledgeNodeOut):

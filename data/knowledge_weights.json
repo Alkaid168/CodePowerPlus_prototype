@@ -1,0 +1,1515 @@
+{
+  "version": "2026.10.1",
+  "taxonomy_version": "2026.10.1",
+  "scope": "competitive-programming-training",
+  "nodes": {
+    "syntax": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.output": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.output.literal-output": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.output.escape-output": {
+      "difficulty_weight": 1,
+      "importance_weight": 3
+    },
+    "syntax.variables-io": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.variables-io.variables": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.variables-io.numeric-input": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.variables-io.formatted-output": {
+      "difficulty_weight": 1,
+      "importance_weight": 4
+    },
+    "syntax.expressions": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.expressions.arithmetic": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.expressions.division-remainder": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.expressions.conversion": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.conditions": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.conditions.comparison": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.conditions.logical-condition": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.conditions.multi-branch": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.loops-arrays": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.loops-arrays.for-while": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.loops-arrays.loop-accumulation": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.loops-arrays.array-traversal": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.loops-arrays.array-basic-update": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.loops-arrays.nested-loop": {
+      "difficulty_weight": 1,
+      "importance_weight": 4
+    },
+    "syntax.characters-strings": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.characters-strings.char-classification": {
+      "difficulty_weight": 1,
+      "importance_weight": 4
+    },
+    "syntax.characters-strings.string-input": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.characters-strings.string-traversal": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.characters-strings.string-comparison": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.basic-integration": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.basic-integration.digit-loop": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "syntax.basic-integration.divisor-trial": {
+      "difficulty_weight": 1,
+      "importance_weight": 4
+    },
+    "syntax.basic-integration.prime-trial": {
+      "difficulty_weight": 1,
+      "importance_weight": 4
+    },
+    "syntax.basic-integration.loop-integration": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "basic": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "basic.enumerate": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "basic.simulate": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "basic.divide-and-conquer": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "basic.greedy": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "basic.sort": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "basic.selection-sort": {
+      "difficulty_weight": 2,
+      "importance_weight": 2
+    },
+    "basic.bubble-sort": {
+      "difficulty_weight": 2,
+      "importance_weight": 2
+    },
+    "basic.insertion-sort": {
+      "difficulty_weight": 2,
+      "importance_weight": 3
+    },
+    "basic.counting-sort": {
+      "difficulty_weight": 2,
+      "importance_weight": 3
+    },
+    "basic.radix-sort": {
+      "difficulty_weight": 3,
+      "importance_weight": 2
+    },
+    "basic.quick-sort": {
+      "difficulty_weight": 3,
+      "importance_weight": 4
+    },
+    "basic.merge-sort": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "basic.heap-sort": {
+      "difficulty_weight": 3,
+      "importance_weight": 3
+    },
+    "basic.bucket-sort": {
+      "difficulty_weight": 3,
+      "importance_weight": 2
+    },
+    "basic.shell-sort": {
+      "difficulty_weight": 3,
+      "importance_weight": 1
+    },
+    "basic.tournament-sort": {
+      "difficulty_weight": 4,
+      "importance_weight": 1
+    },
+    "basic.tim-sort": {
+      "difficulty_weight": 5,
+      "importance_weight": 1
+    },
+    "basic.use-of-sort": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "basic.prefix-sum": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "basic.difference": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "basic.binary": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "basic.binary-lifting": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "basic.construction": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "search": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "search.dfs": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "search.bfs": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "search.bidirectional": {
+      "difficulty_weight": 4,
+      "importance_weight": 3
+    },
+    "search.heuristic": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "search.astar": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "search.iterative": {
+      "difficulty_weight": 4,
+      "importance_weight": 3
+    },
+    "search.idastar": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "search.dlx": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "search.alpha-beta": {
+      "difficulty_weight": 5,
+      "importance_weight": 1
+    },
+    "dp": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "dp.memo": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "dp.knapsack": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "dp.interval": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "dp.dag": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "dp.tree": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "dp.state": {
+      "difficulty_weight": 5,
+      "importance_weight": 5
+    },
+    "dp.profile": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "dp.number": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "dp.plug": {
+      "difficulty_weight": 8,
+      "importance_weight": 2
+    },
+    "dp.count": {
+      "difficulty_weight": 5,
+      "importance_weight": 5
+    },
+    "dp.dynamic": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "dp.probability": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "dp.dp-of-dp": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "dp.opt": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "dp.opt.monotonic-queue-stack": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "dp.opt.slope": {
+      "difficulty_weight": 6,
+      "importance_weight": 4
+    },
+    "dp.opt.quadrangle": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "dp.opt.slope-trick": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "dp.opt.wqs-binary-search": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "dp.misc": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "string": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "string.basic": {
+      "difficulty_weight": 1,
+      "importance_weight": 5
+    },
+    "string.match": {
+      "difficulty_weight": 3,
+      "importance_weight": 4
+    },
+    "string.hash": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "string.trie": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "string.kmp": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "string.bm": {
+      "difficulty_weight": 6,
+      "importance_weight": 1
+    },
+    "string.z-func": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "string.ac-automaton": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "string.sa": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "string.sam": {
+      "difficulty_weight": 7,
+      "importance_weight": 3
+    },
+    "string.suffix-bst": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "string.general-sam": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "string.suffix-tree": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "string.manacher": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "string.pam": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "string.seq-automaton": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "string.minimal-string": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "string.lyndon": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "string.main-lorentz": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "math": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "math.boolean-algebra": {
+      "difficulty_weight": 3,
+      "importance_weight": 3
+    },
+    "math.numeral-system": {
+      "difficulty_weight": 2,
+      "importance_weight": 4
+    },
+    "math.numeral-sys.base": {
+      "difficulty_weight": 2,
+      "importance_weight": 4
+    },
+    "math.numeral-sys.balanced-ternary": {
+      "difficulty_weight": 3,
+      "importance_weight": 1
+    },
+    "math.numeral-sys.gray-code": {
+      "difficulty_weight": 3,
+      "importance_weight": 2
+    },
+    "math.bit": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "math.binary-set": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "math.bignum": {
+      "difficulty_weight": 3,
+      "importance_weight": 3
+    },
+    "math.binary-exponentiation": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "math.permutation": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "math.complex": {
+      "difficulty_weight": 4,
+      "importance_weight": 2
+    },
+    "math.number-theory": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "math.number-theory.basic": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "math.number-theory.prime": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "math.number-theory.gcd": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "math.number-theory.euler-totient": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "math.number-theory.sieve": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "math.number-theory.pollard-rho": {
+      "difficulty_weight": 7,
+      "importance_weight": 3
+    },
+    "math.number-theory.bezouts": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "math.number-theory.fermat": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "math.number-theory.euler-theorem": {
+      "difficulty_weight": 4,
+      "importance_weight": 3
+    },
+    "math.number-theory.inverse": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "math.number-theory.linear-equation": {
+      "difficulty_weight": 4,
+      "importance_weight": 3
+    },
+    "math.number-theory.crt": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "math.number-theory.lift-the-exponent": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "math.number-theory.factorial": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "math.number-theory.lucas": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "math.number-theory.congruence-equation": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "math.number-theory.quad-residue": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "math.number-theory.primitive-root": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "math.number-theory.discrete-logarithm": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "math.number-theory.residue": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "math.number-theory.sqrt-decomposition": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "math.number-theory.dirichlet": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "math.number-theory.mobius": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "math.number-theory.hyperbola": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "math.number-theory.prime-counting": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "math.number-theory.powerful-number": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "math.number-theory.min-25": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "math.number-theory.zhou": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "math.number-theory.euclidean": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "math.number-theory.continued-fraction": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "math.number-theory.stern-brocot": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "math.number-theory.quadratic": {
+      "difficulty_weight": 6,
+      "importance_weight": 1
+    },
+    "math.number-theory.pell-equation": {
+      "difficulty_weight": 6,
+      "importance_weight": 1
+    },
+    "math.poly": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "math.poly.fundamental": {
+      "difficulty_weight": 4,
+      "importance_weight": 2
+    },
+    "math.poly.fft": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "math.poly.ntt": {
+      "difficulty_weight": 6,
+      "importance_weight": 4
+    },
+    "math.poly.fwt": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "math.poly.czt": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "math.poly.newton": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "math.poly.multipoint-eval-interpolation": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "math.poly.elementary-func": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "math.poly.linear-recurrence": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "math.poly.shift": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "math.poly.symbolic-method": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "math.poly.lagrange-inversion": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "math.poly.comp-rev": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "math.poly.ogf": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "math.poly.egf": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "math.combinatorics": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "math.combinatorics.combination": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "math.combinatorics.drawer-principle": {
+      "difficulty_weight": 3,
+      "importance_weight": 4
+    },
+    "math.combinatorics.inclusion-exclusion-principle": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "math.combinatorics.fibonacci": {
+      "difficulty_weight": 2,
+      "importance_weight": 4
+    },
+    "math.combinatorics.derangement": {
+      "difficulty_weight": 3,
+      "importance_weight": 3
+    },
+    "math.combinatorics.catalan": {
+      "difficulty_weight": 4,
+      "importance_weight": 3
+    },
+    "math.combinatorics.stirling": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "math.combinatorics.bell": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "math.combinatorics.bernoulli": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "math.combinatorics.entringer": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "math.combinatorics.eulerian": {
+      "difficulty_weight": 6,
+      "importance_weight": 1
+    },
+    "math.combinatorics.partition": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "math.combinatorics.vandermonde-convolution": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "math.combinatorics.polya": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "math.combinatorics.graph-enumeration": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "math.linear-algebra": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "math.linear-algebra.vector": {
+      "difficulty_weight": 3,
+      "importance_weight": 4
+    },
+    "math.linear-algebra.product": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "math.linear-algebra.matrix": {
+      "difficulty_weight": 3,
+      "importance_weight": 4
+    },
+    "math.linear-algebra.elementary-operations": {
+      "difficulty_weight": 4,
+      "importance_weight": 3
+    },
+    "math.linear-algebra.determinant": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "math.linear-algebra.vector-space": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "math.linear-algebra.basis": {
+      "difficulty_weight": 6,
+      "importance_weight": 4
+    },
+    "math.linear-algebra.linear-mapping": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "math.linear-algebra.char-poly": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "math.linear-algebra.diagonalization": {
+      "difficulty_weight": 6,
+      "importance_weight": 1
+    },
+    "math.linear-algebra.jordan": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "math.simplex": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "math.probability": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "math.game-theory": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "math.numerical": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "math.numerical.interp": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "math.numerical.integral": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "math.numerical.gauss": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "math.numerical.newton": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "math.order-theory": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "math.young-tableau": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "math.matroid": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "math.berlekamp-massey": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "ds": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "ds.stack": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "ds.queue": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "ds.linked-list": {
+      "difficulty_weight": 3,
+      "importance_weight": 3
+    },
+    "ds.hash": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "ds.union-find": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "ds.union-find-extended": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "ds.union-find-weighted": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "ds.heap": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "ds.binary-heap": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "ds.pairing-heap": {
+      "difficulty_weight": 6,
+      "importance_weight": 1
+    },
+    "ds.leftist-tree": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "ds.block": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "ds.decompose": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "ds.block-array": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "ds.block-list": {
+      "difficulty_weight": 6,
+      "importance_weight": 1
+    },
+    "ds.tree-decompose": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "ds.sqrt-tree": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "ds.monotonic-stack": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "ds.monotonic-queue": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "ds.sparse-table": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "ds.fenwick": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "ds.segment-tree": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "ds.segment-tree.basic": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "ds.seg-merge-split": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "ds.li-chao-tree": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "ds.cat-tree": {
+      "difficulty_weight": 6,
+      "importance_weight": 1
+    },
+    "ds.kinetic-tournament-tree": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "ds.dividing": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "ds.balanced-tree": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "ds.bst": {
+      "difficulty_weight": 3,
+      "importance_weight": 3
+    },
+    "ds.treap": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "ds.splay": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "ds.wblt": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "ds.sgt": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "ds.cartesian-tree": {
+      "difficulty_weight": 4,
+      "importance_weight": 3
+    },
+    "ds.sbt": {
+      "difficulty_weight": 6,
+      "importance_weight": 1
+    },
+    "ds.avl": {
+      "difficulty_weight": 6,
+      "importance_weight": 1
+    },
+    "ds.rbtree": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "ds.llrbt": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "ds.aa-tree": {
+      "difficulty_weight": 6,
+      "importance_weight": 1
+    },
+    "ds.skiplist": {
+      "difficulty_weight": 5,
+      "importance_weight": 1
+    },
+    "ds.persistent": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "ds.persistent-seg": {
+      "difficulty_weight": 6,
+      "importance_weight": 4
+    },
+    "ds.persistent-block-array": {
+      "difficulty_weight": 6,
+      "importance_weight": 1
+    },
+    "ds.persistent-balanced": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "ds.persistent-trie": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "ds.persistent.other": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "ds.persistent-heap": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "ds.tree-in-tree": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "ds.seg-in-seg": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "ds.seg-in-balanced": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "ds.balanced-in-seg": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "ds.seg-in-bit": {
+      "difficulty_weight": 7,
+      "importance_weight": 3
+    },
+    "ds.bit-in-block-array": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "ds.tree-in-tree.other": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "ds.kdt": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "ds.dynamic-tree": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "ds.lct": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "ds.global-bst": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "ds.ett": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "ds.top-tree": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "ds.divide-combine": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "ds.pq-tree": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "ds.finger-tree": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "ds.huffman-tree": {
+      "difficulty_weight": 3,
+      "importance_weight": 3
+    },
+    "graph": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "graph.dfs": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "graph.basic": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "graph.bfs": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "graph.tree": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "graph.tree-basic": {
+      "difficulty_weight": 2,
+      "importance_weight": 5
+    },
+    "graph.tree-diameter": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "graph.tree-center": {
+      "difficulty_weight": 4,
+      "importance_weight": 3
+    },
+    "graph.tree-centroid": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "graph.lca": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "graph.hld": {
+      "difficulty_weight": 6,
+      "importance_weight": 4
+    },
+    "graph.dsu-on-tree": {
+      "difficulty_weight": 6,
+      "importance_weight": 4
+    },
+    "graph.virtual-tree": {
+      "difficulty_weight": 7,
+      "importance_weight": 3
+    },
+    "graph.tree-divide": {
+      "difficulty_weight": 6,
+      "importance_weight": 4
+    },
+    "graph.dynamic-tree-divide": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "graph.tree-ahu": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "graph.tree-hash": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "graph.tree-random-walk": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "graph.dag": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "graph.topo": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "graph.shortest-path": {
+      "difficulty_weight": 4,
+      "importance_weight": 5
+    },
+    "graph.diff-constraints": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "graph.kth-path": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "graph.mod-shortest-path": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "graph.spanning-tree": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "graph.mst": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "graph.dmst": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "graph.mdst": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "graph.steiner-tree": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "graph.node": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "graph.connectivity": {
+      "difficulty_weight": 5,
+      "importance_weight": 5
+    },
+    "graph.scc": {
+      "difficulty_weight": 5,
+      "importance_weight": 5
+    },
+    "graph.bcc": {
+      "difficulty_weight": 6,
+      "importance_weight": 4
+    },
+    "graph.cut": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "graph.bridge": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "graph.block-forest": {
+      "difficulty_weight": 7,
+      "importance_weight": 3
+    },
+    "graph.connectivity-degree": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "graph.rings-count": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "graph.min-cycle": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "graph.2-sat": {
+      "difficulty_weight": 6,
+      "importance_weight": 4
+    },
+    "graph.euler": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "graph.hamilton": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "graph.bi-graph": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "graph.planar": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "graph.chord": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "graph.color": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "graph.flow": {
+      "difficulty_weight": 6,
+      "importance_weight": 5
+    },
+    "graph.flow.max-flow": {
+      "difficulty_weight": 6,
+      "importance_weight": 5
+    },
+    "graph.flow.min-cut": {
+      "difficulty_weight": 6,
+      "importance_weight": 5
+    },
+    "graph.flow.max-flow-min-cut": {
+      "difficulty_weight": 6,
+      "importance_weight": 5
+    },
+    "graph.flow.min-cost": {
+      "difficulty_weight": 6,
+      "importance_weight": 4
+    },
+    "graph.flow.bound": {
+      "difficulty_weight": 7,
+      "importance_weight": 3
+    },
+    "graph.stoer-wagner": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "graph.matching": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "graph.graph-matching.graph-match": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "graph.graph-matching.bigraph-match": {
+      "difficulty_weight": 5,
+      "importance_weight": 5
+    },
+    "graph.graph-matching.bigraph-weight-match": {
+      "difficulty_weight": 6,
+      "importance_weight": 4
+    },
+    "graph.graph-matching.general-match": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "graph.graph-matching.general-weight-match": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "graph.graph-matching.stable-match": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "graph.prufer": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "graph.matrix-tree": {
+      "difficulty_weight": 7,
+      "importance_weight": 3
+    },
+    "graph.lgv": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "graph.max-clique": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "graph.dominator-tree": {
+      "difficulty_weight": 8,
+      "importance_weight": 1
+    },
+    "graph.graph-random-walk": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "geometry": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "geometry.2d": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "geometry.3d": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "geometry.pick": {
+      "difficulty_weight": 3,
+      "importance_weight": 2
+    },
+    "geometry.triangulation": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "geometry.convex-hull": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "geometry.scanning": {
+      "difficulty_weight": 5,
+      "importance_weight": 4
+    },
+    "geometry.rotating-calipers": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "geometry.half-plane": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "geometry.nearest-points": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "geometry.random-incremental": {
+      "difficulty_weight": 7,
+      "importance_weight": 2
+    },
+    "geometry.inverse": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "geometry.misc": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "misc": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "misc.discrete": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "misc.cdq-divide": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "misc.parallel-binsearch": {
+      "difficulty_weight": 6,
+      "importance_weight": 3
+    },
+    "misc.two-pointer": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    },
+    "misc.mo-algo": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "misc.modifiable-mo-algo": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "misc.mo-algo-on-tree": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "misc.rollback-mo-algo": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "misc.mo-algo-2dimen": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "misc.mo-algo-secondary-offline": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "misc.mo-algo-with-bitset": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "misc.frac-programming": {
+      "difficulty_weight": 5,
+      "importance_weight": 3
+    },
+    "misc.randomize": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "misc.rand-technique": {
+      "difficulty_weight": 4,
+      "importance_weight": 4
+    },
+    "misc.hill-climbing": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "misc.simulated-annealing": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "misc.hoverline": {
+      "difficulty_weight": 5,
+      "importance_weight": 2
+    },
+    "misc.main-element": {
+      "difficulty_weight": 3,
+      "importance_weight": 3
+    },
+    "misc.garsia-wachs": {
+      "difficulty_weight": 7,
+      "importance_weight": 1
+    },
+    "misc.kahan-summation": {
+      "difficulty_weight": 4,
+      "importance_weight": 1
+    },
+    "misc.odt": {
+      "difficulty_weight": 6,
+      "importance_weight": 2
+    },
+    "misc.rmq": {
+      "difficulty_weight": 3,
+      "importance_weight": 5
+    }
+  }
+}

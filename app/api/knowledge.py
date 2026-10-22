@@ -5,6 +5,8 @@ from fastapi import APIRouter, Depends
 
 from app.container import Container, get_container
 from app.errors import InvalidInput, NotFound
+from app.knowledge_graph import load_graph
+from app.knowledge_weights import load_weights, with_weights
 from app.schemas import KnowledgeDetailOut, KnowledgeSearchOut, KnowledgeTreeOut
 
 router = APIRouter(prefix='/api/knowledge', tags=['knowledge'])
@@ -22,23 +24,37 @@ def _level(value: str | None) -> int | None:
 @router.get('/tree', response_model=KnowledgeTreeOut)
 def knowledge_tree(container: Container = Depends(get_container)):
     nodes = list(container.taxonomy.nodes.values())
-    return {'version': container.taxonomy.version, 'total': len(nodes), 'tree': container.taxonomy.tree()}
+    weights = load_weights(container.taxonomy)
+    return {'version': container.taxonomy.version, 'total': len(nodes),
+            'tree': [with_weights(node, weights) for node in container.taxonomy.tree()]}
 
 
 @router.get('/search', response_model=KnowledgeSearchOut)
 def knowledge_search(q: str = '', level: str | None = None,
                      container: Container = Depends(get_container)):
     items = container.taxonomy.search(q, level=_level(level))
-    return {'version': container.taxonomy.version, 'total': len(items), 'items': items}
+    weights = load_weights(container.taxonomy)
+    return {'version': container.taxonomy.version, 'total': len(items),
+            'items': [with_weights(node, weights) for node in items]}
+
+
+@router.get('/graph')
+def knowledge_graph(container: Container = Depends(get_container)):
+    """全部叶子及其学习先修关系；独立于题库和学生学习记录。"""
+    result = load_graph(container.taxonomy)
+    weights = load_weights(container.taxonomy)
+    result['nodes'] = [with_weights(node, weights) for node in result['nodes']]
+    return result
 
 
 def _knowledge_detail(knowledge_id: str, container: Container) -> dict:
     node = container.taxonomy.get(knowledge_id)
     if node is None:
         raise NotFound(f'知识点 {knowledge_id} 不存在')
-    return {**node,
-            'ancestors': container.taxonomy.ancestors(knowledge_id),
-            'children': container.taxonomy.children(knowledge_id)}
+    weights = load_weights(container.taxonomy)
+    return {**with_weights(node, weights),
+            'ancestors': [with_weights(item, weights) for item in container.taxonomy.ancestors(knowledge_id)],
+            'children': [with_weights(item, weights) for item in container.taxonomy.children(knowledge_id)]}
 
 
 @router.get('/node/{knowledge_id:path}', response_model=KnowledgeDetailOut)

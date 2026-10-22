@@ -8,6 +8,8 @@ from __future__ import annotations
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+import os
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -30,6 +32,12 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                   description='面向算法竞赛训练的题目分析、能力画像、代码辅导与推荐原型。',
                   lifespan=lifespan)
     app.state.container = container
+    # Explicitly allow only configured extension origins; no wildcard credentialed CORS.
+    extension_origins = [item.strip() for item in os.getenv('CODEPOWERPLUS_COLLECTION_ALLOWED_ORIGINS', '').split(',') if item.strip()]
+    if extension_origins:
+        app.add_middleware(CORSMiddleware, allow_origins=extension_origins, allow_credentials=False,
+                           allow_methods=['POST', 'GET', 'DELETE', 'OPTIONS'],
+                           allow_headers=['Authorization', 'Content-Type'], max_age=600)
     install_error_handlers(app)
     app.include_router(api_router)
 
