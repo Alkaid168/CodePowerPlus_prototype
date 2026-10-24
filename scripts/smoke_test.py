@@ -5,10 +5,13 @@
 """
 import sys
 import tempfile
+import os
 from dataclasses import replace
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+# app.main builds a module-level app on import, before main creates its fixture.
+os.environ['CODEPOWERPLUS_DB_PATH'] = ':memory:'
 
 from fastapi.testclient import TestClient  # noqa: E402
 
@@ -42,7 +45,9 @@ def main() -> int:
                 'user_id': 'smoke', 'problem_id': problem['id'], 'verdict': 'AC', 'language': 'cpp'}).json()
             print(f'submission    ok    knowledge={submission["knowledge_ids"]}')
             profile = client.get('/api/users/smoke/profile').json()
-            print(f'profile       ok    有证据的知识点={len(profile["skill_mastery"])}')
+            assert len(profile['dimensions']) == 10 and profile['overall']['evidence_count'] == 1
+            assert next(x for x in profile['dimensions'] if x['knowledge_id'] == 'basic')['score'] > 0
+            print(f'profile       ok    提交后评分={profile["overall"]["score"]}，独立题目=1')
             queue = client.get('/api/reviews?status=approved').json()
             print(f'review queue  ok    approved={len(queue["items"])}')
             path = client.get('/api/users/smoke/learning-path',

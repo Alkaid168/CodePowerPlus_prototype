@@ -13,6 +13,7 @@ ASSETS = [
     '/static/css/knowledge.css',
     '/static/css/analysis.css',
     '/static/css/problems.css',
+    '/static/css/profile.css',
     '/static/js/app.js',
     '/static/js/api.js',
     '/static/js/dom.js',

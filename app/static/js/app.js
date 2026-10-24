@@ -26,7 +26,7 @@ const ROUTES = [
   { id: 'analysis', label: '题目录入与分析', icon: 'sparkles', title: '题目录入与分析', view: analysisView },
   { id: 'reviews', label: '审核队列', icon: 'clipboard-check', title: '审核队列', view: reviewsView },
   { id: 'submissions', label: '提交记录', icon: 'send', title: '提交记录', view: submissionsView },
-  { id: 'profile', label: '能力画像', icon: 'user-round', title: '能力画像', view: profileView },
+  { id: 'profile', label: '能力画像', icon: 'user-round', title: '能力画像', showTitle: false, view: profileView },
   { id: 'path', label: '学习路径', icon: 'route', title: '学习路径', view: pathView },
   { id: 'recommendations', label: '推荐训练', icon: 'target', title: '推荐训练', view: recommendationsView },
   { id: 'tutor', label: '代码辅导', icon: 'message-circle', title: '代码辅导', view: tutorView },

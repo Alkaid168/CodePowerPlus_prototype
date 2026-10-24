@@ -6,9 +6,11 @@ from fastapi import APIRouter, Depends, Query
 from app.api import problems_with_analysis
 from app.container import Container, get_container
 from app.errors import InvalidInput
-from app.schemas import LearningPathOut, ProfileOut, RecommendationListOut
+from app.schemas import LearningPathOut, RecommendationListOut
 from app.services.profile import build_profile
 from app.services.recommend import learning_path, recommend
+from app.services.user_profile import build_profile as build_user_profile
+from app.user_profile_schemas import LearnerProfileOut
 
 router = APIRouter(prefix='/api/users', tags=['learners'])
 
@@ -20,10 +22,13 @@ def learner_state(container: Container, user_id: str) -> tuple[list[dict], dict,
     return records, profile, solved
 
 
-@router.get('/{user_id}/profile', response_model=ProfileOut)
+@router.get('/{user_id}/profile', response_model=LearnerProfileOut)
 def get_profile(user_id: str, container: Container = Depends(get_container)):
-    _, profile, _ = learner_state(container, user_id)
-    return {'user_id': user_id, **profile}
+    records = container.submissions.history_for_user(user_id)
+    try:
+        return build_user_profile(user_id, records, container.taxonomy)
+    except ValueError as exc:
+        raise InvalidInput(str(exc)) from exc
 
 
 @router.get('/{user_id}/recommendations', response_model=RecommendationListOut)

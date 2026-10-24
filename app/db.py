@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from threading import RLock
 
-SCHEMA_VERSION = 3
+SCHEMA_VERSION = 4
 
 # 题目的 OJ 编号从 1000 开始；`problems.id` 本身就是对外编号，不再另设一套。
 # 编号由 ProblemRepository 在插入时用 MAX(id)+1 计算，不依赖 AUTOINCREMENT——
@@ -63,6 +63,25 @@ CREATE TABLE IF NOT EXISTS submissions (
     analysis_id INTEGER,
     difficulty INTEGER,
     created_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS learner_profiles (
+    user_id TEXT PRIMARY KEY,
+    experience TEXT NOT NULL,
+    language TEXT NOT NULL,
+    goal_knowledge_ids TEXT NOT NULL DEFAULT '[]',
+    revision INTEGER NOT NULL DEFAULT 1,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS learner_profile_ratings (
+    user_id TEXT NOT NULL REFERENCES learner_profiles(user_id) ON DELETE CASCADE,
+    knowledge_id TEXT NOT NULL,
+    prior_mean REAL NOT NULL,
+    prior_sd REAL NOT NULL CHECK (prior_sd > 0),
+    source TEXT NOT NULL CHECK (source IN ('self_reported', 'unassessed')),
+    evidence_count INTEGER NOT NULL DEFAULT 0 CHECK (evidence_count >= 0),
+    updated_at TEXT NOT NULL,
+    PRIMARY KEY (user_id, knowledge_id)
 );
 CREATE INDEX IF NOT EXISTS analyses_by_problem ON problem_analyses(problem_id, id);
 CREATE INDEX IF NOT EXISTS reviews_by_problem ON analysis_reviews(problem_id, id);

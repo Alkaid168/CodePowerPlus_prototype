@@ -5,11 +5,11 @@ def test_profile_recommendations_and_learning_path(client, approved_problem):
     solved, _ = approved_problem(title='已解题', primary=('basic.prefix-sum',))
     target, _ = approved_problem(title='待练题', primary=('math.number-theory.prime',))
     client.post('/api/submissions', json={'user_id': 'u1', 'problem_id': solved['id'], 'verdict': 'AC'})
-
     profile = client.get('/api/users/u1/profile').json()
-    assert profile['submission_count'] == 1
-    assert profile['skill_mastery']['basic.prefix-sum'] > 0.5
-    assert profile['algorithm_version']
+    assert profile['overall']['score'] >= 800
+    assert profile['overall']['source'] == 'problem_evidence'
+    assert profile['dimensions'][1]['knowledge_id'] == 'basic'
+    assert profile['dimensions'][1]['evidence_count'] == 1
 
     recommendations = client.get('/api/users/u1/recommendations').json()
     assert recommendations['taxonomy_version']
@@ -32,12 +32,10 @@ def test_learning_path_rejects_l1_target(client):
     assert response.json()['code'] == 'invalid_input'
 
 
-def test_empty_profile_still_lists_knowledge_nodes(client):
+def test_empty_profile_starts_at_zero_without_setup(client):
     profile = client.get('/api/users/ghost/profile').json()
-    assert profile['submission_count'] == 0
-    assert profile['skill_mastery'] == {}
-    assert len(profile['skills']) >= 330
-    assert all(skill['mastery'] is None for skill in profile['skills'])
+    assert profile['overall']['score'] == 0
+    assert all(item['score'] == 0 for item in profile['dimensions'])
 
 
 def test_recommendations_ignore_pending_analysis(client, make_problem):
