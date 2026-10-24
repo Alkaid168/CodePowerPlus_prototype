@@ -11,6 +11,7 @@ from app.api import require_problem
 from app.container import Container, get_container
 from app.schemas import SubmissionCreate, SubmissionCreatedOut, SubmissionListOut
 from app.services.recommend import tags_of
+from app.services.user_profile import profile_evidence_issue
 
 router = APIRouter(prefix='/api/submissions', tags=['submissions'])
 
@@ -35,7 +36,8 @@ def create_submission(payload: SubmissionCreate, container: Container = Depends(
             knowledge_ids=knowledge_ids, taxonomy_version=container.taxonomy.version if analysis else '',
             analysis_id=analysis['analysis_id'] if analysis else None,
             difficulty=analysis.get('difficulty') if analysis else None)
-    submission['warning'] = '' if analysis else '题目尚无当前版本的已审核分析，本次提交暂不计入知识点画像。'
+    submission['warning'] = profile_evidence_issue(submission, container.taxonomy) if analysis else \
+        '题目尚无当前版本的已审核分析，本次提交暂不计入知识点画像。'
     return submission
 
 

@@ -22,7 +22,7 @@ def test_version_two_database_retains_rows_when_revision_columns_are_added(tmp_p
         assert problem['description'] == 'old statement' and problem['revision'] == 1
         assert problem['reference_solution'] == problem['reference_code'] == ''
         assert analysis['problem_revision'] == 1 and analysis['input_snapshot'] == '{}'
-        assert db.schema_version == 3
+        assert db.schema_version == 4
     finally:
         db.close()
 
@@ -35,6 +35,28 @@ def test_fresh_database_has_current_schema(tmp_path):
         assert utcnow()
     finally:
         db.close()
+
+
+def test_version_three_adds_profile_tables_without_modifying_existing_records(tmp_path):
+    path = tmp_path / 'v3.db'
+    db = Database(path)
+    db.execute(
+        'INSERT INTO problems(id,title,description,created_at) VALUES (1000,?,?,?)',
+        ('保留题目', '保留原始题面', '2026-10-17'))
+    before = tuple(db.query_one('SELECT * FROM problems WHERE id=1000'))
+    db.close()
+    with sqlite3.connect(path) as conn:
+        conn.execute('DROP TABLE learner_profile_ratings')
+        conn.execute('DROP TABLE learner_profiles')
+        conn.execute("UPDATE schema_meta SET value='3' WHERE key='schema_version'")
+    migrated = Database(path)
+    try:
+        assert migrated.schema_version == 4
+        assert tuple(migrated.query_one('SELECT * FROM problems WHERE id=1000')) == before
+        assert migrated.query_one('SELECT COUNT(*) AS n FROM learner_profiles')['n'] == 0
+        assert migrated.query_one('SELECT COUNT(*) AS n FROM learner_profile_ratings')['n'] == 0
+    finally:
+        migrated.close()
 
 
 def test_problems_are_numbered_from_1000(tmp_path):

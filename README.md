@@ -13,7 +13,8 @@ GitHub：<https://github.com/Alkaid168/CodePowerPlus_prototype>。
    保存后调用模型给出知识点标签、项目难度评分（100–3500）、证据句与置信度。100–700 是 C 语言新生入门阶梯，800 起沿用原算法评分分档。
    新建、题目编辑和手工标注支持本浏览器草稿自动保存，灰色图标提示；刷新／切页可恢复，正式保存仍需点击按钮。
 2. **人工审核**：分析先进入待审核，通过后才成为证据；纠正会生成新版本，旧版本与审计记录都保留。
-3. **能力画像**：按独立题目的最后一次非 CE 结果估计每个知识点的掌握度。
+3. **能力画像**：总分和十个L1领域默认0，按已审核且可明确归属领域的本地题目表现更新。
+   同题重试合并，多领域题按不同L1数量平分一份证据，未映射的外站题目不自动计分。
 4. **推荐与路径**：只用当前版本、已审核的题目，按标签薄弱度与难度适配排序。
 
 ## 知识图谱
@@ -80,7 +81,9 @@ app/
   services/        业务规则
     analysis.py      标签校验、模型调用与输出解析
     review.py        审核流程（乐观锁 + 纠正版本）
-    profile.py       能力画像公式
+    profile.py       旧推荐/总览仍使用的标签启发式
+    user_profile.py  零起点、单域题目机会、动态十域与派生总分
+    rating.py        新动态贝叶斯IRT内核（练习偏移200、时间不确定性）
     recommend.py     推荐与学习路径
     tutor.py         分级辅导提示
   api/             HTTP 接口（knowledge/problems/reviews/submissions/learners/overview/tutor）
@@ -135,7 +138,7 @@ v8首测单独使用 `scripts/v8_blind_evaluation.py`：先冻结9道旧驳回�
 | GET | `/api/reviews?status=pending` | 待审核队列 |
 | POST | `/api/problems/{id}/review` | 通过 / 驳回 / 带纠正通过 |
 | POST | `/api/submissions` | 记录提交（标签取自已审核分析） |
-| GET | `/api/users/{user_id}/profile` | 能力画像 |
+| GET | `/api/users/{user_id}/profile` | 零起点能力画像；按有效本地提交计算十域与总分，不写库 |
 | GET | `/api/users/{user_id}/recommendations` | 推荐题目 |
 | GET | `/api/users/{user_id}/learning-path` | 学习路径 |
 | POST | `/api/tutor/hint` | 分级辅导提示 |
@@ -143,6 +146,7 @@ v8首测单独使用 `scripts/v8_blind_evaluation.py`：先冻结9道旧驳回�
 题目修改后，原分析和审核记录仍然保留；旧分析不再用于新提交和推荐，需生成新分析并重新审核。
 手工标注页面携带 `expected_revision` 防止把旧输入的标签保存到已修订题目；原有提交的知识快照不倒改。
 
+新画像当前规则见 [零起点评分与精简界面](docs/profile-zero-start-2026-10-24.md)，覆盖此前的自评冷启动设计。[41题三类用户模拟](docs/profile-simulation-2026-10-24.md)记录多领域平分证据、逐题结果及修复。跨域实际解法归因、题解辅助识别与外站映射仍待实施。
 
 ## Docker
 

@@ -1,0 +1,45 @@
+.profile-page { display: flex; flex-direction: column; gap: 24px; max-width: 1320px; }
+.profile-page > h1 { margin: 0; }
+.profile-summary {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+  padding: 30px 32px; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); animation: card-enter .3s var(--ease-out) both;
+}
+.profile-total { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.profile-total h2 { color: var(--ink-soft); font-size: 14px; font-weight: 500; }
+.profile-total > strong {
+  font-size: 76px; line-height: 1; font-weight: 650; letter-spacing: -.045em;
+  font-variant-numeric: tabular-nums; overflow-wrap: anywhere;
+}
+.profile-summary > .btn { flex: none; margin-bottom: 4px; }
+.profile-domain-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.profile-domain {
+  display: flex; flex-direction: column; justify-content: space-between; gap: 32px;
+  min-width: 0; min-height: 142px; padding: 20px; border: 1px solid var(--line);
+  border-radius: var(--radius); background: var(--surface);
+  animation: card-enter .3s var(--ease-out) both;
+}
+.profile-domain h2 { font-size: 13px; font-weight: 500; color: var(--ink-soft); }
+.profile-domain-score { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.profile-domain-score strong {
+  font-size: 30px; line-height: 1; font-weight: 620; letter-spacing: -.025em;
+  font-variant-numeric: tabular-nums; overflow-wrap: anywhere;
+}
+.profile-domain-score > span { color: var(--ink-faint); font-size: 12px; white-space: nowrap; }
+@media (max-width: 1140px) {
+  .profile-domain-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .profile-page { gap: 18px; }
+  .profile-summary { padding: 24px; align-items: flex-start; }
+  .profile-total > strong { font-size: 60px; }
+  .profile-domain-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .profile-domain { min-height: 126px; padding: 16px; gap: 28px; }
+}
+@media (max-width: 420px) {
+  .profile-summary { flex-direction: column; gap: 24px; padding: 20px; }
+  .profile-summary > .btn { align-self: flex-start; margin: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .profile-summary, .profile-domain { animation: card-fade .16s ease both; }
+}
