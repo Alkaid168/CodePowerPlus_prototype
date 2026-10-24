@@ -1,5 +1,13 @@
 # 项目发现
 
+## 2026-10-24 用户画像 PR #4 合并验收（当前控制器）
+
+- [verified] PR #4 已合并：`d6b51d4` → merge `42dfab0`；远端 main 包含画像提交，本地 main 已同步。
+- [verified] 合并树重新运行 400 Python 测试、32 ES 语法检查和隔离 smoke，均通过；只有既有 Starlette/AnyIO 弃用警告。独立 reviewer 对生产改动和新增评分测试均未发现确定性缺陷。
+- [verified] Edge 使用 `output/profile-merge-qa-20261024/profile.db` 合成库检查页面：接口/页面显示总分1040、十域完整；1440/1280/1024/700/390 的 `document.scrollWidth` 未超过视口，控制台无错误。
+- [boundary] 默认 Chrome 不存在，首次 Playwright 启动失败；改用已安装 Edge 完成同等检查。没有访问正式学习库、采集库、真实平台或作者笔记。
+- [boundary] 画像 API 改变了旧 `/api/users/{user_id}/profile` 响应字段，这是重写的预期兼容变化；仓库内调用方和测试已同步，外部旧客户端需更新。
+
 ## 2026-10-24 用户画像最终审查（来源：画像线程01a14887）
 
 - [verified] 主/独立审查未发现新增确定性缺陷：跨域份额、同题去重、当前语法阶段、响应契约与调用方兼容正常。完整413测试、32 ES、diff检查及独立85相关测试通过。
