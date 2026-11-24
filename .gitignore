@@ -19,3 +19,9 @@ output/v8-blind-form/*
 !output/v8-second-test/
 output/v8-second-test/*
 !output/v8-second-test/v8二测-四次对比与代理复核.xlsx
+
+# Local project notes
+/PROJECT_MEMORY.md
+/task_plan.md
+/findings.md
+/progress.md
